@@ -1,0 +1,283 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Pendiente de Confirmacion Externa</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//piezasButton1_OnClick @64-A3A26E5B
+function piezasButton1_OnClick()
+{
+    disableValidation = true;
+}
+//End piezasButton1_OnClick
+
+//piezasButton_DoSearch_OnClick @60-45214FA1
+function piezasButton_DoSearch_OnClick()
+{
+    disableValidation = true;
+}
+//End piezasButton_DoSearch_OnClick
+
+//piezasButton_cancel_OnClick @84-5E57C2C9
+function piezasButton_cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End piezasButton_cancel_OnClick
+
+//bind_events @1-7926E976
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("piezasButton1", "click", piezasButton1_OnClick);
+    addEventHandler("piezasButton_DoSearch", "click", piezasButton_DoSearch_OnClick);
+    addEventHandler("piezasButton_cancel", "click", piezasButton_cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+{tdf_header}{tdf_menu} 
+<table cellspacing="1" cellpadding="1" width="100%" border="1">
+  <tr class="AltRow">
+    <td valign="middle" align="left">
+      <div align="right">
+        <b>Area&nbsp;Actual:</b> 
+      </div>
+    </td> 
+    <td valign="top" align="left">
+      <div align="center">
+        <b><font color="#003366" size="3">{area_activa}</font></b> 
+      </div>
+    </td> 
+    <td valign="middle" align="left">
+      <div align="right">
+        <strong>En archivo</strong>: 
+      </div>
+    </td> 
+    <td valign="middle" align="left">
+      <div align="left">
+        {archivo} pieza/s 
+      </div>
+    </td>
+  </tr>
+</table>
+<div>
+  <!-- BEGIN Record piezas -->
+  <form id="piezas" name="{HTMLFormName}" action="{Action}" method="post">
+    <table cellspacing="0" cellpadding="0" width="100%" border="0">
+      <tr>
+        <td valign="top">
+          <table class="Header" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+              <th>Buscar Piezas Externas</th>
+ 
+              <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+            </tr>
+          </table>
+ 
+          <table class="Record" cellspacing="0" cellpadding="0">
+            <!-- BEGIN Error -->
+            <tr class="Error">
+              <td colspan="11">{Error}</td>
+            </tr>
+            <!-- END Error -->
+            <tr class="Controls">
+              <th>Nro</th>
+ 
+              <td><input id="piezass_pieza_nro" maxlength="10" size="10" value="{s_pieza_nro}" name="{s_pieza_nro_Name}"></td> 
+              <td>Letra&nbsp;</td> 
+              <td><input id="piezass_pieza_letra" maxlength="5" size="5" value="{s_pieza_letra}" name="{s_pieza_letra_Name}">&nbsp;</td> 
+              <td>Año&nbsp;</td> 
+              <td><input id="piezass_pieza_anio" maxlength="5" size="5" value="{s_pieza_anio}" name="{s_pieza_anio_Name}">&nbsp;</td> 
+              <td>Destino&nbsp;</td> 
+              <td>
+                <select id="piezass_unidad_id" name="{s_unidad_id_Name}">
+                  <option value="" selected>...</option>
+                  {s_unidad_id_Options}
+                </select>
+ </td> 
+              <td>
+                <!-- BEGIN Button Button_DoSearch --><input class="Button" id="piezasButton_DoSearch" type="submit" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch -->&nbsp;&nbsp;</td> 
+              <td>
+                <!-- BEGIN Button Button_cancel --><input class="Button" id="piezasButton_cancel" type="submit" value="Limpiar" name="{Button_Name}"><!-- END Button Button_cancel -->&nbsp;</td> 
+              <td>
+                <!-- BEGIN Button Button1 --><input class="Button" id="piezasButton1" type="submit" value="IR A PRINCIPAL" name="{Button_Name}"><!-- END Button Button1 -->&nbsp;</td>
+            </tr>
+ 
+            <tr class="Caption">
+              <th colspan="11"></th>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <!-- END Record piezas -->
+</div>
+<!-- BEGIN EditableGrid recibidas -->
+<form id="recibidas" name="{HTMLFormName}" action="{Action}" method="post">
+  <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
+  <table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            <td class="th"><strong><img id="recibidasImage1_{recibidas:rowNumber}" src="../iconos/16x16/go-next.gif">&nbsp;BANDEJA DE&nbsp;PENDIENTES EXTERNOS&nbsp;: Piezas&nbsp;pendientes de Confirmación Externa&nbsp;{cant_pend_ext}</strong></td> 
+            <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="10"><strong>{Error}</strong></td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Caption">
+            <th scope="col">
+            <div align="center">
+              Tipo 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Pieza 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Pase 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Destino&nbsp; 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Fojas 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Tomo 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Copia 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Descripcion 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <p align="center">&nbsp;Conf. Externa</p>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Confirmar&nbsp;Retorno&nbsp; 
+            </div>
+            </th>
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <!-- BEGIN RowError -->
+          <tr class="Error">
+            <td colspan="10"><strong>{Error}</strong></td>
+          </tr>
+          <!-- END RowError -->
+          <tr class="Row">
+            <td>
+              <div align="center">
+                {pieza_tipo_abrev} 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                <b>{pieza}</b> 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                {pase_f_pase} 
+              </div>
+            </td> 
+            <td>{unidad_p_nombre}</td> 
+            <td>
+              <div align="center">
+                {pase_n_fojas} 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                {pieza_tm_nro} 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                {pieza_cp_nro} 
+              </div>
+            </td> 
+            <td>{pieza_descripcion}</td> 
+            <td>
+              <p align="center">{pase_confir_ext}</p>
+            </td> 
+            <td>
+              <div align="center">
+<a href="{confirmLnk}" id="recibidasconfirmLnk_{recibidas:rowNumber}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt=" " src="../iconos/16x16/document-save.gif"></a> 
+              </div>
+            </td>
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="10"><strong><font color="#008000">No hay piezas&nbsp;recibidas pendientes de confirmacion</font></strong></td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="Footer">
+            <td style="TEXT-ALIGN: center" colspan="10">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/Simple_tdf/Images/First.gif" border="0"></a> <!-- END First_On -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/Simple_tdf/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->&nbsp; 
+              <!-- BEGIN Pages -->
+              <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a><!-- END Page_On -->
+              <!-- BEGIN Page_Off -->{Page_Number}<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/Simple_tdf/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/Simple_tdf/Images/Last.gif" border="0"></a> <!-- END Last_On -->&nbsp;<!-- END Navigator Navigator --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END EditableGrid recibidas -->{tdf_footer} 
+</body>
+</html>

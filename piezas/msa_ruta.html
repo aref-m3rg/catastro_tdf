@@ -1,0 +1,219 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Ruta de Pieza Administrativa</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-88A9217D
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-BF0EB765
+function bind_events() {
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body leftmargin="0" topmargin="0" rightmargin="0">
+<table cellspacing="1" cellpadding="1" width="100%" border="0">
+  <tr>
+    <td valign="top" align="left">
+      <!-- BEGIN Grid piezas_piezas_tipos_trami -->
+      <table cellspacing="0" cellpadding="0" width="100%" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                <td class="th"><strong>Ruta de la Pieza Administrativa</strong></td> 
+                <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+              </tr>
+            </table>
+ 
+            <table class="GroupCaption" cellspacing="0" cellpadding="0" width="100%">
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <th scope="row" width="19%">Tipo :</th>
+ 
+                <td width="39%">{pieza_tipo_desc}&nbsp;</td> 
+                <th scope="row" width="13%">Tramite :&nbsp;</th>
+ 
+                <td width="29%">{tramite_desc}&nbsp;</td>
+              </tr>
+ 
+              <tr class="Row">
+                <th scope="row">Pieza :</th>
+ 
+                <td><b><font color="#003366" size="3">{pieza}</font></b></td> 
+                <th scope="row">&nbsp;F. Alta :</th>
+ 
+                <td>{pieza_f_alta}&nbsp;</td>
+              </tr>
+ 
+              <tr class="Row">
+                <th scope="row">Iniciador :</th>
+ 
+                <td colspan="3">{pieza_iniciador}&nbsp;&nbsp;&nbsp;</td>
+              </tr>
+ 
+              <tr class="Row">
+                <th scope="row">Descripcion :</th>
+ 
+                <td colspan="3">{pieza_descripcion}&nbsp;&nbsp;&nbsp;</td>
+              </tr>
+ 
+              <tr class="Row">
+                <th scope="row">Observaciones :&nbsp;</th>
+ 
+                <td colspan="3">{pieza_observaciones}</td>
+              </tr>
+ 
+              <tr class="Row">
+                <th scope="row">Creada en :&nbsp;</th>
+ 
+                <td>&nbsp;{unidad_p_nombre}</td> 
+                <th scope="row">Ambito:&nbsp;</th>
+ 
+                <td>{entorno_desc}</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="4">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid piezas_piezas_tipos_trami -->
+      <!-- BEGIN Grid destino_origen_pase_anter -->
+      <table cellspacing="0" cellpadding="0" width="100%" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Row">
+                <td colspan="8">Total de pases:&nbsp;{destino_origen_pase_anter_TotalRecords}</td>
+              </tr>
+ 
+              <tr class="Caption">
+                <th scope="col">
+                <div align="center">
+                  Nº 
+                </div>
+                </th>
+ 
+                <th scope="col">
+                <div align="center">
+                  Dias 
+                </div>
+                </th>
+ 
+                <th scope="col">
+                <div align="center">
+                  Origen 
+                </div>
+                </th>
+ 
+                <th scope="col">
+                <div align="center">
+                  F. Pase 
+                </div>
+                </th>
+ 
+                <th scope="col">
+                <div align="center">
+                  Destino 
+                </div>
+                </th>
+ 
+                <th scope="col">
+                <div align="center">
+                  F. Confirma 
+                </div>
+                </th>
+ 
+                <th scope="col">
+                <div align="center">
+                  Fojas 
+                </div>
+                </th>
+ 
+                <th scope="col">
+                <div align="center">
+                  Comentario 
+                </div>
+                </th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr {destino_origen_pase_anter:rowStyle}>
+                <td>
+                  <div align="center">
+                    {pase_nro} 
+                  </div>
+                </td> 
+                <td>
+                  <div align="center">
+                    {dias}&nbsp; 
+                  </div>
+                </td> 
+                <td>{origen_unidad_p_nombre}&nbsp;</td> 
+                <td>
+                  <div align="center">
+                    {pase_anterior_pase_f_pase}&nbsp; 
+                  </div>
+                </td> 
+                <td>{destino_unidad_p_nombre}&nbsp;</td> 
+                <td>
+                  <div align="center">
+                    {pase_anterior_pase_f_confirma}&nbsp; 
+                  </div>
+                </td> 
+                <td style="TEXT-ALIGN: right">
+                  <div align="center">
+                    {pases_pase_n_fojas}&nbsp; 
+                  </div>
+                </td> 
+                <td>{pases_pase_comentario}&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="8">No hay pases</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="8">
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+                  <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                    <option value="" selected>-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/Simple_tdf/Images/First.gif" border="0"></a> <!-- END First_On -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/Simple_tdf/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/Simple_tdf/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/Simple_tdf/Images/Last.gif" border="0"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid destino_origen_pase_anter --></td>
+  </tr>
+</table>
+<br>
+</body>
+</html>

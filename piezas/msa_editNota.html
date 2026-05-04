@@ -1,0 +1,147 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Editar Nota</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-77FA2116
+</script>
+<script language="JavaScript" src="../FCKeditor/fckeditor.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include User Scripts
+
+//piezaspieza_txt_OnLoad @18-3D025FCD
+function piezaspieza_txt_OnLoad()
+{
+    var result = true;
+//End piezaspieza_txt_OnLoad
+
+//Attach FCKeditor @19-F170765D
+    var piezaspieza_txt_FCK = new FCKeditor(this.getAttribute("id"));
+    piezaspieza_txt_FCK.BasePath = "../FCKeditor/";
+    piezaspieza_txt_FCK.ToolbarSet = "MyToolbarNota";
+    piezaspieza_txt_FCK.Height = "170";
+    piezaspieza_txt_FCK.Width = "700";
+    piezaspieza_txt_FCK.ReplaceTextarea();
+//End Attach FCKeditor
+
+//Close piezaspieza_txt_OnLoad @18-BC33A33A
+    return result;
+}
+//End Close piezaspieza_txt_OnLoad
+
+//piezasButton1_OnClick @20-A3A26E5B
+function piezasButton1_OnClick()
+{
+    disableValidation = true;
+}
+//End piezasButton1_OnClick
+
+//bind_events @1-BFF46926
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("piezaspieza_txt", "load", piezaspieza_txt_OnLoad);
+    addEventHandler("piezasButton1", "click", piezasButton1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+{tdf_header}{tdf_menu} 
+<!-- BEGIN Record piezas -->
+<form id="piezas" name="{HTMLFormName}" action="{Action}" method="post">
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            <td class="th"><strong>Nueva Nota</strong></td> 
+            <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td> 
+          </tr>
+ <!-- END Error -->
+          <tr class="Controls">
+            <td class="th"><label for="piezastramite_id">Tramite</label></td> 
+            <td>
+              <select id="piezastramite_id" name="{tramite_id_Name}">
+                <option value="" selected>Seleccionar Valor</option>
+                {tramite_id_Options}
+              </select>
+ </td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="piezaspieza_destinatario">Destinatario</label></td> 
+            <td><input id="piezaspieza_destinatario" maxlength="60" size="50" value="{pieza_destinatario}" name="{pieza_destinatario_Name}"></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="piezaspieza_of_destinatario">AreaDestinatario</label></td> 
+            <td><input id="piezaspieza_of_destinatario" maxlength="60" size="50" value="{pieza_of_destinatario}" name="{pieza_of_destinatario_Name}"></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="piezaspieza_descripcion">Asunto</label></td> 
+            <td><input id="piezaspieza_descripcion" maxlength="200" size="50" value="{pieza_descripcion}" name="{pieza_descripcion_Name}"></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="piezaspieza_ref">Referencia</label></td> 
+            <td><input id="piezaspieza_ref" maxlength="200" size="50" value="{pieza_ref}" name="{pieza_ref_Name}"></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th" colspan="2"><textarea id="piezaspieza_txt" style="WIDTH: 510px; HEIGHT: 175px" name="{pieza_txt_Name}" rows="9" cols="49">{pieza_txt}</textarea></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="piezaspieza_autor">Autor</label></td> 
+            <td><input id="piezaspieza_autor" maxlength="25" size="25" value="{pieza_autor}" name="{pieza_autor_Name}"></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="piezaspieza_iniciador">Area/ Iniciador</label></td> 
+            <td><input id="piezaspieza_iniciador" maxlength="60" size="50" value="{pieza_iniciador}" name="{pieza_iniciador_Name}"></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="piezaspieza_observaciones">Observaciones</label></td> 
+            <td><input id="piezaspieza_observaciones" maxlength="200" size="50" value="{pieza_observaciones}" name="{pieza_observaciones_Name}"></td> 
+          </tr>
+ 
+          <tr class="Bottom">
+            <td align="right" colspan="2">
+              <!-- BEGIN Button Button2 --><input class="Button" id="piezasButton2" type="submit" alt="Button2" value="Actualizar" name="{Button_Name}"><!-- END Button Button2 -->
+              <!-- BEGIN Button Button1 --><input class="Button" id="piezasButton1" type="submit" alt="Button1" value="Cancelar" name="{Button_Name}"><!-- END Button Button1 --></td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+</form>
+<!-- END Record piezas -->{tdf_footer} 
+</body>
+</html>

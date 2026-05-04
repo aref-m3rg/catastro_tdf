@@ -1,0 +1,376 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Editar Plano</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.031">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-113F5716
+</script>
+<script language="JavaScript" src="../js/pt/prototype.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include User Scripts
+
+//PTAutoFill1 Loading @140-800D54DF
+function planosplano_anioPTAutoFill1_start(sender) {
+    new Ajax.Request("../services/tecnica_tc_planosRecord_planos_plano_anio_PTAutoFill1.php?keyword=" + encodeURIComponent($("planosplano_anio").value).replace(/'/g, "%27"), {
+        method: "get",
+        requestHeaders: ['If-Modified-Since', new Date(0)],
+        onSuccess: function(transport) {
+            var valuesRow = eval(transport.responseText)[0];
+            if (typeof(valuesRow) != "undefined") {
+                getSameLevelCtl("planosplano_nro", sender).value = valuesRow["cant"];
+            } else {
+                getSameLevelCtl("planosplano_nro", sender).value = "";
+            }
+        }, 
+        onFailure: function(transport) {
+            alert(transport.responseText);
+        }
+    });
+}
+//End PTAutoFill1 Loading
+
+//bind_events @1-89411585
+function bind_events() {
+    addEventHandler("planosplano_e_anio", "change", planosplano_anioPTAutoFill1_start);
+    addEventHandler("planosButton1", "click", planosplano_anioPTAutoFill1_start);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<!-- <link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css"> -->
+</head>
+<body>
+<!-- BEGIN Record planos -->
+<form id="planos" name="{HTMLFormName}" action="{Action}" method="post" enctype="{HTMLFormEnctype}">
+  <table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <th>Plano</th>
+          </tr>
+        </table>
+ 
+        <table class="Record" style="WIDTH: 100%" cellspacing="1" cellpadding="2">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="8">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>&nbsp;</th>
+ 
+            <td>
+              <div align="left">
+                <strong>Departamento</strong> 
+              </div>
+            </td> 
+            <td>
+              <div align="left">
+                <strong>Tipo&nbsp;</strong> 
+              </div>
+            </td> 
+            <td>
+              <div align="left">
+                <strong>Año&nbsp;</strong> 
+              </div>
+            </td> 
+            <td>
+              <div align="left">
+                <strong>Numero&nbsp;</strong> 
+              </div>
+            </td> 
+            <td colspan="2">&nbsp;</td> 
+            <td rowspan="7">
+              <div align="left">
+              </div>
+            </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Identificacion</th>
+ 
+            <td>{tipo_depto_parc_id} </td> 
+            <td>{tipo_plano_id} &nbsp;</td> 
+            <td>{plano_anio}&nbsp;&nbsp;</td> 
+            <td>{plano_nro}&nbsp;&nbsp;</td> 
+            <td colspan="2"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Expediente</th>
+ 
+            <td colspan="6">
+              <div align="left">
+                {plano_e_nro}&nbsp;- {plano_e_letra}&nbsp;- {plano_e_anio} 
+              </div>
+            </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>F. inicio</th>
+ 
+            <td>
+              <div align="left">
+                <strong>{plano_f_inicio}</strong>&nbsp; 
+              </div>
+            </td> 
+            <td><strong>F. Archivo</strong></td> 
+            <td colspan="2">{plano_f_archivo} </td> 
+            <td><strong>F. Alta</strong></td> 
+            <td>{plano_f_alta}&nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>F. Entrada</th>
+ 
+            <td>
+              <div align="left">
+                {plano_f_entrada}&nbsp; 
+              </div>
+            </td> 
+            <td><strong>F. Salida</strong></td> 
+            <td colspan="4">{plano_f_salida} </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Profesional #1</th>
+ 
+            <td>{profesional_1}</td> 
+            <td><strong>Profesional #2</strong></td> 
+            <td colspan="4">{prof_id_2}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Estado del plano</th>
+ 
+            <td>{plano_estado_desc}&nbsp;</td> 
+            <th>F. Registro</th>
+ 
+            <td colspan="4">{plano_f_registro} </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Imagen</th>
+ 
+            <td colspan="7">{plano_archivo}</td> 
+            <div>
+            </div>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Observaciones&nbsp;</th>
+ 
+            <td colspan="7">{plano_observa}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Disposición de archivo,<br>
+            anulación&nbsp;o suspensión </th>
+ 
+            <td colspan="7">{plano_disposicion}&nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Plano&nbsp;de&nbsp;Tierras <br>
+            Fiscales sin Mensurar</th>
+ 
+            <td colspan="7">{plano_sin_origen} </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Sin Vigencia Catastral&nbsp;</th>
+ 
+            <td colspan="7">{plano_svc} </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Plano en edición&nbsp;</th>
+ 
+            <td colspan="7">{plano_en_edicion}</td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td align="right" colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record planos --><br>
+
+<!-- BEGIN Grid parcelas_origen -->
+<table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <th>Parcelas Origen</th>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th>Partida</th>
+ 
+          <th>Sec.</th>
+ 
+          <th>Cha.</th>
+ 
+          <th>Qta.</th>
+ 
+          <th>Mzo.</th>
+ 
+          <th>Fracc.</th>
+ 
+          <th>Pla.</th>
+ 
+          <th>Uf./Uc</th>
+ 
+          <th>Prd.</th>
+ 
+          <th>Rte.</th>
+ 
+          <th>Estado&nbsp;</th>
+ 
+          <th>Plano&nbsp;</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr {parcelas_origen:rowStyle}>
+          <td style="TEXT-ALIGN: right">{parcela_partida}&nbsp;</td> 
+          <td>{parcela_seccion}&nbsp;</td> 
+          <td>{parcela_chacra}&nbsp;</td> 
+          <td>{parcela_quinta}&nbsp;</td> 
+          <td>{parcela_macizo}&nbsp;</td> 
+          <td>{parcela_fraccion}&nbsp;</td> 
+          <td>{parcela_parcela}&nbsp;</td> 
+          <td>{parcela_uf}&nbsp;</td> 
+          <td>{parcela_predio}&nbsp;</td> 
+          <td>{parcela_rte}&nbsp;</td> 
+          <td>{tipo_est_parc_descr}&nbsp;</td> 
+          <td>{plano}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="12">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="12">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option value="" selected>-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img src="../Styles/Simple_tdf/Images/First.gif" border="0"></a> <!-- END First_On -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="../Styles/Simple_tdf/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="../Styles/Simple_tdf/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="../Styles/Simple_tdf/Images/Last.gif" border="0"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid parcelas_origen --><br>
+
+<!-- BEGIN Grid parcelas_destino -->
+<table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <th>Parcelas destino</th>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th>Partida</th>
+ 
+          <th>Sec.</th>
+ 
+          <th>Cha.</th>
+ 
+          <th>Qta.</th>
+ 
+          <th>Mzo.</th>
+ 
+          <th>Fracc.</th>
+ 
+          <th>Pla.</th>
+ 
+          <th>Uf./Uc</th>
+ 
+          <th>Prd.</th>
+ 
+          <th>Rte.</th>
+ 
+          <th>Estado&nbsp;</th>
+ 
+          <th>Plano&nbsp;</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr {parcelas_destino:rowStyle}>
+          <td style="TEXT-ALIGN: right">{parcela_partida}&nbsp;</td> 
+          <td>{parcela_seccion}&nbsp;</td> 
+          <td>{parcela_chacra}&nbsp;</td> 
+          <td>{parcela_quinta}&nbsp;</td> 
+          <td>{parcela_macizo}&nbsp;</td> 
+          <td>{parcela_fraccion}&nbsp;</td> 
+          <td>{parcela_parcela}&nbsp;</td> 
+          <td>{parcela_uf}&nbsp;</td> 
+          <td>{parcela_predio}&nbsp;</td> 
+          <td>{parcela_rte}&nbsp;</td> 
+          <td>{tipo_est_parc_descr}&nbsp;</td> 
+          <td>{plano}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="12">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="12">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option value="" selected>-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img src="../Styles/Simple_tdf/Images/First.gif" border="0"></a> <!-- END First_On -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="../Styles/Simple_tdf/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="../Styles/Simple_tdf/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="../Styles/Simple_tdf/Images/Last.gif" border="0"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid parcelas_destino -->
+</body>
+</html>

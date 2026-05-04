@@ -1,0 +1,149 @@
+<!-- BEGIN EditableGrid recibidas -->
+<link rel="stylesheet" type="text/css" href="{page:pathToRoot}Styles/Simple_tdf/Style.css">
+<form id="msa_pend_extrecibidas" name="{HTMLFormName}" action="{Action}" method="post">
+  <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
+  <table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            <td class="th"><strong><img id="recibidasImage1_{recibidas:rowNumber}" src="../iconos/16x16/go-next.gif">&nbsp;BANDEJA DE&nbsp;PENDIENTES EXTERNOS&nbsp;{cant_pend_ext}&nbsp;: Piezas&nbsp;pendientes de Confirmación Externa</strong></td> 
+            <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="9"><strong>{Error}</strong></td> 
+          </tr>
+ <!-- END Error -->
+          <tr class="Caption">
+            <th scope="col">
+            <div align="center">
+              Tipo 
+            </div>
+ </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Pieza 
+            </div>
+ </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Pase 
+            </div>
+ </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Origen 
+            </div>
+ </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Fojas 
+            </div>
+ </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Tomo 
+            </div>
+ </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Copia 
+            </div>
+ </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Descripcion 
+            </div>
+ </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Confirmar 
+            </div>
+ </th>
+ 
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <!-- BEGIN RowError -->
+          <tr class="Error">
+            <td colspan="9"><strong>{Error}</strong></td> 
+          </tr>
+ <!-- END RowError -->
+          <tr class="Row">
+            <td>
+              <div align="center">
+                {pieza_tipo_abrev} 
+              </div>
+ </td> 
+            <td>
+              <div align="center">
+                <b>{pieza}</b> 
+              </div>
+ </td> 
+            <td>
+              <div align="center">
+                {pase_f_pase} 
+              </div>
+ </td> 
+            <td>{unidad_p_nombre}</td> 
+            <td>
+              <div align="center">
+                {pase_n_fojas} 
+              </div>
+ </td> 
+            <td>
+              <div align="center">
+                {pieza_tm_nro} 
+              </div>
+ </td> 
+            <td>
+              <div align="center">
+                {pieza_cp_nro} 
+              </div>
+ </td> 
+            <td>{pieza_descripcion}</td> 
+            <td>
+              <div align="center">
+<a href="{confirmLnk}" id="msa_pend_extrecibidasconfirmLnk_{recibidas:rowNumber}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt=" " src="../iconos/16x16/document-save.gif"></a> 
+              </div>
+ </td> 
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="9"><strong><font color="#008000">No hay piezas&nbsp;recibidas pendientes de confirmacion</font></strong></td> 
+          </tr>
+ <!-- END NoRecords -->
+          <tr class="Footer">
+            <td style="TEXT-ALIGN: center" colspan="9">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/Simple_tdf/Images/First.gif" border="0"></a> <!-- END First_On -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/Simple_tdf/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->&nbsp; 
+              <!-- BEGIN Pages -->
+              <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a><!-- END Page_On -->
+              <!-- BEGIN Page_Off -->{Page_Number}<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/Simple_tdf/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/Simple_tdf/Images/Last.gif" border="0"></a> <!-- END Last_On -->&nbsp;<!-- END Navigator Navigator --></td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+</form>
+<!-- END EditableGrid recibidas -->

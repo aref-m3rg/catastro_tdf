@@ -1,0 +1,166 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Cambiar Datos nomenclatura</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//previsados_parcelas_destiButton_Update_OnClick @7-DEFE54DA
+function previsados_parcelas_destiButton_Update_OnClick()
+{
+    var result = true;
+//End previsados_parcelas_destiButton_Update_OnClick
+
+//Confirmation Message @32-0A45B48D
+    return confirm('Confirma que registra los cambios?');
+//End Confirmation Message
+
+//Close previsados_parcelas_destiButton_Update_OnClick @7-BC33A33A
+    return result;
+}
+//End Close previsados_parcelas_destiButton_Update_OnClick
+
+//previsados_parcelas_destiButton_Cancel_OnClick @8-CF876710
+function previsados_parcelas_destiButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End previsados_parcelas_destiButton_Cancel_OnClick
+
+//bind_events @1-5896E0D1
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("previsados_parcelas_destiButton_Update", "click", previsados_parcelas_destiButton_Update_OnClick);
+    addEventHandler("previsados_parcelas_destiButton_Cancel", "click", previsados_parcelas_destiButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+<div>
+  {tdf_header}{tdf_menu} 
+</div>
+<div>
+  <!-- BEGIN Record previsados_parcelas_desti -->
+  <form id="previsados_parcelas_desti" method="post" name="{HTMLFormName}" action="{Action}">
+    <table cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <td valign="top">
+          <table class="Header" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+              <th>Editar Parcela Destino</th>
+ 
+              <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+            </tr>
+          </table>
+ 
+          <table class="Record" cellspacing="0" cellpadding="0">
+            <!-- BEGIN Error -->
+            <tr class="Error">
+              <td colspan="2">{Error}</td>
+            </tr>
+            <!-- END Error -->
+            <tr class="Controls">
+              <th>Depto.<input id="previsados_parcelas_destitipo_depto_parc_id_2" type="hidden" value="{tipo_depto_parc_id_2}" name="{tipo_depto_parc_id_2_Name}"><input id="previsados_parcelas_destiparcela_id" type="hidden" value="{parcela_id}" name="{parcela_id_Name}"></th>
+ 
+              <td>
+                <select id="previsados_parcelas_destitipo_depto_parc_id" name="{tipo_depto_parc_id_Name}">
+                  {tipo_depto_parc_id_Options}
+                </select>
+ </td>
+            </tr>
+ 
+            <tr class="Controls">
+              <th>Seccion<input id="previsados_parcelas_destiparcela_seccion_2" type="hidden" value="{parcela_seccion_2}" name="{parcela_seccion_2_Name}"></th>
+ 
+              <td><input id="previsados_parcelas_destiparcela_seccion" maxlength="1" size="1" value="{parcela_seccion}" name="{parcela_seccion_Name}"></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <th>Chacra<input id="previsados_parcelas_destiparcela_chacra_2" type="hidden" value="{parcela_chacra_2}" name="{parcela_chacra_2_Name}"></th>
+ 
+              <td><input id="previsados_parcelas_destiparcela_chacra" maxlength="15" size="15" value="{parcela_chacra}" name="{parcela_chacra_Name}"></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <th>Quinta<input id="previsados_parcelas_destiparcela_quinta_2" type="hidden" value="{parcela_quinta_2}" name="{parcela_quinta_2_Name}"></th>
+ 
+              <td><input id="previsados_parcelas_destiparcela_quinta" maxlength="15" size="15" value="{parcela_quinta}" name="{parcela_quinta_Name}"></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <th>Macizo<input id="previsados_parcelas_destiparcela_macizo_2" type="hidden" value="{parcela_macizo_2}" name="{parcela_macizo_2_Name}"></th>
+ 
+              <td><input id="previsados_parcelas_destiparcela_macizo" maxlength="5" size="5" value="{parcela_macizo}" name="{parcela_macizo_Name}"></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <th>Fraccion<input id="previsados_parcelas_destiparcela_fraccion_2" type="hidden" value="{parcela_fraccion_2}" name="{parcela_fraccion_2_Name}"></th>
+ 
+              <td><input id="previsados_parcelas_destiparcela_fraccion" maxlength="15" size="15" value="{parcela_fraccion}" name="{parcela_fraccion_Name}"></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <th>Parcela<input id="previsados_parcelas_destiparcela_parcela_2" type="hidden" value="{parcela_parcela_2}" name="{parcela_parcela_2_Name}"></th>
+ 
+              <td><input id="previsados_parcelas_destiparcela_parcela" maxlength="10" size="10" value="{parcela_parcela}" name="{parcela_parcela_Name}"></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <th>Uf|Uc<input id="previsados_parcelas_destiparcela_uf_2" type="hidden" value="{parcela_uf_2}" name="{parcela_uf_2_Name}"></th>
+ 
+              <td><input id="previsados_parcelas_destiparcela_uf" maxlength="15" size="15" value="{parcela_uf}" name="{parcela_uf_Name}"></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <th>Sup. Parcela<input id="previsados_parcelas_destiparcela_super_mensura_2" type="hidden" value="{parcela_super_mensura_2}" name="{parcela_super_mensura_2_Name}"><input id="previsados_parcelas_destiunidades_medidas_id_2" type="hidden" value="{unidades_medidas_id_2}" name="{unidades_medidas_id_2_Name}"></th>
+ 
+              <td><input id="previsados_parcelas_destiparcela_super_mensura" maxlength="12" size="12" value="{parcela_super_mensura}" name="{parcela_super_mensura_Name}">
+                <select id="previsados_parcelas_destiunidades_medidas_id" name="{unidades_medidas_id_Name}">
+                  <option selected value="">...</option>
+                  {unidades_medidas_id_Options}
+                </select>
+ </td>
+            </tr>
+ 
+            <tr class="Controls">
+              <th>Sup. Uf|Uc<input id="previsados_parcelas_destiparcela_super_uf_2" type="hidden" value="{parcela_super_uf_2}" name="{parcela_super_uf_2_Name}"><input id="previsados_parcelas_destiunidades_medidas_uf_id_2" type="hidden" value="{unidades_medidas_uf_id_2}" name="{unidades_medidas_uf_id_2_Name}"></th>
+ 
+              <td><input id="previsados_parcelas_destiparcela_super_uf" maxlength="12" size="12" value="{parcela_super_uf}" name="{parcela_super_uf_Name}">
+                <select id="previsados_parcelas_destiunidades_medidas_uf_id" name="{unidades_medidas_uf_id_Name}">
+                  <option selected value="">...</option>
+                  {unidades_medidas_uf_id_Options}
+                </select>
+ </td>
+            </tr>
+ 
+            <tr class="Bottom">
+              <td colspan="2" align="right">
+                <!-- BEGIN Button Button_Update --><input id="previsados_parcelas_destiButton_Update" class="Button" type="submit" value="Actualizar" name="{Button_Name}"><!-- END Button Button_Update -->
+                <!-- BEGIN Button Button_Cancel --><input id="previsados_parcelas_destiButton_Cancel" class="Button" type="submit" value="Salir" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <!-- END Record previsados_parcelas_desti --><br>
+</div>
+<div>
+  {tdf_footer} 
+</div>
+</body>
+</html>

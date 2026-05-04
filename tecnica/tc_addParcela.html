@@ -1,0 +1,410 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Editar parcela en Plano</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.032">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//parcelasButton_Delete_OnClick @5-1E34AE53
+function parcelasButton_Delete_OnClick()
+{
+    var result = true;
+//End parcelasButton_Delete_OnClick
+
+//Confirmation Message @6-01B652A0
+    return confirm('Seguro que desea borrar esta parcela? \nSe perdera toda la informacion relacionada a la misma');
+//End Confirmation Message
+
+//Close parcelasButton_Delete_OnClick @5-BC33A33A
+    return result;
+}
+//End Close parcelasButton_Delete_OnClick
+
+//DEL      // -------------------------
+//DEL      aMayusculas(this);
+//DEL      // -------------------------
+
+//DEL      // -------------------------
+//DEL      aMayusculas(this);
+//DEL      // -------------------------
+
+//DEL      // -------------------------
+//DEL          aMayusculas(this);
+//DEL      // -------------------------
+
+//DEL      // -------------------------
+//DEL                  document.getElementById("personastipo_persona_id").disabled  = true;
+//DEL                  document.getElementById("personastipo_documento_id").disabled = true;
+//DEL                  document.getElementById("personaspersona_nro_doc").disabled = true;
+//DEL                  document.getElementById("personaspersona_apellido").disabled = true;
+//DEL                  document.getElementById("personaspersona_nombre").disabled = true;
+//DEL                  document.getElementById("personaspersona_fecha_nac").disabled = true;
+//DEL                  document.getElementById("personaspersona_tel_movil").disabled = true;
+//DEL                  document.getElementById("personaspersona_cuit").disabled = true;
+//DEL                  document.getElementById("personaspersona_conyuge").disabled = true;
+//DEL                  document.getElementById("personaspais_id").disabled = true;
+//DEL                  document.getElementById("personaspersona_email").disabled = true;
+//DEL      // -------------------------
+
+//DEL      // -------------------------
+//DEL      aMayusculas(this);
+//DEL      // -------------------------
+
+//DEL      // -------------------------
+//DEL      aMayusculas(this);
+//DEL      // -------------------------
+
+//DEL      // -------------------------
+//DEL      // Write your own code here.
+//DEL          aMayusculas(this);
+//DEL      // -------------------------
+
+//DEL      // -------------------------
+//DEL                  document.getElementById("personas1tipo_persona_id").disabled = true;
+//DEL                  document.getElementById("personas1tipo_documento_id").disabled = true;
+//DEL                  document.getElementById("personas1persona_nro_doc").disabled = true;
+//DEL                  document.getElementById("personas1persona_apellido").disabled = true;
+//DEL                  document.getElementById("personas1persona_nombre").disabled = true;
+//DEL                  document.getElementById("personas1persona_fecha_nac").disabled = true;
+//DEL                  document.getElementById("personas1persona_tel_movil").disabled = true;
+//DEL                  document.getElementById("personas1persona_cuit").disabled = true;
+//DEL                  document.getElementById("personas1persona_conyuge").disabled = true;
+//DEL                  document.getElementById("personas1pais_id").disabled = true;
+//DEL                  document.getElementById("personas1persona_email").disabled = true;
+//DEL      // -------------------------
+
+//parcelasButton_Cancel_OnClick @7-69F0D7E8
+function parcelasButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End parcelasButton_Cancel_OnClick
+
+//bind_events @1-D3255CC9
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("parcelasButton_Delete", "click", parcelasButton_Delete_OnClick);
+    addEventHandler("parcelasButton_Cancel", "click", parcelasButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+{tdf_header}{tdf_menu} 
+<table width="75%" border="0">
+  <tr>
+    <td>
+      <!-- BEGIN Grid departamentos_planos_plan -->
+      <table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                <th>Datos del plano</th>
+ 
+                <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th>
+                <p align="center">Departamento</p>
+                </th>
+ 
+                <th>
+                <p align="center">Tipo Plano</p>
+                </th>
+ 
+                <th>
+                <p align="center">Nro Plano</p>
+                </th>
+ 
+                <th>
+                <p align="center">Expediente</p>
+                </th>
+ 
+                <th>
+                <p align="center">Estado</p>
+                </th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="AltRow" style="FONT-SIZE: 16px; FONT-WEIGHT: bolder">
+                <td class="Total">
+                  <p align="center">{dpto_desc}</p>
+                </td> 
+                <td>
+                  <p align="center">{plano_tipo_desc}</p>
+                </td> 
+                <td style="TEXT-ALIGN: right">
+                  <p align="center">{plano}</p>
+                </td> 
+                <td style="TEXT-ALIGN: right">
+                  <p align="center">{expte}</p>
+                </td> 
+                <td>
+                  <p align="center">{plano_est_desc}</p>
+                </td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="5">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid departamentos_planos_plan --></td>
+  </tr>
+ 
+  <tr>
+    <td>
+      <!-- BEGIN Record parcelas -->
+      <form id="parcelas" method="post" name="{HTMLFormName}" action="{Action}">
+        <table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <th>Parcela de destino</th>
+ 
+                  <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="15">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <th>Partida</th>
+ 
+                  <td colspan="14"><span style="COLOR: #666">El número de partida se asignará automáticamente en el sistema</span></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th>Nomenclatura destino</th>
+ 
+                  <th>
+                  <div align="center">
+                    Secc. 
+                  </div>
+                  </th>
+ 
+                  <th>
+                  <div align="center">
+                    Chacra 
+                  </div>
+                  </th>
+ 
+                  <th>
+                  <div align="center">
+                    Quinta 
+                  </div>
+                  </th>
+ 
+                  <th>
+                  <div align="center">
+                    Macizo 
+                  </div>
+                  </th>
+ 
+                  <th>
+                  <div align="center">
+                    Fraccion 
+                  </div>
+                  </th>
+ 
+                  <th>
+                  <div align="center">
+                    Parcela 
+                  </div>
+                  </th>
+ 
+                  <th>
+                  <div align="center">
+                    Uf / Uc 
+                  </div>
+                  </th>
+ 
+                  <th>
+                  <div align="center">
+                    Predio 
+                  </div>
+                  </th>
+ 
+                  <th colspan="6">
+                  <div align="center">
+                    Rte 
+                  </div>
+                  </th>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th>&nbsp;</th>
+ 
+                  <td>
+                    <!-- BEGIN TextBox parcela_seccion --><input id="parcelasparcela_seccion" maxlength="1" size="2" value="{parcela_seccion}" name="{parcela_seccion_Name}"><!-- END TextBox parcela_seccion --></td> 
+                  <td><input id="parcelasparcela_chacra" maxlength="15" size="3" value="{parcela_chacra}" name="{parcela_chacra_Name}"></td> 
+                  <td><input id="parcelasparcela_quinta" maxlength="15" size="3" value="{parcela_quinta}" name="{parcela_quinta_Name}"></td> 
+                  <td><input id="parcelasparcela_macizo" maxlength="5" size="3" value="{parcela_macizo}" name="{parcela_macizo_Name}"></td> 
+                  <td><input id="parcelasparcela_fraccion" maxlength="15" size="3" value="{parcela_fraccion}" name="{parcela_fraccion_Name}"></td> 
+                  <td><input id="parcelasparcela_parcela" maxlength="10" size="10" value="{parcela_parcela}" name="{parcela_parcela_Name}"></td> 
+                  <th><input id="parcelasparcela_uf" maxlength="15" size="3" value="{parcela_uf}" name="{parcela_uf_Name}"></th>
+ 
+                  <td><input disabled id="parcelasparcela_predio" maxlength="15" size="3" value="{parcela_predio}" name="{parcela_predio_Name}"></td> 
+                  <td colspan="6"><input id="parcelasparcela_rte" maxlength="15" size="3" value="{parcela_rte}" name="{parcela_rte_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th>Superficie de la Parcela</th>
+ 
+                  <td colspan="2"><input id="parcelasparcela_superficie" maxlength="12" size="12" value="{parcela_superficie}" name="{parcela_superficie_Name}"></td> 
+                  <td align="center" v>
+                    <select id="parcelasuni_med_id" name="{uni_med_id_Name}">
+                      {uni_med_id_Options}
+                    </select>
+ &nbsp;</td> 
+                  <th colspan="3">
+                  <p align="right">&nbsp;</p>
+                  </th>
+ 
+                  <th colspan="8">&nbsp;</th>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th>Superficie propia de la UF</th>
+ 
+                  <td colspan="2"><input id="parcelasparcela_sup_uf" maxlength="12" size="12" value="{parcela_sup_uf}" name="{parcela_sup_uf_Name}"></td> 
+                  <td align="center" v>&nbsp;</td> 
+                  <th colspan="3">
+                  <p align="right">Porcentaje UF&nbsp;</p>
+                  </th>
+ 
+                  <td colspan="8"><input id="parcelasparcela_porc_uf" maxlength="12" size="12" value="{parcela_porc_uf}" name="{parcela_porc_uf_Name}">%</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>Clasificación de la Parcela &nbsp;</td> 
+                  <td colspan="14">
+                    <select id="parcelasparcela_clasificacion_id" name="{parcela_clasificacion_id_Name}">
+                      <option selected value="">...</option>
+                      {parcela_clasificacion_id_Options}
+                    </select>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td colspan="15" align="right">
+                    <!-- BEGIN Button Button_Insert --><input id="parcelasButton_Insert" class="Button" type="submit" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input id="parcelasButton_Update" class="Button" type="submit" value="Actualizar" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input id="parcelasButton_Delete" class="Button" type="submit" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete -->
+                    <!-- BEGIN Button Button_Cancel --><input id="parcelasButton_Cancel" class="Button" type="submit" value="Volver" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="parcelasplanos_parc_prov_tipo" type="hidden" value="{planos_parc_prov_tipo}" name="{planos_parc_prov_tipo_Name}"><input id="parcelasdpto_id" type="hidden" value="{dpto_id}" name="{dpto_id_Name}"><input id="parcelasplano_id" type="hidden" value="{plano_id}" name="{plano_id_Name}"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record parcelas --></td>
+  </tr>
+ 
+  <tr>
+    <td>
+      <!-- BEGIN Grid doc_tipos_personas_person -->
+      <table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                <th>Titulares</th>
+ 
+                <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Row">
+                <td colspan="5">Total :&nbsp;{doc_tipos_personas_person_TotalRecords}</td> 
+                <td style="WIDTH: 120px; TEXT-ALIGN: center">&nbsp;<a href="{ImageLink1}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; VERTICAL-ALIGN: middle; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/22x22/system-users.gif">Agregar&nbsp;titular</a>&nbsp;</td>
+              </tr>
+ 
+              <tr class="Caption">
+                <th>Persona</th>
+ 
+                <th>Documento</th>
+ 
+                <th>Figura&nbsp;</th>
+ 
+                <th>Tipo Intrumento&nbsp;</th>
+ 
+                <th>Nro. Instrumento&nbsp;</th>
+ 
+                <th>
+                <p align="center">Editar</p>
+                </th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td>{persona_denominacion}&nbsp;</td> 
+                <td>{doc_tipo_abrev}: {persona_nro_doc}</td> 
+                <td>{tipo_persona_parcela_descrip}&nbsp;</td> 
+                <td>{tipo_instrumento_descrip}&nbsp;</td> 
+                <td>{planos_parc_prov_personas_num_int}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">
+                  <p align="center"><a href="{ImageLink2}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/22x22/accessories-text-editor.gif"></a></p>
+                </td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="6"><font color="#ff0000" size="2">No hay registros</font></td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="6">
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+                  <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->&nbsp;{Page_Number}&nbsp;de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid doc_tipos_personas_person --></td>
+  </tr>
+</table>
+&nbsp; <br>
+{tdf_footer} 
+</body>
+</html>

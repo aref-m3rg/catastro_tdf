@@ -1,0 +1,630 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>previsados_respuesta</title>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" src="../js/jquery-1.7.min.js" type="text/javascript"></script>
+<script language="JavaScript" src="../js/jquery-ui.custom.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+        var availableTags;
+        $(function() {
+                var jqxhr = $.ajax( "../services/obs_prev_nota.php" )
+                                          .done(function(data) {
+                                                cargar(data);
+                                          });
+                function split2( val ) {
+                        return val.split( /,\s*/ );
+                }
+                function extractLast( term ) {
+                        return split2( term ).pop();
+                }
+
+                $( "#respuestaprevisado_respuesta_nota" )
+                        .bind( "keydown", function( event ) {
+                                if ( event.keyCode === $.ui.keyCode.TAB ) {
+                                        event.preventDefault();//previene salto de objeto
+                                }
+                        })
+                        .autocomplete({
+                                minLength: 0,
+                                source: function( request, response ) {
+                                        response( $.ui.autocomplete.filter(
+                                                availableTags, extractLast( request.term ) ) );
+                                },
+                                focus: function() {
+                                        return false;
+                                },
+                                select: function( event, ui ) {
+                                        var terms = split2( this.value );
+                                        terms.pop();
+                                        terms.push( ui.item.value );
+                                        terms.push("");
+                                        this.value = terms.join(", ");
+                                        return false;
+                                }
+                        });
+        });
+
+function marcar(valor){
+    if(document.getElementById("respuestaprevisado_tipo_verif_id_"+valor).checked){
+            document.getElementById("span_previsado_"+valor).innerHTML = "(<font color='GREEN'><b>SI</b></font>)";
+    }else{
+            document.getElementById("span_previsado_"+valor).innerHTML = "(<font color='red'><b>NO</b></font>)";
+    }
+}
+
+function ver(){
+        var valor = document.getElementById("respuestacantidad").value;
+        var elemento = "", fila = "";
+        for(var i=1;i<=valor;i++){
+                if(document.getElementById("respuestaprevisado_tipo_verif_id_"+i).checked){
+                        document.getElementById("span_previsado_"+i).innerHTML = "(<font color='GREEN'><b>SI</b></font>)";
+                }else{
+                        document.getElementById("span_previsado_"+i).innerHTML = "(<font color='red'><b>NO</b></font>)";
+                }
+        }
+}
+
+function cargar(datos){
+        availableTags = datos.split("|");
+}
+function substr_count(haystack, needle, offset, length) {
+  var cnt = 0;
+  haystack += '';
+  needle += '';
+  if (isNaN(offset)) {
+    offset = 0;
+  }
+  if (isNaN(length)) {
+    length = 0;
+  }
+  if (needle.length == 0) {
+    return false;
+  }
+  offset--;
+
+  while ((offset = haystack.indexOf(needle, offset + 1)) != -1) {
+    if (length > 0 && (offset + needle.length) > length) {
+      return false;
+    }
+    cnt++;
+  }
+
+  return cnt;
+}
+function cargaHTMLobs(){
+    document.getElementById("caratula").innerHTML = "A Caratular<input type='checkbox' id='check_caratula' onclick='marcarcaratula()'>";
+        var chequeado = document.getElementById("respuestacaratula").value;
+        if(chequeado == 1){
+                document.getElementById("check_caratula").checked = true;
+                marcarcaratula();
+        }
+}
+function marcarcaratula(){
+        if(document.getElementById("check_caratula").checked){
+            document.getElementById("fechacaratula").innerHTML = "<input type='text' maxlength='10' size='6' id='fecha_caratula' onblur='recargar()'> <font size='1'><b>dd/mm/yyyy</b></font>";
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1;
+            var yyyy = today.getFullYear();
+            if(dd<10){
+                dd='0'+dd;
+            } 
+            if(mm<10){
+                mm='0'+mm;
+            } 
+            var today = dd+'/'+mm+'/'+yyyy;
+                        if(document.getElementById("respuestafecha_caratula").value != ""){//si ya tiene fecha cargada
+                document.getElementById("fecha_caratula").value = document.getElementById("respuestafecha_caratula").value;
+                        }else{//sino se carga la de hoy
+                                document.getElementById("fecha_caratula").value = today;
+                        }
+            document.getElementById("respuestacaratula").value = 1;
+            document.getElementById("respuestafecha_caratula").value = document.getElementById("fecha_caratula").value;
+        }else{
+                document.getElementById("fechacaratula").innerHTML = "";
+            document.getElementById("respuestacaratula").value = 0;
+            document.getElementById("respuestafecha_caratula").value = "";
+        }
+}
+function recargar(){
+        document.getElementById("respuestafecha_caratula").value = document.getElementById("fecha_caratula").value;
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//respuestaButton_Insert_OnClick @15-5D36C700
+function respuestaButton_Insert_OnClick()
+{
+    var result = true;
+//End respuestaButton_Insert_OnClick
+
+//Confirmation Message @54-7DE60E0F
+        if(document.getElementById("respuestaprevisado_tipo_estado_carga_id").value == 2 || document.getElementById("respuestaprevisado_tipo_estado_carga_id").value == 5){
+                return confirm('Confirma la Respuesta?');
+        }else{
+                var nombre_ubicacion = document.getElementById("respuestaarchivo_cargaFileControl").value;
+                var res = nombre_ubicacion.split('\\');
+                var nombre_archivo = res[res.length - 1];
+                var cantidad = substr_count(nombre_archivo,'.');
+                var msg = "";
+
+                var archivo = document.getElementById("respuestaarchivo_cargaFileControl");
+                if(archivo.files && archivo.files.length == 1){           
+                    if (archivo.files[0].size > 5242880){//limite de tamaño de archivo
+                                                //caracter especial alt+126 -> ~
+                        alert("El archivo sobrepasa el tamaño permitodo de 5MB, es de ~" + Math.round((archivo.files[0].size/1024/1024)) + "MB");
+                        return false;
+                    }
+                }
+                if(cantidad > 1){
+                    msg = "El archivo cargado debe tener en su nombre solo letras, numeros o guion bajo, no se admite caracteres especiales.";
+                                alert(msg);
+                        return false;
+                }
+                if(document.getElementById("respuestaobservaciones").value){
+                    return confirm('Confirma la Respuesta?');
+            }else{
+                alert('Si es una observacion, debe completar una descripcion de la observacion.');
+                return false;
+            }
+
+        }
+//End Confirmation Message
+
+//Close respuestaButton_Insert_OnClick @15-BC33A33A
+    return result;
+}
+//End Close respuestaButton_Insert_OnClick
+
+//respuestaprevisado_tipo_estado_carga_id_OnChange @45-0D0855F5
+function respuestaprevisado_tipo_estado_carga_id_OnChange()
+{
+    var result = true;
+//End respuestaprevisado_tipo_estado_carga_id_OnChange
+
+//Custom Code @80-2A29BDB7
+    // -------------------------
+        if(this.value == 5){
+            cargaHTMLobs();
+        }else{
+            document.getElementById("caratula").innerHTML = "";
+                        document.getElementById("fechacaratula").innerHTML = "";
+        }
+    // -------------------------
+//End Custom Code
+
+//Close respuestaprevisado_tipo_estado_carga_id_OnChange @45-BC33A33A
+    return result;
+}
+//End Close respuestaprevisado_tipo_estado_carga_id_OnChange
+
+//respuestaprevisado_tipo_estado_carga_id_OnLoad @45-C4AC60FC
+function respuestaprevisado_tipo_estado_carga_id_OnLoad()
+{
+    var result = true;
+//End respuestaprevisado_tipo_estado_carga_id_OnLoad
+
+//Custom Code @82-2A29BDB7
+    // -------------------------
+    if(this.value == 5){
+            cargaHTMLobs();
+        }
+    // -------------------------
+//End Custom Code
+
+//Close respuestaprevisado_tipo_estado_carga_id_OnLoad @45-BC33A33A
+    return result;
+}
+//End Close respuestaprevisado_tipo_estado_carga_id_OnLoad
+
+//respuestaprevisado_plazo_entrega_id_OnChange @106-04AE3CE9
+function respuestaprevisado_plazo_entrega_id_OnChange()
+{
+    var result = true;
+//End respuestaprevisado_plazo_entrega_id_OnChange
+
+//Custom Code @108-2A29BDB7
+    // -------------------------
+    var contenido = document.getElementById("respuestaprevisado_plazo_entrega_id").options[this.value-1].innerText;
+        if(contenido > 0){
+        document.getElementById("respuestaplazo_tiempo").value = contenido;
+        }
+    // -------------------------
+//End Custom Code
+
+//Close respuestaprevisado_plazo_entrega_id_OnChange @106-BC33A33A
+    return result;
+}
+//End Close respuestaprevisado_plazo_entrega_id_OnChange
+
+//respuesta_OnLoad @12-A1A3045A
+function respuesta_OnLoad(form)
+{
+    var result = true;
+//End respuesta_OnLoad
+
+//Custom Code @67-2A29BDB7
+    // -------------------------
+    ver();
+    // -------------------------
+//End Custom Code
+
+//Close respuesta_OnLoad @12-BC33A33A
+    return result;
+}
+//End Close respuesta_OnLoad
+
+//respuestaButton_cancelar_OnClick @44-1F404FCC
+function respuestaButton_cancelar_OnClick()
+{
+    disableValidation = true;
+}
+//End respuestaButton_cancelar_OnClick
+
+//respuestaButton1_OnClick @64-BB4D3B32
+function respuestaButton1_OnClick()
+{
+    disableValidation = true;
+}
+//End respuestaButton1_OnClick
+
+//bind_events @1-A53B58D1
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("respuestaButton_Insert", "click", respuestaButton_Insert_OnClick);
+    addEventHandler("respuestaprevisado_tipo_estado_carga_id", "change", respuestaprevisado_tipo_estado_carga_id_OnChange);
+    addEventHandler("respuestaprevisado_tipo_estado_carga_id", "load", respuestaprevisado_tipo_estado_carga_id_OnLoad);
+    addEventHandler("respuestaprevisado_plazo_entrega_id", "change", respuestaprevisado_plazo_entrega_id_OnChange);
+    addEventHandler("respuesta", "load", respuesta_OnLoad);
+    addEventHandler("respuestaButton_cancelar", "click", respuestaButton_cancelar_OnClick);
+    addEventHandler("respuestaButton1", "click", respuestaButton1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+{tdf_header}{tdf_menu} <br>
+<div>
+  <table cellspacing="0" cellpadding="0" width="100%" border="0">
+    <tr valign="top">
+      <td>
+        <div>
+          <!-- BEGIN Grid previsados_detalles_carga -->
+          <table cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                    <th>Archivos Cargados</th>
+ 
+                    <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Grid" cellspacing="0" cellpadding="0">
+                  <tr class="Caption">
+                    <th>
+                    <div align="right">
+                      &nbsp;Matricula: 
+                    </div>
+                    </th>
+ 
+                    <th style="BACKGROUND: #fff; COLOR: #000"><font color="blue">{matricula}</font></th>
+                  </tr>
+ 
+                  <tr class="Caption">
+                    <th>
+                    <div align="right">
+                      &nbsp;Profesional: 
+                    </div>
+                    </th>
+ 
+                    <th style="BACKGROUND: #fff; COLOR: #000"><font color="blue">{profesional_nombre}</font></th>
+                  </tr>
+ 
+                  <tr class="Caption">
+                    <th>
+                    <div align="right">
+                      &nbsp;Fecha de Carga: 
+                    </div>
+                    </th>
+ 
+                    <th style="BACKGROUND: #fff; COLOR: #000"><font color="blue">{fecha_carga}</font></th>
+                  </tr>
+ 
+                  <tr class="Caption">
+                    <th>
+                    <div align="right">
+                      &nbsp;Tipo de Plano: 
+                    </div>
+                    </th>
+ 
+                    <th style="BACKGROUND: #fff; COLOR: #000"><font color="blue">{tipo_plano}</font></th>
+                  </tr>
+ 
+                  <tr class="Caption">
+                    <th>
+                    <div align="right">
+                      Titular: 
+                    </div>
+                    </th>
+ 
+                    <th style="BACKGROUND: #fff; COLOR: #000"><font color="blue">{previsado_titular}</font></th>
+                  </tr>
+ 
+                  <tr class="Caption">
+                    <th>
+                    <div align="right">
+                      &nbsp;Nomenclatura Origen: 
+                    </div>
+                    </th>
+ 
+                    <th style="BACKGROUND: #fff; COLOR: #000"><font color="blue">{nomenclatura_origen}</font></th>
+                  </tr>
+ 
+                  <tr class="Caption">
+                    <th>
+                    <div align="right">
+                      &nbsp;Nomenclatura Destino: 
+                    </div>
+                    </th>
+ 
+                    <th style="BACKGROUND: #fff; COLOR: #000"><font color="blue">{nomenclatura_destino}</font></th>
+                  </tr>
+ 
+                  <tr class="Caption">
+                    <th>
+                    <div align="right">
+                      Nomenclatura Afectacion: 
+                    </div>
+                    </th>
+ 
+                    <th style="BACKGROUND: #fff; COLOR: #000"><font color="blue">{nomenclatura_afectacion}</font></th>
+                  </tr>
+ 
+                  <tr class="Caption">
+                    <th>
+                    <div align="right">
+                      &nbsp;CAD: 
+                    </div>
+                    </th>
+ 
+                    <th style="BACKGROUND: #fff; COLOR: #000">{cad}</th>
+                  </tr>
+ 
+                  <tr class="Caption">
+                    <th>
+                    <div align="center">
+                      <!-- BEGIN Sorter Sorter_previsado_requisito_id --><a href="{Sort_URL}" id="previsados_detalles_cargaSorter_previsado_requisito_id"><font color="#000080">Documento</font></a> 
+                      <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                      <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_previsado_requisito_id -->
+                    </div>
+                    </th>
+ 
+                    <th>
+                    <div align="center">
+                      <!-- BEGIN Sorter Sorter_previsado_detalle_carga_ubica --><a href="{Sort_URL}" id="previsados_detalles_cargaSorter_previsado_detalle_carga_ubica"><font color="#000080">Archivos</font></a> 
+                      <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                      <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_previsado_detalle_carga_ubica -->
+                    </div>
+                    </th>
+                  </tr>
+ 
+                  <!-- BEGIN Row -->
+                  <tr class="Row">
+                    <td style="TEXT-ALIGN: right">{previsado_requisito_descrip}:</td> 
+                    <td style="BACKGROUND: #fff; COLOR: #000"><b>{previsado_detalle_carga_ubica}</b></td>
+                  </tr>
+ <!-- END Row -->
+                  <!-- BEGIN NoRecords -->
+                  <tr class="NoRecords">
+                    <td colspan="2"><font color="#ff0000" size="2"><strong>No hay registros</strong></font></td>
+                  </tr>
+                  <!-- END NoRecords -->
+                  <tr class="Footer">
+                    <td colspan="2">
+                      <!-- BEGIN Navigator Navigator -->
+                      <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+                      <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                        <option selected value="">-</option>
+ {PageSize_Options}
+                      </select>
+ 
+                      <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+                      <!-- BEGIN First_Off --><img border="0" src="../Styles/Simple_tdf/Images/FirstOff.gif"><!-- END First_Off -->
+                      <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->
+                      <!-- BEGIN Prev_Off --><img border="0" src="../Styles/Simple_tdf/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                      <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+                      <!-- BEGIN Next_Off --><img border="0" src="../Styles/Simple_tdf/Images/NextOff.gif"><!-- END Next_Off -->
+                      <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On -->
+                      <!-- BEGIN Last_Off --><img border="0" src="../Styles/Simple_tdf/Images/LastOff.gif"><!-- END Last_Off -->&nbsp;<!-- END Navigator Navigator -->&nbsp;</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <!-- END Grid previsados_detalles_carga -->
+        </div>
+      </td> 
+      <td>
+        <div>
+          <!-- BEGIN Record respuesta -->
+          <form id="respuesta" enctype="{HTMLFormEnctype}" method="post" name="{HTMLFormName}" action="{Action}">
+            <table cellspacing="0" cellpadding="0" width="100%" border="0">
+              <tr>
+                <td valign="top">
+                  <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                      <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                      <th>Respuesta de {nombre}</th>
+ 
+                      <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                    </tr>
+                  </table>
+ 
+                  <table class="Record" cellspacing="0" cellpadding="0">
+                    <!-- BEGIN Error -->
+                    <tr class="Error">
+                      <td colspan="4"><font size="2"><strong>{Error}</strong></font></td>
+                    </tr>
+                    <!-- END Error -->
+                    <tr class="Controls">
+                      <th colspan="4">{aviso}</th>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <th>
+                      <div align="right">
+                        Lista de Control: 
+                      </div>
+                      </th>
+ 
+                      <td style="BACKGROUND: #fff; COLOR: #000" colspan="3">
+                        <!-- BEGIN CheckBoxList previsado_tipo_verif_id --><input onclick="marcar({previsado_tipo_verif_id:optionNumber});" id="respuestaprevisado_tipo_verif_id_{previsado_tipo_verif_id:optionNumber}" type="checkbox" value="{Value}" name="{previsado_tipo_verif_id_Name}" {Check}>{Description}&nbsp;<span id="span_previsado_{previsado_tipo_verif_id:optionNumber}">&nbsp;</span><br>
+                        <!-- END CheckBoxList previsado_tipo_verif_id --></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <th>
+                      <div align="right">
+                        Respuestas: 
+                      </div>
+                      </th>
+ 
+                      <td style="BACKGROUND: #fff; COLOR: #000" colspan="3">{contestacion}<input id="respuestacantidad" type="hidden" value="{cantidad}" name="{cantidad_Name}"></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <th>
+                      <div align="right">
+                        Observaciones: 
+                      </div>
+                      </th>
+ 
+                      <td style="BACKGROUND: #fff; COLOR: #000" colspan="3"><textarea id="respuestaobservaciones" style="WIDTH: 100%" rows="4" cols="40" name="{observaciones_Name}">{observaciones}</textarea></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <th>
+                      <div align="right">
+                        Archivo&nbsp;Adjunto: 
+                      </div>
+                      </th>
+ 
+                      <td style="BACKGROUND: #fff; COLOR: #000" colspan="3">
+                        <!-- BEGIN FileUpload archivo_carga --><input id="respuestaarchivo_cargaControlName" type="hidden" value="{State}" name="{ControlName}">
+                        <!-- BEGIN Info -->&nbsp;{FileName}&nbsp;{FileSize}&nbsp;bytes.<!-- END Info -->
+                        <!-- BEGIN Upload --><input id="respuestaarchivo_cargaFileControl" type="file" accept="application/pdf" name="{FileControl}"><!-- END Upload --><font size="1"><b>(5 MB Maximo)</b></font><br>
+                        <font size="1"><b>* Nombre del archivo sin caracteres especiales; solo letras, numero y guion bajo.</b></font><br>
+                        <font size="1"><b>* El Archivo se adjunta si se&nbsp;agrega una observacion.</b></font> 
+                        <!-- BEGIN DeleteControl -->Borrar<input id="respuestaarchivo_cargaDeleteControl" type="checkbox" name="{DeleteControl}" {DeleteChecked}><!-- END DeleteControl --><!-- END FileUpload archivo_carga --></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <th>
+                      <div align="right">
+                        &nbsp;Notas: 
+                      </div>
+                      </th>
+ 
+                      <td style="BACKGROUND: #fff; COLOR: #000" colspan="3"><textarea id="respuestaprevisado_respuesta_nota" style="WIDTH: 100%" rows="4" cols="40" name="{previsado_respuesta_nota_Name}">{previsado_respuesta_nota}</textarea></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <th>
+                      <div align="right">
+                        &nbsp;Respuesta: 
+                      </div>
+                      </th>
+ 
+                      <td style="BACKGROUND: #fff; COLOR: #000" colspan="3">
+                        <select id="respuestaprevisado_tipo_estado_carga_id" name="{previsado_tipo_estado_carga_id_Name}">
+                          {previsado_tipo_estado_carga_id_Options}
+                        </select>
+ &nbsp; <span id="caratula">&nbsp;</span><span id="fechacaratula">&nbsp;</span> <input id="respuestacaratula" type="hidden" value="{caratula}" name="{caratula_Name}"><input id="respuestafecha_caratula" type="hidden" value="{fecha_caratula}" name="{fecha_caratula_Name}">
+                        <!-- BEGIN Button Button1 --><input id="respuestaButton1" class="Button" type="submit" value="Habilitar" name="{Button_Name}"><!-- END Button Button1 --></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <th>
+                      <div align="right">
+                        &nbsp;Finaliza en: 
+                      </div>
+                      </th>
+ 
+                      <td style="BACKGROUND: #fff; COLOR: #000" colspan="3"><input id="respuestaplazo_tiempo" maxlength="2" size="1" value="{plazo_tiempo}" name="{plazo_tiempo_Name}">Días (Plazos:&nbsp; 
+                        <select id="respuestaprevisado_plazo_entrega_id" name="{previsado_plazo_entrega_id_Name}">
+                          {previsado_plazo_entrega_id_Options}
+                        </select>
+ )</td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <th colspan="4">
+                      <!-- BEGIN Panel Panel1 -->
+                      <table class="Record" cellspacing="0" cellpadding="0">
+                        <tr class="Controls">
+                          <th width="25">
+                          <div align="right">
+                            &nbsp;Nro Plano: 
+                          </div>
+                          </th>
+ 
+                          <td style="BACKGROUND: #fff; COLOR: #000" colspan="3">
+                            <!-- BEGIN TextBox tipo_depto_parc_id --><input id="respuestaPanel1tipo_depto_parc_id" maxlength="1" size="1" value="{tipo_depto_parc_id}" name="{tipo_depto_parc_id_Name}" autocomplete="off"><!-- END TextBox tipo_depto_parc_id -->- 
+                            <!-- BEGIN TextBox previsado_respuesta_nro_plano --><input id="respuestaPanel1previsado_respuesta_nro_plano" maxlength="4" size="1" value="{previsado_respuesta_nro_plano}" name="{previsado_respuesta_nro_plano_Name}"><!-- END TextBox previsado_respuesta_nro_plano -->- 
+                            <!-- BEGIN TextBox previsado_respuesta_nro_anio --><input id="respuestaPanel1previsado_respuesta_nro_anio" maxlength="4" size="3" value="{previsado_respuesta_nro_anio}" name="{previsado_respuesta_nro_anio_Name}" autocomplete="off"><!-- END TextBox previsado_respuesta_nro_anio --></td>
+                        </tr>
+ 
+                        <tr class="Controls">
+                          <th width="25">
+                          <div align="right">
+                            &nbsp;Expediente: 
+                          </div>
+                          </th>
+ 
+                          <td style="BACKGROUND: #fff; COLOR: #000" colspan="3">
+                            <!-- BEGIN TextBox previsado_respuesta_exp_nro --><input id="respuestaPanel1previsado_respuesta_exp_nro" maxlength="4" size="3" value="{previsado_respuesta_exp_nro}" name="{previsado_respuesta_exp_nro_Name}" autocomplete="off"><!-- END TextBox previsado_respuesta_exp_nro -->
+                            <!-- BEGIN TextBox previsado_respuesta_exp_letra --><input id="respuestaPanel1previsado_respuesta_exp_letra" maxlength="2" size="2" value="{previsado_respuesta_exp_letra}" name="{previsado_respuesta_exp_letra_Name}" autocomplete="off"><!-- END TextBox previsado_respuesta_exp_letra -->
+                            <!-- BEGIN TextBox previsado_respuesta_exp_anio --><input id="respuestaPanel1previsado_respuesta_exp_anio" maxlength="4" size="3" value="{previsado_respuesta_exp_anio}" name="{previsado_respuesta_exp_anio_Name}" autocomplete="off"><!-- END TextBox previsado_respuesta_exp_anio --></td>
+                        </tr>
+                      </table>
+                      <!-- END Panel Panel1 --></th>
+                    </tr>
+ 
+                    <tr class="Bottom">
+                      <td colspan="4" align="right">
+                        <div align="center">
+                          <!-- BEGIN Button Button_cancelar --><input id="respuestaButton_cancelar" class="Button" type="submit" value="Salir" name="{Button_Name}"><!-- END Button Button_cancelar -->&nbsp; 
+                          <!-- BEGIN Button Button_Insert --><input id="respuestaButton_Insert" class="Button" type="submit" value="Responder" name="{Button_Name}"><!-- END Button Button_Insert -->
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </form>
+          <!-- END Record respuesta -->
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+{tdf_footer} 
+</body>
+</html>

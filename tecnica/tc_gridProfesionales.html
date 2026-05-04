@@ -1,0 +1,259 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Profesionales</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.031">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//departamentos_profesionalButton_cancel_OnClick @82-75B222C4
+function departamentos_profesionalButton_cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End departamentos_profesionalButton_cancel_OnClick
+
+//bind_events @1-4EF27EA0
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("departamentos_profesionalButton_cancel", "click", departamentos_profesionalButton_cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+<div>
+  {tdf_header}{tdf_menu} 
+</div>
+<br>
+<!-- BEGIN Record departamentos_profesional -->
+<form id="departamentos_profesional" method="post" name="{HTMLFormName}" action="{Action}">
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <th>Buscador</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="4">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>Profesional</th>
+ 
+            <td><input id="departamentos_profesionals_prof_nombre" maxlength="40" size="40" value="{s_prof_nombre}" name="{s_prof_nombre_Name}"></td> 
+            <th>Departamento</th>
+ 
+            <td>
+              <select id="departamentos_profesionals_dpto_id" name="{s_dpto_id_Name}">
+                <option selected value="">(Todos)</option>
+                {s_dpto_id_Options}
+              </select>
+ &nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Matrícula Nacional</th>
+ 
+            <td><input id="departamentos_profesionals_prof_matricula" maxlength="15" size="15" value="{s_prof_matricula}" name="{s_prof_matricula_Name}"></td> 
+            <th>Profesión</th>
+ 
+            <td>
+              <select id="departamentos_profesionals_prof_tip_id" name="{s_prof_tip_id_Name}">
+                <option selected value="">(Todos)</option>
+                {s_prof_tip_id_Options}
+              </select>
+ &nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>
+            <p>Mat. CPA TDF Nº&nbsp;</p>
+            </th>
+ 
+            <td><input id="departamentos_profesionals_prof_matricula_tdf" maxlength="15" size="15" value="{s_prof_matricula_tdf}" name="{s_prof_matricula_tdf_Name}">&nbsp;</td> 
+            <th>Estado&nbsp;</th>
+ 
+            <td>
+              <select id="departamentos_profesionals_tipo_estado_id" name="{s_tipo_estado_id_Name}">
+                <option selected value="">(Todos)</option>
+                {s_tipo_estado_id_Options}
+              </select>
+ &nbsp;</td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="4" align="right">
+              <!-- BEGIN Button Button_cancel --><input id="departamentos_profesionalButton_cancel" class="Button" type="submit" value="Limpiar" name="{Button_Name}"><!-- END Button Button_cancel -->&nbsp; 
+              <!-- BEGIN Button Button_DoSearch --><input id="departamentos_profesionalButton_DoSearch" class="Button" type="submit" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record departamentos_profesional --><br>
+<!-- BEGIN Grid departamentos_profesional1 -->
+<table cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          <th>Listado de profesionales</th>
+ 
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Row">
+          <td colspan="6">Total de Registros:&nbsp;{departamentos_profesional1_TotalRecords}</td> 
+          <td style="TEXT-ALIGN: right" colspan="7"><a href="{toXls}" title="Exportar Datos a Excel"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/22x22/x-office-spreadsheet.gif"><font color="#000080">Exportar a Excel</font></a>&nbsp;&nbsp;<a href="{ImageLink2}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/22x22/document-new.gif"></a>&nbsp;Agregar Profesional</td>
+        </tr>
+ 
+        <tr class="Caption">
+          <th>
+          <div align="center">
+            <!-- BEGIN Sorter Sorter_dpto_desc --><a href="{Sort_URL}" id="departamentos_profesional1Sorter_dpto_desc">Departamento</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_dpto_desc -->
+          </div>
+          </th>
+ 
+          <th>
+          <div align="center">
+            <!-- BEGIN Sorter Sorter_prof_nombre --><a href="{Sort_URL}" id="departamentos_profesional1Sorter_prof_nombre">Profesional</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_prof_nombre -->
+          </div>
+          </th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_dni --><a href="{Sort_URL}" id="departamentos_profesional1Sorter_dni"><font color="#000080">DNI</font></a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_dni -->&nbsp;</th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_direccion --><a href="{Sort_URL}" id="departamentos_profesional1Sorter_direccion"><font color="#000080">Direccion</font></a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_direccion -->&nbsp;</th>
+ 
+          <th>
+          <div align="center">
+            <!-- BEGIN Sorter Sorter_prof_telefono --><a href="{Sort_URL}" id="departamentos_profesional1Sorter_prof_telefono">Telefono 1</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_prof_telefono -->
+          </div>
+          </th>
+ 
+          <th>&nbsp; 
+          <!-- BEGIN Sorter Sorter_tel_2 --><a href="{Sort_URL}" id="departamentos_profesional1Sorter_tel_2"><font color="#000080">Telefono 2</font></a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tel_2 --></th>
+ 
+          <th>
+          <div align="center">
+            <!-- BEGIN Sorter Sorter_prof_matricula --><a href="{Sort_URL}" id="departamentos_profesional1Sorter_prof_matricula">Matrícula</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_prof_matricula -->
+          </div>
+          </th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_matricula_tdf --><a href="{Sort_URL}" id="departamentos_profesional1Sorter_matricula_tdf"><font color="#000080">Mat. CPA TDF</font></a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_matricula_tdf -->&nbsp;</th>
+ 
+          <th>
+          <div align="center">
+            <!-- BEGIN Sorter Sorter_prof_tip_descr --><a href="{Sort_URL}" id="departamentos_profesional1Sorter_prof_tip_descr">Profesión</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_prof_tip_descr -->
+          </div>
+          </th>
+ 
+          <th>&nbsp;Email</th>
+ 
+          <th>Estado&nbsp;</th>
+ 
+          <th>
+          <div align="center">
+            Editar 
+          </div>
+          </th>
+ 
+          <th></th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr {departamentos_profesional1:rowStyle}>
+          <td>{tipo_depto_parc_desc}&nbsp;</td> 
+          <td>{prof_nombre}&nbsp;</td> 
+          <td>{prof_dni}&nbsp;</td> 
+          <td>{prof_direccion}&nbsp;{prof_nro_pta}&nbsp;</td> 
+          <td>{prof_telefono}&nbsp;</td> 
+          <td>{prof_telefono_celular}&nbsp;</td> 
+          <td>{prof_matricula}&nbsp;</td> 
+          <td>{prof_matricula_tdf}&nbsp;</td> 
+          <td>{tipo_profesional_descrip}&nbsp;</td> 
+          <td>&nbsp;{prof_mail}</td> 
+          <td>{tipo_estado_html}&nbsp;</td> 
+          <td>
+            <div align="center">
+<a href="{ImageLink1}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/22x22/accessories-text-editor.gif"></a> 
+            </div>
+          </td> 
+          <td>{login}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="13"><font color="#ff0000" size="2">No hay profesionales</font></td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="13">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid departamentos_profesional1 --><br>
+{tdf_footer} 
+</body>
+</html>

@@ -1,0 +1,176 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Editar Profesional</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.031">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-6F203126
+
+var profesionales_DatePicker_prof_f_alta = new Object(); 
+profesionales_DatePicker_prof_f_alta.format           = "ShortDate";
+profesionales_DatePicker_prof_f_alta.style            = "Styles/Simple_tdf/Style.css";
+profesionales_DatePicker_prof_f_alta.relativePathPart = "../";
+profesionales_DatePicker_prof_f_alta.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//profesionalesButton_Cancel_OnClick @7-41A47EEF
+function profesionalesButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End profesionalesButton_Cancel_OnClick
+
+//bind_events @1-66BFB4D1
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("profesionalesButton_Cancel", "click", profesionalesButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+{tdf_header}{tdf_menu}<br>
+<!-- BEGIN Record profesionales -->
+<form id="profesionales" method="post" name="{HTMLFormName}" action="{Action}">
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <th>Agregar / Editar Profesional</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>Profesión</th>
+ 
+            <td>
+              <select id="profesionalestipo_profesional_id" name="{tipo_profesional_id_Name}">
+                {tipo_profesional_id_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Departamento</th>
+ 
+            <td>
+              <select id="profesionalestipo_depto_parc_id" name="{tipo_depto_parc_id_Name}">
+                {tipo_depto_parc_id_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Matrícula Nacional</th>
+ 
+            <td><input id="profesionalesprof_matricula" maxlength="15" size="15" value="{prof_matricula}" name="{prof_matricula_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th><font size="1">
+            <p>Mat. CPA TDF Nº</p>
+            </font></th>
+ 
+            <td><input id="profesionalesprof_matricula_tdf" maxlength="5" size="5" value="{prof_matricula_tdf}" name="{prof_matricula_tdf_Name}">&nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Profesional</th>
+ 
+            <td><input id="profesionalesprof_nombre" maxlength="100" size="50" value="{prof_nombre}" name="{prof_nombre_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>DNI&nbsp;</th>
+ 
+            <td><input id="profesionalesprof_dni" maxlength="10" size="10" value="{prof_dni}" name="{prof_dni_Name}">&nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Dirección y Nro.</th>
+ 
+            <td><input id="profesionalesprof_direccion" maxlength="70" size="50" value="{prof_direccion}" name="{prof_direccion_Name}"><input id="profesionalesprof_nro_pta" maxlength="10" size="10" value="{prof_nro_pta}" name="{prof_nro_pta_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Teléfono 1</th>
+ 
+            <td><input id="profesionalesprof_telefono" maxlength="40" size="40" value="{prof_telefono}" name="{prof_telefono_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Teléfono 2/Celular&nbsp;</th>
+ 
+            <td><input id="profesionalesprof_telefono_celular" maxlength="40" size="40" value="{prof_telefono_celular}" name="{prof_telefono_celular_Name}">&nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>E-mail</th>
+ 
+            <td><input id="profesionalesprof_mail" maxlength="70" size="70" value="{prof_mail}" name="{prof_mail_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Observaciones</th>
+ 
+            <td><textarea id="profesionalesprof_observaciones" rows="3" cols="50" name="{prof_observaciones_Name}">{prof_observaciones}</textarea></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Fecha&nbsp;de&nbsp;alta</th>
+ 
+            <td><input id="profesionalesprof_f_alta" maxlength="100" size="8" value="{prof_f_alta}" name="{prof_f_alta_Name}">
+              <!-- BEGIN DatePicker DatePicker_prof_f_alta --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="profesionalesDatePicker_prof_f_alta"><img id="profesionalesDatePicker_prof_f_alta_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_prof_f_alta --></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Estado&nbsp;</th>
+ 
+            <td>
+              <select id="profesionalestipo_estado_id" name="{tipo_estado_id_Name}">
+                {tipo_estado_id_Options}
+              </select>
+ &nbsp;</td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right">
+              <!-- BEGIN Button Button_Insert --><input id="profesionalesButton_Insert" class="Button" type="submit" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input id="profesionalesButton_Update" class="Button" type="submit" value="Actualizar" name="{Button_Name}"><!-- END Button Button_Update -->&nbsp; 
+              <!-- BEGIN Button Button_Cancel --><input id="profesionalesButton_Cancel" class="Button" type="submit" value="Salir" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record profesionales --><br>
+{tdf_footer} 
+</body>
+</html>

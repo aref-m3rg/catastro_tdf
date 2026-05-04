@@ -1,0 +1,876 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Editar Plano</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.031">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-113F5716
+</script>
+<script language="JavaScript" src="../js/pt/prototype.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include User Scripts
+
+//Date Picker Object Definitions @1-CF306E22
+
+var planos_DatePicker_plano_f_visado = new Object(); 
+planos_DatePicker_plano_f_visado.format           = "ShortDate";
+planos_DatePicker_plano_f_visado.style            = "Styles/Simple_tdf/Style.css";
+planos_DatePicker_plano_f_visado.relativePathPart = "../";
+planos_DatePicker_plano_f_visado.themeVersion = "3.0";
+
+var planos_DatePicker_plano_f_archivo = new Object(); 
+planos_DatePicker_plano_f_archivo.format           = "ShortDate";
+planos_DatePicker_plano_f_archivo.style            = "Styles/Simple_tdf/Style.css";
+planos_DatePicker_plano_f_archivo.relativePathPart = "../";
+planos_DatePicker_plano_f_archivo.themeVersion = "3.0";
+
+var planos_DatePicker_plano_f_inicio1 = new Object(); 
+planos_DatePicker_plano_f_inicio1.format           = "ShortDate";
+planos_DatePicker_plano_f_inicio1.style            = "Styles/Simple_tdf/Style.css";
+planos_DatePicker_plano_f_inicio1.relativePathPart = "../";
+planos_DatePicker_plano_f_inicio1.themeVersion = "3.0";
+
+var planos_DatePicker_plano_f_salida1 = new Object(); 
+planos_DatePicker_plano_f_salida1.format           = "ShortDate";
+planos_DatePicker_plano_f_salida1.style            = "Styles/Simple_tdf/Style.css";
+planos_DatePicker_plano_f_salida1.relativePathPart = "../";
+planos_DatePicker_plano_f_salida1.themeVersion = "3.0";
+
+var planos_DatePicker_plano_f_registro1 = new Object(); 
+planos_DatePicker_plano_f_registro1.format           = "ShortDate";
+planos_DatePicker_plano_f_registro1.style            = "Styles/Simple_tdf/Style.css";
+planos_DatePicker_plano_f_registro1.relativePathPart = "../";
+planos_DatePicker_plano_f_registro1.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//planosButton_Registrar_OnClick @272-E0791278
+function planosButton_Registrar_OnClick()
+{
+    var result = true;
+//End planosButton_Registrar_OnClick
+
+//Confirmation Message @273-FA29DD32
+    return confirm('IMPORTANTE: antes de registrar un plano asegúrese de guardar con el botón\ncorrespondiente los campos que desee modificar.\n\n¿Está seguro de querer registrar este plano?');
+//End Confirmation Message
+
+//Close planosButton_Registrar_OnClick @272-BC33A33A
+    return result;
+}
+//End Close planosButton_Registrar_OnClick
+
+//planosButton_Archivar_OnClick @308-FD541E86
+function planosButton_Archivar_OnClick()
+{
+    var result = true;
+//End planosButton_Archivar_OnClick
+
+//Confirmation Message @490-D9799DA5
+    return confirm('IMPORTANTE: antes de archivar un plano asegúrese de guardar con el botón\ncorrespondiente los campos que desee modificar.\n\n¡Está seguro de querer archivar este plano?');
+//End Confirmation Message
+
+//Close planosButton_Archivar_OnClick @308-BC33A33A
+    return result;
+}
+//End Close planosButton_Archivar_OnClick
+
+//planosButton_Anular_OnClick @309-E8903A02
+function planosButton_Anular_OnClick()
+{
+    var result = true;
+//End planosButton_Anular_OnClick
+
+//Confirmation Message @491-B05B86ED
+    return confirm('IMPORTANTE: antes de anular un plano asegúrese de guardar con el botón\ncorrespondiente los campos que desee modificar.\n\n¿Está seguro de querer archivar este plano?');
+//End Confirmation Message
+
+//Close planosButton_Anular_OnClick @309-BC33A33A
+    return result;
+}
+//End Close planosButton_Anular_OnClick
+
+//planosButton_Suspender_OnClick @310-EECCB177
+function planosButton_Suspender_OnClick()
+{
+    var result = true;
+//End planosButton_Suspender_OnClick
+
+//Confirmation Message @493-E7C89E69
+    return confirm('IMPORTANTE: antes de supender un plano asegúrese de guardar con el botón\ncorrespondiente los campos que desee modificar.\n\n¿Está seguro de querer suspender este plano?');
+//End Confirmation Message
+
+//Close planosButton_Suspender_OnClick @310-BC33A33A
+    return result;
+}
+//End Close planosButton_Suspender_OnClick
+
+//planosButton_Vigencia_OnClick @534-1D556558
+function planosButton_Vigencia_OnClick()
+{
+    var result = true;
+//End planosButton_Vigencia_OnClick
+
+//Confirmation Message @536-FE14A821
+    return confirm('¿Confirma que quiere dar Vigencia Catastral a este plano? \n\nEsto asignará PARTIDAS a las parcelas que no las tengan \ny cambiará su estado a ACTIVAS');
+//End Confirmation Message
+
+//Close planosButton_Vigencia_OnClick @534-BC33A33A
+    return result;
+}
+//End Close planosButton_Vigencia_OnClick
+
+//planosButton_Editar_OnClick @537-62E75186
+function planosButton_Editar_OnClick()
+{
+    var result = true;
+//End planosButton_Editar_OnClick
+
+//Confirmation Message @540-388CC090
+    return confirm('¿Desea poner en edición el plano?\nTenga en cuenta que no podrá realizar otras operaciones hasta que con confirme los cambios.');
+//End Confirmation Message
+
+//Close planosButton_Editar_OnClick @537-BC33A33A
+    return result;
+}
+//End Close planosButton_Editar_OnClick
+
+//planosbaja_pura_OnClick @606-CE7C54FF
+function planosbaja_pura_OnClick()
+{
+    var result = true;
+//End planosbaja_pura_OnClick
+
+//Confirmation Message @607-C2F65CDD
+    return confirm('¿Desea dar de baja el plano?');
+//End Confirmation Message
+
+//Close planosbaja_pura_OnClick @606-BC33A33A
+    return result;
+}
+//End Close planosbaja_pura_OnClick
+
+//parcelas_origen_provButton_Submit_OnClick @343-AA5C8537
+function parcelas_origen_provButton_Submit_OnClick()
+{
+    var result = true;
+//End parcelas_origen_provButton_Submit_OnClick
+
+//Confirmation Message @344-65254113
+    return confirm('Desea quitar estas parcelas de origen?');
+//End Confirmation Message
+
+//Close parcelas_origen_provButton_Submit_OnClick @343-BC33A33A
+    return result;
+}
+//End Close parcelas_origen_provButton_Submit_OnClick
+
+//planosButton_Cancel_OnClick @10-163B7217
+function planosButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End planosButton_Cancel_OnClick
+
+//planosButton_desarchivar_OnClick @571-3BD91CE2
+function planosButton_desarchivar_OnClick()
+{
+    disableValidation = true;
+}
+//End planosButton_desarchivar_OnClick
+
+//PTAutoFill1 Loading @140-800D54DF
+function planosplano_anioPTAutoFill1_start(sender) {
+    new Ajax.Request("../services/tecnica_tc_planosRecord_planos_plano_anio_PTAutoFill1.php?keyword=" + encodeURIComponent($("planosplano_anio").value).replace(/'/g, "%27"), {
+        method: "get",
+        requestHeaders: ['If-Modified-Since', new Date(0)],
+        onSuccess: function(transport) {
+            var valuesRow = eval(transport.responseText)[0];
+            if (typeof(valuesRow) != "undefined") {
+                getSameLevelCtl("planosplano_nro", sender).value = valuesRow["cant"];
+            } else {
+                getSameLevelCtl("planosplano_nro", sender).value = "";
+            }
+        }, 
+        onFailure: function(transport) {
+            alert(transport.responseText);
+        }
+    });
+}
+//End PTAutoFill1 Loading
+
+//bind_events @1-AF0C97DC
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("planosplano_e_anio", "change", planosplano_anioPTAutoFill1_start);
+    addEventHandler("planosButton1", "click", planosplano_anioPTAutoFill1_start);
+    addEventHandler("planosButton_Registrar", "click", planosButton_Registrar_OnClick);
+    addEventHandler("planosButton_Archivar", "click", planosButton_Archivar_OnClick);
+    addEventHandler("planosButton_Anular", "click", planosButton_Anular_OnClick);
+    addEventHandler("planosButton_Suspender", "click", planosButton_Suspender_OnClick);
+    addEventHandler("planosButton_Vigencia", "click", planosButton_Vigencia_OnClick);
+    addEventHandler("planosButton_Editar", "click", planosButton_Editar_OnClick);
+    addEventHandler("planosbaja_pura", "click", planosbaja_pura_OnClick);
+    addEventHandler("parcelas_origen_provButton_Submit", "click", parcelas_origen_provButton_Submit_OnClick);
+    addEventHandler("planosButton_Cancel", "click", planosButton_Cancel_OnClick);
+    addEventHandler("planosButton_desarchivar", "click", planosButton_desarchivar_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="JavaScript" src="../scripts/myFunctions.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+{tdf_header}{tdf_menu} <br>
+<!-- BEGIN Record planos -->
+<form id="planos" enctype="{HTMLFormEnctype}" method="post" name="{HTMLFormName}" action="{Action}">
+  <table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <th>Plano</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" style="WIDTH: 100%" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="8">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>&nbsp;</th>
+ 
+            <td>
+              <div align="left">
+                <strong>Departamento</strong> 
+              </div>
+            </td> 
+            <td>
+              <div align="left">
+                <strong>Tipo&nbsp;</strong> 
+              </div>
+            </td> 
+            <td>
+              <div align="left">
+                <strong>Año&nbsp;</strong> 
+              </div>
+            </td> 
+            <td>
+              <div align="left">
+                <strong>Numero&nbsp;</strong> 
+              </div>
+            </td> 
+            <td colspan="2">&nbsp;</td> 
+            <td rowspan="7">
+              <div align="left">
+                {htm} 
+              </div>
+            </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Identificacion</th>
+ 
+            <td>
+              <select id="planostipo_depto_parc_id" name="{tipo_depto_parc_id_Name}">
+                <option selected value="">Seleccionar...</option>
+                {tipo_depto_parc_id_Options}
+              </select>
+ </td> 
+            <td>
+              <select id="planostipo_plano_id" name="{tipo_plano_id_Name}">
+                {tipo_plano_id_Options}
+              </select>
+ &nbsp;</td> 
+            <td>
+              <!-- BEGIN TextBox plano_anio --><input id="planosplano_anio" maxlength="5" size="5" value="{plano_anio}" name="{plano_anio_Name}"><!-- END TextBox plano_anio -->&nbsp;&nbsp;</td> 
+            <td>
+              <!-- BEGIN TextBox plano_nro --><input id="planosplano_nro" maxlength="10" size="6" value="{plano_nro}" name="{plano_nro_Name}"><!-- END TextBox plano_nro -->&nbsp;&nbsp;</td> 
+            <td colspan="2">
+              <!-- BEGIN Button Button1 --><input id="planosButton1" class="Button" type="button" value="Buscar Nro." name="{Button_Name}"><!-- END Button Button1 --></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Expediente</th>
+ 
+            <td colspan="6">
+              <div align="left">
+                <input id="planosplano_e_nro" maxlength="10" size="7" value="{plano_e_nro}" name="{plano_e_nro_Name}"><input id="planosplano_e_letra" maxlength="5" size="5" value="{plano_e_letra}" name="{plano_e_letra_Name}"><input id="planosplano_e_anio" maxlength="4" size="4" value="{plano_e_anio}" name="{plano_e_anio_Name}">
+              </div>
+            </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>F. inicio</th>
+ 
+            <td>
+              <div align="left">
+                <strong><input id="planosplano_f_inicio" maxlength="100" size="8" value="{plano_f_inicio}" name="{plano_f_inicio_Name}"></strong> 
+                <!-- BEGIN DatePicker DatePicker_plano_f_inicio1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="planosDatePicker_plano_f_inicio1"><img id="planosDatePicker_plano_f_inicio1_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_plano_f_inicio1 -->
+              </div>
+            </td> 
+            <td><strong>F. Archivo</strong></td> 
+            <td colspan="2"><input id="planosplano_f_archivo" maxlength="100" size="8" value="{plano_f_archivo}" name="{plano_f_archivo_Name}">
+              <!-- BEGIN DatePicker DatePicker_plano_f_archivo --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="planosDatePicker_plano_f_archivo"><img id="planosDatePicker_plano_f_archivo_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a>&nbsp;&nbsp;&nbsp;<!-- END DatePicker DatePicker_plano_f_archivo --></td> 
+            <td><strong>Disp.</strong></td> 
+            <td>&nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>F. Entrada</th>
+ 
+            <td>
+              <div align="left">
+                <input id="planosplano_f_entrada" maxlength="100" size="8" value="{plano_f_entrada}" name="{plano_f_entrada_Name}">
+                <!-- BEGIN DatePicker DatePicker_plano_f_visado --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="planosDatePicker_plano_f_visado"><img id="planosDatePicker_plano_f_visado_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a>&nbsp;&nbsp;&nbsp;&nbsp;<!-- END DatePicker DatePicker_plano_f_visado -->
+              </div>
+            </td> 
+            <td><strong>F. Salida</strong></td> 
+            <td colspan="4"><input id="planosplano_f_salida" maxlength="100" size="8" value="{plano_f_salida}" name="{plano_f_salida_Name}">
+              <!-- BEGIN DatePicker DatePicker_plano_f_salida1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="planosDatePicker_plano_f_salida1"><img id="planosDatePicker_plano_f_salida1_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_plano_f_salida1 --></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Profesional</th>
+ 
+            <td>
+              <!-- BEGIN ListBox prof_id -->
+              <select id="planosprof_id" name="{prof_id_Name}">
+                <option selected value="">Seleccionar...</option>
+                {prof_id_Options}
+              </select>
+ <!-- END ListBox prof_id --></td> 
+            <td><strong>Profesional</strong></td> 
+            <td colspan="4">
+              <!-- BEGIN ListBox prof_id_2 -->
+              <select id="planosprof_id_2" name="{prof_id_2_Name}">
+                <option selected value="">Seleccionar...</option>
+                {prof_id_2_Options}
+              </select>
+ <!-- END ListBox prof_id_2 --></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Estado del plano</th>
+ 
+            <td>{plano_estado_desc}&nbsp;<input id="planostipo_estado_plano_id" type="hidden" value="{tipo_estado_plano_id}" name="{tipo_estado_plano_id_Name}">
+              <!-- BEGIN Button Button_desarchivar --><input id="planosButton_desarchivar" class="Button" type="submit" value="Desarchivar" name="{Button_Name}"><!-- END Button Button_desarchivar --></td> 
+            <th>F. Registro</th>
+ 
+            <td colspan="4"><input id="planosplano_f_registro" maxlength="10" size="8" value="{plano_f_registro}" name="{plano_f_registro_Name}">
+              <!-- BEGIN DatePicker DatePicker_plano_f_registro1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="planosDatePicker_plano_f_registro1"><img id="planosDatePicker_plano_f_registro1_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_plano_f_registro1 --></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Imagen</th>
+ 
+            <td colspan="6">
+              <!-- BEGIN FileUpload plano_archivo --><input id="planosplano_archivoControlName" type="hidden" value="{State}" name="{ControlName}">
+              <!-- BEGIN Info -->&nbsp;{FileName}&nbsp;{FileSize}&nbsp;bytes.<!-- END Info -->
+              <!-- BEGIN Upload -->File upload<input id="planosplano_archivoFileControl" type="file" name="{FileControl}"><!-- END Upload -->
+              <!-- BEGIN DeleteControl -->Borrar<input id="planosplano_archivoDeleteControl" type="checkbox" name="{DeleteControl}" {DeleteChecked}><!-- END DeleteControl --><!-- END FileUpload plano_archivo --></td> 
+            <td>
+              <div align="center">
+                <!-- BEGIN Panel Panel2 --><a href="{ImageLink1}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/22x22/edit-find-replace.gif"></a>&nbsp;Documentacion<!-- END Panel Panel2 -->
+              </div>
+            </td> 
+            <div>
+            </div>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Observaciones&nbsp;</th>
+ 
+            <td colspan="7"><textarea id="planosplano_observa" cols="80" name="{plano_observa_Name}">{plano_observa}</textarea></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Disposición de archivo,<br>
+            anulación&nbsp;o suspensión </th>
+ 
+            <td colspan="7"><textarea id="planosplano_disposicion" cols="80" name="{plano_disposicion_Name}">{plano_disposicion}</textarea>&nbsp;<br>
+              {CustomError}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Plano&nbsp;de&nbsp;Tierras <br>
+            Fiscales sin Mensurar</th>
+ 
+            <td colspan="7">
+              <select id="planoschk" name="{chk_Name}">
+                {chk_Options}
+              </select>
+ &nbsp; <font style="BACKGROUND-COLOR: #ffffff" color="#808080"><em>(para el caso en que no existan parcelas de origen)</em></font></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Sin Vigencia Catastral&nbsp;</th>
+ 
+            <td colspan="7">
+              <select id="planosplano_svc" name="{plano_svc_Name}">
+                {plano_svc_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Plano en edición&nbsp;</th>
+ 
+            <td colspan="7">{Label1}</td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="8" align="right"><input id="planosplano_f_alta" type="hidden" value="{plano_f_alta}" name="{plano_f_alta_Name}">
+              <!-- BEGIN Button Button_Insert --><input id="planosButton_Insert" class="Button" type="submit" value="Crear plano" name="{Button_Name}"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input id="planosButton_Update" class="Button" type="submit" value="Guardar" name="{Button_Name}"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button_Vigencia --><input id="planosButton_Vigencia" class="Button" type="submit" value="Dar Vigencia" name="{Button_Name}"><!-- END Button Button_Vigencia -->
+              <!-- BEGIN Button Button_Archivar --><input id="planosButton_Archivar" class="Button" alt="Button2" type="submit" value="Archivar" name="{Button_Name}"><!-- END Button Button_Archivar -->
+              <!-- BEGIN Button Button_Registrar --><input id="planosButton_Registrar" class="Button" type="submit" value="Registrar" name="{Button_Name}"><!-- END Button Button_Registrar -->
+              <!-- BEGIN Button Button_Anular --><input id="planosButton_Anular" class="Button" alt="Button2" type="submit" value="Anular" name="{Button_Name}"><!-- END Button Button_Anular -->
+              <!-- BEGIN Button Button_Suspender --><input id="planosButton_Suspender" class="Button" alt="Button2" type="submit" value="Suspender" name="{Button_Name}"><!-- END Button Button_Suspender -->
+              <!-- BEGIN Button baja_pura --><input id="planosbaja_pura" class="Button" style="BACKGROUND-COLOR: #af191b" type="submit" value="Baja pura" name="{Button_Name}"><!-- END Button baja_pura -->
+              <!-- BEGIN Button Button_Editar --><input id="planosButton_Editar" class="Button" type="submit" value="Editar plano" name="{Button_Name}"><!-- END Button Button_Editar -->
+              <!-- BEGIN Button Button_Cancel --><input id="planosButton_Cancel" class="Button" type="submit" value="Volver" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record planos --><br>
+<!-- BEGIN EditableGrid parcelas_origen_prov -->
+<form id="parcelas_origen_prov" method="post" name="{HTMLFormName}" action="{Action}">
+  <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
+  <table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <th>Parcelas de Origen (Prov.)</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="15">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Row">
+            <td colspan="7">Total:&nbsp;{origen_TotalRecords}</td> 
+            <td colspan="8">
+              <!-- BEGIN Panel panel_origen -->
+              <!-- BEGIN ImageLink SeleccionarParcela --><a href="{SeleccionarParcela}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/22x22/system-search.gif"></a>&nbsp;Seleccionar parcela origen<!-- END ImageLink SeleccionarParcela -->&nbsp;<!-- END Panel panel_origen --></td>
+          </tr>
+ 
+          <tr class="Caption">
+            <th>Partida</th>
+ 
+            <th>Sec.</th>
+ 
+            <th>Cha.</th>
+ 
+            <th>Qta.</th>
+ 
+            <th>Mzo.</th>
+ 
+            <th>Fracc.</th>
+ 
+            <th>&nbsp;Pla.</th>
+ 
+            <th>Uf./Uc.</th>
+ 
+            <th>Prd.</th>
+ 
+            <th>&nbsp;Rte.</th>
+ 
+            <th>Estado&nbsp;</th>
+ 
+            <th>Plano</th>
+ 
+            <th>Superficie</th>
+ 
+            <th>Plancheta</th>
+ 
+            <th>&nbsp;</th>
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <!-- BEGIN RowError -->
+          <tr class="Error">
+            <td colspan="15">{Error}</td>
+          </tr>
+          <!-- END RowError -->
+          <tr class="Row">
+            <td style="TEXT-ALIGN: right">{parcela_partida}&nbsp;</td> 
+            <td>{parcela_seccion}&nbsp;</td> 
+            <td>{parcela_chacra}&nbsp;</td> 
+            <td>{parcela_quinta}&nbsp;</td> 
+            <td>{parcela_macizo}&nbsp;</td> 
+            <td>{parcela_fraccion}&nbsp;</td> 
+            <td>{parcela_parcela}&nbsp;</td> 
+            <td>{parcela_uf}&nbsp;</td> 
+            <td>{parcela_predio}&nbsp;</td> 
+            <td>{parcela_rte}&nbsp;</td> 
+            <td>{tipo_est_parc_descr}&nbsp;</td> 
+            <td>{plano}&nbsp;</td> 
+            <td>{Label1}&nbsp;{Label2}</td> 
+            <td>{htm}&nbsp;</td> 
+            <td><input id="parcelas_origen_provplanos_prov_id" type="hidden" value="{planos_prov_id}" name="{planos_prov_id_Name}"><input id="parcelas_origen_provparcela_id" type="hidden" value="{parcela_id}" name="{parcela_id_Name}">
+              <!-- BEGIN CheckBox CheckBox_Delete --><input id="parcelas_origen_provCheckBox_Delete" type="checkbox" value="1" name="{CheckBox_Delete_Name}" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete -->&nbsp;</td>
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="15">No hay registros</td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="Footer">
+            <td style="TEXT-ALIGN: right" colspan="15">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->&nbsp; 
+              <!-- BEGIN Pages -->
+              <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+              <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On --><!-- END Navigator Navigator -->
+              <!-- BEGIN Button Button_Submit --><input id="parcelas_origen_provButton_Submit" class="Button" type="submit" value="Quitar parcelas seleccionadas" name="{Button_Name}"><!-- END Button Button_Submit -->&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END EditableGrid parcelas_origen_prov -->
+<p>
+<!-- BEGIN Grid parcelas_origen -->
+<table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          <th>Parcelas Origen</th>
+ 
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Row">
+          <td colspan="14">Total:&nbsp;{parcelas1_TotalRecords}&nbsp;</td>
+        </tr>
+ 
+        <tr class="Caption">
+          <th>Partida</th>
+ 
+          <th>Sec.</th>
+ 
+          <th>Cha.</th>
+ 
+          <th>Qta.</th>
+ 
+          <th>Mzo.</th>
+ 
+          <th>Fracc.</th>
+ 
+          <th>Pla.</th>
+ 
+          <th>Uf./Uc</th>
+ 
+          <th>Prd.</th>
+ 
+          <th>Rte.</th>
+ 
+          <th>Estado&nbsp;</th>
+ 
+          <th>Plano&nbsp;</th>
+ 
+          <th colspan="2">Plancheta</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr {parcelas_origen:rowStyle}>
+          <td style="TEXT-ALIGN: right">{parcela_partida}&nbsp;</td> 
+          <td>{parcela_seccion}&nbsp;</td> 
+          <td>{parcela_chacra}&nbsp;</td> 
+          <td>{parcela_quinta}&nbsp;</td> 
+          <td>{parcela_macizo}&nbsp;</td> 
+          <td>{parcela_fraccion}&nbsp;</td> 
+          <td>{parcela_parcela}&nbsp;</td> 
+          <td>{parcela_uf}&nbsp;</td> 
+          <td>{parcela_predio}&nbsp;</td> 
+          <td>{parcela_rte}&nbsp;</td> 
+          <td>{tipo_est_parc_descr}&nbsp;</td> 
+          <td>{plano}&nbsp;</td> 
+          <td colspan="2">{htm}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="14">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="14">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid parcelas_origen --></p>
+<!-- BEGIN Grid parcelas_destino_prov -->
+<table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          <th>Parcelas destino (Prov.)</th>
+ 
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Row">
+          <td colspan="6">Total:&nbsp;{parcelas1_TotalRecords}</td> 
+          <!-- BEGIN Panel panel_destino -->
+          <td colspan="3">
+            <!-- BEGIN ImageLink ImageLink1 --><a href="{ImageLink1}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/22x22/document-new.gif"></a>&nbsp;Crear parcela destino<!-- END ImageLink ImageLink1 -->&nbsp; 
+            <!-- BEGIN ImageLink ImageLink3 --><a href="{ImageLink3}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/22x22/document-new.gif"></a>Crear Macizo<!-- END ImageLink ImageLink3 --></td> 
+          <td colspan="7">&nbsp;&nbsp;&nbsp;&nbsp; 
+            <!-- BEGIN ImageLink SeleccionarParcela --><a href="{SeleccionarParcela}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/22x22/system-search.gif"></a>&nbsp;Seleccionar parcela destino<!-- END ImageLink SeleccionarParcela -->&nbsp;</td> <!-- END Panel panel_destino -->
+        </tr>
+ 
+        <tr class="Caption">
+          <th>Partida</th>
+ 
+          <th>Fuente &nbsp;</th>
+ 
+          <th>Sec.</th>
+ 
+          <th>Cha.</th>
+ 
+          <th>Qta.</th>
+ 
+          <th>Mzo.</th>
+ 
+          <th>Fracc.</th>
+ 
+          <th>Pla.</th>
+ 
+          <th>Uf./Uc</th>
+ 
+          <th>Prd.</th>
+ 
+          <th>Rte.</th>
+ 
+          <th>Estado&nbsp;</th>
+ 
+          <th>Plano&nbsp;</th>
+ 
+          <th>Superficie</th>
+ 
+          <th>Plancheta</th>
+ 
+          <th colspan="3">&nbsp;Editar</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr {parcelas_destino_prov:rowStyle}>
+          <td style="TEXT-ALIGN: right">{parcela_partida}&nbsp;</td> 
+          <td>{fuente}&nbsp;</td> 
+          <td>{parcela_seccion}&nbsp;</td> 
+          <td>{parcela_chacra}&nbsp;</td> 
+          <td>{parcela_quinta}&nbsp;</td> 
+          <td>{parcela_macizo}&nbsp;</td> 
+          <td>{parcela_fraccion}&nbsp;</td> 
+          <td>{parcela_parcela}&nbsp;</td> 
+          <td>{parcela_uf}&nbsp;</td> 
+          <td>{parcela_predio}&nbsp;</td> 
+          <td>{parcela_rte}&nbsp;</td> 
+          <td>{tipo_est_parc_descr}&nbsp;</td> 
+          <td>{plano}&nbsp;</td> 
+          <td>{superficie}&nbsp;{unidades_medidas_parcelas}&nbsp;{unidades_medidas_abrev}<input id="parcelas_destino_provplanos_prov_super_mensura" type="hidden" value="{planos_prov_super_mensura}" name="{planos_prov_super_mensura_Name}"></td> 
+          <td>{htm}&nbsp;</td> 
+          <td colspan="3">
+            <!-- BEGIN Panel panel_editar -->
+            <!-- BEGIN ImageLink ImageLink2 --><a href="{ImageLink2}"><img title="Editar parcela de destino" style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/16x16/accessories-text-editor.gif"></a><!-- END ImageLink ImageLink2 -->
+            <!-- BEGIN ImageLink link_edit_exist --><a href="{link_edit_exist}"><img title="Editar detalles de parcela de destino" style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/16x16/accessories-text-editor.gif"></a><!-- END ImageLink link_edit_exist -->
+            <!-- BEGIN ImageLink LinkRemove --><a href="{LinkRemove}" id="parcelas_destino_provpanel_editarLinkRemove_{parcelas_destino_prov:rowNumber}"><img onclick="return confirm('¿Desea quitar esta parcela de destino?');" title="Quitar parcela de destino" style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{LinkRemove}" src="../iconos/16x16/list-remove.gif"></a><!-- END ImageLink LinkRemove --><!-- END Panel panel_editar -->&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="18">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="18">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid parcelas_destino_prov -->
+<p>
+<!-- BEGIN Grid parcelas_destino -->
+<table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          <th>Parcelas destino</th>
+ 
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Row">
+          <td colspan="14">Total:&nbsp;{parcelas1_TotalRecords}&nbsp;</td>
+        </tr>
+ 
+        <tr class="Caption">
+          <th>Partida</th>
+ 
+          <th>Sec.</th>
+ 
+          <th>Cha.</th>
+ 
+          <th>Qta.</th>
+ 
+          <th>Mzo.</th>
+ 
+          <th>Fracc.</th>
+ 
+          <th>Pla.</th>
+ 
+          <th>Uf./Uc</th>
+ 
+          <th>Prd.</th>
+ 
+          <th>Rte.</th>
+ 
+          <th>Estado&nbsp;</th>
+ 
+          <th>Plano&nbsp;</th>
+ 
+          <th colspan="2">Plancheta</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr {parcelas_destino:rowStyle}>
+          <td style="TEXT-ALIGN: right">{parcela_partida}&nbsp;</td> 
+          <td>{parcela_seccion}&nbsp;</td> 
+          <td>{parcela_chacra}&nbsp;</td> 
+          <td>{parcela_quinta}&nbsp;</td> 
+          <td>{parcela_macizo}&nbsp;</td> 
+          <td>{parcela_fraccion}&nbsp;</td> 
+          <td>{parcela_parcela}&nbsp;</td> 
+          <td>{parcela_uf}&nbsp;</td> 
+          <td>{parcela_predio}&nbsp;</td> 
+          <td>{parcela_rte}&nbsp;</td> 
+          <td>{tipo_est_parc_descr}&nbsp;</td> 
+          <td>{plano}&nbsp;</td> 
+          <td colspan="2">{htm}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="14">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="14">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid parcelas_destino --></p>
+<p><br>
+{tdf_footer} </p>
+<!-- Scripts -->
+<script language="JavaScript" type="text/javascript">
+
+  /* jQuery code */
+
+  jQuery(function() {
+
+    /* Eventos
+    ---------------------------------------------------------- */
+    // crea el slideshow
+    jQuery("#slides").slides();
+
+  });
+</script>
+<!-- end: Scripts -->
+</body>
+</html>

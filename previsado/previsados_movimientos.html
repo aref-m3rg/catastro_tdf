@@ -1,0 +1,178 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>previsados movimientos</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-96C81DE7
+
+var previsados_movimientosSearch_DatePicker_s_previsado_movimiento_fecha = new Object(); 
+previsados_movimientosSearch_DatePicker_s_previsado_movimiento_fecha.format           = "dd/mm/yyyy";
+previsados_movimientosSearch_DatePicker_s_previsado_movimiento_fecha.style            = "Styles/Simple_tdf/Style.css";
+previsados_movimientosSearch_DatePicker_s_previsado_movimiento_fecha.relativePathPart = "../";
+previsados_movimientosSearch_DatePicker_s_previsado_movimiento_fecha.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//previsados_movimientosSearchButton_cancel_OnClick @23-26EABEF4
+function previsados_movimientosSearchButton_cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End previsados_movimientosSearchButton_cancel_OnClick
+
+//bind_events @1-ADC45FD0
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("previsados_movimientosSearchButton_cancel", "click", previsados_movimientosSearchButton_cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<p>
+<!-- BEGIN Record previsados_movimientosSearch -->
+<form id="previsados_movimientosSearch" method="post" name="{HTMLFormName}" action="{Action}">
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <th>Buscar</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>Nro:</th>
+ 
+            <td><input id="previsados_movimientosSearchs_previsado_carga_id" maxlength="20" value="{s_previsado_carga_id}" name="{s_previsado_carga_id_Name}" size="20"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Fecha:</th>
+ 
+            <td><input id="previsados_movimientosSearchs_previsado_movimiento_fecha" maxlength="100" size="8" value="{s_previsado_movimiento_fecha}" name="{s_previsado_movimiento_fecha_Name}">
+              <!-- BEGIN DatePicker DatePicker_s_previsado_movimiento_fecha --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="previsados_movimientosSearchDatePicker_s_previsado_movimiento_fecha"><img id="previsados_movimientosSearchDatePicker_s_previsado_movimiento_fecha_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_s_previsado_movimiento_fecha --></td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right">
+              <!-- BEGIN Button Button_cancel --><input id="previsados_movimientosSearchButton_cancel" class="Button" type="submit" value="Limpiar" name="{Button_Name}"><!-- END Button Button_cancel -->
+              <!-- BEGIN Button Button_DoSearch --><input id="previsados_movimientosSearchButton_DoSearch" class="Button" type="submit" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record previsados_movimientosSearch --><br>
+<!-- BEGIN Grid previsados_movimientos -->
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          <th>Lista de Movimientos de Previsado</th>
+ 
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th colspan="4">
+          <p align="center">
+          <!-- BEGIN Link Link1 --><a href="{Link1_Src}" id="previsados_movimientosLink1_{previsados_movimientos:rowNumber}"><font color="#000080">Volver</font></a><!-- END Link Link1 --></p>
+          </th>
+        </tr>
+ 
+        <tr class="Caption">
+          <th>
+          <!-- BEGIN Sorter Sorter_previsado_movimiento_fecha --><a href="{Sort_URL}" id="previsados_movimientosSorter_previsado_movimiento_fecha"><font color="#000080">Fecha</font></a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_previsado_movimiento_fecha --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_previsado_carga_id --><a href="{Sort_URL}" id="previsados_movimientosSorter_previsado_carga_id"><font color="#000080">Numero</font></a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_previsado_carga_id --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_usuario_id --><a href="{Sort_URL}" id="previsados_movimientosSorter_usuario_id"><font color="#000080">Usuario</font></a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_usuario_id --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_previsado_movimiento_observacion --><a href="{Sort_URL}" id="previsados_movimientosSorter_previsado_movimiento_observacion"><font color="#000080">Observacion</font></a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_previsado_movimiento_observacion --></th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td>{previsado_movimiento_fecha}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{previsado_carga_id}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{usuario_id}&nbsp;{tipo_usuario}</td> 
+          <td>{previsado_movimiento_observacion}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="4"><font color="#ff0000"><strong>No hay Movimientos Registrados</strong></font></td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="4">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><font color="#000080">Inicio</font></a> <!-- END First_On -->
+            <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><font color="#000080">Anterior</font></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}"><font color="#000080">{Page_Number}</font></a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><font color="#000080">Siguiente</font></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><font color="#000080">Final</font></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid previsados_movimientos --><br>
+</p>
+<p>{tdf_footer}</p>
+</body>
+</html>

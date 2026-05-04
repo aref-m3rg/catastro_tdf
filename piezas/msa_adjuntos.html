@@ -1,0 +1,212 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Adjuntos en la Pieza</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-88A9217D
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../myFunctions.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//_OnLoad @1-9C4F01C0
+function _OnLoad()
+{
+    var result = true;
+//End _OnLoad
+
+//Custom Code @71-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        if(gup('refresh')==1){
+                opener.document.location.reload();
+    }
+    // -------------------------
+//End Custom Code
+
+//Close _OnLoad @1-BC33A33A
+    return result;
+}
+//End Close _OnLoad
+
+//bind_events @1-B4BAE7CE
+function bind_events() {
+    addEventHandler("", "load", _OnLoad);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body leftmargin="0" topmargin="0" rightmargin="0">
+<!-- BEGIN Grid piezas_piezas_tipos_trami -->
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img alt="" src="../Styles/mesa/Images/Spacer.gif" border="0"></td> 
+          <td class="th"><strong>Adjuntos&nbsp;en la Pieza Administrativa</strong></td> 
+          <td class="HeaderRight"><img alt="" src="../Styles/mesa/Images/Spacer.gif" border="0"></td>
+        </tr>
+      </table>
+ 
+      <table class="GroupCaption" cellspacing="0" cellpadding="0" width="100%">
+        <!-- BEGIN Row -->
+        <tr>
+          <th scope="row">Tipo</th>
+ 
+          <td class="GroupCaptionmesa">{pieza_tipo_desc}&nbsp;</td> 
+          <th class="FormTitleBgColor" scope="row">Fecha de Alta&nbsp;</th>
+ 
+          <td class="GroupCaptionmesa" scope="row">{pieza_f_alta}&nbsp;</td>
+        </tr>
+ 
+        <tr>
+          <th scope="row">Nro</th>
+ 
+          <td class="GroupCaptionmesa">{pieza}&nbsp;</td> 
+          <th class="FormTitleBgColor" scope="row">Tramite&nbsp;</th>
+ 
+          <td class="GroupCaptionmesa" scope="row">{tramite_desc}&nbsp;</td>
+        </tr>
+ 
+        <tr>
+          <th scope="row">Descripcion</th>
+ 
+          <td class="GroupCaptionmesa" colspan="3">{pieza_descripcion}&nbsp;</td>
+        </tr>
+ 
+        <tr>
+          <th scope="row">Iniciador</th>
+ 
+          <td class="GroupCaptionmesa">{pieza_iniciador}&nbsp;</td> 
+          <th class="FormTitleBgColor" scope="row">Creada en&nbsp;</th>
+ 
+          <td class="GroupCaptionmesa" scope="row">{unidad_p_nombre}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecordsmesa">
+          <td colspan="4">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid piezas_piezas_tipos_trami -->
+<!-- BEGIN Grid adjuntos_adjuntos_tipos_p -->
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Row">
+          <td colspan="7">Total de Adjuntos:&nbsp;{adjuntos_adjuntos_tipos_p_TotalRecords}</td>
+        </tr>
+ 
+        <tr class="Caption">
+          <th scope="col">
+          <div align="center">
+            Pieza 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            Tramite 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            Descripcion 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            Tomo 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            Tipo Adjunto 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            Comentario 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            Desadjuntar&nbsp; 
+          </div>
+          </th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr {adjuntos_adjuntos_tipos_p:rowStyle}>
+          <td>
+            <div align="center">
+              {pieza}&nbsp; 
+            </div>
+          </td> 
+          <td>{tramite_abrev}&nbsp;</td> 
+          <td>{pieza_descripcion}&nbsp;</td> 
+          <td>
+            <div align="center">
+              {pieza_tm_nro}&nbsp; 
+            </div>
+          </td> 
+          <td>
+            <div align="center">
+              {adj_tipo_abrev}&nbsp; 
+            </div>
+          </td> 
+          <td>{adj_comentario}&nbsp;</td> 
+          <td>
+            <div align="center">
+<a href="{ImageLink1}" id="adjuntos_adjuntos_tipos_pImageLink1_{adjuntos_adjuntos_tipos_p:rowNumber}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" onclick="return confirm('Seguro que desea desadjuntar esta Pieza?');" alt="{ImageLink1}" src="../iconos/16x16/folder-open.gif"></a> 
+            </div>
+          </td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="7">No hay adjuntos</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="7">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option value="" selected>-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/Simple_tdf/Images/First.gif" border="0"></a> <!-- END First_On -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/Simple_tdf/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/Simple_tdf/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/Simple_tdf/Images/Last.gif" border="0"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid adjuntos_adjuntos_tipos_p -->
+</body>
+</html>

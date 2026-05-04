@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Pieza Administrativa</title>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body leftmargin="0" topmargin="0" rightmargin="0">
+<p>
+<!-- BEGIN Grid piezas_piezas_tipos_trami -->
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+          <td class="th"><strong>Ruta de la Pieza Administrativa</strong></td> 
+          <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+        </tr>
+      </table>
+ 
+      <table class="GroupCaption" cellspacing="0" cellpadding="0" width="100%">
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <th scope="row" width="19%">Tipo :</th>
+ 
+          <td width="39%">{pieza_tipo_desc}&nbsp;</td> 
+          <th scope="row" width="13%">Tramite :&nbsp;</th>
+ 
+          <td width="29%">{tramite_desc}&nbsp;</td>
+        </tr>
+ 
+        <tr class="Row">
+          <th scope="row">Pieza :</th>
+ 
+          <td><b><font color="#003366" size="3">{pieza}</font></b></td> 
+          <th scope="row">&nbsp;F. Alta :</th>
+ 
+          <td>{pieza_f_alta}&nbsp;</td>
+        </tr>
+ 
+        <tr class="Row">
+          <th scope="row">Iniciador :</th>
+ 
+          <td colspan="3">{pieza_iniciador}&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+ 
+        <tr class="Row">
+          <th scope="row">Descripcion :</th>
+ 
+          <td colspan="3">{pieza_descripcion}&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+ 
+        <tr class="Row">
+          <th scope="row">Observaciones :&nbsp;</th>
+ 
+          <td colspan="3">{pieza_observaciones}</td>
+        </tr>
+ 
+        <tr class="Row">
+          <th scope="row">Creada en :&nbsp;</th>
+ 
+          <td>&nbsp;{unidad_p_nombre}</td> 
+          <th scope="row">Ambito:&nbsp;</th>
+ 
+          <td>{entorno_desc}</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="4">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid piezas_piezas_tipos_trami --></p>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Confirmacion de Pieza Externa</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//confirmacion_extButton1_OnClick @10-06D0E5D1
+function confirmacion_extButton1_OnClick()
+{
+    var result = true;
+//End confirmacion_extButton1_OnClick
+
+//Custom Code @11-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        self.close();
+    // -------------------------
+//End Custom Code
+
+//Close confirmacion_extButton1_OnClick @10-BC33A33A
+    return result;
+}
+//End Close confirmacion_extButton1_OnClick
+
+//_OnLoad @1-9C4F01C0
+function _OnLoad()
+{
+    var result = true;
+//End _OnLoad
+
+//Custom Code @40-2A29BDB7
+    // -------------------------
+    var close_action = document.confirmacion.close_window.value;
+    if(close_action == 1){
+        //opener.document.location.reload();
+                window.opener.document.location.href="msa_ext_pend.php?cambio=msa_principal.php";
+        self.close();
+    }
+    // -------------------------
+//End Custom Code
+
+//Close _OnLoad @1-BC33A33A
+    return result;
+}
+//End Close _OnLoad
+
+//bind_events @1-5A4A6573
+function bind_events() {
+    addEventHandler("confirmacion_extButton1", "click", confirmacion_extButton1_OnClick);
+    addEventHandler("", "load", _OnLoad);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body leftmargin="0" topmargin="0">
+<!-- BEGIN Record confirmacion_ext -->
+<form id="confirmacion_ext" name="{HTMLFormName}" action="{Action}" method="post">
+  <table cellspacing="0" cellpadding="0" width="100%" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            <td class="th"><strong>Atencion!</strong></td> 
+            <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2"><strong>{Error}</strong></td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td class="th" colspan="2">
+              <p><br>
+              Esta seguro que desea confirmar el pase de la pieza <strong>{pieza}</strong>&nbsp;<br>
+              proveniente de <strong>{unidad_p_nombre}</strong>&nbsp;<br>
+              el dia <strong>{pase_f_pase}?</strong> </p>
+            </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Para confirmar ingrese su nombre:</td> 
+            <td class="th"><input id="confirmacion_ext_extpase_receptor" maxlength="45" value="{pase_receptor}" name="{pase_receptor_Name}">&nbsp;</td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td align="right" colspan="2"><input type="hidden" value="{close_window}" name="{close_window_Name}">&nbsp; 
+              <!-- BEGIN Button Button_Update --><input class="Button" id="confirmacion_ext_extButton_Update" type="submit" alt="Enviar" value="Confirmar" name="{Button_Name}"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button1 --><input class="Button" id="confirmacion_ext_extButton1" type="submit" alt="Button1" value="Cancelar" name="{Button_Name}"><!-- END Button Button1 --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record confirmacion_ext -->
+</body>
+</html>

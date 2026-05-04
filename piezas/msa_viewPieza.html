@@ -1,0 +1,156 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Pieza Administrativa - Opciones</title>
+<style type="text/css">
+<!--
+.Estilo2    { font-size: 16px; color: #003399; }
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-D25B528C
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+{tdf_header}{tdf_menu} 
+<table cellspacing="2" cellpadding="2" width="100%" border="0">
+  <tr>
+    <td>
+      <!-- BEGIN Grid piezas_piezas_tipos_trami -->
+      <table cellspacing="0" cellpadding="0" width="50%" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                <td class="th"><strong>Pieza Administrativa</strong></td> 
+                <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="GroupCaption" cellspacing="0" cellpadding="0" width="100%">
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <th width="19%" scope="row">Tipo :</th>
+ 
+                <td width="39%" colspan="3">{pieza_tipo_desc}&nbsp;</td>
+              </tr>
+ 
+              <tr class="Row">
+                <th scope="row">Tipo de trámite:&nbsp;</th>
+ 
+                <td>{tramite_desc}&nbsp;</td> 
+                <th scope="row">Trámite:&nbsp;</th>
+ 
+                <td>{tipo_tramites_descript}&nbsp;</td>
+              </tr>
+ 
+              <tr class="Row">
+                <th scope="row">Pieza :</th>
+ 
+                <td><span class="Estilo2">{pieza}&nbsp;</span></td> 
+                <th scope="row">&nbsp;F. Alta :</th>
+ 
+                <td>{pieza_f_alta}&nbsp;</td>
+              </tr>
+ 
+              <tr class="Row">
+                <th scope="row">Iniciador :</th>
+ 
+                <td colspan="3">{pieza_iniciador}&nbsp;&nbsp;&nbsp;</td>
+              </tr>
+ 
+              <tr class="Row">
+                <th scope="row">Descripcion :</th>
+ 
+                <td colspan="3">{pieza_descripcion}&nbsp;&nbsp;&nbsp;</td>
+              </tr>
+ 
+              <tr class="Row">
+                <th scope="row">Observaciones :&nbsp;</th>
+ 
+                <td colspan="3">{pieza_observaciones}</td>
+              </tr>
+ 
+              <tr class="Row">
+                <th scope="row">Creada en :&nbsp;</th>
+ 
+                <td>{unidad_p_nombre}</td> 
+                <th scope="row">Ambito:&nbsp;</th>
+ 
+                <td>{entorno_desc}</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="4">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Total">
+                <td colspan="4">
+                  <table class="Grid" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td colspan="4">
+                        <div align="center">
+                          Opciones 
+                        </div>
+                      </td>
+                    </tr>
+ 
+                    <tr class="Total">
+                      <td>
+                        <div align="center">
+                          <!-- BEGIN Panel inicio -->Principal<br>
+<a href="{home}" id="piezas_piezas_tipos_tramiiniciohome_{piezas_piezas_tipos_trami:rowNumber}" title="Volver al menu principal"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{home}" src="../iconos/22x22/preferences-system-windows.gif"></a><!-- END Panel inicio -->&nbsp; 
+                        </div>
+                      </td> 
+                      <td>
+                        <div align="center">
+                          <!-- BEGIN Panel editar -->Editar<br>
+<a href="{edit}" id="piezas_piezas_tipos_tramieditaredit_{piezas_piezas_tipos_trami:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{edit}" src="../iconos/22x22/accessories-text-editor.gif"></a><!-- END Panel editar -->&nbsp; 
+                        </div>
+                      </td> 
+                      <td>
+                        <div align="center">
+                          <!-- BEGIN Panel imprimir -->Imprimir<br>
+<a href="{print}" id="piezas_piezas_tipos_tramiimprimirprint_{piezas_piezas_tipos_trami:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{print}" src="../iconos/22x22/printer.gif"></a><!-- END Panel imprimir -->&nbsp; 
+                        </div>
+                      </td> 
+                      <td>
+                        <div align="center">
+                          <!-- BEGIN Panel pasar -->Pasar<br>
+<a href="{pass}" id="piezas_piezas_tipos_tramipasarpass_{piezas_piezas_tipos_trami:rowNumber}" title="Pasar pieza"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{pass}" src="../iconos/22x22/format-indent-more.gif"></a><!-- END Panel pasar -->&nbsp; 
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid piezas_piezas_tipos_trami --></td>
+  </tr>
+</table>
+{tdf_footer} 
+</body>
+</html>

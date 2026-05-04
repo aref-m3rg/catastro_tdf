@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Seleccionar area</title>
+<link href="../Styles/Simple_tdf/Style.css" type="text/css" rel="stylesheet">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//preButton1_OnClick @20-6BCFF7B3
+function preButton1_OnClick()
+{
+    disableValidation = true;
+}
+//End preButton1_OnClick
+
+//bind_events @1-B2A6840E
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("preButton1", "click", preButton1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+{tdf_header}{tdf_menu} 
+<table cellspacing="2" cellpadding="2" width="100%" border="0">
+  <tr>
+    <td>
+      <!-- BEGIN Record pre -->
+      <form id="pre" name="{HTMLFormName}" action="{Action}" method="post">
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>Piezas Administrativas</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                </tr>
+ 
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="2">{Error}</td> 
+                </tr>
+ <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th" colspan="2"><br>
+                  </td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Area&nbsp;Actual:</td> 
+                  <td><b><font color="#003366" size="3">{area_activa}</font></b></td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="preunidad_id">Seleccion el area con la que va a trabajar...</label></td> 
+                  <td>
+                    <select id="preunidad_id" name="{unidad_id_Name}">
+                      {unidad_id_Options} 
+                    </select>
+ </td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="2">&nbsp;<br>
+                  </td> 
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td align="right" colspan="2">
+                    <!-- BEGIN Button Button_DoSearch --><input class="Button" id="preButton_DoSearch" type="submit" alt="Buscar" value="Continuar" name="{Button_Name}"><!-- END Button Button_DoSearch -->
+                    <!-- BEGIN Button Button1 --><input class="Button" id="preButton1" type="submit" alt="Button1" value="Cancelar" name="{Button_Name}"><!-- END Button Button1 --></td> 
+                </tr>
+ 
+              </table>
+ </td> 
+          </tr>
+ 
+        </table>
+ 
+      </form>
+ <!-- END Record pre --></td> 
+  </tr>
+</table>
+<div align="left">
+</div>
+{tdf_footer} 
+</body>
+</html>

@@ -1,0 +1,56 @@
+<html>
+  <head>
+
+    <meta content="text/html; charset=windows-1252" http-equiv="Content-Type">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252"><title>NewPage1</title>
+
+    <link rel="stylesheet" type="text/css" href="{page:pathToRoot}Styles/adx.css">
+    <link rel="stylesheet" type="text/css" href="{page:pathToRoot}Styles/Simple_tdf/Menu.css">
+    <link rel="stylesheet" type="text/css" href="{page:pathToRoot}Styles/common.css">
+
+    <!-- jQuery & jQuery UI & jQuery plugins-->
+    <script type="text/javascript" src="{page:pathToRoot}js/jquery-1.7.min.js"></script>
+    <script type="text/javascript" src="{page:pathToRoot}js/jquery-ui-1.8.23.custom.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{page:pathToRoot}Styles/jquery_ui/jquery-ui-1.8.23.custom.css">
+    <script type="text/javascript" src="{page:pathToRoot}js/slides.min.jquery.js"></script>
+    <!-- end: jQuery & jQuery UI -->
+
+    <!-- Scripts generales (para toda la aplicación -->
+    <script type="text/javascript">
+
+      // deshabilita $ como objeto de jQuery para evitar conflictos con Prototype */
+      $.noConflict();
+
+    </script>
+    <!-- end: Scripts generales -->
+
+
+    <script language="JavaScript" type="text/javascript">
+    //Begin CCS script
+    //Include Common JSFunctions @1-9722A627
+    </script>
+    <script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript">
+    //End Include Common JSFunctions
+
+    //bind_events @1-E634CA02
+    function bind_events() {
+        if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+        if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+        if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    }
+    //End bind_events
+
+    window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+    //End CCS script
+    </script>
+  </head>
+
+  <body>
+    {tdf_header}{tdf_menu}<br>
+    <p>&nbsp;</p>
+    <p>{tdf_footer}</p>
+  </body>
+
+</html>

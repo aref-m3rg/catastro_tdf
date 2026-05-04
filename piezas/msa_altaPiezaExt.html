@@ -1,0 +1,194 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Alta de Pieza Externa al Circuito</title>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-113F5716
+</script>
+<script language="JavaScript" src="../js/pt/prototype.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include User Scripts
+
+//_OnLoad @1-9C4F01C0
+function _OnLoad()
+{
+    var result = true;
+//End _OnLoad
+
+//Set Focus @45-8E6AEF89
+    if (document.forms["piezas"] && document.forms["piezas"].pieza_tipo_id) document.forms["piezas"].pieza_tipo_id.focus();
+//End Set Focus
+
+//Close _OnLoad @1-BC33A33A
+    return result;
+}
+//End Close _OnLoad
+
+//piezasButton1_OnClick @31-A3A26E5B
+function piezasButton1_OnClick()
+{
+    disableValidation = true;
+}
+//End piezasButton1_OnClick
+
+//piezastipo_tramites_idPTDependentListBox1 Start @63-E4BF2F2D
+function piezastipo_tramites_idPTDependentListBox1_start(sender) {
+    var dependentElement = $("piezastipo_tramites_id" + sender.id.substring(16));
+    var selectedValue = null;
+    if (addEventHandler.isOnLoad)
+        selectedValue = dependentElement.value;
+    new Ajax.Request("../services/piezas_msa_altaPiezaExt_piezas_tipo_tramites_id_PTDependentListBox1.php?keyword=" + sender.value, {
+        method: "get",
+        requestHeaders: ['If-Modified-Since', new Date(0)],
+        onSuccess: function(transport) {
+            for (var i = dependentElement.options.length - 1; i > 0; i--) {
+                var currentOption = dependentElement.options.item(i);
+                if (currentOption.value != "") {
+                    dependentElement.remove(i);
+                }
+            }
+            var valueRows = eval(transport.responseText);
+            for (var i = 0; i < valueRows.length; i++) {
+                var newOption = new Option(valueRows[i]["1"], valueRows[i]["0"]);
+                dependentElement.options[dependentElement.options.length] = newOption;
+            } 
+            if (CCGetParam(sender.name) == sender.value) {
+                dependentElement.value = CCGetParam(dependentElement.name);
+            }
+            if (selectedValue)
+                dependentElement.value = selectedValue;
+        }, 
+        onFailure: function(transport) {
+            alert(transport.responseText);
+        }
+    });
+}
+//End piezastipo_tramites_idPTDependentListBox1 Start
+
+//bind_events @1-F6201C91
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("piezastramite_id", "change", piezastipo_tramites_idPTDependentListBox1_start);
+    addEventHandler("piezastramite_id", "load", piezastipo_tramites_idPTDependentListBox1_start);
+    addEventHandler("", "load", _OnLoad);
+    addEventHandler("piezasButton1", "click", piezasButton1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+<p>{tdf_header}{tdf_menu} 
+<table cellspacing="2" cellpadding="2" width="100%" border="0">
+  <tr>
+    <td>
+      <!-- BEGIN Record piezas -->
+      <form id="piezas" method="post" name="{HTMLFormName}" action="{Action}">
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Nueva Pieza Externa</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="2"><strong><font size="2">{Error}</font></strong></td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th">Origen&nbsp;</td> 
+                  <td>
+                    <select id="piezasunidad_id" name="{unidad_id_Name}">
+                      {unidad_id_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Tipo</td> 
+                  <td>
+                    <!-- BEGIN RadioButton pieza_tipo_id --><input id="piezaspieza_tipo_id_{pieza_tipo_id:optionNumber}" type="radio" value="{Value}" name="{pieza_tipo_id_Name}" {Check}>{Description}<!-- END RadioButton pieza_tipo_id -->&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Nro-Letra-Año:</td> 
+                  <td><input id="piezaspieza_nro" maxlength="8" size="6" value="{pieza_nro}" name="{pieza_nro_Name}">-<input id="piezaspieza_letra" maxlength="5" size="5" value="{pieza_letra}" name="{pieza_letra_Name}">-<input id="piezaspieza_anio" maxlength="4" size="4" value="{pieza_anio}" name="{pieza_anio_Name}">&nbsp;<br>
+                    <font color="#808080">(Si es una nota sin número, el sistema le asignará un numero secuencial.)</font></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="piezastramite_id">Tipo de trámite</label></td> 
+                  <td>
+                    <select id="piezastramite_id" name="{tramite_id_Name}">
+                      <option selected value="">Seleccionar&nbsp;...</option>
+                      {tramite_id_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Trámite</td> 
+                  <td>
+                    <!-- BEGIN ListBox tipo_tramites_id -->
+                    <select id="piezastipo_tramites_id" name="{tipo_tramites_id_Name}">
+                      <option selected value="">...</option>
+                      {tipo_tramites_id_Options}
+                    </select>
+ <!-- END ListBox tipo_tramites_id -->&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="piezaspieza_iniciador">Iniciador</label></td> 
+                  <td><input id="piezaspieza_iniciador" maxlength="60" size="50" value="{pieza_iniciador}" name="{pieza_iniciador_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="piezaspieza_descripcion">Descripcion</label></td> 
+                  <td><textarea id="piezaspieza_descripcion" rows="3" cols="50" name="{pieza_descripcion_Name}">{pieza_descripcion}</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="piezaspieza_observaciones">Observaciones</label></td> 
+                  <td><textarea id="piezaspieza_observaciones" rows="3" cols="50" name="{pieza_observaciones_Name}">{pieza_observaciones}</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Numero de Fojas</td> 
+                  <td><input id="piezasfojas" maxlength="6" size="6" value="{fojas}" name="{fojas_Name}"></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td colspan="2" align="right">
+                    <!-- BEGIN Button Button_Insert --><input id="piezasButton_Insert" class="Button" alt="Agregar" type="submit" value="Crear Pieza Externa" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button1 --><input id="piezasButton1" class="Button" alt="Button1" type="submit" value="Cancelar" name="{Button_Name}"><!-- END Button Button1 --><input id="piezasentorno_id" type="hidden" value="{entorno_id}" name="{entorno_id_Name}"><input id="piezasestado_id" type="hidden" value="{estado_id}" name="{estado_id_Name}"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record piezas --></td>
+  </tr>
+</table>
+{tdf_footer}</p>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Piezas Archivadas</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//area1Button1_OnClick @54-C7F1F924
+function area1Button1_OnClick()
+{
+    disableValidation = true;
+}
+//End area1Button1_OnClick
+
+//bind_events @1-C8EADF1B
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("area1Button1", "click", area1Button1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+{tdf_header}{tdf_menu} 
+<table border="0" cellspacing="2" cellpadding="2" width="100%">
+  <tr>
+    <td>
+      <!-- BEGIN Record area1 -->
+      <form id="area1" method="post" name="{HTMLFormName}" action="{Action}">
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <th>Buscador</th>
+ 
+                  <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="6">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <th colspan="2"><strong>Texto (en toda la pieza)</strong>&nbsp;&nbsp;</th>
+ 
+                  <th colspan="4"><input id="area1s_texto" name="{s_texto_Name}" value="{s_texto}" size="30">&nbsp;</th>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th><strong>Nro.</strong>&nbsp;</th>
+ 
+                  <td><input id="area1s_pieza_nro" name="{s_pieza_nro_Name}" maxlength="10" value="{s_pieza_nro}" size="10"></td> 
+                  <th><strong>Letra</strong>&nbsp;</th>
+ 
+                  <td><input id="area1s_pieza_letra" name="{s_pieza_letra_Name}" maxlength="4" value="{s_pieza_letra}" size="4"></td> 
+                  <th><strong>Año</strong></th>
+ 
+                  <td><input id="area1s_pieza_anio" name="{s_pieza_anio_Name}" maxlength="5" value="{s_pieza_anio}" size="5">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td colspan="6">
+                    <!-- BEGIN Button Button_DoSearch --><input id="area1Button_DoSearch" class="Button" name="{Button_Name}" value="Buscar" type="submit"><!-- END Button Button_DoSearch -->             
+                    <!-- BEGIN Button Button1 --><input id="area1Button1" class="Button" name="{Button_Name}" value="Principal" type="submit"><!-- END Button Button1 -->
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record area1 --><br>
+      <!-- BEGIN EditableGrid area -->
+      <form id="area" method="post" name="{HTMLFormName}" action="{Action}">
+        <input name="FormState" value="{FormState}" type="hidden">{FormScript} 
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Piezas&nbsp;archivadas&nbsp;en el area</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Row">
+                  <td colspan="10">Encontradas: {cant}</td>
+                </tr>
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="10">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Caption">
+                  <th scope="col">
+                  <div align="center">
+                    Tipo 
+                  </div>
+                  </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Pieza 
+                  </div>
+                  </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Alta 
+                  </div>
+                  </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Fojas 
+                  </div>
+                  </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Tomo 
+                  </div>
+                  </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Descripcion 
+                  </div>
+                  </th>
+ 
+                  <th scope="col">Disposicion</th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Adj. 
+                  </div>
+                  </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Ruta 
+                  </div>
+                  </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Desarchivar 
+                  </div>
+                  </th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <!-- BEGIN RowError -->
+                <tr class="Error">
+                  <td colspan="10">{Error}</td>
+                </tr>
+                <!-- END RowError -->
+                <tr class="Row">
+                  <td>
+                    <div align="center">
+                      {pieza_tipo_abrev}&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <b>{pieza}</b>&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      {pieza_f_alta}&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      {pase_n_fojas}&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      {pieza_tm_nro}&nbsp; 
+                    </div>
+                  </td> 
+                  <td>{pieza_descripcion}&nbsp;</td> 
+                  <td>{pieza_archivo}&nbsp;</td> 
+                  <td>
+                    <div align="center">
+                      <!-- BEGIN ImageLink adjLnk --><a href="{adjLnk}" id="areaadjLnk_{area:rowNumber}" title="Ver Adjuntos"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{adjLnk}" src="../iconos/16x16/mail-attachment.gif"></a><!-- END ImageLink adjLnk -->&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+<a href="{rutaLnk}" id="arearutaLnk_{area:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{rutaLnk}" src="../iconos/16x16/start-here.gif"></a> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+<a href="{archLnk}" id="areaarchLnk_{area:rowNumber}" title="Desarchivar esta pieza"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{archLnk}" src="../iconos/16x16/user-home.gif"></a> 
+                    </div>
+                  </td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="10">No hay piezas archivadas en el area</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td style="TEXT-ALIGN: center" colspan="10">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On --><!-- END Navigator Navigator --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END EditableGrid area --></td>
+  </tr>
+</table>
+{tdf_footer} 
+</body>
+</html>

@@ -1,0 +1,109 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Archivar Pieza</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-88A9217D
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//confirmacionButton1_OnClick @32-B361B5CA
+function confirmacionButton1_OnClick()
+{
+    var result = true;
+//End confirmacionButton1_OnClick
+
+//Custom Code @33-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        self.close();
+    // -------------------------
+//End Custom Code
+
+//Close confirmacionButton1_OnClick @32-BC33A33A
+    return result;
+}
+//End Close confirmacionButton1_OnClick
+
+//_OnLoad @1-9C4F01C0
+function _OnLoad()
+{
+    var result = true;
+//End _OnLoad
+
+//Custom Code @37-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        var close_action = document.confirmacion.close_window.value;
+        if(close_action == 1){
+                opener.document.location.reload();
+                self.close();
+        }
+    // -------------------------
+//End Custom Code
+
+//Close _OnLoad @1-BC33A33A
+    return result;
+}
+//End Close _OnLoad
+
+//bind_events @1-E111AA48
+function bind_events() {
+    addEventHandler("confirmacionButton1", "click", confirmacionButton1_OnClick);
+    addEventHandler("", "load", _OnLoad);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body leftmargin="0" topmargin="0" rightmargin="0">
+<!-- BEGIN Record confirmacion -->
+<form id="confirmacion" name="{HTMLFormName}" action="{Action}" method="post">
+  <table cellspacing="0" cellpadding="0" width="100%" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            <td class="th"><strong>Atencion!</strong></td> 
+            <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td class="th" colspan="2"><br>
+              Esta seguro que desea archivar la pieza <strong>{pieza}</strong>{complemento}?<br>
+            </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Disposicion:&nbsp;&nbsp;</td> 
+            <td class="th"><input id="confirmacionpieza_archivo" maxlength="15" size="15" value="{pieza_archivo}" name="{pieza_archivo_Name}"></td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td class="" align="right" colspan="2"><input type="hidden" value="{close_window}" name="{close_window_Name}">&nbsp; 
+              <!-- BEGIN Button Button_Update --><input class="Button" id="confirmacionButton_Update" type="submit" alt="Enviar" value="Confirmar" name="{Button_Name}"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button1 --><input class="Button" id="confirmacionButton1" type="submit" alt="Button1" value="Cancelar" name="{Button_Name}"><!-- END Button Button1 --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record confirmacion -->
+</body>
+</html>

@@ -1,0 +1,503 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Agregar / Editar titular para la parcela</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-571E5D38
+</script>
+<script language="JavaScript" src="../js/pt/prototype.js" type="text/javascript"></script>
+<script language="JavaScript" src="../js/pt/scriptaculous.js" type="text/javascript"></script>
+<script language="JavaScript" src="../js/pt/controls.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include User Scripts
+
+//Date Picker Object Definitions @1-D173F491
+
+var personasEdit_DatePicker_persona_parcela_f_int1 = new Object(); 
+personasEdit_DatePicker_persona_parcela_f_int1.format           = "dd/mm/yyyy";
+personasEdit_DatePicker_persona_parcela_f_int1.style            = "Styles/Simple_tdf/Style.css";
+personasEdit_DatePicker_persona_parcela_f_int1.relativePathPart = "../";
+personasEdit_DatePicker_persona_parcela_f_int1.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//personasSearchButtonCancel_OnClick @16-5F32FF48
+function personasSearchButtonCancel_OnClick()
+{
+    var result = true;
+//End personasSearchButtonCancel_OnClick
+
+//Custom Code @129-2A29BDB7
+
+
+    /* Cierra la ventana del popup
+    ----------------------------------------- */
+    window.close();
+
+
+//End Custom Code
+
+//Close personasSearchButtonCancel_OnClick @16-BC33A33A
+    return result;
+}
+//End Close personasSearchButtonCancel_OnClick
+
+//personasEditButton_Update_OnClick @69-DF6617D1
+function personasEditButton_Update_OnClick()
+{
+    var result = true;
+//End personasEditButton_Update_OnClick
+
+//Confirmation Message @121-681CE009
+    return confirm('ADVERTENCIA: Las modificaciones de los datos personales de la persona afectaran a TODAS las parcelas que tenga asociadas. ¿Desea continuar?');
+//End Confirmation Message
+
+//Close personasEditButton_Update_OnClick @69-BC33A33A
+    return result;
+}
+//End Close personasEditButton_Update_OnClick
+
+//personasEditButton_Cancel_OnClick @70-5BB58099
+function personasEditButton_Cancel_OnClick()
+{
+    var result = true;
+//End personasEditButton_Cancel_OnClick
+
+//Custom Code @128-2A29BDB7
+
+    /* Cierra la ventana del popup
+    ----------------------------------------- */
+    window.close();
+
+
+//End Custom Code
+
+//Close personasEditButton_Cancel_OnClick @70-AEF500E0
+    disableValidation = true;
+    return result;
+}
+//End Close personasEditButton_Cancel_OnClick
+
+//personasEditpersona_nombre_OnChange @91-B775BF3A
+function personasEditpersona_nombre_OnChange()
+{
+    var result = true;
+//End personasEditpersona_nombre_OnChange
+
+//Custom Code @92-2A29BDB7
+    // -------------------------
+    aMayusculas(this);
+    // -------------------------
+//End Custom Code
+
+//Close personasEditpersona_nombre_OnChange @91-BC33A33A
+    return result;
+}
+//End Close personasEditpersona_nombre_OnChange
+
+//personasEditpersona_apellido_OnChange @93-9D5C5A0E
+function personasEditpersona_apellido_OnChange()
+{
+    var result = true;
+//End personasEditpersona_apellido_OnChange
+
+//Custom Code @94-2A29BDB7
+    // -------------------------
+    aMayusculas(this);
+    // -------------------------
+//End Custom Code
+
+//Close personasEditpersona_apellido_OnChange @93-BC33A33A
+    return result;
+}
+//End Close personasEditpersona_apellido_OnChange
+
+//personasEditpersona_conyuge_OnChange @95-C0F4915C
+function personasEditpersona_conyuge_OnChange()
+{
+    var result = true;
+//End personasEditpersona_conyuge_OnChange
+
+//Custom Code @96-2A29BDB7
+    // -------------------------
+        aMayusculas(this);
+    // -------------------------
+//End Custom Code
+
+//Close personasEditpersona_conyuge_OnChange @95-BC33A33A
+    return result;
+}
+//End Close personasEditpersona_conyuge_OnChange
+
+//personasEditButton_Delete_OnClick @130-87FBC6C7
+function personasEditButton_Delete_OnClick()
+{
+    var result = true;
+//End personasEditButton_Delete_OnClick
+
+//Confirmation Message @131-4033AA28
+    return confirm('¿Desea quitar este titular de la parcela provisoria?');
+//End Confirmation Message
+
+//Close personasEditButton_Delete_OnClick @130-BC33A33A
+    return result;
+}
+//End Close personasEditButton_Delete_OnClick
+
+//_OnUnload @1-580335E3
+function _OnUnload()
+{
+    var result = true;
+//End _OnUnload
+
+//Custom Code @127-2A29BDB7
+
+
+        /* Recarga la página que abrió este popup
+        ------------------------------------------------- */
+        opener.document.location.reload();
+
+
+//End Custom Code
+
+//Close _OnUnload @1-BC33A33A
+    return result;
+}
+//End Close _OnUnload
+
+//Initialize personasSearchs_persona_nro_docPTAutocomplete1 @14-7DB15627
+function personasSearchs_persona_nro_docPTAutocomplete1_start() {
+    if ($("personasSearchs_persona_nro_doc"))
+        new Ajax.Autocompleter("personasSearchs_persona_nro_doc", "personasSearchs_persona_nro_doc_choices", "../services/gestion_buscaPersonas_personasSearch_s_persona_nro_doc_PTAutocomplete1.php", {});
+}
+//End Initialize personasSearchs_persona_nro_docPTAutocomplete1
+
+//bind_events @1-75745034
+function bind_events() {
+    window.onunload = _OnUnload;
+    personasSearchs_persona_nro_docPTAutocomplete1_start();
+    addEventHandler("personasSearchButtonCancel", "click", personasSearchButtonCancel_OnClick);
+    addEventHandler("personasEditButton_Update", "click", personasEditButton_Update_OnClick);
+    addEventHandler("personasEditButton_Cancel", "click", personasEditButton_Cancel_OnClick);
+    addEventHandler("personasEditpersona_nombre", "change", personasEditpersona_nombre_OnChange);
+    addEventHandler("personasEditpersona_apellido", "change", personasEditpersona_apellido_OnChange);
+    addEventHandler("personasEditpersona_conyuge", "change", personasEditpersona_conyuge_OnChange);
+    addEventHandler("personasEditButton_Delete", "click", personasEditButton_Delete_OnClick);
+    addEventHandler("", "unload", _OnUnload);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+<!-- BEGIN Record personasSearch -->
+<form id="personasSearch" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <td class="th"><strong>Buscar</strong></td> 
+            <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="4">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td class="th"><label for="personasSearchs_tipo_documento_id">Tipo de documento </label></td> 
+            <td>
+              <select id="personasSearchs_tipo_documento_id" name="{s_tipo_documento_id_Name}">
+                <option selected value="">...</option>
+                {s_tipo_documento_id_Options}
+              </select>
+ </td> 
+            <td><label for="personasSearchs_persona_nro_doc"><strong>Nro. Documento</strong></label>&nbsp;</td> 
+            <td>
+              <!-- BEGIN TextBox s_persona_nro_doc --><input id="personasSearchs_persona_nro_doc" name="{s_persona_nro_doc_Name}" maxlength="20" value="{s_persona_nro_doc}" size="20" autocomplete="off">
+              <!-- BEGINF PTAutocomplete PTAutocomplete2 -->
+              <div id="personasSearchs_persona_nro_doc_choices">
+              </div>
+              <!-- ENDF PTAutocomplete PTAutocomplete2 --><!-- END TextBox s_persona_nro_doc -->&nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="personasSearchs_persona_denominacion">Nombre y apellido</label></td> 
+            <td>
+              <!-- BEGIN TextBox s_persona_denominacion --><input id="personasSearchs_persona_denominacion" name="{s_persona_denominacion_Name}" maxlength="250" value="{s_persona_denominacion}" size="40" autocomplete="off">
+              <!-- BEGINF PTAutocomplete PTAutocomplete1 -->
+              <div id="personasSearchs_persona_denominacion_choices">
+              </div>
+              <!-- ENDF PTAutocomplete PTAutocomplete1 --><!-- END TextBox s_persona_denominacion --></td> 
+            <td><strong><label for="personasSearchs_persona_cuit">CUIT</label>&nbsp;</strong></td> 
+            <td><input id="personasSearchs_persona_cuit" name="{s_persona_cuit_Name}" maxlength="15" value="{s_persona_cuit}" size="15">&nbsp;</td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="4" align="right">
+              <!-- BEGIN Button Button_DoSearch --><input id="personasSearchButton_DoSearch" class="Button" name="{Button_Name}" alt="Buscar" value="Buscar" type="submit"><!-- END Button Button_DoSearch -->
+              <!-- BEGIN Button Button1 --><input id="personasSearchButton1" class="Button" name="{Button_Name}" alt="Button1" value="Agregar persona" type="submit"><!-- END Button Button1 -->
+              <!-- BEGIN Button ButtonCancel --><input id="personasSearchButtonCancel" class="Button" name="{Button_Name}" alt="Button1" value="Cancelar" type="submit"><!-- END Button ButtonCancel --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<br>
+<!-- END Record personasSearch -->
+<!-- BEGIN Grid personas -->
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+  <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          <td class="th"><strong>Lista de personas</strong></td> 
+          <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_tipo_documento_id --><a href="{Sort_URL}" id="personasSorter_tipo_documento_id">Tipo Doc</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_documento_id --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_persona_nro_doc --><a href="{Sort_URL}" id="personasSorter_persona_nro_doc">Nro Doc</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_persona_nro_doc --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_persona_cuit --><a href="{Sort_URL}" id="personasSorter_persona_cuit">Cuit</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_persona_cuit --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_persona_denominacion --><a href="{Sort_URL}" id="personasSorter_persona_denominacion">Denominacion</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_persona_denominacion --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_persona_fecha_nac --><a href="{Sort_URL}" id="personasSorter_persona_fecha_nac">Fecha Nac</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_persona_fecha_nac --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_pais_id --><a href="{Sort_URL}" id="personasSorter_pais_id">Pais</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_pais_id --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_persona_tel_movil --><a href="{Sort_URL}" id="personasSorter_persona_tel_movil">Tel Movil</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_persona_tel_movil --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_persona_email --><a href="{Sort_URL}" id="personasSorter_persona_email">Email</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_persona_email --></th>
+ 
+          <th scope="col">&nbsp;</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td style="TEXT-ALIGN: right">{tipo_documento_abrev}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{persona_nro_doc}&nbsp;</td> 
+          <td>{persona_cuit}&nbsp;</td> 
+          <td>{persona_denominacion}&nbsp;</td> 
+          <td>{persona_fecha_nac}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{pais_nombre}&nbsp;</td> 
+          <td>{persona_tel_movil}&nbsp;</td> 
+          <td>{persona_email}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right"><a href="{ImageLink1}" id="personasImageLink1_{personas:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" title="Seleccionar esta persona" alt="{ImageLink1}" src="../iconos/16x16/format-indent-less.gif"></a>&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="9">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="9">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+            <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid personas -->
+<!-- BEGIN Record personasEdit -->
+<form id="personasEdit" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <td class="th">
+              <div align="center">
+                Editar persona y agregar a la parcela destino 
+              </div>
+            </td> 
+            <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="4"><font size="2">{Error}</font></td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Caption">
+            <td class="th" colspan="4">
+              <div align="center">
+                Datos de la Persona 
+              </div>
+            </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="personasEdittipo_persona_id">Tipo Persona&nbsp;<font color="#ff0000">*</font></label></td> 
+            <td>
+              <select id="personasEdittipo_persona_id" name="{tipo_persona_id_Name}">
+                <option selected value="">...</option>
+                {tipo_persona_id_Options}
+              </select>
+ </td> 
+            <td>&nbsp;</td> 
+            <td class="th">&nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="personasEditpersona_nro_doc">Documento&nbsp;<font color="#ff0000">*</font></label></td> 
+            <td>
+              <select id="personasEdittipo_documento_id" name="{tipo_documento_id_Name}">
+                <option selected value="">...</option>
+                {tipo_documento_id_Options}
+              </select>
+ &nbsp;<input id="personasEditpersona_nro_doc" name="{persona_nro_doc_Name}" maxlength="20" value="{persona_nro_doc}" size="20"></td> 
+            <td class="th">CUIT&nbsp;</td> 
+            <td><input id="personasEditpersona_cuit" name="{persona_cuit_Name}" maxlength="15" value="{persona_cuit}" size="15">&nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Apellido&nbsp;&nbsp;<font color="#ff0000">*</font></td> 
+            <td><input id="personasEditpersona_apellido" name="{persona_apellido_Name}" value="{persona_apellido}" size="30">&nbsp;</td> 
+            <td class="th">Nombre&nbsp;&nbsp;<font color="#ff0000">*</font></td> 
+            <td class="th"><input id="personasEditpersona_nombre" name="{persona_nombre_Name}" value="{persona_nombre}" size="30">&nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="personasEditpersona_denominacion"><font style="BACKGROUND-COLOR: #efefef">Conyuge</font></label></td> 
+            <td><input id="personasEditpersona_conyuge" name="{persona_conyuge_Name}" maxlength="100" value="{persona_conyuge}" size="30"><input id="personasEditpersona_denominacion" name="{persona_denominacion_Name}" value="{persona_denominacion}" type="hidden"></td> 
+            <td class="th">&nbsp;</td> 
+            <td class="th">&nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="personasEditpersona_fecha_nac">Fecha Nacimiento&nbsp;</label></td> 
+            <td><input id="personasEditpersona_fecha_nac" name="{persona_fecha_nac_Name}" maxlength="100" value="{persona_fecha_nac}" size="8"></td> 
+            <td class="th">Nacionalidad</td> 
+            <td class="th">
+              <select id="personasEditpais_id" name="{pais_id_Name}">
+                <option selected value="">...</option>
+                {pais_id_Options}
+              </select>
+ &nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="personasEditpersona_tel_movil">Tel. Móvil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td> 
+            <td><input id="personasEditpersona_tel_movil" name="{persona_tel_movil_Name}" maxlength="20" value="{persona_tel_movil}" size="20"></td> 
+            <td class="th">Email</td> 
+            <td class="th"><input id="personasEditpersona_email" name="{persona_email_Name}" maxlength="40" value="{persona_email}" size="40"><a href="mailto:{persona_email}"><img border="0" src="../iconos/16x16/internet-mail.gif"></a></td>
+          </tr>
+ 
+          <tr class="Caption">
+            <td class="th" colspan="4">
+              <div align="center">
+                Datos de la Posesión 
+              </div>
+            </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Figura&nbsp;<font color="#ff0000">*</font></td> 
+            <td>
+              <select id="personasEdittipo_persona_parcela_id" name="{tipo_persona_parcela_id_Name}">
+                <option selected value="">...</option>
+                {tipo_persona_parcela_id_Options}
+              </select>
+ </td> 
+            <td class="th">% Dominio</td> 
+            <td class="th"><input id="personasEditpersona_parcela_dominio" name="{persona_parcela_dominio_Name}" maxlength="10" value="{persona_parcela_dominio}" size="10">%</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Nro. y tipo de instrumento&nbsp;<font color="#ff0000">*</font></td> 
+            <td>
+              <select style="WIDTH: 120px" id="personasEdittipo_instrumento_id" name="{tipo_instrumento_id_Name}">
+                <option selected value="">...</option>
+                {tipo_instrumento_id_Options}
+              </select>
+ <input style="WIDTH: 120px" id="personasEditpersona_parcela_num_int" name="{persona_parcela_num_int_Name}" maxlength="32" value="{persona_parcela_num_int}" size="18">&nbsp;</td> 
+            <td class="th">Fecha</td> 
+            <td><input id="personasEditpersona_parcela_f_int" name="{persona_parcela_f_int_Name}" maxlength="10" value="{persona_parcela_f_int}" size="9">
+              <!-- BEGIN DatePicker DatePicker_persona_parcela_f_int1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="personasEditDatePicker_persona_parcela_f_int1"><img id="personasEditDatePicker_persona_parcela_f_int1_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_persona_parcela_f_int1 -->&nbsp;&nbsp;</td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="4" align="right"><font color="#ff0000"><strong><input id="personasEditplanos_parc_prov_personas_id" name="{planos_parc_prov_personas_id_Name}" value="{planos_parc_prov_personas_id}" type="hidden"><input id="personasEditpersona_id" name="{persona_id_Name}" value="{persona_id}" type="hidden"><input id="personasEditplanos_prov_id" name="{planos_prov_id_Name}" value="{planos_prov_id}" type="hidden"><input id="personasEditpersona_f_proce" name="{persona_f_proce_Name}" value="{persona_f_proce}" type="hidden"><input id="personasEditpersona_f_alta" name="{persona_f_alta_Name}" value="{persona_f_alta}" type="hidden">* Campos necesarios</strong></font>&nbsp; 
+              <!-- BEGIN Button Button_Insert --><input id="personasEditButton_Insert" class="Button" name="{Button_Name}" value="Agregar titular" type="submit"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input id="personasEditButton_Update" class="Button" name="{Button_Name}" alt="Enviar" value="Editar titular" type="submit"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button_Delete --><input id="personasEditButton_Delete" class="Button" name="{Button_Name}" alt="Button1" value="Quitar" type="submit"><!-- END Button Button_Delete -->
+              <!-- BEGIN Button Button_Cancel --><input id="personasEditButton_Cancel" class="Button" name="{Button_Name}" alt="Cancelar" value="Cancelar" type="submit"><!-- END Button Button_Cancel --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record personasEdit -->
+</body>
+</html>

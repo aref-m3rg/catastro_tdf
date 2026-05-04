@@ -1,0 +1,289 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Planchetas</title>
+<meta content="CodeCharge Studio 4.1.00.027" name="GENERATOR">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-D25B528C
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link href="../Styles/Simple_tdf/Style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+{tdf_header}{tdf_menu}<br>
+<!-- BEGIN Record departamentos_planchetas -->
+<form id="departamentos_planchetas" name="{HTMLFormName}" action="{Action}" method="post">
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            <th>Buscar</th>
+ 
+            <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="8">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>
+            <div align="center">
+              Departamento 
+            </div>
+            </th>
+ 
+            <th>
+            <div align="center">
+              Padron 
+            </div>
+            </th>
+ 
+            <th>
+            <div align="center">
+              Seccion&nbsp; 
+            </div>
+            </th>
+ 
+            <th>
+            <div align="center">
+              Chacra&nbsp; 
+            </div>
+            </th>
+ 
+            <th>
+            <div align="center">
+              Quinta&nbsp; 
+            </div>
+            </th>
+ 
+            <th>
+            <div align="center">
+              Macizo&nbsp; 
+            </div>
+            </th>
+ 
+            <th>
+            <p align="center">Parcela</p>
+            </th>
+ 
+            <th>
+            <div align="center">
+              Ruta&nbsp; 
+            </div>
+            </th>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>
+            <div align="center">
+              <select id="departamentos_planchetasdpto_id" name="{dpto_id_Name}">
+                <option value="" selected>...</option>
+                {dpto_id_Options}
+              </select>
+ 
+            </div>
+            </th>
+ 
+            <th>
+            <div align="center">
+              <select id="departamentos_planchetaspadron_id" name="{padron_id_Name}">
+                <option value="" selected>...</option>
+                {padron_id_Options}
+              </select>
+ &nbsp; 
+            </div>
+            </th>
+ 
+            <th>
+            <div align="center">
+              <input id="departamentos_planchetass_plancheta_scc" maxlength="3" size="3" value="{s_plancheta_scc}" name="{s_plancheta_scc_Name}">
+            </div>
+            </th>
+ 
+            <td>
+              <div align="center">
+                <input id="departamentos_planchetass_plancheta_cha" maxlength="5" size="6" value="{s_plancheta_cha}" name="{s_plancheta_cha_Name}">&nbsp; 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                <input id="departamentos_planchetass_plancheta_qta" maxlength="5" size="6" value="{s_plancheta_qta}" name="{s_plancheta_qta_Name}">&nbsp; 
+              </div>
+            </td> 
+            <th>
+            <div align="center">
+              <input id="departamentos_planchetass_plancheta_mzo" maxlength="6" size="6" value="{s_plancheta_mzo}" name="{s_plancheta_mzo_Name}">&nbsp; 
+            </div>
+            </th>
+ 
+            <th>&nbsp;<input id="departamentos_planchetass_plancheta_par" size="6" value="{s_plancheta_par}" name="{s_plancheta_par_Name}"></th>
+ 
+            <td>
+              <div align="center">
+                <input id="departamentos_planchetass_plancheta_ruta" maxlength="5" size="6" value="{s_plancheta_ruta}" name="{s_plancheta_ruta_Name}">&nbsp; 
+              </div>
+            </td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td align="right" colspan="8">
+              <!-- BEGIN Button Button_DoSearch --><input class="Button" id="departamentos_planchetasButton_DoSearch" type="submit" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch -->
+              <!-- BEGIN Button Button1 --><input class="Button" id="departamentos_planchetasButton1" type="submit" value="Limpiar" name="{Button_Name}"><!-- END Button Button1 --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record departamentos_planchetas --><br>
+<!-- BEGIN Grid departamentos_planchetas1 -->
+<table cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+          <th>Planchetas</th>
+ 
+          <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Row">
+          <td colspan="9">Encontradas:{Label1}</td> 
+          <td colspan="5">&nbsp;<a href="{Link1}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt=" " src="../iconos/22x22/document-new.gif"></a>&nbsp;Nueva Plancheta</td>
+        </tr>
+ 
+        <tr class="Caption">
+          <th>
+          <!-- BEGIN Sorter Sorter_dpto_desc --><a href="{Sort_URL}" id="departamentos_planchetas1Sorter_dpto_desc">Departamento</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_dpto_desc --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter1 --><a href="{Sort_URL}" id="departamentos_planchetas1Sorter1">Padron</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter1 --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_plancheta_scc --><a href="{Sort_URL}" id="departamentos_planchetas1Sorter_plancheta_scc">Seccion</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_plancheta_scc --></th>
+ 
+          <th>&nbsp; 
+          <!-- BEGIN Sorter Sorter_plancheta_scc1 --><a href="{Sort_URL}" id="departamentos_planchetas1Sorter_plancheta_scc1">Chacra</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_plancheta_scc1 -->&nbsp;</th>
+ 
+          <th>&nbsp; 
+          <!-- BEGIN Sorter Sorter2 --><a href="{Sort_URL}" id="departamentos_planchetas1Sorter2">Quinta</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter2 --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_plancheta_mzo --><a href="{Sort_URL}" id="departamentos_planchetas1Sorter_plancheta_mzo">Macizo</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_plancheta_mzo --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_plancheta_par --><a href="{Sort_URL}" id="departamentos_planchetas1Sorter_plancheta_par">Parcela</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_plancheta_par --></th>
+ 
+          <th>&nbsp; 
+          <!-- BEGIN Sorter Sorter_plancheta_scc2 --><a href="{Sort_URL}" id="departamentos_planchetas1Sorter_plancheta_scc2">Ruta</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_plancheta_scc2 -->&nbsp;</th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_plancheta_hoja --><a href="{Sort_URL}" id="departamentos_planchetas1Sorter_plancheta_hoja">Hoja</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_plancheta_hoja --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_plancheta_f_act --><a href="{Sort_URL}" id="departamentos_planchetas1Sorter_plancheta_f_act">F. Act.</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_plancheta_f_act --></th>
+ 
+          <th>&nbsp;</th>
+ 
+          <th>&nbsp;Ver</th>
+ 
+          <th>Imp</th>
+ 
+          <th>&nbsp;Editar</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td>{dpto_desc}&nbsp;</td> 
+          <td>&nbsp;{padron_desc}</td> 
+          <td>{plancheta_scc}&nbsp;</td> 
+          <td>{plancheta_cha}&nbsp;</td> 
+          <td>{plancheta_qta}&nbsp;</td> 
+          <td>{plancheta_mzo}&nbsp;</td> 
+          <td>{plancheta_par}&nbsp;</td> 
+          <td>{plancheta_ruta}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{plancheta_hoja}&nbsp;</td> 
+          <td>{plancheta_f_act}&nbsp;</td> 
+          <td>{htm}&nbsp;</td> 
+          <td>&nbsp;<a href="{ImageLink1}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt=" " src="../iconos/16x16/system-search.gif"></a></td> 
+          <td><a href="{ImageLink3}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" src="../iconos/16x16/printer.gif"></a></td> 
+          <td>&nbsp;<a href="{ImageLink2}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt=" " src="../iconos/16x16/accessories-text-editor.gif"></a></td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="14">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="11">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option value="" selected>-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img src="../Styles/Simple_tdf/Images/First.gif" border="0"></a> <!-- END First_On -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="../Styles/Simple_tdf/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="../Styles/Simple_tdf/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="../Styles/Simple_tdf/Images/Last.gif" border="0"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td> 
+          <td colspan="3">&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid departamentos_planchetas1 --><br>
+<br>
+{tdf_footer} 
+</body>
+</html>

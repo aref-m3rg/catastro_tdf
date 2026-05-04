@@ -1,0 +1,107 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Detalles de la Plancheta</title>
+<meta content="CodeCharge Studio 4.1.00.027" name="GENERATOR">
+<link href="../Styles/Simple_tdf/Style.css" type="text/css" rel="stylesheet">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-D25B528C
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+{tdf_header}{tdf_menu} 
+<!-- BEGIN Grid departamentos_planchetas -->
+<table cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+          <th>Detalles de Plancheta</th>
+ 
+          <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <th>Departamento</th>
+          <td><b>{dpto_desc}&nbsp;</b></td>
+          <td rowspan="11">{htm}</td>
+        </tr>
+        <tr class="Row">
+          <th>Padron</th>
+          <td><b>{padron_desc}</b></td>
+        </tr>
+        <tr class="Row">
+          <th>Seccion</th>
+          <td><b>{plancheta_scc}&nbsp;</b></td>
+        </tr>
+        <tr class="Row">
+          <th>Chacra</th>
+          <td><strong>{plancheta_cha}</strong>&nbsp;</td>
+        </tr>
+        <tr class="Row">
+          <th>Quinta&nbsp;</th>
+          <td><strong>{plancheta_qta}</strong></td>
+        </tr>
+        <tr class="Row">
+          <th>Macizo</th>
+          <td><b>{plancheta_mzo}&nbsp;</b></td>
+        </tr>
+        <tr class="Row">
+          <th>Parcela</th>
+          <td>{plancheta_par}&nbsp;</td>
+        </tr>
+        <tr class="Row">
+          <th>Ruta&nbsp;</th>
+          <td>{plancheta_ruta}&nbsp;</td>
+        </tr>
+        <tr class="Row">
+          <th>Hoja</th>
+          <td>{plancheta_hoja}&nbsp;</td>
+        </tr>
+        <tr class="Row">
+          <th>Ult. Actualizacion</th>
+          <td>{plancheta_f_act}&nbsp;</td>
+        </tr>
+        <tr class="Row">
+          <th>Observaciones</th>
+          <td>{plancheta_obs}&nbsp;</td>
+        </tr>
+        <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="3">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Row">
+          <td><p align="left">&nbsp;<a href="{ImageLink1}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" src="../iconos/22x22/go-previous.gif"></a>&nbsp;Volver</p></td>
+          <td><p align="center">&nbsp;<a href="{ImageLink2}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" src="../iconos/22x22/accessories-text-editor.gif"></a>&nbsp;Editar</p></td>
+          <td>&nbsp;</td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<!-- END Grid departamentos_planchetas --><br>
+{tdf_footer} 
+</body>
+</html>

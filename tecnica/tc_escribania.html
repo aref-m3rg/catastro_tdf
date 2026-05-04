@@ -1,0 +1,190 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>tc_escribania</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//escribanias1Button_Cancel_OnClick @26-D98C211E
+function escribanias1Button_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End escribanias1Button_Cancel_OnClick
+
+//bind_events @1-EB915C56
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("escribanias1Button_Cancel", "click", escribanias1Button_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<p>
+<!-- BEGIN Record escribanias1 -->
+<form id="escribanias1" method="post" name="{HTMLFormName}" action="{Action}">
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <th>Agregar/Editar Escribanias </th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>Nombre</th>
+ 
+            <td><input id="escribanias1escribania_nombre" maxlength="32" size="32" value="{escribania_nombre}" name="{escribania_nombre_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Direccion</th>
+ 
+            <td><input id="escribanias1escribania_direccion" maxlength="64" size="50" value="{escribania_direccion}" name="{escribania_direccion_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Telefonos</th>
+ 
+            <td><input id="escribanias1escribania_telefonos" maxlength="64" size="50" value="{escribania_telefonos}" name="{escribania_telefonos_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Horarios Atencion</th>
+ 
+            <td><input id="escribanias1escribania_horarios_atencion" maxlength="32" size="32" value="{escribania_horarios_atencion}" name="{escribania_horarios_atencion_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>&nbsp;Localidad</th>
+ 
+            <td>&nbsp; 
+              <select id="escribanias1ListBox1" name="{ListBox1_Name}">
+                {ListBox1_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right"><a href="{escribanias_Insert_Src}" id="escribanias1escribanias_Insert">Agregar Nuevo</a> 
+              <!-- BEGIN Button Button_Insert --><input id="escribanias1Button_Insert" class="Button" type="submit" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input id="escribanias1Button_Update" class="Button" type="submit" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button_Cancel --><input id="escribanias1Button_Cancel" class="Button" type="submit" value="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+&nbsp;<!-- END Record escribanias1 --></p>
+<p>
+<!-- BEGIN Grid escribanias -->
+<table cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          <th>Escribanias Lista de </th>
+ 
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th>
+          <!-- BEGIN Sorter Sorter_escribania_nombre --><a href="{Sort_URL}" id="escribaniasSorter_escribania_nombre">Nombre</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_escribania_nombre --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_escribania_direccion --><a href="{Sort_URL}" id="escribaniasSorter_escribania_direccion">Direccion</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_escribania_direccion --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_escribania_telefonos --><a href="{Sort_URL}" id="escribaniasSorter_escribania_telefonos">Telefonos</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_escribania_telefonos --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_escribania_horarios_atencion --><a href="{Sort_URL}" id="escribaniasSorter_escribania_horarios_atencion">Horarios Atencion</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_escribania_horarios_atencion --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter1 --><a href="{Sort_URL}" id="escribaniasSorter1">Localidad</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter1 -->&nbsp;</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td><a href="{escribania_nombre_Src}" id="escribaniasescribania_nombre_{escribanias:rowNumber}">{escribania_nombre}</a>&nbsp;</td> 
+          <td>{escribania_direccion}&nbsp;</td> 
+          <td>{escribania_telefonos}&nbsp;</td> 
+          <td>{escribania_horarios_atencion}&nbsp;</td> 
+          <td>{dpto_desc}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="5">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="5">&nbsp; 
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+            <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid escribanias --><br>
+<br>
+</p>
+<p>{tdf_footer}</p>
+</body>
+</html>

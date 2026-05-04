@@ -1,0 +1,215 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Alta de Nota</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-AA535938
+</script>
+<script language="JavaScript" src="../FCKeditor/fckeditor.js" type="text/javascript"></script>
+<script language="JavaScript" src="../js/pt/prototype.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include User Scripts
+
+//piezastramite_id_OnLoad @13-357F2870
+function piezastramite_id_OnLoad()
+{
+    var result = true;
+//End piezastramite_id_OnLoad
+
+//Set Focus @46-CEC1D50D
+    if (document.forms["piezas"] && document.forms["piezas"].tramite_id) document.forms["piezas"].tramite_id.focus();
+//End Set Focus
+
+//Close piezastramite_id_OnLoad @13-BC33A33A
+    return result;
+}
+//End Close piezastramite_id_OnLoad
+
+//piezaspieza_txt_OnLoad @18-3D025FCD
+function piezaspieza_txt_OnLoad()
+{
+    var result = true;
+//End piezaspieza_txt_OnLoad
+
+//Attach FCKeditor @19-F170765D
+    var piezaspieza_txt_FCK = new FCKeditor(this.getAttribute("id"));
+    piezaspieza_txt_FCK.BasePath = "../FCKeditor/";
+    piezaspieza_txt_FCK.ToolbarSet = "MyToolbarNota";
+    piezaspieza_txt_FCK.Height = "170";
+    piezaspieza_txt_FCK.Width = "700";
+    piezaspieza_txt_FCK.ReplaceTextarea();
+//End Attach FCKeditor
+
+//Close piezaspieza_txt_OnLoad @18-BC33A33A
+    return result;
+}
+//End Close piezaspieza_txt_OnLoad
+
+//piezasButton1_OnClick @20-A3A26E5B
+function piezasButton1_OnClick()
+{
+    disableValidation = true;
+}
+//End piezasButton1_OnClick
+
+//piezastipo_tramites_idPTDependentListBox1 Start @49-808FAD26
+function piezastipo_tramites_idPTDependentListBox1_start(sender) {
+    var dependentElement = $("piezastipo_tramites_id" + sender.id.substring(16));
+    var selectedValue = null;
+    if (addEventHandler.isOnLoad)
+        selectedValue = dependentElement.value;
+    new Ajax.Request("../services/piezas_msa_altaNota_piezas_tipo_tramites_id_PTDependentListBox1.php?keyword=" + sender.value, {
+        method: "get",
+        requestHeaders: ['If-Modified-Since', new Date(0)],
+        onSuccess: function(transport) {
+            for (var i = dependentElement.options.length - 1; i > 0; i--) {
+                var currentOption = dependentElement.options.item(i);
+                if (currentOption.value != "") {
+                    dependentElement.remove(i);
+                }
+            }
+            var valueRows = eval(transport.responseText);
+            for (var i = 0; i < valueRows.length; i++) {
+                var newOption = new Option(valueRows[i]["1"], valueRows[i]["0"]);
+                dependentElement.options[dependentElement.options.length] = newOption;
+            } 
+            if (CCGetParam(sender.name) == sender.value) {
+                dependentElement.value = CCGetParam(dependentElement.name);
+            }
+            if (selectedValue)
+                dependentElement.value = selectedValue;
+        }, 
+        onFailure: function(transport) {
+            alert(transport.responseText);
+        }
+    });
+}
+//End piezastipo_tramites_idPTDependentListBox1 Start
+
+//bind_events @1-8497ADA2
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("piezastramite_id", "change", piezastipo_tramites_idPTDependentListBox1_start);
+    addEventHandler("piezastramite_id", "load", piezastipo_tramites_idPTDependentListBox1_start);
+    addEventHandler("piezastramite_id", "load", piezastramite_id_OnLoad);
+    addEventHandler("piezaspieza_txt", "load", piezaspieza_txt_OnLoad);
+    addEventHandler("piezasButton1", "click", piezasButton1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+{tdf_header}{tdf_menu} 
+<table cellspacing="2" cellpadding="2" width="100%" border="0">
+  <tr>
+    <td>
+      <!-- BEGIN Record piezas -->
+      <form id="piezas" method="post" name="{HTMLFormName}" action="{Action}">
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Nueva Nota</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="2"><strong>{Error}</strong></td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="piezastramite_id">Tipo de trámite</label></td> 
+                  <td>
+                    <select id="piezastramite_id" name="{tramite_id_Name}">
+                      <option selected value="">Seleccionar...</option>
+                      {tramite_id_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Trámite</td> 
+                  <td>
+                    <!-- BEGIN ListBox tipo_tramites_id -->
+                    <select id="piezastipo_tramites_id" name="{tipo_tramites_id_Name}">
+                      <option selected value="">...</option>
+                      {tipo_tramites_id_Options}
+                    </select>
+ <!-- END ListBox tipo_tramites_id --></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="piezaspieza_destinatario">Destinatario</label></td> 
+                  <td><input id="piezaspieza_destinatario" maxlength="60" size="50" value="{pieza_destinatario}" name="{pieza_destinatario_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="piezaspieza_of_destinatario">Area Destinatario</label></td> 
+                  <td>
+                    <!-- BEGIN TextBox pieza_of_destinatario --><input id="piezaspieza_of_destinatario" maxlength="60" size="50" value="{pieza_of_destinatario}" name="{pieza_of_destinatario_Name}" autocomplete="off"><!-- END TextBox pieza_of_destinatario --></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="piezaspieza_descripcion">Asunto</label></td> 
+                  <td><input id="piezaspieza_descripcion" maxlength="200" size="50" value="{pieza_descripcion}" name="{pieza_descripcion_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="piezaspieza_ref">Referencia</label></td> 
+                  <td><input id="piezaspieza_ref" maxlength="200" size="50" value="{pieza_ref}" name="{pieza_ref_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="2"><textarea id="piezaspieza_txt" style="HEIGHT: 135px; WIDTH: 510px" rows="9" cols="49" name="{pieza_txt_Name}">{pieza_txt}</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="piezaspieza_autor">Autor</label></td> 
+                  <td><input id="piezaspieza_autor" maxlength="25" size="25" value="{pieza_autor}" name="{pieza_autor_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="piezaspieza_iniciador">Area/ Iniciador</label></td> 
+                  <td><input id="piezaspieza_iniciador" maxlength="60" size="50" value="{pieza_iniciador}" name="{pieza_iniciador_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="piezaspieza_observaciones">Observaciones</label></td> 
+                  <td><input id="piezaspieza_observaciones" maxlength="200" size="50" value="{pieza_observaciones}" name="{pieza_observaciones_Name}"></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td colspan="2" align="right">
+                    <!-- BEGIN Button Button_Insert --><input id="piezasButton_Insert" class="Button" alt="Agregar" type="submit" value="Crear Nota" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button1 --><input id="piezasButton1" class="Button" alt="Button1" type="submit" value="Cancelar" name="{Button_Name}"><!-- END Button Button1 --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record piezas --></td>
+  </tr>
+</table>
+{tdf_footer} 
+</body>
+</html>

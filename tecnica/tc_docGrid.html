@@ -1,0 +1,139 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Documentacion Solicitada</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.031">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-E634CA02
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+{tdf_header} {tdf_menu}<br>
+<!-- BEGIN Grid departamentos_planos_plan -->
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          <th>Datos del plano</th>
+ 
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th>Departamento</th>
+ 
+          <th>Nro</th>
+ 
+          <th>Tipo</th>
+ 
+          <th>Estado</th>
+ 
+          <th>Expediente</th>
+ 
+          <th>F. Alta</th>
+ 
+          <th>&nbsp;Editar</th>
+ 
+          <th>&nbsp;Volver</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td>{tipo_depto_parc_desc}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{plano}&nbsp;</td> 
+          <td>{tipo_plano_desc}&nbsp;</td> 
+          <td>{tipo_estado_plano_desc}&nbsp;</td> 
+          <td>{expediente}&nbsp;</td> 
+          <td>{plano_f_alta}&nbsp;</td> 
+          <td>&nbsp;<a href="{ImageLink2}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" src="../iconos/22x22/accessories-text-editor.gif"></a></td> 
+          <td>&nbsp;<a href="{ImageLink1}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" title="Volver al listado de planos" src="../iconos/22x22/go-previous.gif"></a></td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="8">No hay datos del plano</td>
+        </tr>
+        <!-- END NoRecords -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid departamentos_planos_plan --><br>
+<!-- BEGIN EditableGrid requisitos -->
+<form id="requisitos" method="post" name="{HTMLFormName}" action="{Action}">
+  <input name="FormState" value="{FormState}" type="hidden">{FormScript} 
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <th>Requisitos de Documentacion Solicitada</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td>&nbsp;</td> 
+            <td>&nbsp;</td> 
+            <td>{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <!-- BEGIN Row -->
+          <!-- BEGIN RowError -->
+          <tr class="Error">
+            <td>&nbsp;</td> 
+            <td>&nbsp;</td> 
+            <td>{Error}</td>
+          </tr>
+          <!-- END RowError -->
+          <tr class="Row">
+            <td><input id="requisitosreq_plano_id_{requisitos:rowNumber}" name="{req_plano_id_Name}" value="{req_plano_id}" type="hidden"><input id="requisitosreq_id_{requisitos:rowNumber}" name="{req_id_Name}" value="{req_id}" type="hidden">{req_orden}</td> 
+            <td>{req_descr}</td> 
+            <td>
+              <!-- BEGIN RadioButton req_est_id --><input id="requisitosreq_est_id_{requisitos:rowNumber}_{req_est_id:optionNumber}" name="{req_est_id_Name}" value="{Value}" type="radio" {Check}>{Description}<!-- END RadioButton req_est_id --></td>
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="3">No hay registros</td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="Footer">
+            <td style="TEXT-ALIGN: right" colspan="3">
+              <!-- BEGIN Button Button_Submit --><input id="requisitosButton_Submit" class="Button" name="{Button_Name}" value="Actualizar" type="submit"><!-- END Button Button_Submit --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END EditableGrid requisitos --><br>
+{tdf_footer} 
+</body>
+</html>
