@@ -1,0 +1,263 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Inicio</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.027">
+<script type="text/javascript">
+function reFresh(){
+        location.reload(true)
+}
+window.setInterval("reFresh()",600000);
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-D281E6B1
+function bind_events() {
+    if (functionExists("myHeader_bind_events")) myHeader_bind_events();
+    if (functionExists("myMenu_bind_events")) myMenu_bind_events();
+    if (functionExists("myFooter_bind_events")) myFooter_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+  </script>
+<style type="text/css">
+<!--
+.Estilo1     { font-size: 14px; font-weight: bold; }
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-D25B528C
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+{tdf_header}{tdf_menu} 
+<table border="0" width="100%">
+  <tr>
+    <td valign="top" align="left">
+      <!-- BEGIN Grid wellcome -->
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+          <td valign="top">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                <th>¡Bienvenido!&nbsp;</th>
+ 
+                <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <!-- BEGIN Row -->
+              <tr style="FONT-WEIGHT: bold" class="AltRow">
+                <td colspan="2">{Label1}</td>
+              </tr>
+ 
+              <tr class="Row">
+                <td>&nbsp;<strong>Usuario:</strong>&nbsp;</td> 
+                <td>{usuario_nombre}</td>
+              </tr>
+ 
+              <tr class="Row">
+                <td>&nbsp;<strong>Perfil:</strong></td> 
+                <td>{grupo_nombre}</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="2">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid wellcome --></td> 
+    <td valign="top" rowspan="2" align="left">
+      <!-- BEGIN Grid noticias_noticias_categor -->
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+          <td valign="top">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                <td class="th"><strong>Comentarios y Novedades</strong></td> 
+                <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Row">
+                <td colspan="5">
+                  <div align="right">
+                    Nuevo Comentario<a href="{ImageLink1}" title="Agregar nuevo comentario o requerimiento"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt=" " src="../iconos/22x22/list-add.gif"></a> 
+                  </div>
+                </td>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="AltRow">
+                <td rowspan="2">&nbsp;<span style="FONT-WEIGHT: bold"><img id="noticias_noticias_categornoti_cat_icono" title="{noti_cat_icono:title}" alt="" src="{noti_cat_icono}"></span></td> 
+                <td colspan="2">
+                  <div align="left">
+                    <span class="Estilo1">(#{noticia_id})&nbsp;<a href="{noticias_asunto_Src}" id="noticias_noticias_categornoticias_asunto_{noticias_noticias_categor:rowNumber}">{noticias_asunto}</a></span> 
+                  </div>
+                </td> 
+                <td colspan="2">
+                  <div align="left">
+                    <b><img id="noticias_noticias_categornot_h_icono" title="{not_h_icono:title}" alt="" src="{not_h_icono}">&nbsp;Estado:</b>&nbsp;{not_h_desc}&nbsp; 
+                  </div>
+                </td>
+              </tr>
+ 
+              <tr class="Row">
+                <td class="th">
+                  <div align="right">
+                    Últ.&nbsp;actividad: 
+                  </div>
+                </td> 
+                <td>
+                  <div align="left">
+                    {noti_hilo_fecha} ({usr_seg_usuario_nombre}) 
+                  </div>
+                </td> 
+                <td class="th">
+                  <div align="right">
+                    Creación:&nbsp; 
+                  </div>
+                </td> 
+                <td>
+                  <div align="left">
+                    {usuario_nombre}&nbsp;({noticias_fecha}) 
+                  </div>
+                </td>
+              </tr>
+ 
+              <tr class="Row">
+                <td colspan="5"></td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="5">No hay comentarios</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="5">
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/Simple_tdf/Images/First.gif"></a><!-- END First_On -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/Simple_tdf/Images/Prev.gif"></a><!-- END Prev_On -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/Simple_tdf/Images/Next.gif"></a><!-- END Next_On -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/Simple_tdf/Images/Last.gif"></a><!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid noticias_noticias_categor --></td>
+  </tr>
+ 
+  <tr valign="top">
+    <td style="WIDTH: 30%" valign="top" align="left">
+      <!-- BEGIN Grid logs_logs_tipos -->
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+          <td valign="top">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                <th>Histórico de accesos </th>
+ 
+                <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th>
+                <div align="center">
+                  Acción 
+                </div>
+                </th>
+ 
+                <th>
+                <div align="center">
+                  Fecha 
+                </div>
+                </th>
+ 
+                <th>
+                <div align="center">
+                  Host 
+                </div>
+                </th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td>
+                  <div align="center">
+                    {aud_tip_descripcion}&nbsp; 
+                  </div>
+                </td> 
+                <td>
+                  <div align="center">
+                    {auditoria_fecha}&nbsp; 
+                  </div>
+                </td> 
+                <td>
+                  <div align="center">
+                    {auditoria_host}&nbsp; 
+                  </div>
+                </td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="3">No hay registros de auditoria</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="3">
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/Simple_tdf/Images/First.gif"></a><!-- END First_On -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Prev.gif"></a><!-- END Prev_On -->&nbsp;{Page_Number}&nbsp;de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Next.gif"></a><!-- END Next_On -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Last.gif"></a><!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid logs_logs_tipos --></td>
+  </tr>
+</table>
+{tdf_footer} 
+</body>
+</html>

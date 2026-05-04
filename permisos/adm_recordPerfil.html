@@ -1,0 +1,158 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Perfiles de usuarios y permisos de páginas</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//perfilesButton_Update_OnClick @10-64F8E012
+function perfilesButton_Update_OnClick()
+{
+    var result = true;
+//End perfilesButton_Update_OnClick
+
+//Confirmation Message @21-BB4CBAD5
+    return confirm('Tenga en cuenta que guardar los detalles del perfil no guarda los permisos del mismo. Use el botón ubicado al final del listado inferior para guardarlos.');
+//End Confirmation Message
+
+//Close perfilesButton_Update_OnClick @10-BC33A33A
+    return result;
+}
+//End Close perfilesButton_Update_OnClick
+
+//perfilesButton_Delete_OnClick @11-3C653104
+function perfilesButton_Delete_OnClick()
+{
+    var result = true;
+//End perfilesButton_Delete_OnClick
+
+//Confirmation Message @18-7867AB63
+    return confirm('¿Está seguro de querer borrar este pefil?');
+//End Confirmation Message
+
+//Close perfilesButton_Delete_OnClick @11-BC33A33A
+    return result;
+}
+//End Close perfilesButton_Delete_OnClick
+
+//perfilesButton_Cancel_OnClick @12-46A51B34
+function perfilesButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End perfilesButton_Cancel_OnClick
+
+//bind_events @1-CE4C71ED
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("perfilesButton_Update", "click", perfilesButton_Update_OnClick);
+    addEventHandler("perfilesButton_Delete", "click", perfilesButton_Delete_OnClick);
+    addEventHandler("perfilesButton_Cancel", "click", perfilesButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<style type="text/css">
+<!--
+.perm-row td    { font-weight: normal; }
+.perm-row-novis td    { color: #888; }
+.perm-level-1 td    { background-color: #777; color: #fff; }
+.perm-level-2 td    { background-color: #fff; }
+.perm-level-3 td    { background-color: #f5f5f5; }
+.perm-level-4 td    { background-color: #fafafa; }
+.perm-level-5 td    { background-color: #eee; }
+.perm-level-1 .perm-row-description span    { padding-left: 0; }
+.perm-level-2 .perm-row-description span    { padding-left: 20px; }
+.perm-level-3 .perm-row-description span    { padding-left: 40px; }
+.perm-level-4 .perm-row-description span    { padding-left: 60px; }
+.perm-level-5 .perm-row-description span    { padding-left: 80px; }
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css" />
+</head>
+<body>
+{tdf_header}{tdf_menu}<br>
+<!-- BEGIN Record perfiles -->
+<form id="perfiles" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td> 
+            <th>Agregar / editar perfiles </th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td> 
+          </tr>
+ <!-- END Error -->
+          <tr class="Controls">
+            <th>Nombre</th>
+ 
+            <td><input id="perfilesperfil_nombre" name="{perfil_nombre_Name}" maxlength="50" value="{perfil_nombre}" size="50"></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Abreviatura</th>
+ 
+            <td><input id="perfilesperfil_abrev" name="{perfil_abrev_Name}" maxlength="8" value="{perfil_abrev}" size="8"></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Descripción</th>
+ 
+            <td><input id="perfilesperfil_descr" name="{perfil_descr_Name}" maxlength="250" value="{perfil_descr}" size="50"></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Estado</th>
+ 
+            <td>
+              <select id="perfilestipo_estado_id" name="{tipo_estado_id_Name}">
+                <option selected value="">Seleccionar...</option>
+ {tipo_estado_id_Options} 
+              </select>
+ </td> 
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right">
+              <!-- BEGIN Button Button_Insert --><input id="perfilesButton_Insert" class="Button" name="{Button_Name}" value="Agregar" type="submit"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input id="perfilesButton_Update" class="Button" name="{Button_Name}" value="Guardar" type="submit"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button_Delete --><input id="perfilesButton_Delete" class="Button" name="{Button_Name}" value="Borrar" type="submit"><!-- END Button Button_Delete -->
+              <!-- BEGIN Button Button_Cancel --><input id="perfilesButton_Cancel" class="Button" name="{Button_Name}" value="Volver" type="submit"><!-- END Button Button_Cancel --></td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+</form>
+<!-- END Record perfiles --><br>
+<br>
+<div class="container">
+  {permissions_html} 
+</div>
+<br>
+{tdf_footer}
+</body>
+</html>

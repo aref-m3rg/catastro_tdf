@@ -1,0 +1,2093 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Mejoras</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+<script type="text/javascript" src="../js/pt/prototype.js"></script>
+<script language="JavaScript" type="text/javascript">
+
+    var request = { query: {}, count: 20 };
+    var itemNameMap = { imageThumbAttr: "thumb", imageLargeAttr: "large" };
+        var tipo_cat=1;
+
+    function padLeft(nr, n, str){
+        return Array(n-String(nr).length+1).join(str||'0')+nr;
+    }
+
+    function hoy(){
+            var f = new Date();
+            document.getElementById('mejorasmejora_f_alta').value=(padLeft(f.getDate(),2,0) + "/" + padLeft(f.getMonth()+1,2,0) + "/" + f.getFullYear());
+    }
+
+    function hoy2(){
+            var f = new Date();
+            document.getElementById('mejoras1mejora_f_alta').value=(padLeft(f.getDate(),2,0) + "/" + padLeft(f.getMonth()+1,2,0) + "/" + f.getFullYear());
+    }
+
+    function calc_val_total(){
+            var tierra = parseFloat(document.getElementById('parcelasparcela_val_tierra').value) * 1;
+            var mejora = parseFloat(document.getElementById('parcelasparcela_val_mejora').value) * 1;
+            var porc_uf = parseFloat(document.getElementById('parcelasparcela_porc_uf').value) * 1;
+            var amplia = parseFloat(document.getElementById('parcelasparcela_val_ampliac').value) * 1;
+            if(porc_uf != '' || porc_uf != 0){
+                    total = (( tierra + mejora ) * ( porc_uf / 100)) + amplia;
+            } else {
+                    total  = tierra + mejora;
+            }
+            document.getElementById('parcelasparcela_val_total').value = Math.ceil(total * 100) / 100;
+    }
+
+    function calculo_e1(){
+            var mejoras1cantE1A = document.getElementById('mejoras1cantE1A').value;
+            var mejoras1cantE1B = document.getElementById('mejoras1cantE1B').value;
+            var mejoras1cantE1C = document.getElementById('mejoras1cantE1C').value;
+            var mejoras1tipo_mejora_conserva_id = document.getElementById('mejoras1tipo_mejora_conserva_id').value;
+            var mejoras1tipo_mejora_cat_id = document.getElementById('mejoras1tipo_mejora_cat_id').value;
+            var mejoras1tipo_mejora_cat_id_2 = document.getElementById('mejoras1tipo_mejora_cat_id_2').value;
+            var mejoras1tipo_mejora_conserva_id_3 = document.getElementById('mejoras1tipo_mejora_conserva_id_3').value;
+            var mejoras1mejora_anio_construccion = document.getElementById('mejoras1mejora_anio_construccion').value;
+            var mejoras1mejora_id_sup_cub = document.getElementById('mejoras1mejora_id_sup_cub').value;
+            var mejoras1mejora_id_sup_semi_cub = document.getElementById('mejoras1mejora_id_sup_semi_cub').value;
+            var mejoras1mejora_sup_cub_2 = document.getElementById('mejoras1mejora_sup_cub_2').value;
+            var mejoras1cantE1D = document.getElementById('mejoras1cantE1D').value;
+            var mejoras1cantE1E = document.getElementById('mejoras1cantE1E').value;
+                        
+            suma_cant_E1();
+            var params = {
+                            cant_a: mejoras1cantE1A,
+                            cant_b: mejoras1cantE1B,
+                            cant_c: mejoras1cantE1C,
+                            tipo_mejora_conserva_id: mejoras1tipo_mejora_conserva_id,
+                            tipo_mejora_cat_id: mejoras1tipo_mejora_cat_id,
+                            tipo_mejora_cat_2_id: mejoras1tipo_mejora_cat_id_2,
+                            tipo_mejora_conserva_3_id: mejoras1tipo_mejora_conserva_id_3,
+                            mejora_anio_construccion: mejoras1mejora_anio_construccion,
+                            mejora_sup_cub: mejoras1mejora_id_sup_cub,
+                            mejora_sup_semi_cub: mejoras1mejora_id_sup_semi_cub,
+                            mejora_sup_cub_2: mejoras1mejora_sup_cub_2,
+                            mejora_cant_bp: mejoras1cantE1D,
+                            mejora_cant_bs: mejoras1cantE1E
+                         }
+
+            var myAjax= new Ajax.Request('../reportes/calculos_E1.php',{
+                                                                        method: 'get',
+                                                                        parameters: params,
+                                                                        onComplete: retorno_e1
+                                                                        });
+    }
+
+    function retorno_e1(datos){
+                var valores = JSON.parse(datos.responseText);
+                console.log(valores);
+                document.getElementById('mejoras1calE1A').value = parseFloat(valores[2][1]);
+                document.getElementById('mejoras1calE1B').value = parseFloat(valores[5][1]);
+                document.getElementById('mejoras1calE1C').value = parseFloat(valores[8][1]);
+                document.getElementById('mejoras1cantE1T').value = parseFloat(valores[9][1]);
+
+                document.getElementById('mejoras1coefE1_1').value = parseFloat(valores[12][1]);
+                document.getElementById('mejoras1coefE1_2').value = parseFloat(valores[12][1]);
+                document.getElementById('mejoras1coefE1_3').value = parseFloat(valores[12][1]);
+                document.getElementById('mejoras1coefE1_4').value = parseFloat(valores[12][1]);
+                document.getElementById('mejoras1coefE1_5').value = parseFloat(valores[12][1]);
+
+                document.getElementById('mejoras1calE1T').value = parseFloat(valores[10][1]);
+                document.getElementById('mejoras1vuE1T').value = parseFloat(valores[11][1]);
+                document.getElementById('mejoras1vuE1T_2').value = parseFloat(valores[13][1]);
+                document.getElementById('mejoras1vuE1T_3').value = parseFloat(valores[14][1]);
+                document.getElementById('mejoras1veE1STA_1').value = parseFloat(valores[15][1]);
+                document.getElementById('mejoras1veE1STB_1').value = parseFloat(valores[16][1]);
+                document.getElementById('mejoras1veE1T_1').value = parseFloat(valores[17][1]);
+                
+                document.getElementById('mejoras1vuE1T_4').value = parseFloat(valores[18][1]);
+                document.getElementById('mejoras1veE1T_2').value = parseFloat(valores[19][1]);
+
+                                obtenerValor5();
+                document.getElementById('mejoras1veE1T_3').value = parseFloat(valores[21][1]);
+
+                                obtenerValor6();
+                document.getElementById('mejoras1veE1T_4').value = parseFloat(valores[23][1]);
+
+                document.getElementById('mejoras1vtE1A').value = parseFloat(valores[25][1]);
+                document.getElementById('mejoras1vaE1A').value = parseFloat(valores[27][1]);
+
+                    document.getElementById('mejoras1tipo_mejora_conserva_id_2').value = document.getElementById('mejoras1tipo_mejora_conserva_id').value;
+                    document.getElementById('mejoras1mejora_anio_construccion_2').value = document.getElementById('mejoras1mejora_anio_construccion').value;
+                    document.getElementById('mejoras1tipo_mejora_cat_id_2').value = document.getElementById('mejoras1tipo_mejora_cat_id').value;
+
+                    document.getElementById('mejoras1tipo_mejora_conserva_id_3').value = document.getElementById('mejoras1tipo_mejora_conserva_id').value;
+                    document.getElementById('mejoras1mejora_anio_construccion_3').value = document.getElementById('mejoras1mejora_anio_construccion').value;
+                    document.getElementById('mejoras1tipo_mejora_cat_id_3').value = document.getElementById('mejoras1tipo_mejora_cat_id').value;
+    }
+
+    function calculo_e2(){
+                        mayor_cant_e2()
+            var mejorascantE1B = document.getElementById('mejorascantE2B').value;
+            var mejorascantE1C = document.getElementById('mejorascantE2C').value;
+            var mejorastipo_mejora_conserva_id = document.getElementById('mejorastipo_mejora_conserva_id').value;
+            var mejorastipo_mejora_cat_id = document.getElementById('mejorastipo_mejora_cat_id').value;
+            var mejorasmejora_anio_construccion = document.getElementById('mejorasmejora_anio_construccion').value;
+            var mejorasmejora_id_sup_cub = document.getElementById('mejorasmejora_id_sup_cub').value;
+                        
+            var params = {
+                            cant_b: mejorascantE1B,
+                            cant_c: mejorascantE1C,
+                            tipo_mejora_conserva_id: mejorastipo_mejora_conserva_id,
+                            tipo_mejora_cat_id: mejorastipo_mejora_cat_id,
+                            mejora_anio_construccion: mejorasmejora_anio_construccion,
+                            mejora_sup_cub: mejorasmejora_id_sup_cub
+                         }
+
+            var myAjax= new Ajax.Request('../reportes/calculos_E2.php',{
+                                                                        method: 'get',
+                                                                        parameters: params,
+                                                                        onComplete: retorno_e2
+                                                                        });
+    }
+
+    function retorno_e2(datos){
+        var valores = JSON.parse(datos.responseText);
+        console.log(valores);
+        document.getElementById('mejorasvalE2B').value = parseFloat(valores[1][1]);
+        document.getElementById('mejorascalE2B').value = parseFloat(valores[2][1]);
+        document.getElementById('mejorasvalE2C').value = parseFloat(valores[4][1]);
+                document.getElementById('mejorascalE2C').value = parseFloat(valores[5][1]);
+
+                document.getElementById('mejorascantE2T').value = parseFloat(valores[6][1]);
+                document.getElementById('mejorascalE2T').value = parseFloat(valores[7][1]);
+                document.getElementById('mejorasvuE2T').value = parseFloat(valores[8][1]);
+
+                document.getElementById('mejorascoefE2').value = parseFloat(valores[9][1]);
+                document.getElementById('mejorasvuE2T_2').value = parseFloat(valores[8][1]);
+                document.getElementById('mejorasveE2').value = parseFloat(valores[10][1]);
+                
+                document.getElementById('mejorascoefE2A').value = parseFloat(valores[11][1]);
+                document.getElementById('mejorasveE2A').value = parseFloat(valores[10][1]);
+                document.getElementById('mejorasvalE2A').value = parseFloat(valores[12][1]);
+    }
+
+    function obtenerValor(){//busca con ajax los coeficientes de la mejora
+            var mejorastipo_mejora_conserva_id = document.getElementById('mejorastipo_mejora_conserva_id').value;
+            var mejorasmejora_anio_construccion = document.getElementById('mejorasmejora_anio_construccion').value;
+            var mejorastipo_mejora_cat_id = document.getElementById('mejorastipo_mejora_cat_id').value;
+
+            var params = {
+                            tipo_mejora_conserva_id: mejorastipo_mejora_conserva_id,
+                            mejora_coeficiente_anio: mejorasmejora_anio_construccion,
+                            tipo_mejora_cat_id: mejorastipo_mejora_cat_id
+                         }
+
+            var myAjax= new Ajax.Request('../scripts/coefMejoras.php',{
+                                                    method: 'get',
+                                                    parameters: params,
+                                                    onComplete: procesar});
+    }
+
+        function mayor_cant_e2(){
+                var cant_b = document.getElementById('mejorascantE2B').value;
+                var cant_c = document.getElementById('mejorascantE2C').value;
+                                var valE2B = document.getElementById('mejorasvalE2B').value;
+                                var valE2C = document.getElementById('mejorasvalE2C').value;
+                if(cant_b > cant_c){
+                        document.getElementById('mejorastipo_mejora_cat_id').value = 2;
+                }else if(cant_b < cant_c){
+                        document.getElementById('mejorastipo_mejora_cat_id').value = 3;
+                }else if(cant_b == cant_c){
+                        if(valE2B >= valE2C){
+                                                        document.getElementById('mejorastipo_mejora_cat_id').value = 3;
+                        }else if(valE2B < valE2C){
+                                                        document.getElementById('mejorastipo_mejora_cat_id').value = 2;
+                        }
+                }
+        }
+
+//-------------------------------------------------------------------------
+    function suma_cant_E1(){//suma las cantidades de las categorias en E1
+        var uno = parseInt(document.getElementById('mejoras1cantE1A').value);
+        var dos = parseInt(document.getElementById('mejoras1cantE1B').value);
+        var tres = parseInt(document.getElementById('mejoras1cantE1C').value);
+        document.getElementById('mejoras1cantE1T').value = uno + dos + tres;
+        if(uno > dos && uno > tres){
+            document.getElementById('mejoras1tipo_mejora_cat_id').value = 1;
+            document.getElementById('mejoras1tipo_mejora_cat_id_2').value = 1;
+            document.getElementById('mejoras1tipo_mejora_cat_id_3').value = 1;
+                        tipo_cat = 1;
+        }
+        if(dos > uno && dos > tres){
+            document.getElementById('mejoras1tipo_mejora_cat_id').value = 2;
+            document.getElementById('mejoras1tipo_mejora_cat_id_2').value = 2;
+            document.getElementById('mejoras1tipo_mejora_cat_id_3').value = 2;
+                        tipo_cat = 2;
+        }
+        if(tres > uno && tres > dos){
+            document.getElementById('mejoras1tipo_mejora_cat_id').value = 3;
+            document.getElementById('mejoras1tipo_mejora_cat_id_2').value = 3;
+            document.getElementById('mejoras1tipo_mejora_cat_id_3').value = 3;
+                        tipo_cat = 3;
+        }
+        if(dos == tres && dos > uno){
+            document.getElementById('mejoras1tipo_mejora_cat_id').value = 2;
+            document.getElementById('mejoras1tipo_mejora_cat_id_2').value = 2;
+            document.getElementById('mejoras1tipo_mejora_cat_id_3').value = 2;
+                        tipo_cat = 2;
+        }
+        if(uno == dos && uno > tres){
+            document.getElementById('mejoras1tipo_mejora_cat_id').value = 1;
+            document.getElementById('mejoras1tipo_mejora_cat_id_2').value = 1;
+            document.getElementById('mejoras1tipo_mejora_cat_id_3').value = 1;
+                        tipo_cat = 1;
+        }
+        if(uno == tres && uno > dos){
+            document.getElementById('mejoras1tipo_mejora_cat_id').value = 1;
+            document.getElementById('mejoras1tipo_mejora_cat_id_2').value = 1;
+            document.getElementById('mejoras1tipo_mejora_cat_id_3').value = 1;
+            tipo_cat = 1;
+        }
+        if(uno == dos && dos == tres){
+            document.getElementById('mejoras1tipo_mejora_cat_id').value = 1;
+            document.getElementById('mejoras1tipo_mejora_cat_id_2').value = 1;
+            document.getElementById('mejoras1tipo_mejora_cat_id_3').value = 1;
+            tipo_cat = 1;
+        }
+
+    }
+
+    function mul_val_E1(){//multiplica las cantidades y valores
+        document.getElementById('mejoras1calE1A').value = truncateDecimals(truncateDecimals(document.getElementById('mejoras1valE1A').value,2) * parseInt(document.getElementById('mejoras1cantE1A').value),2);
+        document.getElementById('mejoras1calE1B').value = truncateDecimals(truncateDecimals(document.getElementById('mejoras1valE1B').value,2) * parseInt(document.getElementById('mejoras1cantE1B').value),2);
+        document.getElementById('mejoras1calE1C').value = truncateDecimals(truncateDecimals(document.getElementById('mejoras1valE1C').value,2) * parseInt(document.getElementById('mejoras1cantE1C').value),2);
+        suma_cal_E1();
+        return true;
+    }
+
+    function suma_cal_E1(){//suma la multiplicacion anterior
+        //document.getElementById('mejoras1calE1T').value = truncateDecimals(truncateDecimals(document.getElementById('mejoras1calE1A').value,2) + truncateDecimals(document.getElementById('mejoras1calE1B').value,2) + truncateDecimals(document.getElementById('mejoras1calE1C').value,2),2);
+        prom_cal_E1();
+        return true;
+    }
+
+    function prom_cal_E1(){//divide el total por la cantidad
+        //document.getElementById('mejoras1vuE1T').value = truncateDecimals(truncateDecimals(document.getElementById('mejoras1calE1T').value,2) / truncateDecimals(document.getElementById('mejoras1cantE1T').value,2),2);
+        document.getElementById('mejoras1vuE1T_2').value = document.getElementById('mejoras1vuE1T').value;
+                if(document.getElementById('mejoras1tipo_mejora_cat_id_2').value == 1 || document.getElementById('mejoras1tipo_mejora_cat_id_2').value == 2){
+                                document.getElementById('mejoras1vuE1T_3').value = truncateDecimals(truncateDecimals(document.getElementById('mejoras1vuE1T').value,2)*0.50,2);
+                }else{
+                                document.getElementById('mejoras1vuE1T_3').value = truncateDecimals(truncateDecimals(document.getElementById('mejoras1vuE1T').value,2)*0.30,2);
+                }
+        document.getElementById('mejoras1vuE1T_4').value = document.getElementById('mejoras1vuE1T').value;
+        return true;
+    }
+
+    function calcValorE1(){//obtiene el valor del edificio
+                var uno = truncateDecimals(document.getElementById('mejoras1coefE1_1').value,2) * truncateDecimals(document.getElementById('mejoras1vuE1T_2').value,2) * truncateDecimals(document.getElementById('mejoras1mejora_id_sup_cub').value,2);
+                var dos = truncateDecimals(document.getElementById('mejoras1coefE1_2').value,2) * truncateDecimals(document.getElementById('mejoras1vuE1T_3').value,2) * truncateDecimals(document.getElementById('mejoras1mejora_id_sup_semi_cub').value,2);
+                //document.getElementById('mejoras1veE1STA_1').value = truncateDecimals(uno,2);
+                //document.getElementById('mejoras1veE1STB_1').value = truncateDecimals(dos,2);
+                //document.getElementById('mejoras1veE1T_1').value = truncateDecimals(parseFloat(document.getElementById('mejoras1veE1STA_1').value)+parseFloat(document.getElementById('mejoras1veE1STB_1').value),2);
+        acValorE1();
+        return true;
+    }
+        
+    function calcValorE1_2(){//obtiene el valor del edificio
+        if(parseFloat(document.getElementById('mejoras1mejora_sup_cub_2').value) > 100){
+                                var valor;
+                valor = truncateDecimals(document.getElementById('mejoras1vuE1T').value, 2)*0.7;
+                document.getElementById('mejoras1vuE1T_4').value = truncateDecimals(valor, 2);
+                var uno = truncateDecimals(document.getElementById('mejoras1coefE1_3').value, 2) * valor * truncateDecimals(document.getElementById('mejoras1mejora_sup_cub_2').value, 2);
+
+        }else{
+                document.getElementById('mejoras1vuE1T_4').value = truncateDecimals(document.getElementById('mejoras1vuE1T').value, 2);
+                var uno = truncateDecimals(document.getElementById('mejoras1coefE1_3').value, 2) * truncateDecimals(document.getElementById('mejoras1vuE1T').value, 2) * truncateDecimals(document.getElementById('mejoras1mejora_sup_cub_2').value, 2);
+        }
+        //document.getElementById('mejoras1veE1T_2').value = truncateDecimals(uno, 2);
+        acValorE1();
+        calcValorE1_3();
+        calcValorE1_4();
+        return true;
+    }
+
+    function calcValorE1_3(){//obtiene el valor del edificio
+        var uno = truncateDecimals(document.getElementById('mejoras1cantE1D').value, 2) * truncateDecimals(document.getElementById('mejoras1valE1D').value, 2) * truncateDecimals(document.getElementById('mejoras1coefE1_4').value, 2);
+        //document.getElementById('mejoras1veE1T_3').value = truncateDecimals(uno, 2);
+        acValorE1();
+        return true;
+    }
+
+    function calcValorE1_4(){//obtiene el valor del edificio
+        var uno = truncateDecimals(document.getElementById('mejoras1cantE1E').value, 2) * truncateDecimals(document.getElementById('mejoras1valE1E').value, 2) * truncateDecimals(document.getElementById('mejoras1coefE1_5').value, 2);
+        //document.getElementById('mejoras1veE1T_4').value = truncateDecimals(uno, 2);
+        acValorE1();
+        return true;
+    }
+
+    function acValorE1(){//ajuste de actualizacion
+        var uno = truncateDecimals(document.getElementById('mejoras1veE1T_1').value, 2)+truncateDecimals(document.getElementById('mejoras1veE1T_2').value, 2)+truncateDecimals(document.getElementById('mejoras1veE1T_3').value, 2)+truncateDecimals(document.getElementById('mejoras1veE1T_4').value, 2);
+        //document.getElementById('mejoras1vtE1A').value = truncateDecimals(uno, 2);
+        //document.getElementById('mejoras1vaE1A').value = truncateDecimals(uno * truncateDecimals(document.getElementById('mejoras1coefE1A').value, 2), 2);
+        return true;
+    }
+
+    function obtenerValor2(){//busca con ajax los coeficientes de la mejora
+            var mejorastipo_mejora_conserva_id = document.getElementById('mejoras1tipo_mejora_conserva_id').value;
+            var mejorasmejora_anio_construccion = document.getElementById('mejoras1mejora_anio_construccion').value;
+            var mejorastipo_mejora_cat_id = document.getElementById('mejoras1tipo_mejora_cat_id').value;
+
+            document.getElementById('mejoras1tipo_mejora_conserva_id_2').value=mejorastipo_mejora_conserva_id;
+            document.getElementById('mejoras1mejora_anio_construccion_2').value=mejorasmejora_anio_construccion;
+            document.getElementById('mejoras1tipo_mejora_cat_id_2').value=mejorastipo_mejora_cat_id;
+
+            document.getElementById('mejoras1tipo_mejora_conserva_id_3').value=mejorastipo_mejora_conserva_id;
+            document.getElementById('mejoras1mejora_anio_construccion_3').value=mejorasmejora_anio_construccion;
+            document.getElementById('mejoras1tipo_mejora_cat_id_3').value=mejorastipo_mejora_cat_id;
+
+
+            var params = {tipo_mejora_conserva_id: mejorastipo_mejora_conserva_id,
+                                    mejora_coeficiente_anio: mejorasmejora_anio_construccion,
+                                            tipo_mejora_cat_id: mejorastipo_mejora_cat_id
+                                            }
+
+            var myAjax= new Ajax.Request('../scripts/coefMejoras.php',{
+                                                    method: 'get',
+                                                    parameters: params,
+                                                    onComplete: procesar2});
+            obtenerValor3();
+            obtenerValor4();
+    }
+
+    function procesar2(datos){//lo encontrado por ajax lo agrega a un texbox
+        var datosp = eval('(' + datos.responseText + ')');
+                if(datosp == ''){
+                        datosp = 0;
+                }
+        document.getElementById('mejoras1coefE1_1').value = parseFloat(datosp);
+                calcValorE1();
+                                mayor_coef();
+    }
+
+    function obtenerValor3(){//busca con ajax los coeficientes de la mejora
+            var mejorastipo_mejora_conserva_id = document.getElementById('mejoras1tipo_mejora_conserva_id_2').value;
+            var mejorasmejora_anio_construccion = document.getElementById('mejoras1mejora_anio_construccion_2').value;
+            var mejorastipo_mejora_cat_id = document.getElementById('mejoras1tipo_mejora_cat_id_2').value;
+
+            var params = {tipo_mejora_conserva_id: mejorastipo_mejora_conserva_id,
+                                    mejora_coeficiente_anio: mejorasmejora_anio_construccion,
+                                            tipo_mejora_cat_id: mejorastipo_mejora_cat_id
+                                            }
+
+            var myAjax= new Ajax.Request('../scripts/coefMejoras.php',{
+                                                    method: 'get',
+                                                    parameters: params,
+                                                    onComplete: procesar3});
+    }
+
+    function procesar3(datos){//lo encontrado por ajax lo agrega a un texbox
+        var datosp = eval('(' + datos.responseText + ')');
+                if(datosp == ''){
+                    datosp = 0;
+                }
+        document.getElementById('mejoras1coefE1_2').value = parseFloat(datosp);
+                if(document.getElementById('mejoras1tipo_mejora_cat_id_2').value == 1 || document.getElementById('mejoras1tipo_mejora_cat_id_2').value == 2){
+                        document.getElementById('mejoras1vuE1T_3').value = truncateDecimals(truncateDecimals(document.getElementById('mejoras1vuE1T_2').value, 2)*0.50, 2);
+                }else{
+                        document.getElementById('mejoras1vuE1T_3').value = truncateDecimals(truncateDecimals(document.getElementById('mejoras1vuE1T_2').value, 2)*0.30, 2);
+                }
+                calcValorE1();
+                mayor_coef();
+    }
+
+    function obtenerValor4(){//busca con ajax los coeficientes de la mejora
+            var mejorastipo_mejora_conserva_id = document.getElementById('mejoras1tipo_mejora_conserva_id_3').value;
+            var mejorasmejora_anio_construccion = document.getElementById('mejoras1mejora_anio_construccion_3').value;
+            var mejorastipo_mejora_cat_id = document.getElementById('mejoras1tipo_mejora_cat_id_3').value;
+
+            var params = {tipo_mejora_conserva_id: mejorastipo_mejora_conserva_id,
+                                    mejora_coeficiente_anio: mejorasmejora_anio_construccion,
+                                            tipo_mejora_cat_id: mejorastipo_mejora_cat_id
+                                            }
+
+            var myAjax= new Ajax.Request('../scripts/coefMejoras.php',{
+                                                    method: 'get',
+                                                    parameters: params,
+                                                    onComplete: procesar4});
+    }
+
+    function procesar4(datos){//lo encontrado por ajax lo agrega a un texbox
+        var datosp = eval('(' + datos.responseText + ')');
+                if(datosp == ''){
+                        datosp = 0;
+                }
+        document.getElementById('mejoras1coefE1_3').value = parseFloat(datosp);
+                calcValorE1_2();
+                mayor_coef();
+    }
+
+    function mayor_coef(){
+        var uno = parseFloat(document.getElementById('mejoras1coefE1_1').value);
+        var dos = parseFloat(document.getElementById('mejoras1coefE1_2').value);
+        var tres = parseFloat(document.getElementById('mejoras1coefE1_3').value);
+        if(uno > dos && uno > tres){
+            document.getElementById('mejoras1coefE1_4').value = parseFloat(document.getElementById('mejoras1coefE1_1').value);
+            document.getElementById('mejoras1coefE1_5').value = parseFloat(document.getElementById('mejoras1coefE1_1').value);
+        }
+        if(dos > uno && dos > tres){
+            document.getElementById('mejoras1coefE1_4').value = parseFloat(document.getElementById('mejoras1coefE1_2').value);
+            document.getElementById('mejoras1coefE1_5').value = parseFloat(document.getElementById('mejoras1coefE1_2').value);
+        }
+        if(tres > uno && tres > dos){
+            document.getElementById('mejoras1coefE1_4').value = parseFloat(document.getElementById('mejoras1coefE1_3').value);
+            document.getElementById('mejoras1coefE1_5').value = parseFloat(document.getElementById('mejoras1coefE1_3').value);
+        }
+        if(dos == tres && dos > uno){
+            document.getElementById('mejoras1coefE1_4').value = parseFloat(document.getElementById('mejoras1coefE1_2').value);
+            document.getElementById('mejoras1coefE1_5').value = parseFloat(document.getElementById('mejoras1coefE1_2').value);
+        }
+        if(uno == dos && uno > tres){
+            document.getElementById('mejoras1coefE1_4').value = parseFloat(document.getElementById('mejoras1coefE1_1').value);
+            document.getElementById('mejoras1coefE1_5').value = parseFloat(document.getElementById('mejoras1coefE1_1').value);
+        }
+        if(uno == tres && uno > dos){
+            document.getElementById('mejoras1coefE1_4').value = parseFloat(document.getElementById('mejoras1coefE1_1').value);
+            document.getElementById('mejoras1coefE1_5').value = parseFloat(document.getElementById('mejoras1coefE1_1').value);
+        }
+        if(uno == dos && dos == tres){
+            document.getElementById('mejoras1coefE1_4').value = parseFloat(document.getElementById('mejoras1coefE1_1').value);
+            document.getElementById('mejoras1coefE1_5').value = parseFloat(document.getElementById('mejoras1coefE1_1').value);
+        }
+    }
+
+    function obtenerValor5(){//busca con ajax los coeficientes de la mejora
+            var mejorastipo_mejora_cat_id = tipo_cat;
+            var params = {
+                           tipo_mejora_cat_id: mejorastipo_mejora_cat_id
+                         }
+
+            var myAjax= new Ajax.Request('../scripts/valMejorasBP.php',{
+                                                    method: 'get',
+                                                    parameters: params,
+                                                    onComplete: procesar5});
+    }
+
+    function procesar5(datos){//lo encontrado por ajax lo agrega a un texbox
+        var datosp = eval('(' + datos.responseText + ')');
+        if(datosp == ''){
+                datosp = 0;
+        }
+        document.getElementById('mejoras1valE1D').value = parseFloat(datosp);
+        calcValorE1_3();
+    }
+
+    function obtenerValor6(){//busca con ajax los coeficientes de la mejora
+            var mejorastipo_mejora_cat_id = tipo_cat;
+            var params = {
+                           tipo_mejora_cat_id: mejorastipo_mejora_cat_id
+                          }
+
+            var myAjax= new Ajax.Request('../scripts/valMejorasBS.php',{
+                                                    method: 'get',
+                                                    parameters: params,
+                                                    onComplete: procesar6});
+    }
+
+    function procesar6(datos){//lo encontrado por ajax lo agrega a un texbox
+        var datosp = eval('(' + datos.responseText + ')');
+        if(datosp == ''){
+                datosp = 0;
+        }
+        document.getElementById('mejoras1valE1E').value = parseFloat(datosp);
+        calcValorE1_4();
+    }
+
+        
+        
+        function truncateDecimals (num, digits) {
+        //console.log(Math.floor(parseFloat(num) * 100) / 100);
+
+          var numS = parseFloat(num).toString(),
+              decPos = numS.indexOf('.'),
+              result = numS.substr(0, 1 + decPos + digits);
+          if (result == '') {
+            result = 0;
+          }
+          //return parseFloat(result);
+                  return parseFloat(Math.ceil(num * 100) / 100);
+        }
+</script>
+<script type="text/javascript" src="../scripts/myFunctions.js"></script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-B6368457
+var valor1 = "";
+var valor2 = "";
+var mejoras_DatePicker_mejora_fecha_exp = new Object(); 
+mejoras_DatePicker_mejora_fecha_exp.format           = "ShortDate";
+mejoras_DatePicker_mejora_fecha_exp.style            = "Styles/Simple_tdf/Style.css";
+mejoras_DatePicker_mejora_fecha_exp.relativePathPart = "../";
+mejoras_DatePicker_mejora_fecha_exp.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//mejorasButton_Delete_OnClick @67-5596D51F
+function mejorasButton_Delete_OnClick()
+{
+    var result = true;
+//End mejorasButton_Delete_OnClick
+
+//Custom Code @221-2A29BDB7
+    // -------------------------
+    abre_popup("mejoraBaja.php?mejora_id="+document.getElementById("mejorasmejora_id").value,450,160);
+    // -------------------------
+//End Custom Code
+
+//Close mejorasButton_Delete_OnClick @67-BC33A33A
+    return result;
+}
+//End Close mejorasButton_Delete_OnClick
+
+//mejorasButton_alta_OnClick @181-F1D4EA97
+function mejorasButton_alta_OnClick()
+{
+    var result = true;
+//End mejorasButton_alta_OnClick
+
+//Confirmation Message @182-8328CAB1
+    return confirm('Desea dar de Alta a esta Mejora?');
+//End Confirmation Message
+
+//Close mejorasButton_alta_OnClick @181-BC33A33A
+    return result;
+}
+//End Close mejorasButton_alta_OnClick
+
+//mejorasButton_eliminar_OnClick @627-10C39E27
+function mejorasButton_eliminar_OnClick()
+{
+    var result = true;
+//End mejorasButton_eliminar_OnClick
+
+//Confirmation Message @629-FEA18975
+    return confirm('OJO! Se borrara esta mejora de la parcela, desea realizar esta accion?');
+//End Confirmation Message
+
+//Close mejorasButton_eliminar_OnClick @627-BC33A33A
+    return result;
+}
+//End Close mejorasButton_eliminar_OnClick
+
+//mejoras1Button_Delete_OnClick @359-A2D7E57B
+function mejoras1Button_Delete_OnClick()
+{
+    var result = true;
+//End mejoras1Button_Delete_OnClick
+
+//Custom Code @360-2A29BDB7
+    // -------------------------
+    abre_popup("mejoraBaja.php?mejora_id="+document.getElementById("mejoras1mejora_id").value,450,160);
+    // -------------------------
+//End Custom Code
+
+//Close mejoras1Button_Delete_OnClick @359-BC33A33A
+    return result;
+}
+//End Close mejoras1Button_Delete_OnClick
+
+//mejoras1Button_alta_OnClick @386-4F8AC160
+function mejoras1Button_alta_OnClick()
+{
+    var result = true;
+//End mejoras1Button_alta_OnClick
+
+//Confirmation Message @387-8328CAB1
+    return confirm('Desea dar de Alta a esta Mejora?');
+//End Confirmation Message
+
+//Close mejoras1Button_alta_OnClick @386-BC33A33A
+    return result;
+}
+//End Close mejoras1Button_alta_OnClick
+
+//mejoras1Button_eliminar_OnClick @624-378BF769
+function mejoras1Button_eliminar_OnClick()
+{
+    var result = true;
+//End mejoras1Button_eliminar_OnClick
+
+//Confirmation Message @625-FEA18975
+    return confirm('OJO! Se borrara esta mejora de la parcela, desea realizar esta accion?');
+//End Confirmation Message
+
+//Close mejoras1Button_eliminar_OnClick @624-BC33A33A
+    return result;
+}
+//End Close mejoras1Button_eliminar_OnClick
+
+//_OnLoad @1-9C4F01C0
+function _OnLoad()
+{
+    var result = true;
+//End _OnLoad
+
+//Custom Code @601-2A29BDB7
+
+  // -------------------------
+  var formulario = gup("f");
+
+  if(formulario == "E1"){
+     calculo_e1();
+  }
+
+  if (formulario == "E2") {
+        calculo_e2();
+    //suma_cant_E2();
+    //obtenerValor();
+    //calcValorE();
+  }
+
+  if(document.getElementById("parcelaspaso").value == "NO"){
+        document.getElementById("parcelasparcela_val_ampliac").disabled=true;
+  }
+//End Custom Code
+
+//Close _OnLoad @1-BC33A33A
+    return result;
+}
+//End Close _OnLoad
+
+//mejorasButton_Cancel_OnClick @69-15C792D5
+function mejorasButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End mejorasButton_Cancel_OnClick
+
+//mejorasButton1_OnClick @570-429E48D6
+function mejorasButton1_OnClick()
+{
+    disableValidation = true;
+}
+//End mejorasButton1_OnClick
+
+//mejoras1Button_Cancel_OnClick @363-7B6E466C
+function mejoras1Button_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End mejoras1Button_Cancel_OnClick
+
+//mejoras1Button1_OnClick @572-D3DD6C28
+function mejoras1Button1_OnClick()
+{
+    disableValidation = true;
+}
+//End mejoras1Button1_OnClick
+
+//mejoras1Button2_OnClick @647-B73D17D6
+function mejoras1Button2_OnClick()
+{
+    disableValidation = true;
+}
+//End mejoras1Button2_OnClick
+
+//bind_events @1-979604E1
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("footerParcela_bind_events")) footerParcela_bind_events();
+    if (functionExists("headerParcela_bind_events")) headerParcela_bind_events();
+    addEventHandler("mejorasButton_Delete", "click", mejorasButton_Delete_OnClick);
+    addEventHandler("mejorasButton_alta", "click", mejorasButton_alta_OnClick);
+    addEventHandler("mejorasButton_eliminar", "click", mejorasButton_eliminar_OnClick);
+    addEventHandler("mejoras1Button_Delete", "click", mejoras1Button_Delete_OnClick);
+    addEventHandler("mejoras1Button_alta", "click", mejoras1Button_alta_OnClick);
+    addEventHandler("mejoras1Button_eliminar", "click", mejoras1Button_eliminar_OnClick);
+    addEventHandler("", "load", _OnLoad);
+    addEventHandler("mejorasButton_Cancel", "click", mejorasButton_Cancel_OnClick);
+    addEventHandler("mejorasButton1", "click", mejorasButton1_OnClick);
+    addEventHandler("mejoras1Button_Cancel", "click", mejoras1Button_Cancel_OnClick);
+    addEventHandler("mejoras1Button1", "click", mejoras1Button1_OnClick);
+    addEventHandler("mejoras1Button2", "click", mejoras1Button2_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body class="soria">
+{tdf_header}{tdf_menu} 
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+  <tr>
+    <td>&nbsp;{footerParcela} {headerParcela}</td>
+  </tr>
+ 
+  <tr>
+    <td>
+      <div>
+        <!-- BEGIN Record parcelas -->
+        <form id="parcelas" method="post" name="{HTMLFormName}" action="{Action}">
+          <table border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                    <th>
+                    <div align="center">
+                      Valuacion Fiscal 
+                    </div>
+                    </th>
+ 
+                    <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="5"><font size="2">{Error}</font></td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Caption">
+                    <th>
+                    <div align="center">
+                      Tierra&nbsp; 
+                    </div>
+                    </th>
+ 
+                    <th>
+                    <div align="center">
+                      Mejora&nbsp; 
+                    </div>
+                    </th>
+ 
+                    <th>
+                    <div align="center">
+                      Ampliacion&nbsp; UF/UC 
+                    </div>
+                    </th>
+ 
+                    <th colspan="2">
+                    <div align="center">
+                      Total&nbsp; 
+                    </div>
+                    </th>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" class="th">
+                      <div align="center">
+                        <input id="parcelasparcela_porc_uf" value="{parcela_porc_uf}" type="hidden" name="{parcela_porc_uf_Name}">$<input onblur="calc_val_total();" id="parcelasparcela_val_tierra" onkeypress="calc_val_total();" value="{parcela_val_tierra}" maxlength="11" size="11" name="{parcela_val_tierra_Name}">
+                      </div>
+                    </td> 
+                    <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" class="th">
+                      <div align="center">
+                        $<input onblur="calc_val_total();" id="parcelasparcela_val_mejora" onkeypress="calc_val_total();" value="{parcela_val_mejora}" maxlength="11" size="11" name="{parcela_val_mejora_Name}">&nbsp; 
+                      </div>
+                    </td> 
+                    <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" class="th">
+                      <div align="center">
+                        <input id="parcelaspaso" value="{paso}" type="hidden" name="{paso_Name}">$<input onblur="calc_val_total();" id="parcelasparcela_val_ampliac" onkeypress="calc_val_total();" value="{parcela_val_ampliac}" maxlength="11" size="11" name="{parcela_val_ampliac_Name}">&nbsp; 
+                      </div>
+                    </td> 
+                    <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" class="th" colspan="2">
+                      <div align="center">
+                        $<input style="FONT-WEIGHT: bolder" id="parcelasparcela_val_total" value="{parcela_val_total}" maxlength="11" size="11" name="{parcela_val_total_Name}">
+                      </div>
+                    </td>
+                  </tr>
+ 
+                  <tr class="Caption">
+                    <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" class="th" colspan="2">
+                      <div align="center">
+                        <font size="2">Valucion Inmobiliaria</font> 
+                      </div>
+                    </td> 
+                    <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" class="th"><font size="2">Coeficientes Mejoras</font></td> 
+                    <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" class="th"><font size="2">Valores de la Mejora</font></td> 
+                    <td><strong>Coeficiente de Ajuste</strong></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" class="th">
+                      <!-- BEGIN ImageLink addMejoraE1 --><a href="{addMejoraE1}" id="parcelasaddMejoraE1_{mejoras_tipos_mejoras_tip:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{addMejoraE1}" src="../iconos/22x22/list-add.gif">Agregar Construido E1</a><!-- END ImageLink addMejoraE1 --></td> 
+                    <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" class="th">
+                      <!-- BEGIN ImageLink addMejoraE2 --><a href="{addMejoraE2}" id="parcelasaddMejoraE2_{mejoras_tipos_mejoras_tip:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{addMejoraE1}" src="../iconos/22x22/list-add.gif">Agregar Construido E2</a><!-- END ImageLink addMejoraE2 --></td> 
+                    <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" class="th"><a href="{ImageLink1}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" src="../iconos/22x22/accessories-text-editor.gif">Editar Coeficientes de Mejoras</a>&nbsp;</td> 
+                    <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" class="th"><a href="{ImageLink2}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" src="../iconos/22x22/accessories-text-editor.gif">Editar Valores de la Mejora</a>&nbsp;</td> 
+                    <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" class="th"><a href="{ImageLink3}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" src="../iconos/22x22/accessories-text-editor.gif">Editar Coeficiente de Ajuste</a>&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="5" align="right">
+                      <!-- BEGIN Button Button_Update --><input id="parcelasButton_Update" class="Button" value="Actualizar Valuacion Fiscal" type="submit" name="{Button_Name}"><!-- END Button Button_Update --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record parcelas -->
+      </div>
+      <!-- BEGIN Grid mejoras_tipos_mejoras_tip -->
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+          <td valign="top">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                <td class="th">
+                  <div align="center">
+                    Lista de Superficies Construidas&nbsp; 
+                  </div>
+                </td> 
+                <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Row">
+                <td colspan="2">Cantidad:&nbsp;{mejoras_tipos_mejoras_tip_TotalRecords}</td> 
+                <td colspan="12"></td>
+              </tr>
+ 
+              <tr class="Caption">
+                <th colspan="2" scope="col">&nbsp;</th>
+ 
+                <th style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" scope="col">
+                <div align="center">
+                  <!-- BEGIN Sorter Sorter_mejora_fecha_exp --><a href="{Sort_URL}" id="mejoras_tipos_mejoras_tipSorter_mejora_fecha_exp">Fecha de D. Jurada</a> 
+                  <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_mejora_fecha_exp -->&nbsp; 
+                </div>
+                </th>
+ 
+                <th style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" scope="col">
+                <div align="center">
+                  <!-- BEGIN Sorter Sorter_mejora_sup_cub --><a href="{Sort_URL}" id="mejoras_tipos_mejoras_tipSorter_mejora_sup_cub">Sup Cub</a> m<sup>2</sup> 
+                  <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_mejora_sup_cub -->
+                </div>
+ 
+                <div align="center">
+                  (Vivienda o similar) 
+                </div>
+                </th>
+ 
+                <th style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" scope="col">
+                <div align="center">
+                  <!-- BEGIN Sorter Sorter_mejora_sup_semi_cub --><a href="{Sort_URL}" id="mejoras_tipos_mejoras_tipSorter_mejora_sup_semi_cub">Sup Semi Cub</a> m<sup>2</sup> 
+                  <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_mejora_sup_semi_cub -->
+                </div>
+                </th>
+ 
+                <th style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" scope="col">
+                <div align="center">
+                  <!-- BEGIN Sorter Sorter_mejora_sup_cub1 --><a href="{Sort_URL}" id="mejoras_tipos_mejoras_tipSorter_mejora_sup_cub1">Sup Cub</a> m<sup>2</sup> 
+                  <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_mejora_sup_cub1 -->
+                </div>
+ 
+                <div align="center">
+                  (Negocio o similar) 
+                </div>
+                </th>
+ 
+                <th style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" scope="col">
+                <div align="center">
+                  <!-- BEGIN Sorter Sorter_tipo_mejora_abrev --><a href="{Sort_URL}" id="mejoras_tipos_mejoras_tipSorter_tipo_mejora_abrev">Año Habilitacion</a> 
+                  <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_mejora_abrev -->
+                </div>
+                </th>
+ 
+                <th style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" scope="col">
+                <div align="center">
+                  <!-- BEGIN Sorter Sorter_tipo_mejora_destino_abrev --><a href="{Sort_URL}" id="mejoras_tipos_mejoras_tipSorter_tipo_mejora_destino_abrev">Destino</a> 
+                  <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_mejora_destino_abrev -->
+                </div>
+                </th>
+ 
+                <th style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" scope="col">
+                <!-- BEGIN Sorter Sorter_mejora_form --><a href="{Sort_URL}" id="mejoras_tipos_mejoras_tipSorter_mejora_form">Formulario</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_mejora_form -->&nbsp;</th>
+ 
+                <th style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" scope="col">
+                <!-- BEGIN Sorter Sorter_mejora_valuacion --><a href="{Sort_URL}" id="mejoras_tipos_mejoras_tipSorter_mejora_valuacion">Valuacion</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_mejora_valuacion -->&nbsp;</th>
+ 
+                <th style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" scope="col">
+                <!-- BEGIN Sorter Sorter_tipo_estado_html --><a href="{Sort_URL}" id="mejoras_tipos_mejoras_tipSorter_tipo_estado_html">Situación</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_estado_html --></th>
+ 
+                <th style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" scope="col">
+                <div align="center">
+                  <!-- BEGIN Sorter Sorter_expte --><a href="{Sort_URL}" id="mejoras_tipos_mejoras_tipSorter_expte">Expte.</a> 
+                  <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_expte -->
+                </div>
+                </th>
+ 
+                <th style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" scope="col">
+                <div align="center">
+                  Editar 
+                </div>
+                </th>
+ 
+                <th style="FONT-SIZE: 10px; FONT-WEIGHT: bolder" scope="col">PDF</th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr {mejoras_tipos_mejoras_tip:rowStyle}>
+                <td>
+                  <div align="center">
+                    <!-- BEGIN ImageLink este --><a href="{este}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" src="../iconos/16x16/go-next.gif"></a><!-- END ImageLink este -->&nbsp; 
+                  </div>
+                </td> 
+                <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="center">
+                    {tipo_estado_html} 
+                  </div>
+                </td> 
+                <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="center">
+                    {mejora_f_alta} 
+                  </div>
+                </td> 
+                <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="right">
+                    {mejora_sup_cub}&nbsp;{porc} 
+                  </div>
+                </td> 
+                <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="right">
+                    {mejora_sup_semi_cub} 
+                  </div>
+                </td> 
+                <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="right">
+                    {mejora_sup_cub_2}&nbsp; 
+                  </div>
+                </td> 
+                <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="center">
+                    {mejora_anio_construccion}&nbsp; 
+                  </div>
+                </td> 
+                <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="center">
+                    {destino}&nbsp; 
+                  </div>
+                </td> 
+                <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="center">
+                    {mejora_form}&nbsp; 
+                  </div>
+                </td> 
+                <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder">{mejora_valuacion}&nbsp;</td> 
+                <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder">{tipo_mejora_html}&nbsp;</td> 
+                <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="center">
+                    {expte}&nbsp; 
+                  </div>
+                </td> 
+                <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="center">
+                    <!-- BEGIN ImageLink editMejora --><a href="{editMejora}" id="mejoras_tipos_mejoras_tipeditMejora_{editMejora_tipos_mejoras_tip:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{editMejora}" src="../iconos/16x16/accessories-text-editor.gif"></a><!-- END ImageLink editMejora -->
+                  </div>
+                </td> 
+                <td style="FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <!-- BEGIN ImageLink pdfE2 --><a href="{pdfE2}" target="_blank"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" src="../iconos/16x16/pdf_document.png"></a><!-- END ImageLink pdfE2 -->
+                  <!-- BEGIN ImageLink pdfE1 --><a href="{pdfE1}" target="_blank"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" src="../iconos/16x16/pdf_document.png"></a><!-- END ImageLink pdfE1 -->&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <tr class="NoRecords">
+                <td style="BACKGROUND-COLOR: #3f7dbc; FONT-SIZE: 10px; FONT-WEIGHT: bolder" colspan="14"></td>
+              </tr>
+ 
+              <tr class="NoRecords">
+                <td colspan="2">&nbsp;</td> 
+                <td>Subtotales&nbsp;</td> 
+                <td style="BACKGROUND-COLOR: #ffffff; FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="right">
+                    {sum_sup_cub}&nbsp; 
+                  </div>
+                </td> 
+                <td style="BACKGROUND-COLOR: #ffffff; FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="right">
+                    {sum_sup_semi_cub}&nbsp; 
+                  </div>
+                </td> 
+                <td style="BACKGROUND-COLOR: #ffffff; FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="right">
+                    {sum_sup_cub_2}&nbsp; 
+                  </div>
+                </td> 
+                <td>Superficie Total&nbsp;</td> 
+                <td style="BACKGROUND-COLOR: #ffffff; FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="right">
+                    {sup_total}&nbsp; 
+                  </div>
+                </td> 
+                <td>Valuacion Total&nbsp;&nbsp;&nbsp;</td> 
+                <td style="BACKGROUND-COLOR: #ffffff; FONT-SIZE: 10px; FONT-WEIGHT: bolder">
+                  <div align="right">
+                    $ {val_total}&nbsp; 
+                  </div>
+                </td> 
+                <td>&nbsp;</td> 
+                <td>&nbsp;</td> 
+                <td>&nbsp;</td> 
+                <td>&nbsp;</td>
+              </tr>
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="14"><font color="#ff0000" size="2"><strong>No hay Superficies Construidas</strong></font></td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="14">
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid mejoras_tipos_mejoras_tip --></td>
+  </tr>
+ 
+  <tr>
+    <td>
+      <!-- BEGIN Record mejoras -->
+      <form id="mejoras" method="post" name="{HTMLFormName}" action="{Action}">
+        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <td class="th">
+                    <div align="center">
+                      <strong>Agregar / Editar Construido</strong> E2 
+                    </div>
+                  </td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="7"><font size="2"><strong>{Error}</strong></font></td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th" colspan="7">{baja}&nbsp;<input id="mejorassup_terreno" value="{sup_terreno}" type="hidden" name="{sup_terreno_Name}">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><strong>Nota Nro</strong>&nbsp;</td> 
+                  <td colspan="2"><input id="mejorasmejora_id_nro_nota" value="{mejora_nro_nota}" maxlength="10" size="10" name="{mejora_nro_nota_Name}">&nbsp;</td> 
+                  <td class="th"><strong>Fecha de Declaracion Jurada</strong></td> 
+                  <td colspan="3"><input id="mejorasmejora_f_alta" value="{mejora_f_alta}" maxlength="10" size="8" name="{mejora_f_alta_Name}">&nbsp; 
+                    <!-- BEGIN DatePicker DatePicker_mejora_f_alta1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="mejorasDatePicker_mejora_f_alta1"><img id="mejorasDatePicker_mejora_f_alta1_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_mejora_f_alta1 -->
+                    <!-- BEGIN Button Button1 --><input id="mejorasButton1" class="Button" onclick="hoy()" value="Hoy" type="button" name="{Button_Name}"><!-- END Button Button1 -->&nbsp;<strong><font size="1">(dd/mm/yyyy)</font></strong></td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th">
+                    <div align="center">
+                      <font size="2"><strong>Tipo&nbsp;</strong></font> 
+                    </div>
+                  </td> 
+                  <td colspan="2">
+                    <div align="center">
+                      <font size="2"><strong>Cant. de Cuadros Marcados&nbsp;</strong></font> 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <font size="2"><strong>Valor de Calculo $/m2&nbsp;</strong></font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <font size="2"><strong>Cant. de Cuadros x Valor $/m2</strong></font>&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      <font size="2"><strong>Valor Unitario $/m2</strong></font>&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">
+                    <div align="center">
+                      <font size="2">&nbsp;<strong>B</strong></font> 
+                    </div>
+                  </td> 
+                  <td colspan="2">
+                    <div align="center">
+                      <input onblur="calculo_e2()" style="BACKGROUND-COLOR: #ccffcc" id="mejorascantE2B" tabindex="1" value="{cantE2B}" maxlength="2" size="4" name="{cantE2B_Name}" autocomplete="off">&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input id="mejorasvalE2B" value="{valE2B}" readonly maxlength="10" size="10" name="{valE2B_Name}">&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input id="mejorascalE2B" value="{calE2B}" readonly maxlength="15" size="15" name="{calE2B_Name}">&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      &nbsp;&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">
+                    <div align="center">
+                      <strong>&nbsp;<font size="2">C</font> </strong>
+                    </div>
+                  </td> 
+                  <td colspan="2">
+                    <div align="center">
+                      <input onblur="calculo_e2()" style="BACKGROUND-COLOR: #ccffcc" id="mejorascantE2C" tabindex="2" value="{cantE2C}" maxlength="2" size="4" name="{cantE2C_Name}" autocomplete="off">&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input id="mejorasvalE2C" value="{valE2C}" readonly maxlength="10" size="10" name="{valE2C_Name}">&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input id="mejorascalE2C" value="{calE2C}" readonly maxlength="15" size="15" name="{calE2C_Name}">&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      &nbsp;&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th">
+                    <div align="center">
+                      <strong>TOTALES&nbsp;</strong> 
+                    </div>
+                  </td> 
+                  <td colspan="2">
+                    <div align="center">
+                      <input id="mejorascantE2T" value="{cantE2T}" readonly maxlength="3" size="4" name="{cantE2T_Name}">&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input id="mejorascalE2T" value="{calE2T}" readonly maxlength="15" size="15" name="{calE2T_Name}">&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      <input id="mejorasvuE2T" value="{vuE2T}" readonly maxlength="15" size="15" name="{vuE2T_Name}">&nbsp;&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="7"></td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th">
+                    <div align="center">
+                      <font size="2"><strong>Conservacion&nbsp;</strong></font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <font size="2"><strong>Año&nbsp;Habilitacion&nbsp;</strong></font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <font size="2"><strong>Tipo de Edificio&nbsp;&nbsp;</strong></font> 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <font size="2"><strong>Coeficiente de Ajuste&nbsp;</strong></font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <font size="2"><strong>Valor Unitario $/m2&nbsp; </strong></font>
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <font size="2"><strong>Superficie Cubierta&nbsp;</strong></font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <font size="2"><strong>&nbsp;Valor del Edificio</strong></font>&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">
+                    <div align="center">
+                      <select style="BACKGROUND-COLOR: #ccffcc" id="mejorastipo_mejora_conserva_id" tabindex="3" onchange="calculo_e2()" name="{tipo_mejora_conserva_id_Name}">
+                        <option selected value="">...</option>
+                        {tipo_mejora_conserva_id_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <select style="BACKGROUND-COLOR: #ccffcc" id="mejorasmejora_anio_construccion" tabindex="4" onchange="calculo_e2()" name="{mejora_anio_construccion_Name}">
+                        <option selected value="">...</option>
+                        {mejora_anio_construccion_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      &nbsp; 
+                      <select id="mejorastipo_mejora_cat_id" tabindex="5" onchange="calculo_e2()" name="{tipo_mejora_cat_id_Name}">
+                        <option selected value="">...</option>
+                        {tipo_mejora_cat_id_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input onblur="calcValorE()" id="mejorascoefE2" value="{coefE2}" readonly maxlength="10" size="10" name="{coefE2_Name}">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input id="mejorasvuE2T_2" value="{vuE2T_2}" readonly size="15" name="{vuE2T_2_Name}">
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input onblur="calculo_e2()" style="BACKGROUND-COLOR: #ccffcc" id="mejorasmejora_id_sup_cub" tabindex="6" value="{mejora_sup_cub}" maxlength="12" size="12" name="{mejora_sup_cub_Name}" autocomplete="off">&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <strong>$</strong> <input id="mejorasveE2" value="{veE2}" readonly maxlength="15" size="15" name="{veE2_Name}">&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="7">
+                    <div align="center">
+                      VALUACION ACTUALIZADA DE MEJORA 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th">
+                    <div align="center">
+                      Coef. Ajuste&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <strong>Valor del&nbsp;Edificio&nbsp;</strong> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <strong>Valuacion Actualizada</strong>&nbsp; 
+                    </div>
+                  </td> 
+                  <td colspan="4">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">
+                    <div align="center">
+                      <input onblur="acValorE()" id="mejorascoefE2A" value="{coefE2A}" readonly maxlength="10" size="10" name="{coefE2A_Name}">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <strong>$</strong> <input id="mejorasveE2A" value="{veE2A}" readonly maxlength="15" size="15" name="{veE2A_Name}">&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <strong>$</strong> <input style="FONT-WEIGHT: bolder" id="mejorasvalE2A" value="{valE2A}" readonly maxlength="15" size="15" name="{valE2A_Name}">&nbsp; 
+                    </div>
+                  </td> 
+                  <td><strong><font size="1">Fecha de Alta</font></strong></td> 
+                  <td colspan="3"><input id="mejorasmejora_f_alta_pura" value="{mejora_f_alta_pura}" maxlength="12" size="12" name="{mejora_f_alta_pura_Name}">
+                    <!-- BEGIN DatePicker DatePicker_mejora_f_alta_pura --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="mejorasDatePicker_mejora_f_alta_pura"><img id="mejorasDatePicker_mejora_f_alta_pura_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_mejora_f_alta_pura --></td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="7"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mejorasmejora_id_nro_exp">Nro Exp&nbsp;&nbsp;</label></td> 
+                  <td colspan="2"><input id="mejorasmejora_id_nro_exp" value="{mejora_nro_exp}" maxlength="10" size="10" name="{mejora_nro_exp_Name}" autocomplete="off"></td> 
+                  <td class="th"><label for="mejorasmejora_id_letra_exp">Letra Exp&nbsp;&nbsp;</label></td> 
+                  <td><input id="mejorasmejora_id_letra_exp" value="{mejora_letra_exp}" maxlength="3" size="3" name="{mejora_letra_exp_Name}" autocomplete="off"></td> 
+                  <td class="th"><label for="mejorasmejora_id_fecha_exp">Fecha Exp&nbsp;&nbsp;</label></td> 
+                  <td><input id="mejorasmejora_id_fecha_exp" value="{mejora_fecha_exp}" maxlength="100" size="8" name="{mejora_fecha_exp_Name}" autocomplete="off">&nbsp; 
+                    <!-- BEGIN DatePicker DatePicker_mejora_fecha_exp --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="mejorasDatePicker_mejora_fecha_exp"><img id="mejorasDatePicker_mejora_fecha_exp_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a>&nbsp;<!-- END DatePicker DatePicker_mejora_fecha_exp --><input id="mejorasmejora_sup_semi_cub" value="{mejora_sup_semi_cub}" type="hidden" name="{mejora_sup_semi_cub_Name}"><input id="mejorasmejora_porc_dominio" value="{mejora_porc_dominio}" type="hidden" name="{mejora_porc_dominio_Name}"><input id="mejorasusuario_id" value="{usuario_id}" type="hidden" name="{usuario_id_Name}">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mejorasmejora_id_porc_dominio"><label for="mejorastipo_mejora_id">Situación</label></label></td> 
+                  <td colspan="2">
+                    <select id="mejorastipo_mejora_id" name="{tipo_mejora_id_Name}">
+                      <option selected value="">...</option>
+                      {tipo_mejora_id_Options}
+                    </select>
+ &nbsp;</td> 
+                  <td class="th"><label for="mejorastipo_mejora_id"><font style="BACKGROUND-COLOR: #efefef">Estado&nbsp;</font></label></td> 
+                  <td>
+                    <select id="mejorastipo_mejora_estado_id" name="{tipo_mejora_estado_id_Name}">
+                      <option selected value="">...</option>
+                      {tipo_mejora_estado_id_Options}
+                    </select>
+ &nbsp;</td> 
+                  <td class="th" colspan="2">
+                    <!-- BEGIN RadioButton tipo_mejora_decla_id --><input id="mejorastipo_mejora_decla_id_{tipo_mejora_decla_id:optionNumber}" value="{Value}" checked type="radio" name="{tipo_mejora_decla_id_Name}" {Check}>{Description}<!-- END RadioButton tipo_mejora_decla_id -->&nbsp;<input id="mejorasmejora_id_categoria_dpc" value="{mejora_categoria_dpc}" type="hidden" name="{mejora_categoria_dpc_Name}"><input id="mejorasmejora_form" value="{mejora_form}" type="hidden" name="{mejora_form_Name}"><input id="mejorastipo_mejora_destino_id" value="{tipo_mejora_destino_id}" type="hidden" name="{tipo_mejora_destino_id_Name}"><input id="mejorasmejora_valor" value="{mejora_valor}" type="hidden" name="{mejora_valor_Name}">&nbsp;&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mejorasmejora_id_observacion">Observacion</label></td> 
+                  <td colspan="6"><input style="WIDTH: 99%" id="mejorasmejora_id_observacion" value="{mejora_observacion}" name="{mejora_observacion_Name}" autocomplete="off"></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td colspan="5" align="left">
+                    <div align="left">
+                      {motivo_baja}<input id="mejorasmejora_id" value="{mejora_id}" type="hidden" name="{mejora_id_Name}"><input id="mejorasmejora_id_f_baja" value="{mejora_f_baja}" type="hidden" name="{mejora_f_baja_Name}"><input id="mejorasaudit_string" value="{audit_string}" type="hidden" name="{audit_string_Name}"><input id="mejorasmejora_id_f_pro" value="{mejora_f_pro}" type="hidden" name="{mejora_f_pro_Name}"><input id="mejorastipo_estado_id" value="{tipo_estado_id}" type="hidden" name="{tipo_estado_id_Name}">
+                    </div>
+                  </td> 
+                  <td colspan="2" align="right"><font color="#ff0000">* obligatorios</font> 
+                    <!-- BEGIN Button Button_Insert --><input id="mejorasButton_Insert" class="Button" tabindex="7" value="Agregar" alt="Agregar" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input id="mejorasButton_Update" class="Button" tabindex="8" value="Actualizar" alt="Enviar" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input id="mejorasButton_Delete" class="Button" value="Baja" alt="Borrar" type="button" name="{Button_Name}"><!-- END Button Button_Delete -->
+                    <!-- BEGIN Button Button_eliminar --><input id="mejorasButton_eliminar" class="Button" value="Eliminar" type="submit" name="{Button_Name}"><!-- END Button Button_eliminar -->
+                    <!-- BEGIN Button Button_alta --><input id="mejorasButton_alta" class="Button" value="Alta" type="submit" name="{Button_Name}"><!-- END Button Button_alta -->
+                    <!-- BEGIN Button Button_Cancel --><input id="mejorasButton_Cancel" class="Button" value="Salir" alt="Cancelar" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="mejorasparcela_id" value="{parcela_id}" type="hidden" name="{parcela_id_Name}"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record mejoras --></td>
+  </tr>
+ 
+  <tr>
+    <td>
+      <!-- BEGIN Record mejoras1 -->
+      <form id="mejoras1" method="post" name="{HTMLFormName}" action="{Action}">
+        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <td class="th">
+                    <div align="center">
+                      <strong>Agregar / Editar Construido</strong> E1 
+                    </div>
+                  </td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="8"><font size="2"><strong>{Error}</strong></font></td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th" colspan="8">{baja}&nbsp;<input id="mejoras1sup_terreno" value="{sup_terreno}" type="hidden" name="{sup_terreno_Name}">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="2"><strong>&nbsp;Nota Nro</strong>&nbsp;</td> 
+                  <td colspan="2"><input id="mejoras1mejora_id_nro_nota" value="{mejora_nro_nota}" maxlength="10" size="10" name="{mejora_nro_nota_Name}">&nbsp; 
+                    <!-- BEGIN Button Button2 --><input id="mejoras1Button2" class="Button" onclick="calculo_e1()" value="Button2" type="button" name="{Button_Name}"><!-- END Button Button2 --></td> 
+                  <td class="th"><strong>Fecha de Declaracion Jurada</strong></td> 
+                  <td colspan="3"><input id="mejoras1mejora_f_alta" value="{mejora_f_alta}" maxlength="10" size="8" name="{mejora_f_alta_Name}">&nbsp; 
+                    <!-- BEGIN Button Button1 --><input id="mejoras1Button1" class="Button" onclick="hoy2()" value="Hoy" type="button" name="{Button_Name}"><!-- END Button Button1 -->&nbsp;<strong><font size="1">(dd/mm/yyyy)</font></strong></td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      <font size="2"><strong>Tipo</strong></font> 
+                    </div>
+                  </td> 
+                  <td colspan="2">
+                    <div align="center">
+                      <font size="2"><strong>Cant. de Cuadros Marcados&nbsp;</strong></font> 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <font size="2"><strong>Valor de Calculo $/m2&nbsp;</strong></font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <font size="2"><strong>Cant. de Cuadros x Valor $/m2</strong></font>&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      <font size="2"><strong>Valor Unitario $/m2</strong></font>&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      <font size="2"><strong>A</strong></font> 
+                    </div>
+                  </td> 
+                  <td colspan="2">
+                    <div align="center">
+                      <input onblur="calculo_e1()" style="BACKGROUND-COLOR: #ccffcc" id="mejoras1cantE1A" tabindex="1" value="{cantE1A}" maxlength="2" size="4" name="{cantE1A_Name}" autocomplete="off">
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input id="mejoras1valE1A" value="{valE1A}" readonly maxlength="10" size="10" name="{valE1A_Name}">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input id="mejoras1calE1A" value="{calE1A}" readonly maxlength="15" size="15" name="{calE1A_Name}">
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      <font size="2"><strong>B</strong></font> 
+                    </div>
+                  </td> 
+                  <td colspan="2">
+                    <div align="center">
+                      <input onblur="calculo_e1()" style="BACKGROUND-COLOR: #ccffcc" id="mejoras1cantE1B" tabindex="2" value="{cantE1B}" maxlength="2" size="4" name="{cantE1B_Name}" autocomplete="off">
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input id="mejoras1valE1B" value="{valE1B}" readonly maxlength="10" size="10" name="{valE1B_Name}">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input id="mejoras1calE1B" value="{calE1B}" readonly maxlength="15" size="15" name="{calE1B_Name}">
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      &nbsp;&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      <strong><font size="2">C</font></strong> 
+                    </div>
+                  </td> 
+                  <td colspan="2">
+                    <div align="center">
+                      <input onblur="calculo_e1()" style="BACKGROUND-COLOR: #ccffcc" id="mejoras1cantE1C" tabindex="3" value="{cantE1C}" maxlength="2" size="4" name="{cantE1C_Name}" autocomplete="off">
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input id="mejoras1valE1C" value="{valE1C}" readonly maxlength="10" size="10" name="{valE1C_Name}">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input id="mejoras1calE1C" value="{calE1C}" readonly maxlength="15" size="15" name="{calE1C_Name}">
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      &nbsp;&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      <strong>TOTALES</strong> 
+                    </div>
+                  </td> 
+                  <td colspan="2">
+                    <div align="center">
+                      <input id="mejoras1cantE1T" value="{cantE1T}" readonly maxlength="3" size="4" name="{cantE1T_Name}">
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input id="mejoras1calE1T" value="{calE1T}" readonly maxlength="15" size="15" name="{calE1T_Name}">
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      <input id="mejoras1vuE1T" value="{vuE1T}" readonly maxlength="15" size="15" name="{vuE1T_Name}">&nbsp;&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="8"></td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="8">
+                    <div align="center">
+                      VALUACION DEL EDIFICIO DESTINADO A VIVIENDA O DESTINOS SIMILARES 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th">
+                    <div align="center">
+                      Construccion 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <font size="2"><strong>Conservacion</strong></font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <font size="2"><strong>Año&nbsp;Habilitacion</strong></font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <font size="2"><strong>Tipo de Edificio</strong></font> 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <font size="2"><strong>Coeficiente de Ajuste</strong></font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <font size="2"><strong>Valor Unitario $/m2</strong></font> 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <font size="2"><strong>Superficie</strong></font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <font size="2"><strong>Valor del Edificio</strong></font> 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Edificio&nbsp;</td> 
+                  <td class="th">
+                    <div align="center">
+                      <select onblur="calculo_e1()" style="BACKGROUND-COLOR: #ccffcc" id="mejoras1tipo_mejora_conserva_id" tabindex="4" onchange="calculo_e1()" name="{tipo_mejora_conserva_id_Name}">
+                        <option selected value="">...</option>
+                        {tipo_mejora_conserva_id_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <select onblur="calculo_e1()" style="BACKGROUND-COLOR: #ccffcc" id="mejoras1mejora_anio_construccion" tabindex="5" onchange="calculo_e1()" name="{mejora_anio_construccion_Name}">
+                        <option selected value="">...</option>
+                        {mejora_anio_construccion_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <select onblur="calculo_e1()" style="BACKGROUND-COLOR: #ccffcc" id="mejoras1tipo_mejora_cat_id" tabindex="6" onchange="calculo_e1()" name="{tipo_mejora_cat_id_Name}">
+                        <option selected value="">...</option>
+                        {tipo_mejora_cat_id_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input id="mejoras1coefE1_1" value="{coefE1_1}" readonly maxlength="10" size="10" name="{coefE1_1_Name}">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input id="mejoras1vuE1T_2" value="{vuE1T_2}" readonly maxlength="15" size="15" name="{vuE1T_2_Name}">
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input onblur="calculo_e1()" style="BACKGROUND-COLOR: #ccffcc" id="mejoras1mejora_id_sup_cub" tabindex="7" value="{mejora_sup_cub}" maxlength="12" size="12" name="{mejora_sup_cub_Name}" autocomplete="off">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <strong><font size="2">$</font></strong>&nbsp;&nbsp;<input id="mejoras1veE1STA_1" value="{veE1STA_1}" readonly size="15" name="{veE1STA_1_Name}">&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Porch&nbsp;o Galeria&nbsp;</td> 
+                  <td class="th">
+                    <div align="center">
+                      <select style="BACKGROUND-COLOR: #dedede" id="mejoras1tipo_mejora_conserva_id_2" onchange="obtenerValor3()" name="{tipo_mejora_conserva_id_2_Name}">
+                        <option selected value="">...</option>
+                        {tipo_mejora_conserva_id_2_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <select style="BACKGROUND-COLOR: #dedede" id="mejoras1mejora_anio_construccion_2" onchange="obtenerValor3()" name="{mejora_anio_construccion_2_Name}">
+                        <option selected value="">...</option>
+                        {mejora_anio_construccion_2_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <select style="BACKGROUND-COLOR: #dedede" id="mejoras1tipo_mejora_cat_id_2" tabindex="0" onchange="obtenerValor3()" name="{tipo_mejora_cat_id_2_Name}">
+                        <option selected value="">...</option>
+                        {tipo_mejora_cat_id_2_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input id="mejoras1coefE1_2" value="{coefE1_2}" readonly maxlength="10" size="10" name="{coefE1_2_Name}">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input id="mejoras1vuE1T_3" value="{vuE1T_3}" readonly maxlength="15" size="15" name="{vuE1T_3_Name}">
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input onblur="calculo_e1()" style="BACKGROUND-COLOR: #ccffcc" id="mejoras1mejora_id_sup_semi_cub" tabindex="8" value="{mejora_sup_semi_cub}" maxlength="12" size="12" name="{mejora_sup_semi_cub_Name}" autocomplete="off">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <strong><font size="2">$</font></strong>&nbsp;&nbsp;<input id="mejoras1veE1STB_1" value="{veE1STB_1}" readonly size="15" name="{veE1STB_1_Name}">&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="7">*Para porch o galería el valor será el 50% del valor unitario para tipo A o B y el 30% para los tipos C</td> 
+                  <td>
+                    <p align="center"><strong><font size="2">$</font></strong>&nbsp;&nbsp;<input style="FONT-WEIGHT: bolder" id="mejoras1veE1T_1" value="{veE1T_1}" readonly maxlength="15" size="15" name="{veE1T_1_Name}"></p>
+                  </td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="8">
+                    <div align="center">
+                      VALUACION DEL EDIFICIO DESTINADO A NEGOCIOS O SALAS DE ESPECTACULOS PUBLICOS 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th">
+                    <div align="center">
+                      Construccion 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <font size="2"><strong>Conservacion</strong></font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <font size="2"><strong>Año&nbsp;Habilitacion</strong></font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <strong><font size="2">Tipo de Edificio</font></strong> 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <font size="2">Coeficiente de Ajuste</font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <font size="2"><strong>Valor Unitario $/m2</strong></font> 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <font size="2"><strong>Superficie</strong></font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <strong><font size="2">Valor del Edificio</font></strong> 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">
+                    <div align="left">
+                      Edificio&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <select style="BACKGROUND-COLOR: #dedede" id="mejoras1tipo_mejora_conserva_id_3" onchange="obtenerValor4()" name="{tipo_mejora_conserva_id_3_Name}">
+                        <option selected value="">...</option>
+                        {tipo_mejora_conserva_id_3_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <select style="BACKGROUND-COLOR: #dedede" id="mejoras1mejora_anio_construccion_3" onchange="obtenerValor4()" name="{mejora_anio_construccion_3_Name}">
+                        <option selected value="">...</option>
+                        {mejora_anio_construccion_3_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <select style="BACKGROUND-COLOR: #dedede" id="mejoras1tipo_mejora_cat_id_3" onchange="obtenerValor4()" name="{tipo_mejora_cat_id_3_Name}">
+                        <option selected value="">...</option>
+                        {tipo_mejora_cat_id_3_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input id="mejoras1coefE1_3" value="{coefE1_3}" readonly maxlength="10" size="10" name="{coefE1_3_Name}">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input id="mejoras1vuE1T_4" value="{vuE1T_4}" readonly maxlength="15" size="15" name="{vuE1T_4_Name}">
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input onblur="calculo_e1()" style="BACKGROUND-COLOR: #ccffcc" id="mejoras1mejora_sup_cub_2" tabindex="9" value="{mejora_sup_cub_2}" maxlength="12" size="12" name="{mejora_sup_cub_2_Name}" autocomplete="off">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <strong><font size="2">$</font></strong> <input style="FONT-WEIGHT: bolder" id="mejoras1veE1T_2" value="{veE1T_2}" readonly maxlength="15" size="15" name="{veE1T_2_Name}">
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="7">*Para negocios o salas de espectáculos públicos con superficie mayor de 100 m2 el valor a aplicar será el 70% del valor unitario</td> 
+                  <td>&nbsp;</td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="8">
+                    <div align="center">
+                      VALUACION DE LAS OBRAS ACCESORIAS 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      Obras accesorias&nbsp;&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">&nbsp;</td> 
+                  <td class="th">
+                    <div align="center">
+                      <font size="2">Coeficiente de Ajuste</font> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <strong>Valor básico por unidad</strong>&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      Cantidad&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <strong>Valor&nbsp;</strong> 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="2">Baño principal&nbsp;&nbsp;</td> 
+                  <td class="th" colspan="2">&nbsp;</td> 
+                  <td>
+                    <div align="center">
+                      &nbsp;<input id="mejoras1coefE1_4" value="{coefE1_4}" readonly maxlength="10" size="10" name="{coefE1_4_Name}">
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <strong><font size="2">$</font></strong>&nbsp;&nbsp;<input id="mejoras1valE1D" value="{valE1D}" readonly maxlength="10" size="10" name="{valE1D_Name}">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input onblur="calculo_e1()" style="BACKGROUND-COLOR: #ccffcc" id="mejoras1cantE1D" tabindex="10" value="{cantE1D}" maxlength="2" size="2" name="{cantE1D_Name}" autocomplete="off">&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <strong><font size="2">$</font></strong>&nbsp;&nbsp;<input style="FONT-WEIGHT: bolder" id="mejoras1veE1T_3" value="{veE1T_3}" readonly maxlength="15" size="15" name="{veE1T_3_Name}">
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="2">Baño secundario&nbsp;&nbsp;</td> 
+                  <td class="th" colspan="2">&nbsp;</td> 
+                  <td>
+                    <div align="center">
+                      &nbsp;<input id="mejoras1coefE1_5" value="{coefE1_5}" readonly maxlength="10" size="10" name="{coefE1_5_Name}">
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <strong><font size="2">$</font></strong>&nbsp;&nbsp;<input id="mejoras1valE1E" value="{valE1E}" readonly maxlength="10" size="10" name="{valE1E_Name}">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input onblur="calculo_e1()" style="BACKGROUND-COLOR: #ccffcc" id="mejoras1cantE1E" tabindex="11" value="{cantE1E}" maxlength="2" size="2" name="{cantE1E_Name}" autocomplete="off">&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <strong><font size="2">$</font></strong>&nbsp;&nbsp;<input style="FONT-WEIGHT: bolder" id="mejoras1veE1T_4" value="{veE1T_4}" readonly maxlength="15" size="15" name="{veE1T_4_Name}">
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="8">
+                    <div align="center">
+                      VALUACION ACTUALIZADA DE MEJORA 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      Coef. Ajuste 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      Valor Total&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <strong>Valuacion Actualizada&nbsp;</strong> 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      <input onblur="acValorE1()" id="mejoras1coefE1A" value="{coefE1A}" readonly maxlength="10" size="10" name="{coefE1A_Name}">
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <strong><font size="2">$</font></strong> <input id="mejoras1vtE1A" value="{vtE1A}" readonly maxlength="15" size="15" name="{vtE1A_Name}">&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <strong><font size="2">$</font></strong> <input style="FONT-WEIGHT: bolder" id="mejoras1vaE1A" value="{vaE1A}" readonly maxlength="15" size="15" name="{vaE1A_Name}">&nbsp; 
+                    </div>
+                  </td> 
+                  <td><strong><font size="1">Fecha de Alta</font></strong>&nbsp;</td> 
+                  <td class="th"><input id="mejoras1mejora_f_alta_pura" value="{mejora_f_alta_pura}" maxlength="12" size="12" name="{mejora_f_alta_pura_Name}">
+                    <!-- BEGIN DatePicker DatePicker_mejora_f_alta_pura1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="mejoras1DatePicker_mejora_f_alta_pura1"><img id="mejoras1DatePicker_mejora_f_alta_pura1_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_mejora_f_alta_pura1 --></td> 
+                  <td>&nbsp;</td> 
+                  <td class="th">&nbsp; 
+                    <!-- BEGIN RadioButton RadioButton1 --><input id="mejoras1RadioButton1_{RadioButton1:optionNumber}" value="{Value}" type="radio" name="{RadioButton1_Name}" {Check}>{Description}<!-- END RadioButton RadioButton1 --></td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="8"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mejoras1mejora_id_nro_exp">Nro Exp</label>&nbsp;</td> 
+                  <td class="th" colspan="3"><label for="mejoras1mejora_id_nro_exp">&nbsp;</label><input id="mejoras1mejora_id_nro_exp" value="{mejora_nro_exp}" maxlength="10" size="10" name="{mejora_nro_exp_Name}" autocomplete="off"></td> 
+                  <td class="th"><label for="mejoras1mejora_id_letra_exp">Letra Exp&nbsp;&nbsp;</label></td> 
+                  <td><input id="mejoras1mejora_id_letra_exp" value="{mejora_letra_exp}" maxlength="3" size="3" name="{mejora_letra_exp_Name}" autocomplete="off">&nbsp;</td> 
+                  <td class="th"><label for="mejoras1mejora_id_fecha_exp">Fecha Exp&nbsp;&nbsp;</label></td> 
+                  <td><input id="mejoras1mejora_id_fecha_exp" value="{mejora_fecha_exp}" maxlength="100" size="8" name="{mejora_fecha_exp_Name}" autocomplete="off">&nbsp; 
+                    <!-- BEGIN DatePicker DatePicker_mejora_fecha_exp --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="mejoras1DatePicker_mejora_fecha_exp"><img id="mejoras1DatePicker_mejora_fecha_exp_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a>&nbsp;<!-- END DatePicker DatePicker_mejora_fecha_exp --><input id="mejoras1mejora_porc_dominio" value="{mejora_porc_dominio}" type="hidden" name="{mejora_porc_dominio_Name}"><input id="mejoras1usuario_id" value="{usuario_id}" type="hidden" name="{usuario_id_Name}">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mejoras1tipo_mejora_id">Situación</label></td> 
+                  <td class="th" colspan="3"><label for="mejoras1mejora_id_porc_dominio"><font color="#ff0000"></font></label>
+                    <select id="mejoras1tipo_mejora_id" name="{tipo_mejora_id_Name}">
+                      <option selected value="">...</option>
+                      {tipo_mejora_id_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="mejoras1tipo_mejora_id"><font style="BACKGROUND-COLOR: #efefef">Estado&nbsp;</font></label></td> 
+                  <td>
+                    <select id="mejoras1tipo_mejora_estado_id" name="{tipo_mejora_estado_id_Name}">
+                      <option selected value="">...</option>
+                      {tipo_mejora_estado_id_Options}
+                    </select>
+ &nbsp;&nbsp;</td> 
+                  <td class="th" colspan="2">
+                    <!-- BEGIN RadioButton tipo_mejora_decla_id --><input id="mejoras1tipo_mejora_decla_id_{tipo_mejora_decla_id:optionNumber}" value="{Value}" type="radio" name="{tipo_mejora_decla_id_Name}" {Check}>{Description}<!-- END RadioButton tipo_mejora_decla_id -->&nbsp;&nbsp;<input id="mejoras1mejora_form" value="{mejora_form}" type="hidden" name="{mejora_form_Name}">&nbsp;<input id="mejoras1mejora_id_categoria_dpc" value="{mejora_categoria_dpc}" type="hidden" name="{mejora_categoria_dpc_Name}">&nbsp;<input id="mejoras1tipo_mejora_destino_id" value="{tipo_mejora_destino_id}" type="hidden" name="{tipo_mejora_destino_id_Name}"><input id="mejoras1mejora_valor" value="{mejora_valor}" type="hidden" name="{mejora_valor_Name}">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mejoras1mejora_id_observacion">Observacion</label>&nbsp;</td> 
+                  <td class="th" colspan="7"><label for="mejoras1mejora_id_observacion">&nbsp;</label><input style="WIDTH: 100%" id="mejoras1mejora_id_observacion" value="{mejora_observacion}" name="{mejora_observacion_Name}" autocomplete="off"></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td colspan="6" align="left">
+                    <div align="left">
+                      {motivo_baja}<input id="mejoras1mejora_id" value="{mejora_id}" type="hidden" name="{mejora_id_Name}"><input id="mejoras1mejora_id_f_baja" value="{mejora_f_baja}" type="hidden" name="{mejora_f_baja_Name}"><input id="mejoras1audit_string" value="{audit_string}" type="hidden" name="{audit_string_Name}"><input id="mejoras1mejora_id_f_pro" value="{mejora_f_pro}" type="hidden" name="{mejora_f_pro_Name}"><input id="mejoras1tipo_estado_id" value="{tipo_estado_id}" type="hidden" name="{tipo_estado_id_Name}"><input id="mejoras1mejora_edif_id" value="{mejora_edif_id}" type="hidden" name="{mejora_edif_id_Name}">
+                    </div>
+                  </td> 
+                  <td colspan="2" align="right"><font color="#ff0000">* obligatorios</font> 
+                    <!-- BEGIN Button Button_Insert --><input id="mejoras1Button_Insert" class="Button" tabindex="12" value="Agregar" alt="Agregar" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input id="mejoras1Button_Update" class="Button" tabindex="13" value="Actualizar" alt="Enviar" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input id="mejoras1Button_Delete" class="Button" value="Baja" alt="Borrar" type="button" name="{Button_Name}"><!-- END Button Button_Delete -->&nbsp; 
+                    <!-- BEGIN Button Button_alta --><input id="mejoras1Button_alta" class="Button" value="Alta" type="submit" name="{Button_Name}"><!-- END Button Button_alta -->&nbsp; 
+                    <!-- BEGIN Button Button_eliminar --><input id="mejoras1Button_eliminar" class="Button" value="Eliminar" type="submit" name="{Button_Name}"><!-- END Button Button_eliminar -->
+                    <!-- BEGIN Button Button_Cancel --><input id="mejoras1Button_Cancel" class="Button" value="Salir" alt="Cancelar" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="mejoras1parcela_id" value="{parcela_id}" type="hidden" name="{parcela_id_Name}"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record mejoras1 --></td>
+  </tr>
+</table>
+{tdf_footer} 
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Registrar baja</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//mejorasButtonCancelar_OnClick @6-0D4FD9E5
+function mejorasButtonCancelar_OnClick()
+{
+    var result = true;
+//End mejorasButtonCancelar_OnClick
+
+//Custom Code @7-2A29BDB7
+    // -------------------------
+    self.close();
+    // -------------------------
+//End Custom Code
+
+//Close mejorasButtonCancelar_OnClick @6-BC33A33A
+    return result;
+}
+//End Close mejorasButtonCancelar_OnClick
+
+//_OnLoad @1-9C4F01C0
+function _OnLoad()
+{
+    var result = true;
+//End _OnLoad
+
+//Custom Code @8-2A29BDB7
+    // -------------------------
+    var close_action = document.mejoras.close_window.value;
+    if(close_action == 1){
+            opener.document.location.reload();
+            self.close();
+    }
+    // -------------------------
+//End Custom Code
+
+//Close _OnLoad @1-BC33A33A
+    return result;
+}
+//End Close _OnLoad
+
+//bind_events @1-525B746E
+function bind_events() {
+    addEventHandler("mejorasButtonCancelar", "click", mejorasButtonCancelar_OnClick);
+    addEventHandler("", "load", _OnLoad);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div>
+  <!-- BEGIN Record mejoras -->
+  <form id="mejoras" name="{HTMLFormName}" action="{Action}" method="post">
+    <table cellspacing="0" cellpadding="0" width="100%" border="0">
+      <tr>
+        <td valign="top">
+          <table class="Header" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+              <th>Registrar Motivo de la Baja</th>
+ 
+              <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+            </tr>
+          </table>
+ 
+          <table class="Record" cellspacing="0" cellpadding="0">
+            <!-- BEGIN Error -->
+            <tr class="Error">
+              <td><strong>{Error}</strong></td>
+            </tr>
+            <!-- END Error -->
+            <tr class="Controls">
+              <th><strong><font size="1">Debe&nbsp;escribir&nbsp;un brebe&nbsp;motivo de la baja para poder realizar la accion.</font></strong>&nbsp;</th>
+            </tr>
+ 
+            <tr class="Controls">
+              <th><textarea id="mejorasmejora_mot_baja" style="WIDTH: 100%" name="{mejora_mot_baja_Name}" cols="50">{mejora_mot_baja}</textarea></th>
+            </tr>
+ 
+            <tr class="Bottom">
+              <td align="right"><input id="mejorasclose_window" type="hidden" value="{close_window}" name="{close_window_Name}"><input id="mejorastipo_estado_id" type="hidden" value="{tipo_estado_id}" name="{tipo_estado_id_Name}">
+                <!-- BEGIN Button Button_Update --><input class="Button" id="mejorasButton_Update" type="submit" value="Registrar Baja" name="{Button_Name}"><!-- END Button Button_Update -->
+                <!-- BEGIN Button ButtonCancelar --><input class="Button" id="mejorasButtonCancelar" type="submit" value="Cancelar" name="{Button_Name}"><!-- END Button ButtonCancelar --></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <!-- END Record mejoras -->
+</div>
+</body>
+</html>

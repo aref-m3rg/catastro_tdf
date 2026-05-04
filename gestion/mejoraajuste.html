@@ -1,0 +1,238 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Coeficiente de Ajuste</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//tipos_coef_ajustes1Button_Cancel_OnClick @23-BCD5A1BC
+function tipos_coef_ajustes1Button_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End tipos_coef_ajustes1Button_Cancel_OnClick
+
+//tipos_coef_ajustes1Button_clear_OnClick @43-0031B050
+function tipos_coef_ajustes1Button_clear_OnClick()
+{
+    disableValidation = true;
+}
+//End tipos_coef_ajustes1Button_clear_OnClick
+
+//bind_events @1-9EA44BC8
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("tipos_coef_ajustes1Button_Cancel", "click", tipos_coef_ajustes1Button_Cancel_OnClick);
+    addEventHandler("tipos_coef_ajustes1Button_clear", "click", tipos_coef_ajustes1Button_clear_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css" />
+</head>
+<body>
+<div>
+  {tdf_header}{tdf_menu} 
+</div>
+<div>
+  <!-- BEGIN Record tipos_coef_ajustes1 -->
+  <form id="tipos_coef_ajustes1" name="{HTMLFormName}" action="{Action}" method="post">
+    <table cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <td valign="top">
+          <table class="Header" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+              <th>Agregar/Editar Coef Ajustes </th>
+ 
+              <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            </tr>
+ 
+          </table>
+ 
+          <table class="Record" cellspacing="0" cellpadding="0">
+            <!-- BEGIN Error -->
+            <tr class="Error">
+              <td colspan="2"><strong><font size="2">{Error}</font></strong></td> 
+            </tr>
+ <!-- END Error -->
+            <tr class="Controls">
+              <th>Coef Ajuste Valor</th>
+ 
+              <td><input id="tipos_coef_ajustes1tipo_coef_ajuste_valor" maxlength="6" size="8" value="{tipo_coef_ajuste_valor}" name="{tipo_coef_ajuste_valor_Name}"><input id="tipos_coef_ajustes1tipo_coef_ajuste_f_ini" type="hidden" value="{tipo_coef_ajuste_f_ini}" name="{tipo_coef_ajuste_f_ini_Name}"><input id="tipos_coef_ajustes1tipo_coef_ajuste_f_fin" type="hidden" value="{tipo_coef_ajuste_f_fin}" name="{tipo_coef_ajuste_f_fin_Name}"></td> 
+            </tr>
+ 
+            <tr class="Bottom">
+              <td align="right" colspan="2">
+                <!-- BEGIN Button Button_Insert --><input class="Button" id="tipos_coef_ajustes1Button_Insert" type="submit" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                <!-- BEGIN Button Button_Update --><input class="Button" id="tipos_coef_ajustes1Button_Update" type="submit" value="Actualizar" name="{Button_Name}"><!-- END Button Button_Update -->&nbsp; 
+                <!-- BEGIN Button Button_clear --><input class="Button" id="tipos_coef_ajustes1Button_clear" type="submit" value="Limpiar" name="{Button_Name}"><!-- END Button Button_clear -->
+                <!-- BEGIN Button Button_Cancel --><input class="Button" id="tipos_coef_ajustes1Button_Cancel" type="submit" value="Volver" name="{Button_Name}"><!-- END Button Button_Cancel --></td> 
+            </tr>
+ 
+          </table>
+ </td> 
+      </tr>
+ 
+    </table>
+ 
+  </form>
+ <!-- END Record tipos_coef_ajustes1 -->
+</div>
+<div>
+  <!-- BEGIN Grid tipos_coef_ajustes2 -->
+  <table cellspacing="0" cellpadding="0" width="100%" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            <th>Coef Ajustes Actual</th>
+ 
+            <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <tr class="Caption">
+            <th>
+            <!-- BEGIN Sorter Sorter_tipo_coef_ajuste_f_ini --><a href="{Sort_URL}" id="tipos_coef_ajustes2Sorter_tipo_coef_ajuste_f_ini">Fecha Inicio</a> 
+            <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_coef_ajuste_f_ini --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_tipo_coef_ajuste_f_fin --><a href="{Sort_URL}" id="tipos_coef_ajustes2Sorter_tipo_coef_ajuste_f_fin">Fecha Fin</a> 
+            <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_coef_ajuste_f_fin --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_tipo_coef_ajuste_valor --><a href="{Sort_URL}" id="tipos_coef_ajustes2Sorter_tipo_coef_ajuste_valor">Coef Ajuste Valor</a> 
+            <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_coef_ajuste_valor --></th>
+ 
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <tr class="Row">
+            <td><a href="{tipo_coef_ajuste_f_ini_Src}" id="tipos_coef_ajustes2tipo_coef_ajuste_f_ini_{tipos_coef_ajustes2:rowNumber}">{tipo_coef_ajuste_f_ini}</a></td> 
+            <td>{tipo_coef_ajuste_f_fin}&nbsp;</td> 
+            <td>{tipo_coef_ajuste_valor}&nbsp;</td> 
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="3">No hay registros</td> 
+          </tr>
+ <!-- END NoRecords -->
+          <tr class="Footer">
+            <td colspan="3">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+              <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                <option value="" selected>-</option>
+ {PageSize_Options} 
+              </select>
+ 
+              <!-- BEGIN First_On --><a href="{First_URL}"><img src="../Styles/Simple_tdf/Images/First.gif" border="0"></a> <!-- END First_On -->
+              <!-- BEGIN First_Off --><img src="../Styles/Simple_tdf/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="../Styles/Simple_tdf/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+              <!-- BEGIN Prev_Off --><img src="../Styles/Simple_tdf/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="../Styles/Simple_tdf/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+              <!-- BEGIN Next_Off --><img src="../Styles/Simple_tdf/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="../Styles/Simple_tdf/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+              <!-- BEGIN Last_Off --><img src="../Styles/Simple_tdf/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+ <!-- END Grid tipos_coef_ajustes2 -->
+</div>
+<div>
+  <!-- BEGIN Grid tipos_coef_ajustes -->
+  <table cellspacing="0" cellpadding="0" width="100%" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            <th>Lista de Coef Ajustes Anteriores</th>
+ 
+            <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <tr class="Caption">
+            <th>
+            <!-- BEGIN Sorter Sorter_tipo_coef_ajuste_f_ini --><a href="{Sort_URL}" id="tipos_coef_ajustesSorter_tipo_coef_ajuste_f_ini">Fecha Inicio</a> 
+            <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_coef_ajuste_f_ini --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_tipo_coef_ajuste_f_fin --><a href="{Sort_URL}" id="tipos_coef_ajustesSorter_tipo_coef_ajuste_f_fin">Fecha Fin</a> 
+            <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_coef_ajuste_f_fin --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_tipo_coef_ajuste_valor --><a href="{Sort_URL}" id="tipos_coef_ajustesSorter_tipo_coef_ajuste_valor">Coef Ajuste Valor</a> 
+            <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_coef_ajuste_valor --></th>
+ 
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <tr class="Row">
+            <td>{tipo_coef_ajuste_f_ini}&nbsp;</td> 
+            <td>{tipo_coef_ajuste_f_fin}&nbsp;</td> 
+            <td>{tipo_coef_ajuste_valor}&nbsp;</td> 
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="3"><strong><font color="#ff0000">No hay registros</font></strong></td> 
+          </tr>
+ <!-- END NoRecords -->
+          <tr class="Footer">
+            <td colspan="3">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+              <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                <option value="" selected>-</option>
+ {PageSize_Options} 
+              </select>
+ 
+              <!-- BEGIN First_On --><a href="{First_URL}"><img src="../Styles/Simple_tdf/Images/First.gif" border="0"></a> <!-- END First_On -->
+              <!-- BEGIN First_Off --><img src="../Styles/Simple_tdf/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="../Styles/Simple_tdf/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+              <!-- BEGIN Prev_Off --><img src="../Styles/Simple_tdf/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="../Styles/Simple_tdf/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+              <!-- BEGIN Next_Off --><img src="../Styles/Simple_tdf/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="../Styles/Simple_tdf/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+              <!-- BEGIN Last_Off --><img src="../Styles/Simple_tdf/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator --></td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+ <!-- END Grid tipos_coef_ajustes -->{tdf_footer} 
+</div>
+</body>
+</html>

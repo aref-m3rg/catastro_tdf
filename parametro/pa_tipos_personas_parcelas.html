@@ -1,0 +1,149 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>pa_tipos_personas_percelas</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//tipos_personas_parcelasCancel_OnClick @15-C32DD14C
+function tipos_personas_parcelasCancel_OnClick()
+{
+    disableValidation = true;
+}
+//End tipos_personas_parcelasCancel_OnClick
+
+//bind_events @1-2FB7D4E6
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("tipos_personas_parcelasCancel", "click", tipos_personas_parcelasCancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<!-- BEGIN Record tipos_personas_parcelasSearch -->
+<form id="tipos_personas_parcelasSearch" name="{HTMLFormName}" action="{Action}" method="post">
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+            <th>Buscar</th>
+ 
+            <td class="HeaderRight"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>Descripción</th>
+ 
+            <td><input id="tipos_personas_parcelasSearchs_tipo_persona_parcela_descrip" maxlength="25" size="25" value="{s_tipo_persona_parcela_descrip}" name="{s_tipo_persona_parcela_descrip_Name}"></td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td><a href="{ClearParameters_Src}" id="tipos_personas_parcelasSearchClearParameters">Limpiar</a></td> 
+            <td align="right">
+              <!-- BEGIN Button Button_DoSearch --><input class="Button" id="tipos_personas_parcelasSearchButton_DoSearch" type="submit" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record tipos_personas_parcelasSearch --><br>
+<!-- BEGIN EditableGrid tipos_personas_parcelas -->
+<form id="tipos_personas_parcelas" name="{HTMLFormName}" action="{Action}" method="post">
+  <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+            <th>Listado de tipos de personas / parcelas</th>
+ 
+            <td class="HeaderRight"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="3">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Caption">
+            <th>Descripción</th>
+ 
+            <th>Abreviatura</th>
+ 
+            <th>Deshabilitar</th>
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <!-- BEGIN RowError -->
+          <tr class="Error">
+            <td colspan="3">{Error}</td>
+          </tr>
+          <!-- END RowError -->
+          <tr class="Row">
+            <td><input id="tipos_personas_parcelastipo_persona_parcela_descrip_{tipos_personas_parcelas:rowNumber}" maxlength="25" size="25" value="{tipo_persona_parcela_descrip}" name="{tipo_persona_parcela_descrip_Name}"></td> 
+            <td><input id="tipos_personas_parcelastipo_persona_parcela_abrev_{tipos_personas_parcelas:rowNumber}" maxlength="5" size="5" value="{tipo_persona_parcela_abrev}" name="{tipo_persona_parcela_abrev_Name}"></td> 
+            <td><input id="tipos_personas_parcelasCheckBox_Delete_{tipos_personas_parcelas:rowNumber}" type="checkbox" value="1" name="{CheckBox_Delete_Name}" {CheckBox_Delete}>&nbsp;</td>
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="3">No hay registros</td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="Footer">
+            <td style="TEXT-ALIGN: right" colspan="3">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+              <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                <option value="" selected>-</option>
+ {PageSize_Options}
+              </select>
+ 
+              <!-- BEGIN First_On --><a href="{First_URL}"><img src="../Styles/{CCS_Style}/Images/First.gif" border="0"></a> <!-- END First_On -->
+              <!-- BEGIN First_Off --><img src="../Styles/{CCS_Style}/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="../Styles/{CCS_Style}/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+              <!-- BEGIN Prev_Off --><img src="../Styles/{CCS_Style}/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="../Styles/{CCS_Style}/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+              <!-- BEGIN Next_Off --><img src="../Styles/{CCS_Style}/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="../Styles/{CCS_Style}/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+              <!-- BEGIN Last_Off --><img src="../Styles/{CCS_Style}/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->
+              <!-- BEGIN Button Button_Submit --><input class="Button" id="tipos_personas_parcelasButton_Submit" type="submit" value="Actualizar" name="{Button_Name}"><!-- END Button Button_Submit -->
+              <!-- BEGIN Button Cancel --><input class="Button" id="tipos_personas_parcelasCancel" type="submit" value="Cancelar" name="{Button_Name}"><!-- END Button Cancel --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END EditableGrid tipos_personas_parcelas -->
+<p>{tdf_footer}</p>
+</body>
+</html>

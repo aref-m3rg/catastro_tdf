@@ -1,0 +1,295 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Selección de planos</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//planosButton_Insert_OnClick @55-EAC5D3D0
+function planosButton_Insert_OnClick()
+{
+    var result = true;
+//End planosButton_Insert_OnClick
+
+//Custom Code @71-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+    // -------------------------
+//End Custom Code
+
+//Close planosButton_Insert_OnClick @55-BC33A33A
+    return result;
+}
+//End Close planosButton_Insert_OnClick
+
+//DEL      // -------------------------
+//DEL      // Write your own code here.
+//DEL  
+//DEL                 opener.document.location.reload();
+//DEL                  self.close();
+//DEL  
+//DEL      // -------------------------
+
+//_OnLoad @1-9C4F01C0
+function _OnLoad()
+{
+    var result = true;
+//End _OnLoad
+
+//Custom Code @70-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+
+        var close_action = planos.close_window.value;
+        if(close_action == 1){
+                opener.document.location.reload();
+                self.close();
+        }
+
+
+
+    // -------------------------
+//End Custom Code
+
+//Close _OnLoad @1-BC33A33A
+    return result;
+}
+//End Close _OnLoad
+
+//bind_events @1-4679DF5E
+function bind_events() {
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("planosButton_Insert", "click", planosButton_Insert_OnClick);
+    addEventHandler("", "load", _OnLoad);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+<p>
+<!-- BEGIN Record planos_profesionales_tipo -->
+<form id="planos_profesionales_tipo" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <th>Buscador</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td> 
+          </tr>
+ <!-- END Error -->
+          <tr class="Controls">
+            <th>Nro.</th>
+ 
+            <td><input id="planos_profesionales_tipos_plano_nro" name="{s_plano_nro_Name}" maxlength="20" value="{s_plano_nro}" size="20"></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Año </th>
+ 
+            <td><input id="planos_profesionales_tipos_plano_anio" name="{s_plano_anio_Name}" maxlength="5" value="{s_plano_anio}" size="5"></td> 
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right">
+              <!-- BEGIN Button Button_DoSearch --><input id="planos_profesionales_tipoButton_DoSearch" class="Button" name="{Button_Name}" value="Buscar" type="submit"><!-- END Button Button_DoSearch --></td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+</form>
+<!-- END Record planos_profesionales_tipo --><br>
+<!-- BEGIN Grid planos_profesionales_tipo1 -->
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          <th>Planos </th>
+ 
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+        </tr>
+ 
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th>
+          <!-- BEGIN Sorter Sorter_plano_nro --><a href="{Sort_URL}" id="planos_profesionales_tipo1Sorter_plano_nro">Nro.</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_plano_nro --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_plano_e_nro --><a href="{Sort_URL}" id="planos_profesionales_tipo1Sorter_plano_e_nro">Exp. Nro.</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_plano_e_nro --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_plano_e_letra --><a href="{Sort_URL}" id="planos_profesionales_tipo1Sorter_plano_e_letra">Exp. Letra</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_plano_e_letra --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_plano_e_anio --><a href="{Sort_URL}" id="planos_profesionales_tipo1Sorter_plano_e_anio">Exp. Año</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_plano_e_anio --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_plano_anio --><a href="{Sort_URL}" id="planos_profesionales_tipo1Sorter_plano_anio">Año</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_plano_anio --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_plano_archivo --><a href="{Sort_URL}" id="planos_profesionales_tipo1Sorter_plano_archivo">Archivo</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_plano_archivo --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_prof_nombre --><a href="{Sort_URL}" id="planos_profesionales_tipo1Sorter_prof_nombre">Profesional</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_prof_nombre --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_tipo_estado_plano_desc --><a href="{Sort_URL}" id="planos_profesionales_tipo1Sorter_tipo_estado_plano_desc">Estado</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_estado_plano_desc --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_tipo_plano_desc --><a href="{Sort_URL}" id="planos_profesionales_tipo1Sorter_tipo_plano_desc">Tipo</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_plano_desc --></th>
+ 
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td style="TEXT-ALIGN: right"><a href="{plano_nro_Src}" id="planos_profesionales_tipo1plano_nro_{planos_profesionales_tipo1:rowNumber}">{plano_nro}</a>&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{plano_e_nro}&nbsp;</td> 
+          <td>{plano_e_letra}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{plano_e_anio}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{plano_anio}&nbsp;</td> 
+          <td>{plano_archivo}&nbsp;</td> 
+          <td>{prof_nombre}&nbsp;</td> 
+          <td>{tipo_estado_plano_desc}&nbsp;</td> 
+          <td>{tipo_plano_desc}&nbsp;</td> 
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="9">No hay registros</td> 
+        </tr>
+ <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="9"><a href="{planos_profesionales_tipo1_Insert_Src}" id="planos_profesionales_tipo1planos_profesionales_tipo1_Insert">Agregar Nuevo</a>&nbsp; 
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option selected value="">-</option>
+ {PageSize_Options} 
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+            <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td> 
+        </tr>
+ 
+      </table>
+ </td> 
+  </tr>
+</table>
+<!-- END Grid planos_profesionales_tipo1 --><br>
+<!-- BEGIN Record planos -->
+<form id="planos" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <th>Plano a seleccionar</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td> 
+          </tr>
+ <!-- END Error -->
+          <tr class="Controls">
+            <th>Numero</th>
+ 
+            <td><input id="planosplano_nro" name="{plano_nro_Name}" maxlength="20" value="{plano_nro}" size="20"><input id="planosclose_window" name="{close_window_Name}" value="{close_window}" type="hidden"></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Año</th>
+ 
+            <td><input id="planosplano_anio" name="{plano_anio_Name}" maxlength="5" value="{plano_anio}" size="5"></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Archivo</th>
+ 
+            <td><input id="planosplano_archivo" name="{plano_archivo_Name}" maxlength="250" value="{plano_archivo}" size="50"></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Expediente</th>
+ 
+            <td><input id="planosplano_e_nro" name="{plano_e_nro_Name}" maxlength="20" value="{plano_e_nro}" size="20">&nbsp;- <input id="planosplano_e_letra" name="{plano_e_letra_Name}" maxlength="5" value="{plano_e_letra}" size="5">&nbsp;- <input id="planosplano_e_anio" name="{plano_e_anio_Name}" maxlength="5" value="{plano_e_anio}" size="5"></td> 
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right">
+              <!-- BEGIN Button Button_Insert --><input id="planosButton_Insert" class="Button" name="{Button_Name}" value="Seleccionar" type="submit"><!-- END Button Button_Insert --></td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+</form>
+<!-- END Record planos --><br>
+</p>
+<p>{tdf_footer}</p>
+<p>&nbsp;</p>
+</body>
+</html>

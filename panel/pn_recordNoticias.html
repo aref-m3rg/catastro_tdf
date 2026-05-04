@@ -1,0 +1,109 @@
+
+<html><head><title>Nuevo comentario</title>
+
+
+<meta name="GENERATOR" content="CodeCharge Studio 4.01.00.06"><script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-AA535938
+</script>
+
+<script language="JavaScript" src="../FCKeditor/fckeditor.js" type="text/javascript"></script>
+
+<script language="JavaScript" type="text/javascript">
+//End Include User Scripts
+
+//noticiasnoticias_texto_OnLoad @16-E9372484
+function noticiasnoticias_texto_OnLoad()
+{
+    var result = true;
+//End noticiasnoticias_texto_OnLoad
+
+//Attach FCKeditor @25-5B578EE5
+    var noticiasnoticias_texto_FCK = new FCKeditor(this.getAttribute("id"));
+    noticiasnoticias_texto_FCK.BasePath = "../FCKeditor/";
+    noticiasnoticias_texto_FCK.ToolbarSet = "MyToolbar";
+    noticiasnoticias_texto_FCK.Height = "100%";
+    noticiasnoticias_texto_FCK.Width = "100%";
+    noticiasnoticias_texto_FCK.Config["AutoDetectLanguage"] = true;
+    noticiasnoticias_texto_FCK.Config["AutoDetectPasteFromWord"] = true;
+        
+    noticiasnoticias_texto_FCK.ReplaceTextarea();
+//End Attach FCKeditor
+
+//Close noticiasnoticias_texto_OnLoad @16-BC33A33A
+    return result;
+}
+//End Close noticiasnoticias_texto_OnLoad
+
+//noticiasButton_Delete_OnClick @5-AA7E8942
+function noticiasButton_Delete_OnClick()
+{
+    disableValidation = true;
+}
+//End noticiasButton_Delete_OnClick
+
+//noticiasButton1_OnClick @33-B8FB1AFD
+function noticiasButton1_OnClick()
+{
+    disableValidation = true;
+}
+//End noticiasButton1_OnClick
+
+
+//bind_events @1-361A76A6
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("noticiasnoticias_texto", "load", noticiasnoticias_texto_OnLoad);
+    addEventHandler("noticiasButton_Delete", "click", noticiasButton_Delete_OnClick);
+    addEventHandler("noticiasButton1", "click", noticiasButton1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css"></head>
+<body>{tdf_header}{tdf_menu} 
+<table style="WIDTH: 90%" border="0" cellspacing="2" cellpadding="2">
+    <tr>
+    <td><!-- BEGIN Record noticias -->
+      <form id="noticias" method="post" name="{HTMLFormName}" action="{Action}">
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+          <td valign="top">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                <td class="th"><strong>Agregar Comentario</strong></td>
+                <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td></tr></table>
+            <table class="Record" cellspacing="0" cellpadding="0"><!-- BEGIN Error -->
+                            <tr class="Error">
+                <td colspan="2">{Error}</td></tr><!-- END Error -->
+              <tr class="Controls">
+                <td class="th"><label for="noticiasnoti_cat_id">Categoria</label></td>
+                <td><select id="noticiasnoti_cat_id" name="{noti_cat_id_Name}"><option selected value="">...</option>{noti_cat_id_Options}</select> 
+                </td></tr>
+              <tr class="Controls">
+                <td class="th"><label for="noticiasnoticias_asunto">Asunto</label></td>
+                <td><input id="noticiasnoticias_asunto" onchange="this.value = this.value.toUpperCase()" value="{noticias_asunto}" maxlength="50" size="50" name="{noticias_asunto_Name}"></td></tr>
+              <tr class="Controls">
+                <td class="th">Texto</td>
+                <td><textarea id="noticiasnoticias_texto" name="{noticias_texto_Name}">{noticias_texto}</textarea> 
+                </td></tr>
+              <tr class="Bottom">
+                <td colspan="2" align="right"><input id="noticiasuser_id" value="{user_id}" type="hidden" name="{user_id_Name}"><input id="noticiasnoticias_fecha" value="{noticias_fecha}" type="hidden" name="{noticias_fecha_Name}"><!-- BEGIN Button Button_Insert --><input id="noticiasButton_Insert" class="Button" value="Agregar" alt="Agregar" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+<!-- BEGIN Button Button_Update --><input id="noticiasButton_Update" class="Button" value="Actualizar" alt="Enviar" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+<!-- BEGIN Button Button_Delete --><input id="noticiasButton_Delete" class="Button" value="Borrar" alt="Borrar" type="submit" name="{Button_Name}"><!-- END Button Button_Delete -->
+<!-- BEGIN Button Button1 --><input id="noticiasButton1" class="Button" value="Volver" type="submit" name="{Button_Name}"><!-- END Button Button1 --></td></tr></table></td></tr></table></form><!-- END Record noticias --></td></tr></table><br>{tdf_folder} 
+</body></html>

@@ -1,0 +1,842 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Buscar</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+function confirma_OnClick(){
+    var result = true;
+    return confirm('Va a crear un alta pura de Parcela, el ingreso de los datos puede repetir informacion de otra Parcela, desea continuar?');
+    return result;
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Panel1Panel2padrones_parcelas_parcelaalta_pura_OnClick @541-8216ECB5
+function Panel1Panel2padrones_parcelas_parcelaalta_pura_OnClick()
+{
+    var result = true;
+//End Panel1Panel2padrones_parcelas_parcelaalta_pura_OnClick
+
+//Confirmation Message @544-12F067C6
+    result = confirm('Va a crear un alta pura de Parcela, el ingreso de los datos puede repetir informacion de otra Parcela, desea continuar?');
+//End Confirmation Message
+        if(result){
+                window.location = "recordParcela.php";
+        }
+//Close Panel1Panel2padrones_parcelas_parcelaalta_pura_OnClick @541-BC33A33A
+    return result;
+}
+//End Close Panel1Panel2padrones_parcelas_parcelaalta_pura_OnClick
+
+//Panel1Panel2padrones_parcelas_parcelacancel_OnClick @11-D8E493EA
+function Panel1Panel2padrones_parcelas_parcelacancel_OnClick()
+{
+    disableValidation = true;
+}
+//End Panel1Panel2padrones_parcelas_parcelacancel_OnClick
+
+//bind_events @1-021EC20F
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("Panel1Panel2padrones_parcelas_parcelaalta_pura", "click", Panel1Panel2padrones_parcelas_parcelaalta_pura_OnClick);
+    addEventHandler("Panel1Panel2padrones_parcelas_parcelacancel", "click", Panel1Panel2padrones_parcelas_parcelacancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+{tdf_header}{tdf_menu}<br>
+<!-- Scripts -->
+<script type="text/javascript">
+jQuery(function() {
+
+  // busca los elemtos a "botonizar"
+  jQuery('.ui-button-set').each( function(index, element) {
+    jQuery('.ui-button-set-main', element).button();
+    jQuery('.ui-button-set-drop').button( {
+      text: false,
+      icons: { primary: 'ui-icon-plus' }
+    } ).parent().buttonset();
+  });
+
+  // asigna el evento al click de los botones
+  jQuery('.ui-button-set-drop').click( function() {
+    dropdownPosition = jQuery(this).position();
+    dropdownWidth = jQuery(this).outerWidth();
+    theMenu = jQuery(this).parent().siblings('.ui-button-menu');
+    theMenu.toggle();
+    theMenu.css('left', dropdownPosition.left + dropdownWidth + 5 + 'px' );
+    jQuery('.ui-button-menu').not(theMenu).hide();
+    return false;
+  });
+
+  // crea el botón que trae los titulares
+  jQuery('.ui-button-people').button( {
+    icons: { primary: 'ui-icon-circle-plus' }
+  });
+
+  // asigna el evento al botón de traer titulares
+  jQuery('.ui-button-people').click( function() {
+
+    // botón
+    var button = jQuery(this);
+
+    // obtiene el ID de la parcela
+    var parcela = jQuery(this).data('parcela-id'); // console.log( parcela );
+
+    // obtiene el contenedor
+    var container = jQuery(this).siblings('.placeholder-titulares'); // console.log(container);
+    
+    if ( parcela !== '' ) {
+
+      jQuery.getJSON('../services/gestion_parcela_titulares.php?parcela_id=' + parcela, function(data) {
+
+        // Si hay datos de titulares
+        if( jQuery(data.data).size() > 0 ) {
+
+          // Oculta el botón
+          button.hide();
+
+          // salida
+          var output = '';
+          output += '<table class="clean-table">';
+          output += '<tr>';
+          output += '<th>Denominación</th>';
+          output += '<th>Tipo doc.</th>';
+          output += '<th>Nro. doc.</th>';
+          output += '<th>Tipo instrum.</th>';
+          output += '<th>Nro. instrum.</th>';
+          output += '<th>Tipo pers.</th>';
+          output += '<th>CUIT</th>';
+          output += '<th>Cónyuge</th>';
+          output += '</tr>';
+
+          jQuery.each( data.data, function(index, value) {
+            var tipo_doc = (value.tipo_documento_abrev !== null) ? value.tipo_documento_abrev : '';
+                        var nro_doc = (value.persona_nro_doc !== null) ? value.persona_nro_doc : '';
+                        var tipo_instrum = (value.tipo_instrumento_abrev !== null) ? value.tipo_instrumento_abrev : '';
+                        var pers_parc_num = (value.persona_parcela_num_int !== null) ? value.persona_parcela_num_int : '';
+                        var pers_tipo = (value.tipo_persona_descrip !== null) ? value.tipo_persona_descrip : '';
+                        var pers_cuit = (value.persona_cuit !== null) ? value.persona_cuit : '';
+                        var pers_conyug = (value.persona_conyuge !== null) ? value.persona_conyuge : '';
+                        output += '<tr>';
+            output += '<td>' + value.persona_denominacion + '&nbsp;</td>';
+            output += '<td>' + tipo_doc + '&nbsp;</td>';
+            output += '<td>' + nro_doc + '&nbsp;</td>';
+            output += '<td>' + tipo_instrum + '&nbsp;</td>';
+            output += '<td>' + pers_parc_num + '&nbsp;</td>';
+            output += '<td>' + pers_tipo + '&nbsp;</td>';
+            output += '<td>' + pers_cuit + '&nbsp;</td>';
+            output += '<td>' + pers_conyug + '&nbsp;</td>';
+            output += '</tr>';
+          });
+          output += '</table>';
+
+          jQuery(container).html( output );
+
+        } else {
+
+          alert('Parcela sin titulares asociados');
+
+        }
+
+      });
+      
+    }
+
+    return false;
+  });
+
+  // crea el panel de Tabs
+  jQuery( "#tabs" ).tabs();
+
+  // oculta por defecto todos los menues desplegables
+  jQuery('.ui-button-menu').hide();
+
+  // crea el slideshow
+  jQuery(".slides_section").slides();
+
+
+});
+</script>
+<!-- BEGIN Panel Panel1 -->
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-parcelas">Parcelas</a> 
+    <li><a href="#tabs-titulares">Titulares</a> 
+    <li><a href="#tabs-planos">Planos</a> </li>
+  </ul>
+  <!-- BEGIN Panel Panel2 -->
+  <div>
+    <!-- BEGIN Record padrones_parcelas_parcela -->
+    <form id="Panel1Panel2padrones_parcelas_parcela" method="post" name="{HTMLFormName}" action="{Action}">
+      <table cellspacing="0" cellpadding="0" width="100%" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Record" cellspacing="0" cellpadding="0">
+              <!-- BEGIN Error -->
+              <tr class="Error">
+                <td colspan="12"><font size="1">{Error}</font></td>
+              </tr>
+              <!-- END Error -->
+            </table>
+ 
+            <div id="tabs-parcelas">
+              <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                <tr class="Controls">
+                  <td>
+                    <div align="left">
+                      Partida 
+                    </div>
+                  </td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelapasop_partida" maxlength="10" size="10" value="{parcela_partida}" name="{parcela_partida_Name}"></td> 
+                  <td colspan="2">
+                    <div align="right">
+                      Partidas Distintas de "0" 
+                    </div>
+                  </td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelapart_val" type="checkbox" value="1" name="{part_val_Name}" {part_val}></td> 
+                  <td colspan="2">Estado</td> 
+                  <td colspan="2">
+                    <select id="Panel1Panel2padrones_parcelas_parcelatipo_est_parc_id" name="{tipo_est_parc_id_Name}">
+                      <option selected value="">(Todas)</option>
+                      {tipo_est_parc_id_Options}
+                    </select>
+ </td> 
+                  <td>Uso&nbsp;</td> 
+                  <td colspan="2">
+                    <select id="Panel1Panel2padrones_parcelas_parcelatipo_parcela_uso_id" name="{tipo_parcela_uso_id_Name}">
+                      <option selected value="">(Todos)</option>
+                      {tipo_parcela_uso_id_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>&nbsp;</td> 
+                  <td>
+                    <div align="center">
+                      Depto 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      Padron&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      Secc. 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      Chac.&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      Qta.&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      Mac.&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      Frac.&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      Parc.&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      Uf/Uc&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      Prd.&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      Rte.&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>Nomenclatura</td> 
+                  <td>
+                    <select id="Panel1Panel2padrones_parcelas_parcelatipo_depto_parc_id" name="{tipo_depto_parc_id_Name}">
+                      <option selected value="">(Todos)</option>
+                      {tipo_depto_parc_id_Options}
+                    </select>
+ </td> 
+                  <td>
+                    <select id="Panel1Panel2padrones_parcelas_parcelatipo_padron_parc_id" name="{tipo_padron_parc_id_Name}">
+                      <option selected value="">(Todos)</option>
+                      {tipo_padron_parc_id_Options}
+                    </select>
+ </td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelapasop_seccion" maxlength="1" size="6" value="{parcela_seccion}" name="{parcela_seccion_Name}"></td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelapasop_chacra" maxlength="15" size="6" value="{parcela_chacra}" name="{parcela_chacra_Name}"></td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelapasop_quinta" maxlength="15" size="6" value="{parcela_quinta}" name="{parcela_quinta_Name}"></td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelapasop_macizo" maxlength="5" size="6" value="{parcela_macizo}" name="{parcela_macizo_Name}"></td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelapasop_fraccion" maxlength="15" size="6" value="{parcela_fraccion}" name="{parcela_fraccion_Name}"></td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelapasop_parcela" title="Buscar por especifica o " maxlength="10" size="10" value="{parcela_parcela}" name="{parcela_parcela_Name}"></td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelapasop_uf" maxlength="15" size="6" value="{parcela_uf}" name="{parcela_uf_Name}"></td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelapasop_predio" maxlength="15" size="6" value="{parcela_predio}" name="{parcela_predio_Name}"></td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelapasop_rte" maxlength="15" size="6" value="{parcela_rte}" name="{parcela_rte_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>Instrumento</td> 
+                  <td colspan="2">
+                    <select id="Panel1Panel2padrones_parcelas_parcelatipo_instrumento_id" name="{tipo_instrumento_id_Name}">
+                      <option selected value="">(Todos)</option>
+                      {tipo_instrumento_id_Options}
+                    </select>
+ <input id="Panel1Panel2padrones_parcelas_parcelapasop_instrumento" maxlength="20" size="10" value="{parcela_instrumento}" name="{parcela_instrumento_Name}"></td> 
+                  <td>Tipo Inmueble&nbsp;&nbsp;</td> 
+                  <td>
+                    <select id="Panel1Panel2padrones_parcelas_parcelatipo_parcela_id" name="{tipo_parcela_id_Name}">
+                      <option selected value="">(Todos)</option>
+                      {tipo_parcela_id_Options}
+                    </select>
+ &nbsp;</td> 
+                  <td colspan="2">Superficie</td> 
+                  <td colspan="5">&nbsp;<strong><font style="BACKGROUND-COLOR: #efefef">&nbsp;Min<input id="Panel1Panel2padrones_parcelas_parcelasup_min" maxlength="20" size="10" value="{sup_min}" name="{sup_min_Name}">&nbsp;Max <input id="Panel1Panel2padrones_parcelas_parcelasup_max" maxlength="20" size="10" value="{sup_max}" name="{sup_max_Name}">
+                    <select id="Panel1Panel2padrones_parcelas_parcelaunidades_medidas_id" name="{unidades_medidas_id_Name}">
+                      <option selected value="">...</option>
+                      {unidades_medidas_id_Options}
+                    </select>
+ </font></strong></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>Restricciones</td> 
+                  <td colspan="11">
+                    <select id="Panel1Panel2padrones_parcelas_parcelatipo_restricc_parcela_id" name="{tipo_restricc_parcela_id_Name}">
+                      <option selected value="">(Todos)</option>
+                      {tipo_restricc_parcela_id_Options}
+                    </select>
+ <input id="Panel1Panel2padrones_parcelas_parcelapasop" type="hidden" value="{pasop}" name="{pasop_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>Observaciones&nbsp;</td> 
+                  <td colspan="11"><textarea id="Panel1Panel2padrones_parcelas_parcelaparcela_observa" style="WIDTH: 100%" rows="1" name="{parcela_observa_Name}">{parcela_observa}</textarea></td>
+                </tr>
+              </table>
+            </div>
+ 
+            <div id="tabs-titulares">
+              <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                <tr class="Controls">
+                  <td>Titular&nbsp;</td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelas_persona_denominacion" maxlength="100" size="50" value="{s_persona_denominacion}" name="{s_persona_denominacion_Name}">&nbsp;</td> 
+                  <td>Tipo de persona </td> 
+                  <td>
+                    <select id="Panel1Panel2padrones_parcelas_parcelas_tipo_persona_id" name="{s_tipo_persona_id_Name}">
+                      <option selected value="">(Todos)</option>
+                      {s_tipo_persona_id_Options}
+                    </select>
+ &nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>Tipo de documento&nbsp;</td> 
+                  <td>
+                    <select id="Panel1Panel2padrones_parcelas_parcelas_tipo_documento_id" name="{s_tipo_documento_id_Name}">
+                      <option selected value="">(Todos)</option>
+                      {s_tipo_documento_id_Options}
+                    </select>
+ </td> 
+                  <td>Nro. de documento&nbsp;</td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelas_persona_nro_doc" maxlength="20" value="{s_persona_nro_doc}" name="{s_persona_nro_doc_Name}">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>CUIT&nbsp;</td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelas_persona_cuit" maxlength="15" size="15" value="{s_persona_cuit}" name="{s_persona_cuit_Name}">&nbsp;</td> 
+                  <td>Instrumento Nro. y tipo&nbsp;</td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelas_persona_parcela_num_int" maxlength="15" size="10" value="{s_persona_parcela_num_int}" name="{s_persona_parcela_num_int_Name}">&nbsp; 
+                    <select id="Panel1Panel2padrones_parcelas_parcelas_tipo_instrumento_id" name="{s_tipo_instrumento_id_Name}">
+                      <option selected value="">(Todos)</option>
+                      {s_tipo_instrumento_id_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>Cónyuge&nbsp;</td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelas_persona_conyuge" maxlength="100" size="50" value="{s_persona_conyuge}" name="{s_persona_conyuge_Name}">&nbsp;</td> 
+                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+            </div>
+ 
+            <div id="tabs-planos">
+              <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                <tr class="Controls">
+                  <td>Nro. plano&nbsp;</td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelas_plano_nro" value="{s_plano_nro}" name="{s_plano_nro_Name}">&nbsp;</td> 
+                  <td>Departamento&nbsp;</td> 
+                  <td>
+                    <select id="Panel1Panel2padrones_parcelas_parcelas_planos_depto" name="{s_planos_depto_Name}">
+                      <option selected value="">(Todos)</option>
+                      {s_planos_depto_Options}
+                    </select>
+ &nbsp;</td> 
+                  <td>Año&nbsp;</td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelas_plano_ano" maxlength="4" size="5" value="{s_plano_ano}" name="{s_plano_ano_Name}">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>Expediente: número</td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelas_plano_e_nro" value="{s_plano_e_nro}" name="{s_plano_e_nro_Name}">&nbsp;</td> 
+                  <td>Expediente: letra&nbsp;</td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelas_plano_e_letra" size="10" value="{s_plano_e_letra}" name="{s_plano_e_letra_Name}">&nbsp;</td> 
+                  <td>Expediente: año&nbsp;</td> 
+                  <td><input id="Panel1Panel2padrones_parcelas_parcelas_plano_e_ano" maxlength="4" size="5" value="{s_plano_e_ano}" name="{s_plano_e_ano_Name}">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>Profesional&nbsp;</td> 
+                  <td>
+                    <select id="Panel1Panel2padrones_parcelas_parcelas_plano_profesional" name="{s_plano_profesional_Name}">
+                      <option selected value="">(Todos)</option>
+                      {s_plano_profesional_Options}
+                    </select>
+ &nbsp;</td> 
+                  <td>Estado del plano&nbsp;</td> 
+                  <td>
+                    <select id="Panel1Panel2padrones_parcelas_parcelas_tipo_estado_plano_id" name="{s_tipo_estado_plano_id_Name}">
+                      <option selected value="">(Todos)</option>
+                      {s_tipo_estado_plano_id_Options}
+                    </select>
+ </td> 
+                  <td>Tipo de plano&nbsp;</td> 
+                  <td>
+                    <select id="Panel1Panel2padrones_parcelas_parcelas_tipo_plano_id" name="{s_tipo_plano_id_Name}">
+                      <option selected value="">(Todos)</option>
+                      {s_tipo_plano_id_Options}
+                    </select>
+ &nbsp;</td>
+                </tr>
+              </table>
+            </div>
+ 
+            <table cellspacing="0" cellpadding="0" width="100%" border="0">
+              <tr class="Bottom">
+                <td align="right">
+                  <div align="center">
+                    <!-- BEGIN Button alta_pura --><input id="Panel1Panel2padrones_parcelas_parcelaalta_pura" class="Button" type="button" value="Alta Pura de Parcela" name="{Button_Name}"><!-- END Button alta_pura -->
+                  </div>
+                </td> 
+                <td align="right">
+                  <!-- BEGIN Button Button_DoSearch --><input tabindex="1" id="Panel1Panel2padrones_parcelas_parcelaButton_DoSearch" class="Button" type="submit" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch -->
+                  <!-- BEGIN Button cancel --><input id="Panel1Panel2padrones_parcelas_parcelacancel" class="Button" type="submit" value="Limpiar" name="{Button_Name}"><!-- END Button cancel -->&nbsp;&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <!-- END Record padrones_parcelas_parcela --><!-- END Panel Panel2 -->
+</div>
+<!-- END Panel Panel1 --><br>
+<div>
+  <!-- BEGIN Grid parcelas_unidades_medidas1 -->
+  <table cellspacing="0" cellpadding="0" width="100%" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <td class="th"><strong>Padrones</strong></td> 
+            <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <tr class="Caption">
+            <th scope="col">
+            <div align="center">
+              <!-- BEGIN Sorter Sorter_parcela_padron --><a href="{Sort_URL}" id="parcelas_unidades_medidas1Sorter_parcela_padron">Partida</a> 
+              <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+              <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_padron -->
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Depto 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Padron 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Seccion 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Chacra 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Quinta 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Macizo 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Fraccion 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              Parcela 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              UF/UC 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              predio 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <div align="center">
+              remanente 
+            </div>
+            </th>
+ 
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_parcela_super_mensura --><a href="{Sort_URL}" id="parcelas_unidades_medidas1Sorter_parcela_super_mensura">Superficie<br>
+            Mensura</a> 
+            <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_super_mensura --></th>
+ 
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_parcela_avaluo --><a href="{Sort_URL}" id="parcelas_unidades_medidas1Sorter_parcela_avaluo">Valuación<br>
+            Tierra</a> 
+            <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_avaluo --></th>
+ 
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_parcela_avaluo1 --><a href="{Sort_URL}" id="parcelas_unidades_medidas1Sorter_parcela_avaluo1">Valuación<br>
+            Mejora</a> 
+            <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_avaluo1 --></th>
+ 
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_parcela_avaluo2 --><a href="{Sort_URL}" id="parcelas_unidades_medidas1Sorter_parcela_avaluo2">Valuación<br>
+            Ampliacion<br>
+            UF/UC</a> 
+            <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_avaluo2 --></th>
+ 
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_parcela_avaluo3 --><a href="{Sort_URL}" id="parcelas_unidades_medidas1Sorter_parcela_avaluo3">Valuación<br>
+            Total</a> 
+            <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_avaluo3 --></th>
+ 
+            <th scope="col">Estado</th>
+ 
+            <th scope="col">Plano&nbsp;</th>
+ 
+            <th scope="col">Titulares&nbsp;</th>
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <tr {parcelas_unidades_medidas1:rowStyle}>
+            <td style="TEXT-ALIGN: right" nowrap>
+              <div class="ui-button-set-container">
+                <div class="ui-button-set">
+<a href="{Link_Edit_Src}" id="parcelas_unidades_medidas1Link_Edit_{parcelas_unidades_medidas1:rowNumber}" class="ui-button-set-main">{Link_Edit}</a><a href="#parcela-popup" class="ui-button-set-drop">+ Opciones</a> 
+                </div>
+ 
+                <div class="ui-button-menu ui-corner-all">
+                  <div class="ui-button-menu-slides">
+                    {plancheta_html} 
+                  </div>
+ 
+                  <ul>
+                    <li><a href="{editar}" title="Editar"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/16x16/accessories-text-editor.gif"></a> 
+                    <li><a href="{direcciones}" title="Direcciones de la Parcela"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/16x16/address-book-new.gif"></a> 
+                    <li><a href="{titularidad}" title="Titularidad"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/16x16/system-users.gif"></a> 
+                    <li><a href="{mejoras}" title="Mejoras"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/16x16/go-home.gif"></a> 
+                    <li><a href="{poligono}" title="Polígono"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/16x16/mActionZoomToSelected.gif"></a> 
+                    <li><a href="{preparar_certificado}" title="Crear Certificado"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/16x16/document-properties.gif"></a> 
+                    <li><a href="{certificado_parcela}" title="Certificado de la Parcela" target="_blank"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/16x16/x-office-document.gif"></a> </li>
+                  </ul>
+                </div>
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                &nbsp;{n1}&nbsp; 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                &nbsp;{n2} 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                &nbsp;{n3} 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                &nbsp;{n4} 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                &nbsp;{n5} 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                &nbsp;{n6} 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                &nbsp;{n7} 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                &nbsp;{n8} 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                &nbsp;{n9} 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                &nbsp;{n10} 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                &nbsp;{n11} 
+              </div>
+            </td> 
+            <td>{parcela_super_mensura}&nbsp;{unidades_medidas_htm}</td> 
+            <td>$ {parcela_val_tierra}</td> 
+            <td>$ {parcela_val_mejora}</td> 
+            <td>$ {parcela_val_ampliac}</td> 
+            <td>$ {parcela_val_total}</td> 
+            <td>{tipo_est_parc_descr}&nbsp;</td> 
+            <td>{plano_nro}&nbsp;</td> 
+            <td><a href="#" class="ui-button-people" data-parcela-id="{parcela_id}">Traer</a> 
+              <div class="placeholder-titulares">
+              </div>
+            </td>
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="20"><font color="#ff0000" size="2">No hay registros según la busqueda</font></td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="Footer">
+            <td colspan="20">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Por pagina: 
+              <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                <option selected value="">-</option>
+ {PageSize_Options}
+              </select>
+ 
+              <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->&nbsp; 
+              <!-- BEGIN Pages -->
+              <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+              <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <!-- END Grid parcelas_unidades_medidas1 -->
+</div>
+<div>
+</div>
+<div>
+  <!-- BEGIN Grid parcelas1 -->
+  <table cellspacing="0" cellpadding="0" width="100%" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <th>Planos</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <tr class="Caption">
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_partida --><a href="{Sort_URL}" id="parcelas1Sorter_parcela_partida">Partida</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_partida --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_seccion --><a href="{Sort_URL}" id="parcelas1Sorter_parcela_seccion">Seccion</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_seccion --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_macizo --><a href="{Sort_URL}" id="parcelas1Sorter_parcela_macizo">Macizo</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_macizo --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_parcela --><a href="{Sort_URL}" id="parcelas1Sorter_parcela_parcela">Parcela</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_parcela --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_chacra --><a href="{Sort_URL}" id="parcelas1Sorter_parcela_chacra">Chacra</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_chacra --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_quinta --><a href="{Sort_URL}" id="parcelas1Sorter_parcela_quinta">Quinta</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_quinta --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_fraccion --><a href="{Sort_URL}" id="parcelas1Sorter_parcela_fraccion">Fraccion</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_fraccion --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_uf --><a href="{Sort_URL}" id="parcelas1Sorter_parcela_uf">Uf</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_uf --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_predio --><a href="{Sort_URL}" id="parcelas1Sorter_parcela_predio">Predio</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_predio --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_rte --><a href="{Sort_URL}" id="parcelas1Sorter_parcela_rte">Rte</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_rte --></th>
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <tr class="Row">
+            <td style="TEXT-ALIGN: right">
+              <div>
+                <!-- Widget menu desplegable -->
+<a href="{Link1_Src}" id="parcelas1Link1_{parcelas1:rowNumber}">{Link1}</a> <a href="#"><button id="rerun">Run last action</button><button id="select">Select an action</button> 
+                <div>
+                </div>
+              </div>
+              {parcela_partida}&nbsp; </a></td> 
+            <td>{parcela_seccion}&nbsp;</td> 
+            <td>{parcela_macizo}&nbsp;</td> 
+            <td>{parcela_parcela}&nbsp;</td> 
+            <td>{parcela_chacra}&nbsp;</td> 
+            <td>{parcela_quinta}&nbsp;</td> 
+            <td>{parcela_fraccion}&nbsp;</td> 
+            <td>{parcela_uf}&nbsp;</td> 
+            <td>{parcela_predio}&nbsp;</td> 
+            <td>{parcela_rte}&nbsp;</td>
+          </tr>
+          </a> <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="10"><font color="#ff0000" size="2">No hay registros según la busqueda</font></td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="Footer">
+            <td colspan="10">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+              <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                <option selected value="">-</option>
+ {PageSize_Options}
+              </select>
+ 
+              <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+              <!-- BEGIN First_Off --><img border="0" src="../Styles/Simple_tdf/Images/FirstOff.gif"><!-- END First_Off -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->
+              <!-- BEGIN Prev_Off --><img border="0" src="../Styles/Simple_tdf/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+              <!-- BEGIN Next_Off --><img border="0" src="../Styles/Simple_tdf/Images/NextOff.gif"><!-- END Next_Off -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On -->
+              <!-- BEGIN Last_Off --><img border="0" src="../Styles/Simple_tdf/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <!-- END Grid parcelas1 -->
+</div>
+{tdf_footer} 
+</body>
+</html>

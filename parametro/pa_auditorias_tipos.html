@@ -1,0 +1,106 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Tipos de Auditoría</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//auditorias_tiposCancel_OnClick @8-44C050C9
+function auditorias_tiposCancel_OnClick()
+{
+    disableValidation = true;
+}
+//End auditorias_tiposCancel_OnClick
+
+//bind_events @1-7AFFFBE0
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("auditorias_tiposCancel", "click", auditorias_tiposCancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<p>&nbsp;</p>
+<!-- BEGIN EditableGrid auditorias_tipos -->
+<form id="auditorias_tipos" method="post" name="{HTMLFormName}" action="{Action}">
+  <input name="FormState" value="{FormState}" type="hidden">{FormScript} 
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td> 
+            <th>Tipos de Auditoría</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="3">{Error}</td> 
+          </tr>
+ <!-- END Error -->
+          <tr class="Caption">
+            <th>Descripción</th>
+ 
+            <th>Abreviacion</th>
+ 
+            <th>Borrar</th>
+ 
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <!-- BEGIN RowError -->
+          <tr class="Error">
+            <td colspan="3">{Error}</td> 
+          </tr>
+ <!-- END RowError -->
+          <tr class="Row">
+            <td><input id="auditorias_tiposaud_tip_descripcion_{auditorias_tipos:rowNumber}" name="{aud_tip_descripcion_Name}" maxlength="45" value="{aud_tip_descripcion}" size="45"></td> 
+            <td><input id="auditorias_tiposaud_tip_abrev_{auditorias_tipos:rowNumber}" name="{aud_tip_abrev_Name}" maxlength="10" value="{aud_tip_abrev}" size="10"></td> 
+            <td>
+              <!-- BEGIN CheckBox CheckBox_Delete --><input id="auditorias_tiposCheckBox_Delete_{auditorias_tipos:rowNumber}" name="{CheckBox_Delete_Name}" value="1" type="checkbox" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete -->&nbsp;</td> 
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="3">No hay registros</td> 
+          </tr>
+ <!-- END NoRecords -->
+          <tr class="Footer">
+            <td style="TEXT-ALIGN: right" colspan="3">
+              <!-- BEGIN Button Button_Submit --><input id="auditorias_tiposButton_Submit" class="Button" name="{Button_Name}" value="Enviar" type="submit"><!-- END Button Button_Submit -->
+              <!-- BEGIN Button Cancel --><input id="auditorias_tiposCancel" class="Button" name="{Button_Name}" value="Cancelar" type="submit"><!-- END Button Cancel --></td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+</form>
+<!-- END EditableGrid auditorias_tipos --><br>
+<p><br>
+<br>
+</p>
+<p>{tdf_footer}</p>
+</body>
+</html>

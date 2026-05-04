@@ -1,0 +1,133 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Editar / agregar afectación</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//afectacionesButton_Delete_OnClick @13-E338E493
+function afectacionesButton_Delete_OnClick()
+{
+    var result = true;
+//End afectacionesButton_Delete_OnClick
+
+//Confirmation Message @14-BED55CD3
+    return confirm('Borrar registro?');
+//End Confirmation Message
+
+//Close afectacionesButton_Delete_OnClick @13-BC33A33A
+    return result;
+}
+//End Close afectacionesButton_Delete_OnClick
+
+//afectacionesButton_Cancel_OnClick @15-07C66A36
+function afectacionesButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End afectacionesButton_Cancel_OnClick
+
+//bind_events @1-2F253B0D
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("footerParcela_bind_events")) footerParcela_bind_events();
+    if (functionExists("headerParcela_bind_events")) headerParcela_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("afectacionesButton_Delete", "click", afectacionesButton_Delete_OnClick);
+    addEventHandler("afectacionesButton_Cancel", "click", afectacionesButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+<br>
+{tdf_header}{tdf_menu}<br>
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+  <tr>
+    <td>{footerParcela}{headerParcela}</td>
+  </tr>
+</table>
+<br>
+<!-- BEGIN Record afectaciones -->
+<form id="afectaciones" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td> 
+            <th>Editar / agregar afectación</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>Plano</th>
+ 
+            <td><strong>{plano}</strong>&nbsp;<a href="{open_plano_busq_Src}" id="afectacionesopen_plano_busq">Buscar plano</a>&nbsp;| <a href="{Link1_Src}" id="afectacionesLink1">Quitar</a><input id="afectacionesplano_id" name="{plano_id_Name}" value="{plano_id}" type="hidden"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Tipo</th>
+ 
+            <td>
+              <select id="afectacionestipo_afectacion_id" name="{tipo_afectacion_id_Name}">
+                <option selected value="">Seleccionar...</option>
+                {tipo_afectacion_id_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Superficie</th>
+ 
+            <td><input id="afectacionesafectacion_superficie" name="{afectacion_superficie_Name}" maxlength="12" value="{afectacion_superficie}" size="12"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Descripción</th>
+ 
+            <td><input id="afectacionesafectacion_descripcion" name="{afectacion_descripcion_Name}" maxlength="250" value="{afectacion_descripcion}" size="50"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Observaciones</th>
+ 
+            <td><textarea id="afectacionesafectacion_observaciones" cols="50" rows="3" name="{afectacion_observaciones_Name}">{afectacion_observaciones}</textarea></td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right">
+              <!-- BEGIN Button Button_Insert --><input id="afectacionesButton_Insert" class="Button" name="{Button_Name}" value="Agregar" type="submit"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input id="afectacionesButton_Update" class="Button" name="{Button_Name}" value="Enviar" type="submit"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button_Delete --><input id="afectacionesButton_Delete" class="Button" name="{Button_Name}" value="Borrar" type="submit"><!-- END Button Button_Delete -->
+              <!-- BEGIN Button Button_Cancel --><input id="afectacionesButton_Cancel" class="Button" name="{Button_Name}" value="Cancelar" type="submit"><!-- END Button Button_Cancel --><input id="afectacionesparcela_id" name="{parcela_id_Name}" value="{parcela_id}" type="hidden"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record afectaciones -->
+{tdf_footer} 
+</body>
+</html>

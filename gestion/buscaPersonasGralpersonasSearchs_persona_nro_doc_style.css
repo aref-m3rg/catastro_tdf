@@ -1,0 +1,21 @@
+/*Page Style @1-141A74E9*/
+#personasSearchs_persona_nro_doc_choices {
+  position: absolute;
+}
+#personasSearchs_persona_nro_doc_choices ul {
+  background-color: white;
+  border: 1px solid black;
+  border-top: none;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 0px;
+}
+#personasSearchs_persona_nro_doc_choices ul li.selected { background-color: #aaa;}
+#personasSearchs_persona_nro_doc_choices li {
+  list-style-type: none;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin: 0;
+}
+/*End Page Style*/
+

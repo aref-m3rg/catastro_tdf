@@ -1,0 +1,1300 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Titulares</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+<meta name="GENERATOR" content="CodeCharge Studio 4.2.00.040">
+<script language="JavaScript" src="../scripts/myFunctions.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-D44FB7F9
+</script>
+<script language="JavaScript" src="../js/pt/prototype.js" type="text/javascript"></script>
+<script language="JavaScript" src="../js/pt/scriptaculous.js" type="text/javascript"></script>
+<script language="JavaScript" src="../js/pt/controls.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="gridPersonasdireccionesnombre_calle_style.css" />
+<link rel="stylesheet" type="text/css" href="gridPersonasdireccionesnombre_barrio_style.css" />
+<script language="JavaScript" type="text/javascript">
+//End Include User Scripts
+
+//Date Picker Object Definitions @1-8F0FB5E0
+
+var personas_DatePicker_persona_parcela_f_int1 = new Object(); 
+personas_DatePicker_persona_parcela_f_int1.format           = "dd/mm/yyyy";
+personas_DatePicker_persona_parcela_f_int1.style            = "Styles/Simple_tdf/Style.css";
+personas_DatePicker_persona_parcela_f_int1.relativePathPart = "../";
+personas_DatePicker_persona_parcela_f_int1.themeVersion = "3.0";
+
+var personas1_DatePicker_persona_fecha_nac = new Object(); 
+personas1_DatePicker_persona_fecha_nac.format           = "dd/mm/yyyy";
+personas1_DatePicker_persona_fecha_nac.style            = "Styles/Simple_tdf/Style.css";
+personas1_DatePicker_persona_fecha_nac.relativePathPart = "../";
+personas1_DatePicker_persona_fecha_nac.themeVersion = "3.0";
+
+var personas1_DatePicker_persona_parcela_f_int1 = new Object(); 
+personas1_DatePicker_persona_parcela_f_int1.format           = "dd/mm/yyyy";
+personas1_DatePicker_persona_parcela_f_int1.style            = "Styles/Simple_tdf/Style.css";
+personas1_DatePicker_persona_parcela_f_int1.relativePathPart = "../";
+personas1_DatePicker_persona_parcela_f_int1.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//personaseditar_OnClick @435-A02F0A5E
+function personaseditar_OnClick()
+{
+    var result = true;
+//End personaseditar_OnClick
+
+//Confirmation Message @481-43E254BA
+    return confirm('ADVERTENCIA: Las modificaciones de los datos personales se afectaran con las parcelas que esten asociadas, desea continuar?');
+//End Confirmation Message
+
+//Close personaseditar_OnClick @435-BC33A33A
+    return result;
+}
+//End Close personaseditar_OnClick
+
+//personaspersona_nombre_OnChange @521-5240E47F
+function personaspersona_nombre_OnChange()
+{
+    var result = true;
+//End personaspersona_nombre_OnChange
+
+//Custom Code @524-2A29BDB7
+    // -------------------------
+    aMayusculas(this);
+    // -------------------------
+//End Custom Code
+
+//Close personaspersona_nombre_OnChange @521-BC33A33A
+    return result;
+}
+//End Close personaspersona_nombre_OnChange
+
+//personaspersona_apellido_OnChange @522-ECEB8C07
+function personaspersona_apellido_OnChange()
+{
+    var result = true;
+//End personaspersona_apellido_OnChange
+
+//Custom Code @523-2A29BDB7
+    // -------------------------
+    aMayusculas(this);
+    // -------------------------
+//End Custom Code
+
+//Close personaspersona_apellido_OnChange @522-BC33A33A
+    return result;
+}
+//End Close personaspersona_apellido_OnChange
+
+//personaspersona_conyuge_OnChange @201-C6A71118
+function personaspersona_conyuge_OnChange()
+{
+    var result = true;
+//End personaspersona_conyuge_OnChange
+
+//Custom Code @408-2A29BDB7
+    // -------------------------
+        aMayusculas(this);
+    // -------------------------
+//End Custom Code
+
+//Close personaspersona_conyuge_OnChange @201-BC33A33A
+    return result;
+}
+//End Close personaspersona_conyuge_OnChange
+
+//personaseliminar_OnClick @695-1FB985CF
+function personaseliminar_OnClick()
+{
+    var result = true;
+//End personaseliminar_OnClick
+
+//Confirmation Message @696-86427CFE
+    return confirm('Esta seguro que desea ELIMINAR esta relacion?');
+//End Confirmation Message
+
+//Close personaseliminar_OnClick @695-BC33A33A
+    return result;
+}
+//End Close personaseliminar_OnClick
+
+//personas_OnLoad @189-1868C317
+function personas_OnLoad(form)
+{
+    var result = true;
+//End personas_OnLoad
+
+//Custom Code @434-2A29BDB7
+
+    // -------------------------
+    document.getElementById("personastipo_persona_id").disabled  = true;
+    document.getElementById("personastipo_documento_id").disabled = true;
+    document.getElementById("personaspersona_nro_doc").disabled = true;
+    document.getElementById("personaspersona_apellido").disabled = true;
+    document.getElementById("personaspersona_nombre").disabled = true;
+    document.getElementById("personaspersona_fecha_nac").disabled = true;
+    document.getElementById("personaspersona_tel_movil").disabled = true;
+    document.getElementById("personaspersona_cuit").disabled = true;
+    document.getElementById("personaspersona_conyuge").disabled = true;
+    document.getElementById("personaspais_id").disabled = true;
+    document.getElementById("personaspersona_email").disabled = true;
+    document.getElementById("personastipo_perso_jur_id").disabled = true;
+    // -------------------------
+
+//End Custom Code
+
+//Close personas_OnLoad @189-BC33A33A
+    return result;
+}
+//End Close personas_OnLoad
+
+//direccionesButton_Delete_OnClick @329-2EA22ED1
+function direccionesButton_Delete_OnClick()
+{
+    var result = true;
+//End direccionesButton_Delete_OnClick
+
+//Confirmation Message @330-BED55CD3
+    return confirm('Borrar registro?');
+//End Confirmation Message
+
+//Close direccionesButton_Delete_OnClick @329-BC33A33A
+    return result;
+}
+//End Close direccionesButton_Delete_OnClick
+
+//direccionesnombre_calle_OnChange @596-E8C27463
+function direccionesnombre_calle_OnChange()
+{
+    var result = true;
+//End direccionesnombre_calle_OnChange
+
+//Custom Code @603-2A29BDB7
+    // -------------------------
+    aMayusculas(this);
+    // -------------------------
+//End Custom Code
+
+//Close direccionesnombre_calle_OnChange @596-BC33A33A
+    return result;
+}
+//End Close direccionesnombre_calle_OnChange
+
+//direccionesnombre_barrio_OnChange @597-14E240E3
+function direccionesnombre_barrio_OnChange()
+{
+    var result = true;
+//End direccionesnombre_barrio_OnChange
+
+//Custom Code @604-2A29BDB7
+    // -------------------------
+    aMayusculas(this);
+    // -------------------------
+//End Custom Code
+
+//Close direccionesnombre_barrio_OnChange @597-BC33A33A
+    return result;
+}
+//End Close direccionesnombre_barrio_OnChange
+
+//personas1Button_Insert_OnClick @438-0547FB0D
+function personas1Button_Insert_OnClick()
+{
+    var result = true;
+//End personas1Button_Insert_OnClick
+
+//Confirmation Message @484-1852EEB4
+    return confirm('Desea agregar esta persona a la parcela?');
+//End Confirmation Message
+
+//Close personas1Button_Insert_OnClick @438-BC33A33A
+    return result;
+}
+//End Close personas1Button_Insert_OnClick
+
+//personas1persona_apellido_OnChange @516-F343D009
+function personas1persona_apellido_OnChange()
+{
+    var result = true;
+//End personas1persona_apellido_OnChange
+
+//Custom Code @518-2A29BDB7
+    // -------------------------
+    aMayusculas(this);
+    // -------------------------
+//End Custom Code
+
+//Close personas1persona_apellido_OnChange @516-BC33A33A
+    return result;
+}
+//End Close personas1persona_apellido_OnChange
+
+//personas1persona_nombre_OnChange @517-8A47B2B9
+function personas1persona_nombre_OnChange()
+{
+    var result = true;
+//End personas1persona_nombre_OnChange
+
+//Custom Code @519-2A29BDB7
+    // -------------------------
+    aMayusculas(this);
+    // -------------------------
+//End Custom Code
+
+//Close personas1persona_nombre_OnChange @517-BC33A33A
+    return result;
+}
+//End Close personas1persona_nombre_OnChange
+
+//personas1persona_conyuge_OnChange @451-B47871CB
+function personas1persona_conyuge_OnChange()
+{
+    var result = true;
+//End personas1persona_conyuge_OnChange
+
+//Custom Code @452-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        aMayusculas(this);
+    // -------------------------
+//End Custom Code
+
+//Close personas1persona_conyuge_OnChange @451-BC33A33A
+    return result;
+}
+//End Close personas1persona_conyuge_OnChange
+
+//personas1_OnLoad @437-BE452421
+function personas1_OnLoad(form)
+{
+    var result = true;
+//End personas1_OnLoad
+
+//Custom Code @594-2A29BDB7
+
+
+    // -------------------------
+                document.getElementById("personas1tipo_persona_id").disabled = true;
+                document.getElementById("personas1tipo_documento_id").disabled = true;
+                document.getElementById("personas1persona_nro_doc").disabled = true;
+                document.getElementById("personas1persona_apellido").disabled = true;
+                document.getElementById("personas1persona_nombre").disabled = true;
+                document.getElementById("personas1persona_fecha_nac").disabled = true;
+                document.getElementById("personas1persona_tel_movil").disabled = true;
+                document.getElementById("personas1persona_cuit").disabled = true;
+                document.getElementById("personas1persona_conyuge").disabled = true;
+                document.getElementById("personas1pais_id").disabled = true;
+                document.getElementById("personas1persona_email").disabled = true;
+    // -------------------------
+
+//End Custom Code
+
+//Close personas1_OnLoad @437-BC33A33A
+    return result;
+}
+//End Close personas1_OnLoad
+
+//personasButton_Cancel_OnClick @194-05A1F32B
+function personasButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End personasButton_Cancel_OnClick
+
+//direccionesButton_Cancel_OnClick @331-FA0A3E50
+function direccionesButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End direccionesButton_Cancel_OnClick
+
+//personas1Button_Cancel_OnClick @442-217BFF16
+function personas1Button_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End personas1Button_Cancel_OnClick
+
+//personas1buscarpersona_OnClick @469-4F6D2C81
+function personas1buscarpersona_OnClick()
+{
+    disableValidation = true;
+}
+//End personas1buscarpersona_OnClick
+
+//personas1quitar_OnClick @540-18E25167
+function personas1quitar_OnClick()
+{
+    disableValidation = true;
+}
+//End personas1quitar_OnClick
+
+//Initialize direccionesnombre_callePTAutocomplete1 @600-DB0F5910
+function direccionesnombre_callePTAutocomplete1_start() {
+    if ($("direccionesnombre_calle"))
+        new Ajax.Autocompleter("direccionesnombre_calle", "direccionesnombre_calle_choices", "../services/gestion_gridPersonas_direcciones_nombre_calle_PTAutocomplete1.php", {});
+}
+//End Initialize direccionesnombre_callePTAutocomplete1
+
+//Initialize direccionesnombre_barrioPTAutocomplete2 @602-E8094E60
+function direccionesnombre_barrioPTAutocomplete2_start() {
+    if ($("direccionesnombre_barrio"))
+        new Ajax.Autocompleter("direccionesnombre_barrio", "direccionesnombre_barrio_choices", "../services/gestion_gridPersonas_direcciones_nombre_barrio_PTAutocomplete1.php", {});
+}
+//End Initialize direccionesnombre_barrioPTAutocomplete2
+
+//bind_events @1-6693E757
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("footerParcela_bind_events")) footerParcela_bind_events();
+    if (functionExists("headerParcela_bind_events")) headerParcela_bind_events();
+    direccionesnombre_callePTAutocomplete1_start();
+    direccionesnombre_barrioPTAutocomplete2_start();
+    addEventHandler("personaseditar", "click", personaseditar_OnClick);
+    addEventHandler("personaspersona_nombre", "change", personaspersona_nombre_OnChange);
+    addEventHandler("personaspersona_apellido", "change", personaspersona_apellido_OnChange);
+    addEventHandler("personaspersona_conyuge", "change", personaspersona_conyuge_OnChange);
+    addEventHandler("personaseliminar", "click", personaseliminar_OnClick);
+    addEventHandler("personas", "load", personas_OnLoad);
+    addEventHandler("direccionesButton_Delete", "click", direccionesButton_Delete_OnClick);
+    addEventHandler("direccionesnombre_calle", "change", direccionesnombre_calle_OnChange);
+    addEventHandler("direccionesnombre_barrio", "change", direccionesnombre_barrio_OnChange);
+    addEventHandler("personas1Button_Insert", "click", personas1Button_Insert_OnClick);
+    addEventHandler("personas1persona_apellido", "change", personas1persona_apellido_OnChange);
+    addEventHandler("personas1persona_nombre", "change", personas1persona_nombre_OnChange);
+    addEventHandler("personas1persona_conyuge", "change", personas1persona_conyuge_OnChange);
+    addEventHandler("personas1", "load", personas1_OnLoad);
+    addEventHandler("personasButton_Cancel", "click", personasButton_Cancel_OnClick);
+    addEventHandler("direccionesButton_Cancel", "click", direccionesButton_Cancel_OnClick);
+    addEventHandler("personas1Button_Cancel", "click", personas1Button_Cancel_OnClick);
+    addEventHandler("personas1buscarpersona", "click", personas1buscarpersona_OnClick);
+    addEventHandler("personas1quitar", "click", personas1quitar_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="{page:pathToRoot}Styles/Simple_tdf/Style_doctype.css" />
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css" />
+</head>
+<body class="soria">
+{tdf_header}{tdf_menu} 
+<!-- Scripts -->
+<script type="text/javascript">
+
+  /* FUNCIONES */  
+
+  function aMayusculas(ctrl){
+    ctrl.value = ctrl.value.toUpperCase()
+  }
+
+
+
+  jQuery(document).ready(function($) {
+
+    /* EVENTOS */
+
+    // Evento que muestra u oculta el campo de tipo de pers. jurid.
+
+    jQuery('#personas1tipo_persona_id').change( function() {
+
+      valor = jQuery(this).val();
+
+      if ( valor == 1 || valor == '' ) {
+        jQuery('#tipo-pers-jurid').hide('fast');
+      } else if ( valor == 2) {
+        jQuery('#tipo-pers-jurid').show('fast');
+      }
+
+    });    
+
+
+
+    /* GENERAL */
+
+    // De acuerdo al valor del tipo de pers. oculta o muestra el campo de tipo
+
+    personaTipoId = jQuery('#personas1tipo_persona_id').val();
+
+    if ( personaTipoId == 1 || personaTipoId == '' ) {
+      jQuery('#tipo-pers-jurid').hide();
+    } else if ( personaTipoId == 2) {
+      jQuery('#tipo-pers-jurid').show();
+    }
+    
+  });
+
+</script>
+<!-- end: Scripts -->
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tr>
+    <td>{footerParcela}{headerParcela}</td> 
+  </tr>
+ 
+  <tr>
+    <td>
+      <!-- BEGIN EditableGrid personas_personas_parcela -->
+      <form id="personas_personas_parcela" name="{HTMLFormName}" action="{Action}" method="post">
+        <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
+        <table cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                  <td class="th">
+                    <div align="center">
+                      Personas relacionadas a la parcela 
+                    </div>
+ </td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                </tr>
+ 
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Row">
+                  <td colspan="10"><strong>Personas: </strong>{Label1}</td> 
+                  <td colspan="3">
+                    <div align="right">
+                      <!-- BEGIN Panel panel_add --><a href="{ImageLink3}" id="personas_personas_parcelapanel_addImageLink3_{personas_personas_parcela:rowNumber}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt="{ImageLink3}" src="../iconos/16x16/list-add.gif"><b>Agregar Persona</b></a><!-- END Panel panel_add -->
+                    </div>
+ </td> 
+                </tr>
+ 
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="13"><font size="2">{Error}</font></td> 
+                </tr>
+ <!-- END Error -->
+                <tr class="Caption">
+                  <th scope="col">&nbsp;</th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Figura 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Persona 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Tipo 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Apellido y Nombre 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Documento 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    CUIT 
+                  </div>
+ </th>
+ 
+                  <th scope="col">Instrumento&nbsp;</th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    <b>%</b> Dom 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Estado 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Principal 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Editar&nbsp; 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Direcciones&nbsp; 
+                  </div>
+ </th>
+ 
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <!-- BEGIN RowError -->
+                <tr class="Error">
+                  <td colspan="13"><font size="2">{Error}</font></td> 
+                </tr>
+ <!-- END RowError -->
+                <tr {personas_personas_parcela:rowStyle}>
+                  <td><div align="center"><!-- BEGIN ImageLink este --><a href="{este}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" src="../iconos/16x16/go-next.gif"></a><!-- END ImageLink este -->&nbsp;</div></td> 
+                  <td>{tipo_persona_parcela_descrip}&nbsp;</td> 
+                  <td>{tipo_persona_descrip}&nbsp;</td> 
+                  <td>{tipo_perso_jur_abrev}&nbsp;</td> 
+                  <td>{persona_denominacion}&nbsp;</td> 
+                  <td>{tipo_documento_abrev}:{persona_nro_doc}</td> 
+                  <td>{persona_cuit}&nbsp;</td> 
+                  <td>{instrumento}&nbsp;</td> 
+                  <td><div align="right">{persona_parcela_dominio}&nbsp;</div></td> 
+                  <td><label for="personas_personas_parcelapersonas_parcelas_tipo_estado_id_{personas_personas_parcela:rowNumber}" style="display: none;">&nbsp;</label> {tipo_estado_descrip}<input id="personas_personas_parcelapersonas_parcelas_tipo_estado_id_{personas_personas_parcela:rowNumber}" type="hidden" value="{personas_parcelas_tipo_estado_id}" name="{personas_parcelas_tipo_estado_id_Name}"></td> 
+                  <td><div align="center"><input id="personas_personas_parcelapersona_parcela_id_{personas_personas_parcela:rowNumber}" type="hidden" value="{persona_parcela_id}" name="{persona_parcela_id_Name}">
+                      <!-- BEGIN CheckBox ppal --><input id="personas_personas_parcelappal" type="checkbox" value="1" name="{ppal_Name}" {ppal}><!-- END CheckBox ppal -->&nbsp;</div></td> 
+                  <td><div align="center">&nbsp;<!-- BEGIN ImageLink ImageLink1 --><a href="{ImageLink1}" id="personas_personas_parcelaImageLink1_{personas_personas_parcela:rowNumber}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt="{ImageLink1}" src="../iconos/16x16/accessories-text-editor.gif"></a><!-- END ImageLink ImageLink1 -->
+                    </div></td> 
+                  <td><div align="center">&nbsp;<!-- BEGIN ImageLink ImageLink2 --><a href="{ImageLink2}" id="personas_personas_parcelaImageLink2_{personas_personas_parcela:rowNumber}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt="{ImageLink2}" src="../iconos/16x16/address-book-new.gif"></a><!-- END ImageLink ImageLink2 -->
+                    </div></td> 
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="13"><font color="#ff0000" size="2"><strong>No hay personas relacionadas a la parcela</strong></font></td> 
+                </tr>
+ <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td style="TEXT-ALIGN: right" colspan="6">
+                    <div align="center">
+                      <!-- BEGIN Navigator Navigator -->
+                      <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Por pagina: 
+                      <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                        <option value="" selected>-</option>
+ {PageSize_Options} 
+                      </select>
+ 
+                      <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/Simple_tdf/Images/First.gif" border="0"></a> <!-- END First_On -->
+                      <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/Simple_tdf/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->&nbsp; 
+                      <!-- BEGIN Pages -->
+                      <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                      <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages} 
+                      <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/Simple_tdf/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                      <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/Simple_tdf/Images/Last.gif" border="0"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp; 
+                    </div>
+ </td> 
+                  <td>&nbsp;</td> 
+                  <td>&nbsp;<strong>Total % Dom:</strong></td> 
+                  <td>
+                    <p align="right">&nbsp;{total_dom}</p>
+ </td> 
+                  <td>&nbsp;</td> 
+                  <td colspan="3">
+                    <div align="center">
+                      <!-- BEGIN Button Button_Submit --><input class="Button" id="personas_personas_parcelaButton_Submit" type="submit" alt="Enviar" value="Actualizar " name="{Button_Name}"><!-- END Button Button_Submit -->
+                    </div>
+ </td> 
+                </tr>
+ 
+              </table>
+ </td> 
+          </tr>
+ 
+        </table>
+ 
+      </form>
+ <!-- END EditableGrid personas_personas_parcela --></td> 
+  </tr>
+ 
+  <tr>
+    <td>
+      <!-- BEGIN Record personas -->
+      <form id="personas" name="{HTMLFormName}" action="{Action}" method="post">
+        <table cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                  <td class="th">
+                    <div align="center">
+                      <strong>{persona}</strong> 
+                    </div>
+ </td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                </tr>
+ 
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="4"><strong><font size="2">{Error}</font></strong></td> 
+                </tr>
+ <!-- END Error -->
+                <tr class="Caption">
+                  <td class="th" colspan="4">
+                    <div align="center">
+                      Datos de la Persona 
+                    </div>
+ </td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="personastipo_persona_id">Tipo de Persona&nbsp;<font color="#ff0000">*</font></label></td> 
+                  <td>
+                    <select id="personastipo_persona_id" name="{tipo_persona_id_Name}">
+                      <option value="" selected>...</option>
+ {tipo_persona_id_Options} 
+                    </select>
+ </td> 
+                  <td>&nbsp;</td> 
+                  <td class="th">&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="personaspersona_nro_doc">Documento Tipo y Nro.</label></td> 
+                  <td>
+                    <select id="personastipo_documento_id" name="{tipo_documento_id_Name}">
+                      <option value="" selected>...</option>
+ {tipo_documento_id_Options} 
+                    </select>
+ &nbsp;<input id="personaspersona_nro_doc" maxlength="20" value="{persona_nro_doc}" name="{persona_nro_doc_Name}" size="20"></td> 
+                  <td class="th">CUIT</td> 
+                  <td><input id="personaspersona_cuit" maxlength="15" size="15" value="{persona_cuit}" name="{persona_cuit_Name}">&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Apellido / Razón Social&nbsp;&nbsp;<font color="#ff0000">*</font></td> 
+                  <td><input id="personaspersona_apellido" size="30" value="{persona_apellido}" name="{persona_apellido_Name}">&nbsp;</td> 
+                  <td class="th">Nombre&nbsp;&nbsp;<font color="#ff0000">*</font></td> 
+                  <td class="th"><input id="personaspersona_nombre" size="30" value="{persona_nombre}" name="{persona_nombre_Name}">&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Tipo de Pers. Jurídica&nbsp;&nbsp;</td> 
+                  <td>
+                    <select id="personastipo_perso_jur_id" name="{tipo_perso_jur_id_Name}">
+                      <option value="" selected>Seleccionar...</option>
+ {tipo_perso_jur_id_Options} 
+                    </select>
+ </td> 
+                  <td class="th">Pers. Responsable &nbsp;</td> 
+                  <td class="th">{persona_relacionada}&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="personaspersona_denominacion"><font style="BACKGROUND-COLOR: #efefef">Conyuge</font></label></td> 
+                  <td><input id="personaspersona_conyuge" maxlength="100" size="30" value="{persona_conyuge}" name="{persona_conyuge_Name}"><input id="personaspersona_denominacion" type="hidden" value="{persona_denominacion}" name="{persona_denominacion_Name}"></td> 
+                  <td class="th">&nbsp;</td> 
+                  <td class="th">&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="personaspersona_fecha_nac">Fecha Nac&nbsp;</label></td> 
+                  <td><input id="personaspersona_fecha_nac" maxlength="100" size="8" value="{persona_fecha_nac}" name="{persona_fecha_nac_Name}"></td> 
+                  <td class="th">Nacionalidad</td> 
+                  <td class="th">
+                    <select id="personaspais_id" name="{pais_id_Name}">
+                      <option value="" selected>...</option>
+ {pais_id_Options} 
+                    </select>
+ &nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="personaspersona_tel_movil">Tel Movil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td> 
+                  <td><input id="personaspersona_tel_movil" maxlength="20" value="{persona_tel_movil}" name="{persona_tel_movil_Name}" size="20"></td> 
+                  <td class="th">Email</td> 
+                  <td class="th"><input id="personaspersona_email" maxlength="40" size="40" value="{persona_email}" name="{persona_email_Name}"><a href="mailto:{persona_email}"><img src="../iconos/16x16/internet-mail.gif" border="0"></a></td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="4">
+                    <div align="center">
+                      &nbsp; 
+                      <!-- BEGIN Button editar --><input class="Button" id="personaseditar" type="submit" alt="Button1" value="Editar Datos Personales" name="{Button_Name}"><!-- END Button editar -->
+                    </div>
+ </td> 
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="4">
+                    <div align="center">
+                      Datos de la Posesión 
+                    </div>
+ </td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Figura&nbsp;<font color="#ff0000">*</font></td> 
+                  <td>
+                    <select id="personastipo_persona_parcela_id" name="{tipo_persona_parcela_id_Name}">
+                      <option value="" selected>...</option>
+ {tipo_persona_parcela_id_Options} 
+                    </select>
+ </td> 
+                  <td class="th">% Dominio</td> 
+                  <td class="th"><input id="personaspersona_parcela_dominio" maxlength="10" size="10" value="{persona_parcela_dominio}" name="{persona_parcela_dominio_Name}">%</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Nro y Tipo de Instrumento&nbsp;<font color="#ff0000">*</font></td> 
+                  <td>
+                    <select id="personastipo_instrumento_id" style="WIDTH: 200px" name="{tipo_instrumento_id_Name}">
+                      <option value="" selected>...</option>
+ {tipo_instrumento_id_Options} 
+                    </select>
+ <input id="personaspersona_parcela_num_int" maxlength="32" size="18" value="{persona_parcela_num_int}" name="{persona_parcela_num_int_Name}"><input id="personaspersona_parcela_origen" type="hidden" value="{persona_parcela_origen}" name="{persona_parcela_origen_Name}">&nbsp;</td> 
+                  <td class="th">Fecha</td> 
+                  <td><input id="personaspersona_parcela_f_int" maxlength="10" size="9" value="{persona_parcela_f_int}" name="{persona_parcela_f_int_Name}">
+                    <!-- BEGIN DatePicker DatePicker_persona_parcela_f_int1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="personasDatePicker_persona_parcela_f_int1"><img id="personasDatePicker_persona_parcela_f_int1_Image" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_persona_parcela_f_int1 --><input id="personaspersona_id" type="hidden" value="{persona_id}" name="{persona_id_Name}">&nbsp;&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Estado&nbsp;&nbsp;</td> 
+                  <td>
+                    <select id="personastipo_estado_id" name="{tipo_estado_id_Name}">
+                      <option value="" selected>...</option>
+ {tipo_estado_id_Options} 
+                    </select>
+ </td> 
+                  <td class="th">&nbsp;</td> 
+                  <td>&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td align="right" colspan="4"><font color="#ff0000"><strong>* Campos necesarios</strong></font><input id="personasaudit_string" type="hidden" value="{audit_string}" name="{audit_string_Name}"><input id="personaspersona_parcela_f_pro" type="hidden" value="{persona_parcela_f_pro}" name="{persona_parcela_f_pro_Name}">&nbsp; 
+                    <!-- BEGIN Button Button_Update --><input class="Button" id="personasButton_Update" type="submit" alt="Enviar" value="Actualizar Datos" name="{Button_Name}"><!-- END Button Button_Update -->&nbsp; 
+                    <!-- BEGIN Button eliminar --><input class="Button" id="personaseliminar" type="submit" value="Eliminar" name="{Button_Name}"><!-- END Button eliminar -->
+                    <!-- BEGIN Button Button_Cancel --><input class="Button" id="personasButton_Cancel" type="submit" alt="Cancelar" value="Salir" name="{Button_Name}"><!-- END Button Button_Cancel --></td> 
+                </tr>
+ 
+              </table>
+ </td> 
+          </tr>
+ 
+        </table>
+ 
+      </form>
+ <!-- END Record personas -->
+      <!-- BEGIN Record personas1 -->
+      <form id="personas1" name="{HTMLFormName}" action="{Action}" method="post">
+        <table cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                  <td class="th">
+                    <div align="center">
+                      Nueva Persona 
+                    </div>
+ </td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                </tr>
+ 
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="4"><font size="2"><strong>{Error}</strong></font></td> 
+                </tr>
+ <!-- END Error -->
+                <tr class="Caption">
+                  <td class="th" colspan="4">
+                    <div align="center">
+                      Datos de la Persona 
+                    </div>
+ </td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="4">
+                    <div align="center">
+                      <input id="personas1person_id" type="hidden" value="{person_id}" name="{person_id_Name}">{Label1} 
+                      <!-- BEGIN Button buscarpersona --><input class="Button" id="personas1buscarpersona" type="submit" alt="Button1" value="Buscar Persona" name="{Button_Name}"><!-- END Button buscarpersona -->
+                      <!-- BEGIN Button quitar --><input class="Button" id="personas1quitar" type="submit" value="Quitar Persona" name="{Button_Name}"><!-- END Button quitar -->{Label2} 
+                    </div>
+ </td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="personas1tipo_persona_id">Tipo de Persona&nbsp;<font color="#ff0000">*</font></label></td> 
+                  <td>
+                    <select id="personas1tipo_persona_id" name="{tipo_persona_id_Name}">
+                      <option value="" selected>...</option>
+ {tipo_persona_id_Options} 
+                    </select>
+ </td> 
+                  <td>&nbsp;</td> 
+                  <td class="th">&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="personas1persona_nro_doc">Documento Tipo y Nro.</label></td> 
+                  <td>
+                    <select id="personas1tipo_documento_id" name="{tipo_documento_id_Name}">
+                      <option value="" selected>...</option>
+ {tipo_documento_id_Options} 
+                    </select>
+ &nbsp;<input id="personas1persona_nro_doc" maxlength="20" value="{persona_nro_doc}" name="{persona_nro_doc_Name}" size="20"></td> 
+                  <td class="th">CUIT </td> 
+                  <td><input id="personas1persona_cuit" maxlength="15" size="15" value="{persona_cuit}" name="{persona_cuit_Name}">&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Apellido / Razón Social&nbsp;<font color="#ff0000">*</font>&nbsp;</td> 
+                  <td><input id="personas1persona_apellido" size="30" value="{persona_apellido}" name="{persona_apellido_Name}">&nbsp;</td> 
+                  <td class="th">Nombre&nbsp;<font color="#ff0000">*</font>&nbsp;</td> 
+                  <td class="th"><input id="personas1persona_nombre" size="30" value="{persona_nombre}" name="{persona_nombre_Name}">&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls" id="tipo-pers-jurid">
+                  <td class="th">Tipo de Pers. Jurídica&nbsp;</td> 
+                  <td>
+                    <select id="personas1tipo_perso_jur_id" name="{tipo_perso_jur_id_Name}">
+                      <option value="" selected>Seleccionar...</option>
+ {tipo_perso_jur_id_Options} 
+                    </select>
+ </td> 
+                  <td class="th">Pers. Responsable&nbsp;</td> 
+                  <td class="th">{persona_relacionada}&nbsp; 
+                    <!-- BEGIN ImageLink add_persona --><a href="{add_persona}" style="VERTICAL-ALIGN: middle"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" src="../iconos/16x16/list-add.gif"></a><!-- END ImageLink add_persona -->&nbsp; 
+                    <!-- BEGIN ImageLink remove_persona --><a href="{remove_persona}" style="VERTICAL-ALIGN: middle"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" src="../iconos/16x16/list-remove.gif"></a><!-- END ImageLink remove_persona -->&nbsp;<input id="personaspersona_relacionada_id" type="hidden" value="{persona_relacionada_id}" name="{persona_relacionada_id_Name}"></td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="personas1persona_denominacion"><font style="BACKGROUND-COLOR: #efefef">Conyuge</font></label></td> 
+                  <td><input id="personas1persona_conyuge" maxlength="100" size="30" value="{persona_conyuge}" name="{persona_conyuge_Name}"><input id="personas1persona_denominacion" type="hidden" value="{persona_denominacion}" name="{persona_denominacion_Name}"></td> 
+                  <td class="th">&nbsp;</td> 
+                  <td class="th">&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="personas1persona_fecha_nac">Fecha Nac&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td> 
+                  <td><input id="personas1persona_fecha_nac" maxlength="10" size="8" value="{persona_fecha_nac}" name="{persona_fecha_nac_Name}">
+                    <!-- BEGIN DatePicker DatePicker_persona_fecha_nac --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="personas1DatePicker_persona_fecha_nac"><img id="personas1DatePicker_persona_fecha_nac_Image" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_persona_fecha_nac --></td> 
+                  <td class="th">Nacionalidad</td> 
+                  <td class="th">
+                    <select id="personas1pais_id" name="{pais_id_Name}">
+                      <option value="" selected>...</option>
+ {pais_id_Options} 
+                    </select>
+ &nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="personas1persona_tel_movil">Tel Movil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td> 
+                  <td><input id="personas1persona_tel_movil" maxlength="20" value="{persona_tel_movil}" name="{persona_tel_movil_Name}" size="20"></td> 
+                  <td class="th">Email</td> 
+                  <td class="th"><input id="personas1persona_email" maxlength="40" size="40" value="{persona_email}" name="{persona_email_Name}"><a href="mailto:{persona_email}"><img src="../iconos/16x16/internet-mail.gif" border="0"></a></td> 
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="4">
+                    <div align="center">
+                      Datos de la Posesión 
+                    </div>
+ </td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Figura&nbsp;<font color="#ff0000">*</font></td> 
+                  <td>
+                    <select id="personas1tipo_persona_parcela_id" name="{tipo_persona_parcela_id_Name}">
+                      <option value="" selected>...</option>
+ {tipo_persona_parcela_id_Options} 
+                    </select>
+ </td> 
+                  <td class="th">% Dominio</td> 
+                  <td class="th"><input id="personas1persona_parcela_dominio" maxlength="10" size="10" value="{persona_parcela_dominio}" name="{persona_parcela_dominio_Name}">% </td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Nro y Tipo de Instrumento&nbsp;<font color="#ff0000">*</font></td> 
+                  <td>
+                    <select id="personas1tipo_instrumento_id" style="WIDTH: 200px" name="{tipo_instrumento_id_Name}">
+                      <option value="" selected>...</option>
+ {tipo_instrumento_id_Options} 
+                    </select>
+ <input id="personas1persona_parcela_num_int" maxlength="32" size="18" value="{persona_parcela_num_int}" name="{persona_parcela_num_int_Name}"><input id="personas1persona_parcela_origen" type="hidden" value="{persona_parcela_origen}" name="{persona_parcela_origen_Name}">&nbsp; </td> 
+                  <td class="th">Fecha </td> 
+                  <td><input id="personas1persona_parcela_f_int" maxlength="10" size="10" value="{persona_parcela_f_int}" name="{persona_parcela_f_int_Name}">
+                    <!-- BEGIN DatePicker DatePicker_persona_parcela_f_int1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="personas1DatePicker_persona_parcela_f_int1"><img id="personas1DatePicker_persona_parcela_f_int1_Image" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_persona_parcela_f_int1 --></td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Estado&nbsp;</td> 
+                  <td>
+                    <select id="personas1tipo_estado_id" name="{tipo_estado_id_Name}">
+                      <option value="" selected>...</option>
+ {tipo_estado_id_Options} 
+                    </select>
+ &nbsp;</td> 
+                  <td class="th">&nbsp;</td> 
+                  <td>&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td align="right" colspan="4"><font color="#ff0000"><strong>* Campos necesarios</strong></font><input id="personas1audit_string" type="hidden" value="{audit_string}" name="{audit_string_Name}"><input id="personas1persona_f_proce" type="hidden" value="{persona_f_proce}" name="{persona_f_proce_Name}">
+                    <!-- BEGIN Button Button_Insert --><input class="Button" id="personas1Button_Insert" type="submit" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Cancel --><input class="Button" id="personas1Button_Cancel" type="submit" alt="Cancelar" value="Salir" name="{Button_Name}"><!-- END Button Button_Cancel --></td> 
+                </tr>
+ 
+              </table>
+ </td> 
+          </tr>
+ 
+        </table>
+ 
+      </form>
+ <!-- END Record personas1 --></td> 
+  </tr>
+ 
+  <tr>
+    <td>
+      <!-- BEGIN EditableGrid domicilios -->
+      <form id="domicilios" name="{HTMLFormName}" action="{Action}" method="post">
+        <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
+        <table cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                  <td class="th">
+                    <div align="center">
+                      <strong>Domicilios de {persona}</strong> 
+                    </div>
+ </td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                </tr>
+ 
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Row">
+                  <td colspan="8">Direcciones: {Label1}</td> 
+                  <td colspan="3">
+                    <!-- BEGIN Panel panel -->
+                    <p align="right"><a href="{addDp}" id="domiciliospaneladdDp_{d_postal:rowNumber}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt="{addDp}" src="../iconos/16x16/list-add.gif">Nueva Direccion&nbsp;</a></p>
+ <!-- END Panel panel --></td> 
+                </tr>
+ 
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="11"><font size="2">{Error}</font></td> 
+                </tr>
+ <!-- END Error -->
+                <tr class="Caption">
+                  <th scope="col">
+                  <div align="center">
+                    Tipo 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Calle 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Barrio 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Piso 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Dpto 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Mzna&nbsp; 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Casa&nbsp; 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Localidad&nbsp; 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Departamento&nbsp; 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Provincia&nbsp; 
+                  </div>
+ </th>
+ 
+                  <th scope="col">
+                  <div align="center">
+                    Editar 
+                  </div>
+ </th>
+ 
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <!-- BEGIN RowError -->
+                <tr class="Error">
+                  <td colspan="11"><font size="2">{Error}</font></td> 
+                </tr>
+ <!-- END RowError -->
+                <tr class="Row">
+                  <td>{tipo_direccion_descrip}&nbsp;</td> 
+                  <td>{calles_calle_nombre}&nbsp;{direccion_numeracion}</td> 
+                  <td>{barrios_barrio_nombre}&nbsp;</td> 
+                  <td>
+                    <div align="center">
+                      {direccion_piso}&nbsp; 
+                    </div>
+ </td> 
+                  <td>
+                    <div align="center">
+                      {direccion_depto}&nbsp; 
+                    </div>
+ </td> 
+                  <td>
+                    <div align="center">
+                      {direccion_manzana}&nbsp; 
+                    </div>
+ </td> 
+                  <td>
+                    <div align="center">
+                      {direccion_casa}&nbsp; 
+                    </div>
+ </td> 
+                  <td>{localidades_localidad_nombre}&nbsp;</td> 
+                  <td>{departamentos_departamento_nombre}&nbsp;</td> 
+                  <td>{provincias_provincia_nombre}&nbsp;</td> 
+                  <td>
+                    <div align="center">
+<a href="{ImageLink1}" id="domiciliosImageLink1_{personas_personas_parcela:rowNumber}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt="{ImageLink1}" src="../iconos/16x16/accessories-text-editor.gif"></a> 
+                    </div>
+ </td> 
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="11"><font color="#ff0000" size="2"><strong>No hay direcciones registradas</strong></font></td> 
+                </tr>
+ <!-- END NoRecords -->
+                <tr class="Bottom">
+                  <td colspan="11">
+                    <div align="right">
+                      <!-- BEGIN Button salir --><input class="Button" id="domiciliossalir" type="submit" value="Salir" name="{Button_Name}"><!-- END Button salir -->
+                    </div>
+ </td> 
+                </tr>
+ 
+              </table>
+ </td> 
+          </tr>
+ 
+        </table>
+ 
+      </form>
+ <!-- END EditableGrid domicilios --></td> 
+  </tr>
+ 
+  <tr>
+    <td>
+      <!-- BEGIN Record direcciones -->
+      <form id="direcciones" name="{HTMLFormName}" action="{Action}" method="post">
+        <table cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td class="th" valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                  <td class="th">
+                    <div align="center">
+                      {accion}&nbsp;Direccion {de} 
+                    </div>
+ </td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                </tr>
+ 
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="4"><font size="2">{Error}</font></td> 
+                </tr>
+ <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="direccionestipo_puerta_id">Tipo Direccion&nbsp;<font color="#ff0000">*</font></label></td> 
+                  <td>
+                    <select id="direccionestipo_direccion_id" name="{tipo_direccion_id_Name}">
+                      <option value="" selected>...</option>
+ {tipo_direccion_id_Options} 
+                    </select>
+ &nbsp;</td> 
+                  <td class="th">Tipo Puerta <font color="#ff0000">*</font></td> 
+                  <td>
+                    <select id="direccionestipo_puerta_id" name="{tipo_puerta_id_Name}">
+                      <option value="" selected>...</option>
+ {tipo_puerta_id_Options} 
+                    </select>
+ &nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="direccionescalle_id">Nombre de Calle y Numero&nbsp;<font color="#ff9900">*</font></label></td> 
+                  <td>
+                    <!-- BEGIN TextBox nombre_calle --><input id="direccionesnombre_calle" maxlength="40" size="30" value="{nombre_calle}" name="{nombre_calle_Name}" autocomplete="off">
+                    <!-- BEGINF PTAutocomplete PTAutocomplete1 -->
+                    <div id="direccionesnombre_calle_choices">
+                    </div>
+ <!-- ENDF PTAutocomplete PTAutocomplete1 --><!-- END TextBox nombre_calle --><input id="direccionescalle_id" type="hidden" value="{calle_id}" name="{calle_id_Name}"><input id="direccionesdireccion_numeracion" maxlength="10" size="10" value="{direccion_numeracion}" name="{direccion_numeracion_Name}">{calle_aux}</td> 
+                  <td>Tipo de Calle&nbsp;<font color="#ff0000">*</font></td> 
+                  <td>
+                    <select id="direccionestipo_calle_id" name="{tipo_calle_id_Name}">
+                      <option value="" selected>...</option>
+ {tipo_calle_id_Options} 
+                    </select>
+ &nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="direccionesbarrio_id">Nombre de Barrio <font color="#ff9900">*</font></label></td> 
+                  <td onblur="aMayusculas(this);" colspan="3">
+                    <!-- BEGIN TextBox nombre_barrio --><input id="direccionesnombre_barrio" maxlength="40" size="30" value="{nombre_barrio}" name="{nombre_barrio_Name}" autocomplete="off">
+                    <!-- BEGINF PTAutocomplete PTAutocomplete2 -->
+                    <div id="direccionesnombre_barrio_choices">
+                    </div>
+ <!-- ENDF PTAutocomplete PTAutocomplete2 --><!-- END TextBox nombre_barrio --><input id="direccionesbarrio_id" type="hidden" value="{barrio_id}" name="{barrio_id_Name}"></td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="direccionesdireccion_manzana">Manzana&nbsp;</label></td> 
+                  <td><input id="direccionesdireccion_manzana" maxlength="6" size="6" value="{direccion_manzana}" name="{direccion_manzana_Name}"></td> 
+                  <td class="th">Casa</td> 
+                  <td><input id="direccionesdireccion_casa" maxlength="6" size="6" value="{direccion_casa}" name="{direccion_casa_Name}"></td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="direccionesdireccion_piso">Piso</label></td> 
+                  <td><input id="direccionesdireccion_piso" maxlength="10" size="10" value="{direccion_piso}" name="{direccion_piso_Name}"></td> 
+                  <td class="th">Dpto</td> 
+                  <td class="th"><input id="direccionesdireccion_depto" maxlength="6" size="6" value="{direccion_depto}" name="{direccion_depto_Name}">&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="direccionesdireccion_area">Area</label></td> 
+                  <td><input id="direccionesdireccion_area" maxlength="10" size="10" value="{direccion_area}" name="{direccion_area_Name}"></td> 
+                  <td class="th">Torre</td> 
+                  <td class="th"><input id="direccionesdireccion_torre" maxlength="10" size="10" value="{direccion_torre}" name="{direccion_torre_Name}">&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="direccionesdireccion_lote">Lote&nbsp;</label></td> 
+                  <td><input id="direccionesdireccion_lote" maxlength="6" size="6" value="{direccion_lote}" name="{direccion_lote_Name}"></td> 
+                  <td>Codigo Postal&nbsp;</td> 
+                  <td class="th"><input id="direccionesdireccion_cp" size="10" value="{direccion_cp}" name="{direccion_cp_Name}">&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="direccioneslocalidad_id">Localidad&nbsp;</label></td> 
+                  <td>
+                    <select id="direccioneslocalidad_id" name="{localidad_id_Name}">
+                      <option value="" selected>...</option>
+ {localidad_id_Options} 
+                    </select>
+ </td> 
+                  <td><strong></strong></td> 
+                  <td></td> 
+                </tr>
+ 
+                <!-- BEGIN Panel extras -->
+                <tr class="Controls">
+                  <td class="th">Departamento</td> 
+                  <td>
+                    <select id="direccionesextrasdepartamento_id" name="{departamento_id_Name}">
+                      <option value="" selected>..</option>
+ {departamento_id_Options} 
+                    </select>
+ &nbsp;</td> 
+                  <td class="th">Provincia</td> 
+                  <td class="th">
+                    <select id="direccionesextrasprovincia_id" name="{provincia_id_Name}">
+                      <option value="" selected>...</option>
+ {provincia_id_Options} 
+                    </select>
+ </td> 
+                </tr>
+ <!-- END Panel extras -->
+                <tr class="Controls">
+                  <td class="th"><label for="direccionesdireccion_observ">Observaciones&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td> 
+                  <td colspan="3"><input id="direccionesdireccion_observ" style="WIDTH: 100%" maxlength="60" size="50" value="{direccion_observ}" name="{direccion_observ_Name}"></td> 
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td align="right" colspan="4"><input id="direccionespersona_id" type="hidden" value="{persona_id}" name="{persona_id_Name}">&nbsp;<input id="direccionestipo_estado_id" type="hidden" value="{tipo_estado_id}" name="{tipo_estado_id_Name}">
+                    <!-- BEGIN Button Button_Insert --><input class="Button" id="direccionesButton_Insert" type="submit" alt="Agregar" value="Agregar Direccion" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input class="Button" id="direccionesButton_Update" type="submit" alt="Enviar" value="Actualizar Direccion" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input class="Button" id="direccionesButton_Delete" type="submit" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete -->
+                    <!-- BEGIN Button Button_Cancel --><input class="Button" id="direccionesButton_Cancel" type="submit" alt="Cancelar" value="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel --></td> 
+                </tr>
+ 
+              </table>
+ </td> 
+          </tr>
+ 
+        </table>
+ 
+      </form>
+ <!-- END Record direcciones --></td> 
+  </tr>
+ 
+  <tr>
+    <td></td> 
+  </tr>
+</table>
+{tdf_footer} 
+</body>
+</html>

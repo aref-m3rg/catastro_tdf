@@ -1,0 +1,103 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Perfiles de usuarios y permisos de páginas</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-E634CA02
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<style type="text/css">
+<!--
+.perm-row td   { font-weight: normal; }
+.perm-row-novis td   { color: #888; }
+.perm-level-1 td   { background-color: #777; color: #fff; }
+.perm-level-2 td   { background-color: #fff; }
+.perm-level-3 td   { background-color: #f5f5f5; }
+.perm-level-4 td   { background-color: #fafafa; }
+.perm-level-5 td   { background-color: #eee; }
+.perm-level-1 .perm-row-description span   { padding-left: 0; }
+.perm-level-2 .perm-row-description span   { padding-left: 20px; }
+.perm-level-3 .perm-row-description span   { padding-left: 40px; }
+.perm-level-4 .perm-row-description span   { padding-left: 60px; }
+.perm-level-5 .perm-row-description span   { padding-left: 80px; }
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<p>
+<!-- BEGIN Grid perfiles_tipos_estados -->
+<table style="WIDTH: 960px" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td> 
+          <th>Detalle del perfil</th>
+ 
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <th width="120">Nombre</th>
+ 
+          <td>{perfil_nombre}&nbsp;</td>
+        </tr>
+ 
+        <tr class="Row">
+          <th>Abreviatura</th>
+ 
+          <td>{perfil_abrev}&nbsp;</td>
+        </tr>
+ 
+        <tr class="Row">
+          <th>Descripción</th>
+ 
+          <td>{perfil_descr}&nbsp;</td>
+        </tr>
+ 
+        <tr class="Row">
+          <th>TEstado</th>
+ 
+          <td>{tipo_estado_descrip}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="2">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid perfiles_tipos_estados --><br>
+</p>
+<div class="container">
+  {permissions_html} 
+  <p>&nbsp;</p>
+</div>
+<p>{tdf_footer}</p>
+</body>
+</html>

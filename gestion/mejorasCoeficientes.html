@@ -1,0 +1,209 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Coeficientes de Mejoras</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//mejoras_coeficientes1Button_Cancel_OnClick @26-6B1371ED
+function mejoras_coeficientes1Button_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End mejoras_coeficientes1Button_Cancel_OnClick
+
+//mejoras_coeficientes1volver_OnClick @41-06D2D60C
+function mejoras_coeficientes1volver_OnClick()
+{
+    disableValidation = true;
+}
+//End mejoras_coeficientes1volver_OnClick
+
+//bind_events @1-5BF97B08
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("mejoras_coeficientes1Button_Cancel", "click", mejoras_coeficientes1Button_Cancel_OnClick);
+    addEventHandler("mejoras_coeficientes1volver", "click", mejoras_coeficientes1volver_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css" />
+</head>
+<body>
+<div>
+  {tdf_header}{tdf_menu}
+</div>
+<br>
+<div>
+  <table border="0">
+    <tr valign="top">
+      <td>
+        <!-- BEGIN Record mejoras_coeficientes1 -->
+        <form id="mejoras_coeficientes1" name="{HTMLFormName}" action="{Action}" method="post">
+          <table cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                    <th>Agregar/Editar Coeficientes de Mejoras </th>
+ 
+                    <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                  </tr>
+ 
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td> 
+                  </tr>
+ <!-- END Error -->
+                  <tr class="Controls">
+                    <th>Año</th>
+ 
+                    <td><input id="mejoras_coeficientes1mejora_coeficiente_anio" maxlength="5" size="5" value="{mejora_coeficiente_anio}" name="{mejora_coeficiente_anio_Name}"></td> 
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <th>Categoria</th>
+ 
+                    <td>
+                      <select id="mejoras_coeficientes1tipo_mejora_cat_id" name="{tipo_mejora_cat_id_Name}">
+                        <option value="" selected>...</option>
+ {tipo_mejora_cat_id_Options} 
+                      </select>
+ </td> 
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <th>Conservacion</th>
+ 
+                    <td>
+                      <select id="mejoras_coeficientes1tipo_mejora_conserva_id" name="{tipo_mejora_conserva_id_Name}">
+                        <option value="" selected>...</option>
+ {tipo_mejora_conserva_id_Options} 
+                      </select>
+ </td> 
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <th>Valor</th>
+ 
+                    <td><input id="mejoras_coeficientes1mejora_coeficiente_valor" maxlength="12" size="12" value="{mejora_coeficiente_valor}" name="{mejora_coeficiente_valor_Name}"></td> 
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td align="right" colspan="2">
+                      <!-- BEGIN Button Button_Insert --><input class="Button" id="mejoras_coeficientes1Button_Insert" type="submit" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input class="Button" id="mejoras_coeficientes1Button_Update" type="submit" value="Actualizar" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Cancel --><input class="Button" id="mejoras_coeficientes1Button_Cancel" type="submit" value="Limpiar" name="{Button_Name}"><!-- END Button Button_Cancel -->&nbsp; 
+                      <!-- BEGIN Button volver --><input class="Button" id="mejoras_coeficientes1volver" type="submit" value="Volver" name="{Button_Name}"><!-- END Button volver --></td> 
+                  </tr>
+ 
+                </table>
+ </td> 
+            </tr>
+ 
+          </table>
+ 
+        </form>
+ &nbsp;<!-- END Record mejoras_coeficientes1 --></td> 
+      <td>
+        <!-- BEGIN Grid mejoras_coeficientes -->
+        <table cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                  <th>Lista de Mejoras de&nbsp;Coeficientes</th>
+ 
+                  <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                </tr>
+ 
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th>
+                  <!-- BEGIN Sorter Sorter_mejora_coeficiente_anio --><a href="{Sort_URL}" id="mejoras_coeficientesSorter_mejora_coeficiente_anio">Año</a> 
+                  <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On -->&nbsp;&nbsp;<!-- END Sorter Sorter_mejora_coeficiente_anio --></th>
+ 
+                  <th>
+                  <!-- BEGIN Sorter Sorter_tipo_mejora_cat_id --><a href="{Sort_URL}" id="mejoras_coeficientesSorter_tipo_mejora_cat_id">Categoria</a> 
+                  <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On -->&nbsp;&nbsp;<!-- END Sorter Sorter_tipo_mejora_cat_id --></th>
+ 
+                  <th>
+                  <!-- BEGIN Sorter Sorter_tipo_mejora_conserva_id --><a href="{Sort_URL}" id="mejoras_coeficientesSorter_tipo_mejora_conserva_id">Conservacion</a> 
+                  <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On -->&nbsp;&nbsp;<!-- END Sorter Sorter_tipo_mejora_conserva_id --></th>
+ 
+                  <th>
+                  <!-- BEGIN Sorter Sorter_mejora_coeficiente_valor --><a href="{Sort_URL}" id="mejoras_coeficientesSorter_mejora_coeficiente_valor">Valor</a> 
+                  <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On -->&nbsp;&nbsp;<!-- END Sorter Sorter_mejora_coeficiente_valor --></th>
+ 
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr class="Row">
+                  <td style="TEXT-ALIGN: right"><b><a href="{mejora_coeficiente_anio_Src}" id="mejoras_coeficientesmejora_coeficiente_anio_{mejoras_coeficientes:rowNumber}">{mejora_coeficiente_anio}</a></b>&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{tipo_mejora_cat_descript}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{tipo_mejora_conserva_descrip}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{mejora_coeficiente_valor}&nbsp;</td> 
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="4">No hay registros</td> 
+                </tr>
+ <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td colspan="4">&nbsp; 
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+                    <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                      <option value="" selected>-</option>
+ {PageSize_Options} 
+                    </select>
+ 
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img src="../Styles/Simple_tdf/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img src="../Styles/Simple_tdf/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="../Styles/Simple_tdf/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img src="../Styles/Simple_tdf/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="../Styles/Simple_tdf/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img src="../Styles/Simple_tdf/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="../Styles/Simple_tdf/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img src="../Styles/Simple_tdf/Images/LastOff.gif" border="0"><!-- END Last_Off -->&nbsp;&nbsp;<!-- END Navigator Navigator -->&nbsp;</td> 
+                </tr>
+ 
+              </table>
+ </td> 
+          </tr>
+ 
+        </table>
+ &nbsp;&nbsp;<!-- END Grid mejoras_coeficientes --></td> 
+    </tr>
+ 
+  </table>
+</div>
+<div>
+  {tdf_footer}
+</div>
+</body>
+</html>

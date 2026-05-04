@@ -1,0 +1,187 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Preparar certificado de nomenclatura</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.031">
+<script language="JavaScript" src="../js/jquery-1.7.min.js" type="text/javascript"></script>
+<script language="JavaScript" src="../js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
+<style>
+        .ui-autocomplete {
+                width:400px;
+                background-color: #fff;
+                border:1px solid #555;
+                font-size:11px;
+                color:#111;
+                list-style: none;
+                list-position:outside;
+                padding:5px;
+                margin:0;
+        }
+        #ui-autocomplete-status {
+                color: #999;
+        }
+        .ui-menu-item a {
+                background-color: #fafafa;
+                border-bottom:1px dashed #bbb;
+                padding:6px 4px;
+                margin:0;
+                display:block;
+        }
+        .ui-menu-item:last-child a {
+                border-bottom: none;
+        }
+        .ui-menu-item #ui-active-menuitem {
+                background-color: #333;
+                color: #fff;
+        }
+</style>
+<script language="JavaScript" type="text/javascript">
+    jQuery(document).ready( function() {
+                jQuery("#preobs").keydown( function( kpEvent ) {
+                        if ( kpEvent.ctrlKey && kpEvent.altKey && ( kpEvent.which == 108 || kpEvent.which == 76 ) ) {
+                                if ( jQuery(this).hasClass('ui-autocomplete-enabled') ) {
+                                        jQuery( "#preobs" ).autocomplete('close').autocomplete('disable');
+                                        jQuery(this).removeClass('ui-autocomplete-enabled');
+                                        jQuery('#ui-autocomplete-status').text('DESHABILITADO');
+                                } else {
+                                        jQuery( "#preobs" ).autocomplete('enable').autocomplete('search');
+                                        jQuery(this).addClass('ui-autocomplete-enabled');
+                                        jQuery('#ui-autocomplete-status').text('HABILITADO');
+                                }
+                        } 
+                });
+                jQuery( "#preobs" ).autocomplete({
+                        source: "../services/obs_cert_json.php",
+                        minLength: 2,
+                        disabled: true
+                });
+    });
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-FD4B5AC9
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("footerParcela_bind_events")) footerParcela_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+{tdf_header}{tdf_menu}{footerParcela} 
+<!-- BEGIN Record pre -->
+<form id="pre" name="{HTMLFormName}" action="{Action}" method="post">
+  <table cellspacing="0" cellpadding="0" width="100%" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            <th>Preparar Certificado Catastral</th>
+ 
+            <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="9"><font size="2">{Error}</font></td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>Partida</th>
+ 
+            <th>Depto.</th>
+ 
+            <th>Seccion</th>
+ 
+            <th>Chacra</th>
+ 
+            <th>Quinta</th>
+ 
+            <th>Macizo</th>
+ 
+            <th>Fraccion</th>
+ 
+            <th>Parcela</th>
+ 
+            <th>
+            <div align="left">
+              <strong>Uf / Uc</strong> 
+            </div>
+            </th>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>{parcela_partida}&nbsp;</th>
+ 
+            <th>&nbsp;{dpto_abrev}&nbsp;</th>
+ 
+            <th>{parcela_seccion}&nbsp;</th>
+ 
+            <th>{parcela_chacra}&nbsp;</th>
+ 
+            <th>{parcela_quinta}&nbsp;</th>
+ 
+            <th>{parcela_macizo}&nbsp;</th>
+ 
+            <th>{parcela_fraccion}&nbsp;</th>
+ 
+            <th>{parcela_parcela}&nbsp;</th>
+ 
+            <th>{parcela_uf}&nbsp;</th>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>&nbsp;Plano</th>
+ 
+            <th colspan="8"><input id="preplano" value="{plano}" name="{plano_Name}">&nbsp;&nbsp;<input id="preparcela_id" type="hidden" value="{parcela_id}" name="{parcela_id_Name}">&nbsp;</th>
+          </tr>
+ 
+          <tr class="Controls">
+            <th colspan="9">Observaciones</th>
+          </tr>
+ 
+          <tr class="Controls">
+            <th colspan="9">
+            <!-- BEGIN TextArea obs --><textarea id="preobs" style="WIDTH: 100%" name="{obs_Name}" rows="8">{obs}</textarea><!-- END TextArea obs --></th>
+          </tr>
+ 
+          <tr class="Controls">
+            <th colspan="9"><input id="predescrip" type="checkbox" value="1" name="{descrip_Name}" {descrip}>&nbsp;Incorporar la descripcion de la parcela</th>
+          </tr>
+ 
+          <tr class="Controls">
+            <th colspan="9">
+            <div>
+              <small><font size="2">Use CTRL + ALT +&nbsp;L para activar y desactivar la función de autocompletado <span id="ui-autocomplete-status"><font color="#ff0000">DESHABILITADO</font></span></font></small> 
+            </div>
+            </th>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td align="right" colspan="9">
+              <!-- BEGIN Button Button_DoSearch --><input class="Button" id="preButton_DoSearch" type="submit" value="Imprimir" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record pre -->{tdf_footer} 
+</body>
+</html>

@@ -1,0 +1,365 @@
+<link rel="stylesheet" type="text/css" href="{page:pathToRoot}Styles/Simple_tdf/Style.css">
+<link rel="stylesheet" type="text/css" href="{page:pathToRoot}Styles/Simple_tdf/Style_doctype.css">
+<!-- BEGIN Record parcela -->
+<form id="headerParcelaparcela" name="{HTMLFormName}" action="{Action}" method="post">
+  <table cellspacing="0" cellpadding="0" width="100%" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            <td class="th">
+              <div align="center">
+                Parcela 
+              </div>
+ </td> 
+            <td class="HeaderRight"><img alt="" src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="11">{Error}</td> 
+          </tr>
+ <!-- END Error -->
+          <tr class="Controls">
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">Partida Nº:</td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                <font size="4"><b>{parcela_partida}</b></font> 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">Nomenclatura:</td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff" colspan="2">
+              <div id="nom" align="center">
+                <font size="4"><b>{parcela_nomenclatura}</b></font> 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="left">
+                Estado: 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div id="nom" align="center">
+                {tipo_est_parc_descr} 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">Plano:</td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff" colspan="2">
+              <div id="nom" align="center">
+                {plano} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff"><button id="btn-ver-plancheta">Ver plancheta</button> 
+              <script>
+                /* Guardo el HTML en una variable para no crear el elemento en el DOM y evitar que las imágenes
+                se carguen si no se ha presionado el botón */
+                var planchetaHtml = {plancheta};
+              </script>
+            </td> 
+          </tr>
+ 
+          <tr class="Caption">
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Depto 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Padron 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Seccion 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Chacra 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Quinta 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Macizo 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Parcela 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Fraccion 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                UF/UC 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Predio 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Remanente 
+              </div>
+ </td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                {tipo_depto_parc_desc} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{tipo_padron_parc_desc} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{parcela_seccion} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{parcela_chacra} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{parcela_quinta} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{parcela_macizo} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                {parcela_parcela} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{parcela_fraccion} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{parcela_uf} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{parcela_predio} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{parcela_rte} 
+              </div>
+ </td> 
+          </tr>
+ 
+          <tr class="Caption">
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Sup. Mensura 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Sup. UF/UC 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                % UF/UC 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Uso 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Inmueble 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Valor Tierra 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Valor Mejora 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px" colspan="3">
+              <div align="center">
+                Valor ampliacion UF/UC 
+              </div>
+ </td> 
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">
+              <div align="center">
+                Valor Total 
+              </div>
+ </td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{parcela_super_mensura}&nbsp;{unidades_medidas_abrev} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{parcela_sup_uf} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{parcela_porc_uf} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{tipo_parcela_uso_descrip} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{tipo_parcela_descrip} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{parcela_val_tierra} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{parcela_val_mejora} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff" colspan="3">
+              <div align="center">
+                &nbsp;{parcela_val_ampliac} 
+              </div>
+ </td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff">
+              <div align="center">
+                &nbsp;{parcela_val_total} 
+              </div>
+ </td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">Instrumento</td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff" colspan="10">{instrumento}&nbsp;</td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">Observaciones</td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff" colspan="10">{parcela_observa}&nbsp;</td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">Notas</td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff" colspan="10">{parcela_notas_nom}&nbsp;</td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">Restricciones:&nbsp;</td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff" colspan="10">{tipo_restricc_parcela_desc}&nbsp;</td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">Nota de Restricciones</td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff" colspan="10">{parcela_restr}&nbsp;</td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th" style="FONT-WEIGHT: bolder; FONT-SIZE: 10px">Descripcion</td> 
+            <td style="FONT-WEIGHT: bolder; FONT-SIZE: 10px; BACKGROUND-COLOR: #ffffff" colspan="10">{parcela_descrip}&nbsp;</td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+</form>
+<!-- END Record parcela -->
+<script type="text/javascript">
+
+  /* jQuery code */
+
+  jQuery(function() {
+
+    /* Eventos
+    ---------------------------------------------------------- */
+
+    /* Click en el botón de Ver plancheta */
+    jQuery('#btn-ver-plancheta').click( function() {
+
+      // si no existe crea el dialogo
+      if( jQuery('#dialog-modal').length == 0 ) {
+
+        // agrego el elemento al DOM
+        jQuery('#btn-ver-plancheta').after( planchetaHtml );
+
+        // crea el slideshow
+        jQuery("#slides").slides();
+
+        // creo el dialogo
+        jQuery( "#dialog-modal" ).dialog({
+          minWidth: 704,
+          minHeight: 480,
+          modal: true,
+          autoOpen: false
+        });
+      }
+
+      // abre el popup
+      jQuery('#dialog-modal').dialog('open');
+        // transforma los botones
+        jQuery('#slides .pagination a').button();
+        return false;
+      });
+
+
+
+      /* General
+      ---------------------------------------------------------- */
+
+      // Aplica jQuery al botón de planchetas
+      jQuery('#btn-ver-plancheta').button({
+        icons: {
+          secondary: "ui-icon-triangle-1-s"
+        }
+      });
+
+  });
+
+</script>

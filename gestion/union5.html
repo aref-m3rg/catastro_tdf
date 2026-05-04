@@ -1,0 +1,1192 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Unión y división de parcelas</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="{css}">
+<script type="text/javascript">
+eval("dojoConfig = { parseOnLoad:true }");
+</script>
+<script type="text/javascript" src="{jsapi}"></script>
+<script language="JavaScript" type="text/javascript">
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("dijit.layout.TabContainer");
+      dojo.require("dijit.form.Button");
+      dojo.require("dijit.Dialog");
+      dojo.require("dojox.image.SlideShow");
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//padrones_parcelas_parcelaButton_DoSearch_OnClick @6-6B320D63
+function padrones_parcelas_parcelaButton_DoSearch_OnClick()
+{
+    var result = true;
+//End padrones_parcelas_parcelaButton_DoSearch_OnClick
+
+//Custom Code @126-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        
+        document.getElementById('padrones_parcelas_parcelah1').value = 2;
+
+    // -------------------------
+//End Custom Code
+
+//Close padrones_parcelas_parcelaButton_DoSearch_OnClick @6-BC33A33A
+    return result;
+}
+//End Close padrones_parcelas_parcelaButton_DoSearch_OnClick
+
+//padrones_parcelas_parcelaButton1_OnClick @128-7BDBBEBF
+function padrones_parcelas_parcelaButton1_OnClick()
+{
+    var result = true;
+//End padrones_parcelas_parcelaButton1_OnClick
+
+//Custom Code @130-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+
+                
+                document.getElementById('padrones_parcelas_parcelah1').value = 1;
+                                
+    // -------------------------
+//End Custom Code
+
+//Close padrones_parcelas_parcelaButton1_OnClick @128-BC33A33A
+    return result;
+}
+//End Close padrones_parcelas_parcelaButton1_OnClick
+
+//tmp2Button1_OnClick @205-2EBAD9DF
+function tmp2Button1_OnClick()
+{
+    var result = true;
+//End tmp2Button1_OnClick
+
+//Custom Code @206-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        //alert("aaaaaasas");
+        document.getElementById('tmp2her').value = 2;
+        document.getElementById('padrones_parcelas_parcelah2').value = 2
+                document.getElementById('banderabh1').value = 2
+
+                                
+
+    // -------------------------
+//End Custom Code
+
+//Close tmp2Button1_OnClick @205-BC33A33A
+    return result;
+}
+//End Close tmp2Button1_OnClick
+
+//cantidadButton_DoSearch_OnClick @134-C3243933
+function cantidadButton_DoSearch_OnClick()
+{
+    var result = true;
+//End cantidadButton_DoSearch_OnClick
+
+//Custom Code @207-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        document.getElementById('tmp2her').value = 2;
+    // -------------------------
+//End Custom Code
+
+//Close cantidadButton_DoSearch_OnClick @134-BC33A33A
+    return result;
+}
+//End Close cantidadButton_DoSearch_OnClick
+
+//DEL      // -------------------------
+//DEL      // Write your own code here.
+//DEL          //alert();
+//DEL                  Alert("Este es el texto del mensaje", "Titulo");
+//DEL      // -------------------------
+
+//bind_events @1-FD20F649
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("padrones_parcelas_parcelaButton_DoSearch", "click", padrones_parcelas_parcelaButton_DoSearch_OnClick);
+    addEventHandler("padrones_parcelas_parcelaButton1", "click", padrones_parcelas_parcelaButton1_OnClick);
+    addEventHandler("tmp2Button1", "click", tmp2Button1_OnClick);
+    addEventHandler("cantidadButton_DoSearch", "click", cantidadButton_DoSearch_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body class="soria">
+{tdf_header}{tdf_menu} 
+<p></p>
+<p><input id="css" name="{css_Name}" value="{css}" type="hidden"><input id="jsapi" name="{jsapi_Name}" value="{jsapi}" type="hidden">
+<!-- BEGIN Record padrones_parcelas_parcela -->
+<form id="padrones_parcelas_parcela" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <td class="th">Buscar</td> 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="12"><font size="2">{Error}</font></td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td>
+              <div align="left">
+                Partida 
+              </div>
+            </td> 
+            <td><input id="padrones_parcelas_parcelaparcela_partida" name="{parcela_partida_Name}" maxlength="10" value="{parcela_partida}" size="10"></td> 
+            <td colspan="2">
+              <div align="right">
+                Partidas Distintas de "0" 
+              </div>
+            </td> 
+            <td><input id="padrones_parcelas_parcelapart_val" name="{part_val_Name}" value="1" type="checkbox" {part_val}></td> 
+            <td colspan="2">Estado de Parcelas</td> 
+            <td colspan="2">
+              <select id="padrones_parcelas_parcelatipo_est_parc_id" name="{tipo_est_parc_id_Name}">
+                <option selected value="">(Todas)</option>
+                {tipo_est_parc_id_Options}
+              </select>
+ </td> 
+            <td>Uso&nbsp;</td> 
+            <td colspan="2">
+              <select id="padrones_parcelas_parcelatipo_parcela_uso_id" name="{tipo_parcela_uso_id_Name}">
+                <option selected value="">(Todos)</option>
+                {tipo_parcela_uso_id_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td>&nbsp;</td> 
+            <td>
+              <div align="center">
+                Depto 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                Padron&nbsp; 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                Secc. 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                Chac.&nbsp; 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                Qta.&nbsp; 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                Mac.&nbsp; 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                Frac.&nbsp; 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                Parc.&nbsp; 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                Uf/Uc&nbsp; 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                Prd.&nbsp; 
+              </div>
+            </td> 
+            <td>
+              <div align="center">
+                Rte.&nbsp; 
+              </div>
+            </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td>Nomenclatura</td> 
+            <td>
+              <select id="padrones_parcelas_parcelatipo_depto_parc_id" name="{tipo_depto_parc_id_Name}">
+                <option selected value="">(Todos)</option>
+                {tipo_depto_parc_id_Options}
+              </select>
+ </td> 
+            <td>
+              <select id="padrones_parcelas_parcelatipo_padron_parc_id" name="{tipo_padron_parc_id_Name}">
+                <option selected value="">(Todos)</option>
+                {tipo_padron_parc_id_Options}
+              </select>
+ </td> 
+            <td><input id="padrones_parcelas_parcelaparcela_seccion" name="{parcela_seccion_Name}" maxlength="1" value="{parcela_seccion}" size="6"></td> 
+            <td><input id="padrones_parcelas_parcelaparcela_chacra" name="{parcela_chacra_Name}" maxlength="15" value="{parcela_chacra}" size="6"></td> 
+            <td><input id="padrones_parcelas_parcelaparcela_quinta" name="{parcela_quinta_Name}" maxlength="15" value="{parcela_quinta}" size="6"></td> 
+            <td><input id="padrones_parcelas_parcelaparcela_macizo" name="{parcela_macizo_Name}" maxlength="5" value="{parcela_macizo}" size="6"></td> 
+            <td><input id="padrones_parcelas_parcelaparcela_fraccion" name="{parcela_fraccion_Name}" maxlength="15" value="{parcela_fraccion}" size="6"></td> 
+            <td><input id="padrones_parcelas_parcelaparcela_parcela" name="{parcela_parcela_Name}" maxlength="6" value="{parcela_parcela}" size="6"></td> 
+            <td><input id="padrones_parcelas_parcelaparcela_uf" name="{parcela_uf_Name}" maxlength="15" value="{parcela_uf}" size="6"></td> 
+            <td><input id="padrones_parcelas_parcelaparcela_predio" name="{parcela_predio_Name}" maxlength="15" value="{parcela_predio}" size="6"></td> 
+            <td><input id="padrones_parcelas_parcelaparcela_rte" name="{parcela_rte_Name}" maxlength="15" value="{parcela_rte}" size="6"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td>Instrumento</td> 
+            <td colspan="2">
+              <select id="padrones_parcelas_parcelatipo_instrumento_id" name="{tipo_instrumento_id_Name}">
+                <option selected value="">(Todos)</option>
+                {tipo_instrumento_id_Options}
+              </select>
+ <input id="padrones_parcelas_parcelaparcela_instrumento" name="{parcela_instrumento_Name}" maxlength="20" value="{parcela_instrumento}" size="10"></td> 
+            <td>Tipo Inmueble&nbsp;&nbsp;</td> 
+            <td>
+              <select id="padrones_parcelas_parcelatipo_parcela_id" name="{tipo_parcela_id_Name}">
+                <option selected value="">(Todos)</option>
+                {tipo_parcela_id_Options}
+              </select>
+ &nbsp;</td> 
+            <td colspan="2">Superficie</td> 
+            <td colspan="5">&nbsp;<strong><font style="BACKGROUND-COLOR: #efefef">&nbsp;Min<input id="padrones_parcelas_parcelasup_min" name="{sup_min_Name}" maxlength="20" value="{sup_min}" size="10">&nbsp;Max <input id="padrones_parcelas_parcelasup_max" name="{sup_max_Name}" maxlength="20" value="{sup_max}" size="10">
+              <select id="padrones_parcelas_parcelaunidades_medidas_id" name="{unidades_medidas_id_Name}">
+                <option selected value="">...</option>
+                {unidades_medidas_id_Options}
+              </select>
+ </font></strong></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td>Plano&nbsp;</td> 
+            <td>Nro&nbsp;</td> 
+            <td><input id="padrones_parcelas_parcelaplano_nro" name="{plano_nro_Name}" maxlength="5" value="{plano_nro}" size="6"></td> 
+            <td>Año&nbsp;</td> 
+            <td><input id="padrones_parcelas_parcelaplano_anio" name="{plano_anio_Name}" maxlength="5" value="{plano_anio}" size="6"></td> 
+            <td colspan="2">Tipo Plano&nbsp;</td> 
+            <td colspan="2">
+              <select id="padrones_parcelas_parcelaplano_nro_tipo_id" name="{tipo_plano_id_Name}">
+                <option selected value="">(Todos)</option>
+                {tipo_plano_id_Options}
+              </select>
+ </td> 
+            <td>Est. Plano&nbsp;</td> 
+            <td colspan="2">
+              <select id="padrones_parcelas_parcelaplano_nro_est_id" name="{tipo_estado_plano_id_Name}">
+                <option selected value="">(Todos)</option>
+                {tipo_estado_plano_id_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td>Titular</td> 
+            <td colspan="4"><input id="padrones_parcelas_parcelapersona_denominacion" name="{persona_denominacion_Name}" maxlength="30" value="{persona_denominacion}" size="30">&nbsp;</td> 
+            <td colspan="2">Restricciones</td> 
+            <td colspan="5">
+              <select id="padrones_parcelas_parcelatipo_restricc_parcela_id" name="{tipo_restricc_parcela_id_Name}">
+                <option selected value="">(Todos)</option>
+                {tipo_restricc_parcela_id_Options}
+              </select>
+ <input id="padrones_parcelas_parcelah1" name="{h1_Name}" value="{h1}" type="hidden"><input style="WIDTH: 35px; HEIGHT: 22px" id="padrones_parcelas_parcelah2" name="{h2_Name}" value="{h2}" size="4"></td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="12" align="right">
+              <!-- BEGIN Button Button_DoSearch --><input id="padrones_parcelas_parcelaButton_DoSearch" class="Button" name="{Button_Name}" value="Buscar" type="submit"><!-- END Button Button_DoSearch -->
+              <!-- BEGIN Button Button1 --><input id="padrones_parcelas_parcelaButton1" class="Button" name="{Button_Name}" value="acultar" type="submit"><!-- END Button Button1 -->
+              <!-- BEGIN Button cancel --><input id="padrones_parcelas_parcelacancel" class="Button" name="{Button_Name}" value="Limpiar" type="submit"><!-- END Button cancel -->
+              <!-- BEGIN Button Button2 --><input id="padrones_parcelas_parcelaButton2" class="Button" name="{Button_Name}" value="Deshacer todo" type="submit"><!-- END Button Button2 --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record padrones_parcelas_parcela --></p>
+<p>
+<!-- BEGIN Grid parcelas_unidades_medidas1 -->&nbsp; 
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+  <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          <td class="th"><strong>Padrones</strong></td> 
+          <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th scope="col"></th>
+ 
+          <th scope="col">
+          <div align="center">
+            <!-- BEGIN Sorter Sorter_parcela_padron --><a href="{Sort_URL}" id="parcelas_unidades_medidas1Sorter_parcela_padron">Partida</a> 
+            <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_parcela_padron -->
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            Depto 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            Padron 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            S 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            C 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            Q 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            M 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            F 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            P 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            U 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            p 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <div align="center">
+            r 
+          </div>
+          </th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_parcela_super_mensura --><a href="{Sort_URL}" id="parcelas_unidades_medidas1Sorter_parcela_super_mensura">Sup Mensura</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_parcela_super_mensura --></th>
+ 
+          <th scope="col">&nbsp; 
+          <!-- BEGIN Sorter Sorter_parcela_avaluo --><a href="{Sort_URL}" id="parcelas_unidades_medidas1Sorter_parcela_avaluo">Avaluo</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_parcela_avaluo --></th>
+ 
+          <th scope="col">
+          <div align="center">
+            &nbsp;Titular 
+          </div>
+          </th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr {parcelas_unidades_medidas1:rowStyle}>
+          <td>
+            <div align="center">
+              <!-- BEGIN ImageLink editar --><a href="{editar}" id="parcelas_unidades_medidas1editar_{parcelas_unidades_medidas1:rowNumber}" title="Editar datos de la Parcela"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{editar}" src="../iconos/16x16/list-add.gif"></a><!-- END ImageLink editar -->
+            </div>
+          </td> 
+          <td>
+            <div align="center">
+              <font size="1"><b>{parcela_partida} </b></font>
+            </div>
+          </td> 
+          <td>
+            <div align="center">
+              &nbsp;{n1} 
+            </div>
+          </td> 
+          <td>
+            <div align="center">
+              &nbsp;{n2} 
+            </div>
+          </td> 
+          <td>
+            <div align="center">
+              &nbsp;{n3} 
+            </div>
+          </td> 
+          <td>
+            <div align="center">
+              &nbsp;{n4} 
+            </div>
+          </td> 
+          <td>
+            <div align="center">
+              &nbsp;{n5} 
+            </div>
+          </td> 
+          <td>
+            <div align="center">
+              &nbsp;{n6} 
+            </div>
+          </td> 
+          <td>
+            <div align="center">
+              &nbsp;{n7} 
+            </div>
+          </td> 
+          <td>
+            <div align="center">
+              &nbsp;{n8} 
+            </div>
+          </td> 
+          <td>
+            <div align="center">
+              &nbsp;{n9} 
+            </div>
+          </td> 
+          <td>
+            <div align="center">
+              &nbsp;{n10} 
+            </div>
+          </td> 
+          <td>
+            <div align="center">
+              &nbsp;{n11} 
+            </div>
+          </td> 
+          <td>{parcela_super_mensura}&nbsp;{unidades_medidas_htm}</td> 
+          <td>{parcela_val_tierra}&nbsp;</td> 
+          <td>{denominacion}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="16">No hay registros según la busqueda</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="16">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Por pagina: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a><!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On -->&nbsp;<!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid parcelas_unidades_medidas1 --></p>
+<p>
+<table style="WIDTH: 100%" border="0" align="left">
+  <tr valign="top">
+    <td style="WIDTH: 20%" valign="top" align="left">&nbsp; 
+      <!-- BEGIN Grid parcelas_tmp -->
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top" align="left">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                <th>Parcelas&nbsp;sobre las que operar&nbsp;</th>
+ 
+                <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th>
+                <!-- BEGIN Sorter Sorter_parcela_partida --><a href="{Sort_URL}" id="parcelas_tmpSorter_parcela_partida">Partida</a> 
+                <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_parcela_partida --></th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_parcela_nomenclatura --><a href="{Sort_URL}" id="parcelas_tmpSorter_parcela_nomenclatura">Nomenclatura</a> 
+                <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_parcela_nomenclatura --></th>
+ 
+                <th>&nbsp;</th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td style="TEXT-ALIGN: right">{parcela_partida}&nbsp;</td> 
+                <td>{parcela_nomenclatura}&nbsp;</td> 
+                <td><a href="{editar}" id="parcelas_tmpeditar_{parcelas_unidades_medidas1:rowNumber}" title="Editar datos de la Parcela"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{editar}" src="../iconos/16x16/list-remove.gif"></a></td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="3">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="3">&nbsp; 
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+                  <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+                  <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a><!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off -->Final <!-- END Last_Off -->&nbsp;<!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      &nbsp;<!-- END Grid parcelas_tmp --></td> 
+    <td style="WIDTH: 10px" valign="top" align="left">&nbsp; 
+      <!-- BEGIN Record cantidad -->
+      <form id="cantidad" method="post" name="{HTMLFormName}" action="{Action}">
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top" align="left">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <th>cantidad </th>
+ 
+                  <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="3">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <th>Cantidad</th>
+ 
+                  <td><input id="cantidadcantparce" name="{cantparce_Name}" maxlength="3" value="{cantparce}" size="3"></td> 
+                  <td>&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th>¿Es PH?</th>
+ 
+                  <td><input id="cantidadch" name="{ch_Name}" value="1" type="checkbox" {ch}></td> 
+                  <td>&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th>&nbsp;Plano</th>
+ 
+                  <td><input id="cantidadTextBox1" name="{TextBox1_Name}" readonly value="{TextBox1}"></td> 
+                  <td>&nbsp; 
+                    <!-- BEGIN Link Link1 --><a href="{Link1_Src}" id="cantidadLink1">Buscar_Plano</a><!-- END Link Link1 --></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td colspan="3" align="right">
+                    <!-- BEGIN Button Button_DoSearch --><input id="cantidadButton_DoSearch" class="Button" name="{Button_Name}" value="Generar" type="submit"><!-- END Button Button_DoSearch --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record cantidad --></td> 
+    <td style="WIDTH: 10px" valign="top" align="left">&nbsp; </td> 
+    <td valign="top" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+  </tr>
+ 
+  <tr valign="top">
+    <td style="WIDTH: 10px" valign="top" colspan="2" align="left">&nbsp; 
+      <!-- BEGIN EditableGrid tmp2 -->
+      <form id="tmp2" method="post" name="{HTMLFormName}" action="{Action}">
+        <input name="FormState" value="{FormState}" type="hidden">{FormScript} 
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <th>Nuevas parcelas</th>
+ 
+                  <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="6">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Caption">
+                  <th>
+                  <!-- BEGIN Sorter Sorter_parcela_partida --><a href="{Sort_URL}" id="tmp2Sorter_parcela_partida">Partida</a> 
+                  <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_partida --></th>
+ 
+                  <th>
+                  <!-- BEGIN Sorter Sorter_persona_id --><a href="{Sort_URL}" id="tmp2Sorter_persona_id">Titular principal</a> 
+                  <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_persona_id --></th>
+ 
+                  <th>Figura</th>
+ 
+                  <th>Tipo de instrumento</th>
+ 
+                  <th>Número de instrumento</th>
+ 
+                  <th>Borrar</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <!-- BEGIN RowError -->
+                <tr class="Error">
+                  <td colspan="6">{Error}</td>
+                </tr>
+                <!-- END RowError -->
+                <tr class="Row">
+                  <td><input id="tmp2parcela_partida_{tmp2:rowNumber}" name="{parcela_partida_Name}" maxlength="10" value="{parcela_partida}" size="10"></td> 
+                  <td>
+                    <select id="tmp2persona_id_{tmp2:rowNumber}" name="{persona_id_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {persona_id_Options}
+                    </select>
+ </td> 
+                  <td>
+                    <select id="tmp2tipos_personas_parcelas" name="{tipos_personas_parcelas_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {tipos_personas_parcelas_Options}
+                    </select>
+ </td> 
+                  <td>
+                    <select id="tmp2tipo_instrumento_id" name="{tipo_instrumento_id_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {tipo_instrumento_id_Options}
+                    </select>
+ </td> 
+                  <td><input id="tmp2persona_parcela_num_int" name="{persona_parcela_num_int_Name}" value="{persona_parcela_num_int}"></td> 
+                  <td>
+                    <!-- BEGIN CheckBox CheckBox_Delete --><input id="tmp2CheckBox_Delete_{tmp2:rowNumber}" name="{CheckBox_Delete_Name}" value="1" type="checkbox" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete --></td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="6">No hay registros</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td style="TEXT-ALIGN: right" colspan="6">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+                    <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                      <option selected value="">-</option>
+ {PageSize_Options}
+                    </select>
+ 
+                    <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+                    <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a> <!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number} <!-- END Page_Off --><!-- END Pages -->de {Total_Pages} 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator --><input id="tmp2her_{tmp2:rowNumber}" name="{her_Name}" value="{her}" type="hidden">
+                    <!-- BEGIN Button Button1 --><input id="tmp2Button1" class="Button" name="{Button_Name}" value="Siguiente" type="submit"><!-- END Button Button1 --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END EditableGrid tmp2 --></td> 
+    <td style="WIDTH: 10px" valign="top" align="left">&nbsp;</td> 
+    <td valign="top" align="left">&nbsp;</td>
+  </tr>
+ 
+  <tr valign="top">
+    <td style="WIDTH: 10px" valign="top" colspan="4" align="left">&nbsp; 
+      <!-- BEGIN EditableGrid tmp_mejoras -->
+      <form id="tmp_mejoras" method="post" name="{HTMLFormName}" action="{Action}">
+        <input name="FormState" value="{FormState}" type="hidden">{FormScript} 
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <th>Lista de mejoras a heredar</th>
+ 
+                  <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="3">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Caption">
+                  <th>
+                  <!-- BEGIN Sorter Sorter_tmp2_id --><a href="{Sort_URL}" id="tmp_mejorasSorter_tmp2_id">Partida</a> 
+                  <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;&nbsp;<!-- END Sorter Sorter_tmp2_id --></th>
+ 
+                  <th>
+                  <!-- BEGIN Sorter Sorter_mejora_id --><a href="{Sort_URL}" id="tmp_mejorasSorter_mejora_id">Mejora</a> 
+                  <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;&nbsp;<!-- END Sorter Sorter_mejora_id --></th>
+ 
+                  <th>NO HEREDAR</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <!-- BEGIN RowError -->
+                <tr class="Error">
+                  <td colspan="3">{Error}</td>
+                </tr>
+                <!-- END RowError -->
+                <tr class="Row">
+                  <td>
+                    <select id="tmp_mejorastmp2_id_{tmp_mejoras:rowNumber}" name="{tmp2_id_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {tmp2_id_Options}
+                    </select>
+ </td> 
+                  <td>&nbsp;{lmejora}</td> 
+                  <td>
+                    <!-- BEGIN CheckBox CheckBox_Delete --><input id="tmp_mejorasCheckBox_Delete_{tmp_mejoras:rowNumber}" name="{CheckBox_Delete_Name}" value="1" type="checkbox" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete -->&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="3">No hay registros</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td style="TEXT-ALIGN: right" colspan="3">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+                    <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                      <option selected value="">-</option>
+ {PageSize_Options}
+                    </select>
+ 
+                    <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+                    <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a><!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off -->Final <!-- END Last_Off -->&nbsp;&nbsp;<!-- END Navigator Navigator -->
+                    <!-- BEGIN Button Button_Submit --><input id="tmp_mejorasButton_Submit" class="Button" name="{Button_Name}" value="Confirmar" type="submit"><!-- END Button Button_Submit --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END EditableGrid tmp_mejoras --></td>
+  </tr>
+ 
+  <tr valign="top">
+    <td style="WIDTH: 10px" valign="top" colspan="4" align="left">&nbsp;&nbsp; 
+      <!-- BEGIN Grid mejoras_personas_tipos_do -->
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                <th>Resumen 1</th>
+ 
+                <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th>
+                <!-- BEGIN Sorter Sorter_parcela_partida --><a href="{Sort_URL}" id="mejoras_personas_tipos_doSorter_parcela_partida">Partida</a> 
+                <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;&nbsp;<!-- END Sorter Sorter_parcela_partida --></th>
+ 
+                <th>&nbsp;Expediente</th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_mejora_sup_cub --><a href="{Sort_URL}" id="mejoras_personas_tipos_doSorter_mejora_sup_cub">Sup. Cub.</a> 
+                <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;&nbsp;<!-- END Sorter Sorter_mejora_sup_cub --></th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_mejora_anio_construccion --><a href="{Sort_URL}" id="mejoras_personas_tipos_doSorter_mejora_anio_construccion">Año de la mejora</a> 
+                <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;&nbsp;<!-- END Sorter Sorter_mejora_anio_construccion --></th>
+ 
+                <th>&nbsp;Documento</th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_persona_denominacion --><a href="{Sort_URL}" id="mejoras_personas_tipos_doSorter_persona_denominacion">Titular Principal</a> 
+                <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;&nbsp;<!-- END Sorter Sorter_persona_denominacion --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td style="TEXT-ALIGN: right">{parcela_partida}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">{Label1}&nbsp;</td> 
+                <td>{mejora_sup_cub}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">{mejora_anio_construccion}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">&nbsp;{Label2}</td> 
+                <td>{persona_denominacion}&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="6">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="6">
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+                  <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+                  <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a><!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off -->Final <!-- END Last_Off -->&nbsp;&nbsp;<!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      &nbsp;&nbsp;<!-- END Grid mejoras_personas_tipos_do -->
+      <p>
+      <!-- BEGIN Grid personas_tipos_documentos -->
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                <th>Resumen&nbsp;</th>
+ 
+                <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th>
+                <!-- BEGIN Sorter Sorter_parcela_partida --><a href="{Sort_URL}" id="personas_tipos_documentosSorter_parcela_partida">Parcela Partida</a> 
+                <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_partida --></th>
+ 
+                <th>Documento</th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_persona_denominacion --><a href="{Sort_URL}" id="personas_tipos_documentosSorter_persona_denominacion">Denominacion</a> 
+                <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_persona_denominacion --></th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_cantidad --><a href="{Sort_URL}" id="personas_tipos_documentosSorter_cantidad">Cantidad de Mejoras</a> 
+                <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_cantidad --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td style="TEXT-ALIGN: right">{parcela_partida}&nbsp;</td> 
+                <td>{documento}&nbsp;</td> 
+                <td>{persona_denominacion}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">{cantidad}&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="4">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="4">
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+                  <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+                  <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid personas_tipos_documentos --><br>
+      </p>
+      <!-- BEGIN Record NewRecord1 -->
+      <form id="NewRecord1" method="post" name="{HTMLFormName}" action="{Action}">
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <th>¿CONFIRMA OPERACION?</th>
+ 
+                  <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Bottom">
+                  <td colspan="2" align="right">
+                    <!-- BEGIN Button Button_Insert --><input id="NewRecord1Button_Insert" class="Button" name="{Button_Name}" value="Confirmar" type="submit"><!-- END Button Button_Insert --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record NewRecord1 --></td>
+  </tr>
+ 
+  <tr valign="top">
+    <td style="WIDTH: 10px" valign="top" colspan="4" align="left">&nbsp; 
+      <!-- BEGIN Record NewRecord2 -->
+      <form id="NewRecord2" method="post" name="{HTMLFormName}" action="{Action}">
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <th>¿Eliminar histórico de última operación y comenzar una nueva?</th>
+ 
+                  <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <th></th>
+ 
+                  <td></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td colspan="2" align="right">
+                    <!-- BEGIN Button Button_DoSearch --><input id="NewRecord2Button_DoSearch" class="Button" name="{Button_Name}" value="Eliminar histórico" type="submit"><!-- END Button Button_DoSearch --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record NewRecord2 -->
+      <!-- BEGIN Grid parcelas_tmp_u_d -->
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                <th>Lista de nuevas parcelas creadas</th>
+ 
+                <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th>
+                <!-- BEGIN Sorter Sorter_parcela_partida --><a href="{Sort_URL}" id="parcelas_tmp_u_dSorter_parcela_partida">Partida</a> 
+                <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_partida --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td>&nbsp; 
+                  <div align="center">
+                    <div id="parcelas_boton_{parcelas_tmp_u_d:rowNumber}" dojotype="dijit.form.DropDownButton">
+                      <span><font size="2"><b>{parcela_partida1}</span> 
+                      <div id="parcelas_desplegable_{parcelas_tmp_u_d:rowNumber}" dojotype="dijit.TooltipDialog">
+                        <table border="1" cellspacing="0" bordercolor="#6699cc" cellpadding="0" bgcolor="#ffffff">
+                          <tr>
+                            <td align="center">&nbsp;<a href="{editar}" id="parcelas_tmp_u_deditar_{parcelas_unidades_medidas1:rowNumber}" title="Editar datos de la Parcela" target="_blank"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" title="editar" alt="{editar}" src="../iconos/16x16/accessories-text-editor.gif"></a>&nbsp;</td> 
+                            <td align="center">&nbsp;<a href="{direcciones}" target="_blank"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" title="Direcciones de la Parcela" src="../iconos/16x16/address-book-new.gif"></a>&nbsp;</td> 
+                            <td align="center">&nbsp;<a href="{titularidad}" target="_blank"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" title="titularidad" src="../iconos/16x16/system-users.gif"></a>&nbsp;</td> 
+                            <td align="center">&nbsp;<a href="{mejoras}" target="_blank"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" title="mejoras" src="../iconos/16x16/go-home.gif"></a>&nbsp;</td> 
+                            <td align="center">&nbsp;<a href="{ImageLink1}" target="_blank"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" title="Poligono" src="../iconos/16x16/mActionZoomToSelected.gif"></a>&nbsp;</td> 
+                            <td align="center">&nbsp;<a href="{preparar_certificado}" title="Crear Certificado" target="_blank"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" title="Preparar Certificado Catastral" src="../iconos/16x16/document-properties.gif"></a>&nbsp;</td> 
+                            <td align="center">&nbsp;<a href="{certificado_parcela}" title="Certificado" target="_blank"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" title="Certificado de la Parcela" src="../iconos/16x16/x-office-document.gif"></a>&nbsp;</td>
+                          </tr>
+ 
+                          <tr>
+                            <td colspan="7" align="center"></td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  </b></font></td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td>No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td>
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+                  <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+                  <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid parcelas_tmp_u_d --><br>
+    </td>
+  </tr>
+</table>
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>{tdf_footer}</p>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Tipos de Tramites</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//tipos_tramitesButtonCancel_OnClick @36-F6FA143E
+function tipos_tramitesButtonCancel_OnClick()
+{
+    disableValidation = true;
+}
+//End tipos_tramitesButtonCancel_OnClick
+
+//tipos_tramitesButtonBuscar_OnClick @38-89486D5E
+function tipos_tramitesButtonBuscar_OnClick()
+{
+    disableValidation = true;
+}
+//End tipos_tramitesButtonBuscar_OnClick
+
+//bind_events @1-7AC37602
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("tipos_tramitesButtonCancel", "click", tipos_tramitesButtonCancel_OnClick);
+    addEventHandler("tipos_tramitesButtonBuscar", "click", tipos_tramitesButtonBuscar_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<p>
+<!-- BEGIN Record tipos_tramites -->
+<form id="tipos_tramites" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <th>Agregar / editar trámite </th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>Descripción</th>
+ 
+            <td><input id="tipos_tramitestipo_tramites_descript" name="{tipo_tramites_descript_Name}" maxlength="128" value="{tipo_tramites_descript}" size="50"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Tipo</th>
+ 
+            <td>
+              <select id="tipos_tramitestramite_id" name="{tramite_id_Name}">
+                <option selected value=""></option>
+                {tramite_id_Options}
+              </select>
+ 
+              <!-- BEGIN Button ButtonBuscar --><input id="tipos_tramitesButtonBuscar" class="Button" name="{Button_Name}" value="Filtrar" type="submit"><!-- END Button ButtonBuscar --></td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right">&nbsp; 
+              <!-- BEGIN Button ButtonCancel --><input id="tipos_tramitesButtonCancel" class="Button" name="{Button_Name}" value="Limpiar" type="submit"><!-- END Button ButtonCancel -->
+              <!-- BEGIN Button Button_Insert --><input id="tipos_tramitesButton_Insert" class="Button" name="{Button_Name}" value="Agregar" type="submit"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input id="tipos_tramitesButton_Update" class="Button" name="{Button_Name}" value="Actualizar" type="submit"><!-- END Button Button_Update --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record tipos_tramites --></p>
+<p>
+<!-- BEGIN Report tipos_tramites1 -->
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          <th>Listado de trámites</th>
+ 
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <!-- BEGIN Section Report_Header --><!-- END Section Report_Header -->
+        <!-- BEGIN Section Page_Header -->
+        <tr class="Caption">
+          <th>
+          <p align="center">Tipo</p>
+          </th>
+ 
+          <th>
+          <p align="center">
+          <!-- BEGIN Sorter Sorter_tipo_tramites_descript --><a href="{Sort_URL}">Descripcion</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_tramites_descript -->&nbsp;</p>
+          </th>
+ 
+          <th>
+          <p align="center">&nbsp;Relacionar Areas</p>
+          </th>
+        </tr>
+ <!-- END Section Page_Header -->
+        <!-- BEGIN Section Page_Footer -->
+        <tr class="Footer">
+          <td colspan="3">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+            <!-- BEGIN First_Off --><img border="0" src="../Styles/Simple_tdf/Images/FirstOff.gif"><!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off --><img border="0" src="../Styles/Simple_tdf/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off --><img border="0" src="../Styles/Simple_tdf/Images/NextOff.gif"><!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off --><img border="0" src="../Styles/Simple_tdf/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator --></td>
+        </tr>
+ <!-- END Section Page_Footer -->
+        <!-- BEGIN Section tramite_id_Header -->
+        <tr class="GroupCaption">
+          <th style="TEXT-ALIGN: right" colspan="3">
+          <p align="left">{tramite_desc}</p>
+          </th>
+        </tr>
+ <!-- END Section tramite_id_Header -->
+        <!-- BEGIN Section Detail -->
+        <tr class="Row">
+          <td style="TEXT-ALIGN: right">&nbsp; </td> 
+          <td><a href="{tipo_tramites_descript_Src}" id="tipos_tramites1Detailtipo_tramites_descript_{tipos_tramites1:rowNumber}">{tipo_tramites_descript}</a> </td> 
+          <td>
+            <p align="center">&nbsp;<a href="{ImageLink1}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" src="../iconos/16x16/document-new.gif"></a></p>
+          </td>
+        </tr>
+ <!-- END Section Detail -->
+        <!-- BEGIN Section tramite_id_Footer --><!-- END Section tramite_id_Footer -->
+        <!-- BEGIN Section Report_Footer -->
+        <!-- BEGIN Panel NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="3">No hay registros</td>
+        </tr>
+ <!-- END Panel NoRecords --><!-- END Section Report_Footer -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Report tipos_tramites1 --><br>
+{tdf_footer}</p>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>pa_tipos_personas_juridicas</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-D25B528C
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+<div>
+  {tdf_header}{tdf_menu} 
+</div>
+<div>
+  <!-- BEGIN Record tipos_personas_juridicas1 -->
+  <form id="tipos_personas_juridicas1" name="{HTMLFormName}" action="{Action}" method="post">
+    <table cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <td valign="top">
+          <table class="Header" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+              <th>Agregar/Editar Tipos Personas Juridicas </th>
+ 
+              <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+            </tr>
+          </table>
+ 
+          <table class="Record" cellspacing="0" cellpadding="0">
+            <!-- BEGIN Error -->
+            <tr class="Error">
+              <td colspan="2"><font size="2"><strong>{Error}</strong></font></td>
+            </tr>
+            <!-- END Error -->
+            <tr class="Controls">
+              <th>Descripcion</th>
+ 
+              <td><input id="tipos_personas_juridicas1tipo_perso_jur_descrip" maxlength="50" size="50" value="{tipo_perso_jur_descrip}" name="{tipo_perso_jur_descrip_Name}"></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <th>Abreviacion</th>
+ 
+              <td><input id="tipos_personas_juridicas1tipo_perso_jur_abrev" maxlength="10" size="10" value="{tipo_perso_jur_abrev}" name="{tipo_perso_jur_abrev_Name}"></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <th>Estado</th>
+ 
+              <td>
+                <select id="tipos_personas_juridicas1tipo_estado_id" name="{tipo_estado_id_Name}">
+                  <option value="" selected>...</option>
+                  {tipo_estado_id_Options}
+                </select>
+ </td>
+            </tr>
+ 
+            <tr class="Bottom">
+              <td align="right" colspan="2"><a href="{tipos_personas_juridicas_Insert_Src}" id="tipos_personas_juridicas1tipos_personas_juridicas_Insert"><strong>Agregar Nuevo</strong></a> 
+                <!-- BEGIN Button Button_Insert --><input class="Button" id="tipos_personas_juridicas1Button_Insert" type="submit" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                <!-- BEGIN Button Button_Update --><input class="Button" id="tipos_personas_juridicas1Button_Update" type="submit" value="Actualizar" name="{Button_Name}"><!-- END Button Button_Update --></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </form>
+  &nbsp;<!-- END Record tipos_personas_juridicas1 -->
+</div>
+<div>
+  <!-- BEGIN Grid tipos_personas_juridicas -->
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            <th>Lista de Tipos Personas Juridicas </th>
+ 
+            <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <tr class="Caption">
+            <th>
+            <!-- BEGIN Sorter Sorter_tipo_perso_jur_descrip --><a href="{Sort_URL}" id="tipos_personas_juridicasSorter_tipo_perso_jur_descrip">Descripcion</a> 
+            <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_perso_jur_descrip --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_tipo_perso_jur_abrev --><a href="{Sort_URL}" id="tipos_personas_juridicasSorter_tipo_perso_jur_abrev">Abreviacion</a> 
+            <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_perso_jur_abrev --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_tipo_estado_id --><a href="{Sort_URL}" id="tipos_personas_juridicasSorter_tipo_estado_id">Estado</a> 
+            <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_estado_id --></th>
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <tr class="Row">
+            <td><a href="{tipo_perso_jur_descrip_Src}" id="tipos_personas_juridicastipo_perso_jur_descrip_{tipos_personas_juridicas:rowNumber}">{tipo_perso_jur_descrip}</a>&nbsp;</td> 
+            <td>{tipo_perso_jur_abrev}&nbsp;</td> 
+            <td style="TEXT-ALIGN: right">{tipo_estado_descrip}&nbsp;</td>
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="3"><font color="#ff0000" size="2"><strong>No hay registros</strong></font></td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="Footer">
+            <td colspan="3">&nbsp; 
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+              <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                <option value="" selected>-</option>
+ {PageSize_Options}
+              </select>
+ 
+              <!-- BEGIN First_On --><a href="{First_URL}"><img src="../Styles/Simple_tdf/Images/First.gif" border="0"></a> <!-- END First_On -->
+              <!-- BEGIN First_Off --><img src="../Styles/Simple_tdf/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="../Styles/Simple_tdf/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+              <!-- BEGIN Prev_Off --><img src="../Styles/Simple_tdf/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="../Styles/Simple_tdf/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+              <!-- BEGIN Next_Off --><img src="../Styles/Simple_tdf/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="../Styles/Simple_tdf/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+              <!-- BEGIN Last_Off --><img src="../Styles/Simple_tdf/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <!-- END Grid tipos_personas_juridicas -->
+</div>
+<div>
+  {tdf_footer} 
+</div>
+</body>
+</html>

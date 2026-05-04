@@ -1,0 +1,307 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Registro Dominial</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//parcelas_dominiales1Button_Delete_OnClick @98-DFC8F782
+function parcelas_dominiales1Button_Delete_OnClick()
+{
+    var result = true;
+//End parcelas_dominiales1Button_Delete_OnClick
+
+//Confirmation Message @99-42E6BD00
+    return confirm('Desea realmente borrar el registro?');
+//End Confirmation Message
+
+//Close parcelas_dominiales1Button_Delete_OnClick @98-BC33A33A
+    return result;
+}
+//End Close parcelas_dominiales1Button_Delete_OnClick
+
+//parcelas_dominiales1Button_Update_OnClick @56-068AA422
+function parcelas_dominiales1Button_Update_OnClick()
+{
+    disableValidation = true;
+}
+//End parcelas_dominiales1Button_Update_OnClick
+
+//parcelas_dominiales1volver_OnClick @96-06766EB1
+function parcelas_dominiales1volver_OnClick()
+{
+    disableValidation = true;
+}
+//End parcelas_dominiales1volver_OnClick
+
+//parcelas_dominiales1Button_clear_OnClick @101-8FD9C29D
+function parcelas_dominiales1Button_clear_OnClick()
+{
+    disableValidation = true;
+}
+//End parcelas_dominiales1Button_clear_OnClick
+
+//bind_events @1-DE030BF1
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("headerParcela_bind_events")) headerParcela_bind_events();
+    addEventHandler("parcelas_dominiales1Button_Delete", "click", parcelas_dominiales1Button_Delete_OnClick);
+    addEventHandler("parcelas_dominiales1Button_Update", "click", parcelas_dominiales1Button_Update_OnClick);
+    addEventHandler("parcelas_dominiales1volver", "click", parcelas_dominiales1volver_OnClick);
+    addEventHandler("parcelas_dominiales1Button_clear", "click", parcelas_dominiales1Button_clear_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css" />
+</head>
+<body>
+<div>
+  {tdf_header}{tdf_menu}{headerParcela} 
+</div>
+<div>
+  <!-- BEGIN Record parcelas_dominiales1 -->
+  <form id="parcelas_dominiales1" method="post" name="{HTMLFormName}" action="{Action}">
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+      <tr>
+        <td valign="top">
+          <table class="Header" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+              <th>Agregar/Editar Registros Dominiales </th>
+ 
+              <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            </tr>
+ 
+          </table>
+ 
+          <table class="Record" cellspacing="0" cellpadding="0">
+            <!-- BEGIN Error -->
+            <tr class="Error">
+              <td colspan="14">{Error}</td> 
+            </tr>
+ <!-- END Error -->
+            <tr class="Caption">
+              <td><strong>Partida</strong></td> 
+              <td><strong>Tipo Instrumento</strong></td> 
+              <th>Intrumento Nro</th>
+ 
+              <td><strong>Depto</strong></td> 
+              <td><strong>Padron</strong></td> 
+              <td><strong>Seccion</strong></td> 
+              <td><strong>Chacra</strong></td> 
+              <td><strong>Quinta</strong></td> 
+              <td><strong>Macizo</strong></td> 
+              <td><strong>Fraccion</strong></td> 
+              <td><strong>Parcela</strong></td> 
+              <td><strong>Uf</strong></td> 
+              <td><strong>Mzna</strong></td> 
+              <td><strong>Lote</strong></td> 
+            </tr>
+ 
+            <tr class="Controls">
+              <td><input id="parcelas_dominiales1parcela_dominial_partida" value="{parcela_dominial_partida}" maxlength="10" size="10" name="{parcela_dominial_partida_Name}">&nbsp;</td> 
+              <td>
+                <select style="WIDTH: 100px" id="parcelas_dominiales1tipo_instrumento_id" name="{tipo_instrumento_id_Name}">
+                  <option selected value="">...</option>
+ {tipo_instrumento_id_Options} 
+                </select>
+ </td> 
+              <th><input id="parcelas_dominiales1parcela_dominial_intrumento_nro" value="{parcela_dominial_intrumento_nro}" maxlength="16" size="10" name="{parcela_dominial_intrumento_nro_Name}"></th>
+ 
+              <td>
+                <select id="parcelas_dominiales1tipo_depto_parc_id" name="{tipo_depto_parc_id_Name}">
+                  <option selected value="">...</option>
+ {tipo_depto_parc_id_Options} 
+                </select>
+ &nbsp;</td> 
+              <td>
+                <select id="parcelas_dominiales1tipo_padron_parc_id" name="{tipo_padron_parc_id_Name}">
+                  <option selected value="">...</option>
+ {tipo_padron_parc_id_Options} 
+                </select>
+ &nbsp;</td> 
+              <td><input id="parcelas_dominiales1parcela_dominial_seccion" value="{parcela_dominial_seccion}" maxlength="2" size="6" name="{parcela_dominial_seccion_Name}">&nbsp;</td> 
+              <td><input id="parcelas_dominiales1parcela_dominial_chacra" value="{parcela_dominial_chacra}" maxlength="32" size="6" name="{parcela_dominial_chacra_Name}">&nbsp;</td> 
+              <td><input id="parcelas_dominiales1parcela_dominial_quinta" value="{parcela_dominial_quinta}" maxlength="32" size="6" name="{parcela_dominial_quinta_Name}">&nbsp;</td> 
+              <td><input id="parcelas_dominiales1parcela_dominial_macizo" value="{parcela_dominial_macizo}" maxlength="32" size="6" name="{parcela_dominial_macizo_Name}">&nbsp;</td> 
+              <td><input id="parcelas_dominiales1parcela_dominial_fraccion" value="{parcela_dominial_fraccion}" maxlength="32" size="6" name="{parcela_dominial_fraccion_Name}">&nbsp;</td> 
+              <td><input id="parcelas_dominiales1parcela_dominial_parcela" value="{parcela_dominial_parcela}" maxlength="64" size="6" name="{parcela_dominial_parcela_Name}">&nbsp;</td> 
+              <td><input id="parcelas_dominiales1parcela_dominial_uf" value="{parcela_dominial_uf}" maxlength="32" size="6" name="{parcela_dominial_uf_Name}">&nbsp;</td> 
+              <td><input id="parcelas_dominiales1parcela_dominial_mzna" value="{parcela_dominial_mzna}" maxlength="32" size="6" name="{parcela_dominial_mzna_Name}">&nbsp;</td> 
+              <td><input id="parcelas_dominiales1parcela_dominial_lote" value="{parcela_dominial_lote}" maxlength="32" size="6" name="{parcela_dominial_lote_Name}">&nbsp;</td> 
+            </tr>
+ 
+            <tr class="Bottom">
+              <td colspan="14" align="right"><input id="parcelas_dominiales1parcela_dominial_f_pro" value="{parcela_dominial_f_pro}" type="hidden" name="{parcela_dominial_f_pro_Name}"><input id="parcelas_dominiales1usuario_id" value="{usuario_id}" type="hidden" name="{usuario_id_Name}"><input id="parcelas_dominiales1parcela_id" value="{parcela_id}" type="hidden" name="{parcela_id_Name}">
+                <!-- BEGIN Button Button_Insert --><input id="parcelas_dominiales1Button_Insert" class="Button" value="Agregar" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+                <!-- BEGIN Button Button_Update --><input id="parcelas_dominiales1Button_Update" class="Button" value="Actualizar" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->&nbsp; 
+                <!-- BEGIN Button Button_Delete --><input id="parcelas_dominiales1Button_Delete" class="Button" value="Borrar" type="submit" name="{Button_Name}"><!-- END Button Button_Delete -->
+                <!-- BEGIN Button Button_clear --><input id="parcelas_dominiales1Button_clear" class="Button" value="Nuevo registro" type="submit" name="{Button_Name}"><!-- END Button Button_clear -->
+                <!-- BEGIN Button volver --><input id="parcelas_dominiales1volver" class="Button" value="Volver" type="submit" name="{Button_Name}"><!-- END Button volver --></td> 
+            </tr>
+ 
+          </table>
+ </td> 
+      </tr>
+ 
+    </table>
+ 
+  </form>
+ <!-- END Record parcelas_dominiales1 -->
+</div>
+<div>
+  <!-- BEGIN Grid parcelas_dominiales -->
+  <table border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <th>Lista de Registros Parcelas Dominiales </th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <tr class="Caption">
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_dominial_partida --><a href="{Sort_URL}" id="parcelas_dominialesSorter_parcela_dominial_partida">Partida</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_dominial_partida --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_tipo_instrumento_id --><a href="{Sort_URL}" id="parcelas_dominialesSorter_tipo_instrumento_id">Instrumento</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_instrumento_id --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_dominial_intrumento_nro --><a href="{Sort_URL}" id="parcelas_dominialesSorter_parcela_dominial_intrumento_nro">Nro</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_dominial_intrumento_nro --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_tipo_depto_parc_id --><a href="{Sort_URL}" id="parcelas_dominialesSorter_tipo_depto_parc_id">Depto</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_depto_parc_id --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_tipo_padron_parc_id --><a href="{Sort_URL}" id="parcelas_dominialesSorter_tipo_padron_parc_id">Padron</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_padron_parc_id --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_dominial_seccion --><a href="{Sort_URL}" id="parcelas_dominialesSorter_parcela_dominial_seccion">Seccion</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_dominial_seccion --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_dominial_chacra --><a href="{Sort_URL}" id="parcelas_dominialesSorter_parcela_dominial_chacra">Chacra</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_dominial_chacra --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_dominial_quinta --><a href="{Sort_URL}" id="parcelas_dominialesSorter_parcela_dominial_quinta">Quinta</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_dominial_quinta --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_dominial_macizo --><a href="{Sort_URL}" id="parcelas_dominialesSorter_parcela_dominial_macizo">Macizo</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_dominial_macizo --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_dominial_fraccion --><a href="{Sort_URL}" id="parcelas_dominialesSorter_parcela_dominial_fraccion">Fraccion</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_dominial_fraccion --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_dominial_parcela --><a href="{Sort_URL}" id="parcelas_dominialesSorter_parcela_dominial_parcela">Parcela</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_dominial_parcela --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_dominial_uf --><a href="{Sort_URL}" id="parcelas_dominialesSorter_parcela_dominial_uf">Uf/Uc</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_dominial_uf --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_dominial_mzna --><a href="{Sort_URL}" id="parcelas_dominialesSorter_parcela_dominial_mzna">Mzna</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_dominial_mzna --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_parcela_dominial_lote --><a href="{Sort_URL}" id="parcelas_dominialesSorter_parcela_dominial_lote">Lote</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_dominial_lote --></th>
+ 
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <tr class="Row">
+            <td style="TEXT-ALIGN: right"><a href="{parcela_dominial_partida_Src}" id="parcelas_dominialesparcela_dominial_partida_{parcelas_dominiales:rowNumber}">{parcela_dominial_partida}</a>&nbsp;</td> 
+            <td style="TEXT-ALIGN: right">{tipo_instrumento_abrev}&nbsp;</td> 
+            <td>{parcela_dominial_intrumento_nro}&nbsp;</td> 
+            <td style="TEXT-ALIGN: right">{tipo_depto_parc_abrev}&nbsp;</td> 
+            <td style="TEXT-ALIGN: right">{tipo_padron_parc_abrev}&nbsp;</td> 
+            <td>{parcela_dominial_seccion}&nbsp;</td> 
+            <td>{parcela_dominial_chacra}&nbsp;</td> 
+            <td>{parcela_dominial_quinta}&nbsp;</td> 
+            <td>{parcela_dominial_macizo}&nbsp;</td> 
+            <td>{parcela_dominial_fraccion}&nbsp;</td> 
+            <td>{parcela_dominial_parcela}&nbsp;</td> 
+            <td>{parcela_dominial_uf}&nbsp;</td> 
+            <td>{parcela_dominial_mzna}&nbsp;</td> 
+            <td>{parcela_dominial_lote}&nbsp;</td> 
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="14">No hay registros</td> 
+          </tr>
+ <!-- END NoRecords -->
+          <tr class="Footer">
+            <td colspan="14">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN Page_Parameter --><input value="{Value}" type="hidden" name="{Name}"><!-- END Page_Parameter -->Per page: 
+              <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                <option selected value="">-</option>
+ {PageSize_Options} 
+              </select>
+ 
+              <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+              <!-- BEGIN First_Off --><img border="0" src="../Styles/Simple_tdf/Images/FirstOff.gif"><!-- END First_Off -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->
+              <!-- BEGIN Prev_Off --><img border="0" src="../Styles/Simple_tdf/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+              <!-- BEGIN Next_Off --><img border="0" src="../Styles/Simple_tdf/Images/NextOff.gif"><!-- END Next_Off -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On -->
+              <!-- BEGIN Last_Off --><img border="0" src="../Styles/Simple_tdf/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+ <!-- END Grid parcelas_dominiales --><br>
+  <br>
+</div>
+<div>
+  {tdf_footer} 
+</div>
+</body>
+</html>

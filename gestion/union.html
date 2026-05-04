@@ -1,0 +1,159 @@
+
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><title>NewPage1</title>
+
+
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676"><script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-E634CA02
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="StyleSheet" type="text/css" href="../dojo/dijit/themes/tundra/tundra.css"><script type="text/javascript">
+      var djConfig = {
+        baseScriptUri : "js/dojo/",
+        parseOnLoad : true
+      };
+    </script>
+</script>
+<script type="text/javascript" src="../dojo/dojo/dojo.js"></script>
+
+<script>
+      dojo.require("dojo.parser");
+      dojo.require("dijit.form.Button");
+      dojo.require("dijit.Dialog");
+      dojo.require("dijit.form.TextBox");
+
+
+      dojo.addOnLoad(showDialog);
+
+      function showDialog() {
+       dijit.byId('dialog').show();
+      }
+      function hideDialog() {
+        dijit.byId('dialog').hide();
+      }
+    </script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css"></head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<div dojotype="dijit.form.DropDownButton"><span>Buscar Parcelas</span> 
+<div id="dialog1" title="Busqueda de Parcelas" dojotype="dijit.TooltipDialog" execute="checkPw(arguments[0]);">
+<p><!-- BEGIN Record parcelasSearch -->
+<form id="parcelasSearch" method="post" name="{HTMLFormName}" action="{Action}">
+<table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          <th>Parcelas Buscar </th>
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td></tr></table>
+      <table class="Record" cellspacing="0" cellpadding="0"><!-- BEGIN Error -->
+                <tr class="Error">
+          <td colspan="2">{Error}</td></tr><!-- END Error -->
+        <tr class="Controls">
+          <th>Id</th>
+          <td><input id="parcelasSearchs_parcela_id" value="{s_parcela_id}" maxlength="20" name="{s_parcela_id_Name}" size="20"></td></tr>
+        <tr class="Controls">
+          <th>Partida</th>
+          <td><input id="parcelasSearchs_parcela_partida" value="{s_parcela_partida}" maxlength="20" name="{s_parcela_partida_Name}" size="20"></td></tr>
+        <tr class="Controls">
+          <th>Nomenclatura</th>
+          <td><input id="parcelasSearchs_parcela_nomenclatura" value="{s_parcela_nomenclatura}" maxlength="21" size="21" name="{s_parcela_nomenclatura_Name}"></td></tr>
+        <tr class="Controls">
+          <th>Seccion</th>
+          <td><input id="parcelasSearchs_parcela_seccion" value="{s_parcela_seccion}" maxlength="1" size="1" name="{s_parcela_seccion_Name}"></td></tr>
+        <tr class="Controls">
+          <th>Macizo</th>
+          <td><input id="parcelasSearchs_parcela_macizo" value="{s_parcela_macizo}" maxlength="5" size="5" name="{s_parcela_macizo_Name}"></td></tr>
+        <tr class="Controls">
+          <th>Parcela</th>
+          <td><input id="parcelasSearchs_parcela_parcela" value="{s_parcela_parcela}" maxlength="5" size="5" name="{s_parcela_parcela_Name}"></td></tr>
+        <tr class="Controls">
+          <th>Chacra</th>
+          <td><input id="parcelasSearchs_parcela_chacra" value="{s_parcela_chacra}" maxlength="15" size="15" name="{s_parcela_chacra_Name}"></td></tr>
+        <tr class="Controls">
+          <th>Quinta</th>
+          <td><input id="parcelasSearchs_parcela_quinta" value="{s_parcela_quinta}" maxlength="15" size="15" name="{s_parcela_quinta_Name}"></td></tr>
+        <tr class="Controls">
+          <th>Fraccion</th>
+          <td><input id="parcelasSearchs_parcela_fraccion" value="{s_parcela_fraccion}" maxlength="15" size="15" name="{s_parcela_fraccion_Name}"></td></tr>
+        <tr class="Controls">
+          <th>Uf</th>
+          <td><input id="parcelasSearchs_parcela_uf" value="{s_parcela_uf}" maxlength="15" size="15" name="{s_parcela_uf_Name}"></td></tr>
+        <tr class="Controls">
+          <th>Predio</th>
+          <td><input id="parcelasSearchs_parcela_predio" value="{s_parcela_predio}" maxlength="15" size="15" name="{s_parcela_predio_Name}"></td></tr>
+        <tr class="Bottom">
+          <td colspan="2" align="right"><!-- BEGIN Button Button_DoSearch --><input id="parcelasSearchButton_DoSearch" class="Button" value="Buscar" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td></tr></table></td></tr></table></form><!-- END Record parcelasSearch --><br><!-- BEGIN Grid parcelas -->
+<table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          <th>Parcelas Lista de </th>
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td></tr></table>
+      <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+          <th><!-- BEGIN Sorter Sorter_parcela_id --><a href="{Sort_URL}" id="parcelasSorter_parcela_id">Id</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_id --></th>
+          <th><!-- BEGIN Sorter Sorter_parcela_partida --><a href="{Sort_URL}" id="parcelasSorter_parcela_partida">Partida</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_partida --></th>
+          <th><!-- BEGIN Sorter Sorter_parcela_nomenclatura --><a href="{Sort_URL}" id="parcelasSorter_parcela_nomenclatura">Nomenclatura</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_nomenclatura --></th>
+          <th><!-- BEGIN Sorter Sorter_parcela_seccion --><a href="{Sort_URL}" id="parcelasSorter_parcela_seccion">Seccion</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_seccion --></th>
+          <th><!-- BEGIN Sorter Sorter_parcela_macizo --><a href="{Sort_URL}" id="parcelasSorter_parcela_macizo">Macizo</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --> <!-- END Sorter Sorter_parcela_macizo --></th>
+          <th><!-- BEGIN Sorter Sorter_parcela_parcela --><a href="{Sort_URL}" id="parcelasSorter_parcela_parcela">Parcela</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_parcela --></th>
+          <th><!-- BEGIN Sorter Sorter_parcela_chacra --><a href="{Sort_URL}" id="parcelasSorter_parcela_chacra">Chacra</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_chacra --></th>
+          <th><!-- BEGIN Sorter Sorter_parcela_quinta --><a href="{Sort_URL}" id="parcelasSorter_parcela_quinta">Quinta</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_quinta --></th>
+          <th><!-- BEGIN Sorter Sorter_parcela_fraccion --><a href="{Sort_URL}" id="parcelasSorter_parcela_fraccion">Fraccion</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_fraccion --></th>
+          <th><!-- BEGIN Sorter Sorter_parcela_uf --><a href="{Sort_URL}" id="parcelasSorter_parcela_uf">Uf</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --> <!-- END Sorter Sorter_parcela_uf --></th>
+          <th><!-- BEGIN Sorter Sorter_parcela_predio --><a href="{Sort_URL}" id="parcelasSorter_parcela_predio">Predio</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_predio --></th>
+          <th>&nbsp;</th>
+          <th><!-- BEGIN Sorter Sorter_parcela_rte --><a href="{Sort_URL}" id="parcelasSorter_parcela_rte">Rte</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_rte --></th></tr>
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td style="TEXT-ALIGN: right"><a href="{parcela_id_Src}" id="parcelasparcela_id_{parcelas:rowNumber}">{parcela_id}</a>&nbsp;</td>
+          <td style="TEXT-ALIGN: right">{parcela_partida}&nbsp;</td>
+          <td>{parcela_nomenclatura}&nbsp;</td>
+          <td>{parcela_seccion}&nbsp;</td>
+          <td>{parcela_macizo}&nbsp;</td>
+          <td>{parcela_parcela}&nbsp;</td>
+          <td>{parcela_chacra}&nbsp;</td>
+          <td>{parcela_quinta}&nbsp;</td>
+          <td>{parcela_fraccion}&nbsp;</td>
+          <td>{parcela_uf}&nbsp;</td>
+          <td>{parcela_predio}&nbsp;</td>
+          <td>{parcela_super_mensura}&nbsp;</td>
+          <td>{parcela_rte}&nbsp;</td></tr>
+        <!-- END Row --><!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="13">No hay registros</td></tr><!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="13"><!-- BEGIN Navigator Navigator -->
+<!-- BEGIN Page_Parameter --><input value="{Value}" type="hidden" name="{Name}"><!-- END Page_Parameter -->Per page: <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize"> <option selected value="">-</option>{PageSize_Options}</select> <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+<!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+<!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+<!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp;<!-- BEGIN Pages --> 
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On --> <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --> <!-- END Pages -->de 
+            &nbsp;{Total_Pages}&nbsp; <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+<!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+<!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+<!-- BEGIN Last_Off -->Final 
+        <!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td></tr></table></td></tr></table><!-- END Grid parcelas --><br></p></div></div>
+<p>{tdf_footer}</p></body></html>

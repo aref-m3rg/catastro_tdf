@@ -1,0 +1,187 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Tipo de Tramite en las unidades</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-113F5716
+</script>
+<script language="JavaScript" src="../js/pt/prototype.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include User Scripts
+
+//tramitesButton_Search_OnClick @21-AFD2FB84
+function tramitesButton_Search_OnClick()
+{
+    disableValidation = true;
+}
+//End tramitesButton_Search_OnClick
+
+//tipos_tramitesButton1_OnClick @19-4A4634E5
+function tipos_tramitesButton1_OnClick()
+{
+    disableValidation = true;
+}
+//End tipos_tramitesButton1_OnClick
+
+//tramitess_tipo_tramites_idPTDependentListBox1 Start @11-7A31EF38
+function tramitess_tipo_tramites_idPTDependentListBox1_start(sender) {
+    var dependentElement = $("tramitess_tipo_tramites_id" + sender.id.substring(20));
+    var selectedValue = null;
+    if (addEventHandler.isOnLoad)
+        selectedValue = dependentElement.value;
+    new Ajax.Request("../services/administracion_recordTiposUnidades_tramites_s_tipo_tramites_id_PTDependentListBox1.php?keyword=" + sender.value, {
+        method: "get",
+        requestHeaders: ['If-Modified-Since', new Date(0)],
+        onSuccess: function(transport) {
+            for (var i = dependentElement.options.length - 1; i > 0; i--) {
+                var currentOption = dependentElement.options.item(i);
+                if (currentOption.value != "") {
+                    dependentElement.remove(i);
+                }
+            }
+            var valueRows = eval(transport.responseText);
+            for (var i = 0; i < valueRows.length; i++) {
+                var newOption = new Option(valueRows[i]["1"], valueRows[i]["0"]);
+                dependentElement.options[dependentElement.options.length] = newOption;
+            } 
+            if (CCGetParam(sender.name) == sender.value) {
+                dependentElement.value = CCGetParam(dependentElement.name);
+            }
+            if (selectedValue)
+                dependentElement.value = selectedValue;
+        }, 
+        onFailure: function(transport) {
+            alert(transport.responseText);
+        }
+    });
+}
+//End tramitess_tipo_tramites_idPTDependentListBox1 Start
+
+//bind_events @1-8EE18ADA
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("tramitess_tramite_id", "change", tramitess_tipo_tramites_idPTDependentListBox1_start);
+    addEventHandler("tramitess_tramite_id", "load", tramitess_tipo_tramites_idPTDependentListBox1_start);
+    addEventHandler("tramitesButton_Search", "click", tramitesButton_Search_OnClick);
+    addEventHandler("tipos_tramitesButton1", "click", tipos_tramitesButton1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css" />
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<p>
+<!-- BEGIN Record tramites -->
+<form id="tramites" name="{HTMLFormName}" action="{Action}" method="post">
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            <th>Tramites Buscar</th>
+ 
+            <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2"><strong>{Error}</strong></td> 
+          </tr>
+ <!-- END Error -->
+          <tr class="Controls">
+            <th>Tramite</th>
+ 
+            <td>
+              <select id="tramitess_tramite_id" name="{s_tramite_id_Name}">
+                <option value="" selected>Seleccionar...</option>
+ {s_tramite_id_Options} 
+              </select>
+ </td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Operacion&nbsp;</th>
+ 
+            <td>
+              <select id="tramitess_tipo_tramites_id" name="{s_tipo_tramites_id_Name}">
+                <option value="" selected>...</option>
+ {s_tipo_tramites_id_Options} 
+              </select>
+ &nbsp;</td> 
+          </tr>
+ 
+          <tr class="Bottom">
+            <td align="right" colspan="2">
+              <!-- BEGIN Button Button_Search --><input class="Button" id="tramitesButton_Search" type="submit" value="Volver" name="{Button_Name}"><!-- END Button Button_Search -->
+              <!-- BEGIN Button Button_DoSearch --><input class="Button" id="tramitesButton_DoSearch" type="submit" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+</form>
+<!-- END Record tramites --></p>
+<p>
+<!-- BEGIN Record tipos_tramites -->
+<form id="tipos_tramites" name="{HTMLFormName}" action="{Action}" method="post">
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            <th>Ver Tipos Tramites </th>
+ 
+            <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2"><strong>{Error}</strong></td> 
+          </tr>
+ <!-- END Error -->
+          <tr class="Controls">
+            <td>{tipo_tramites_descript}</td> 
+            <td>
+              <!-- BEGIN CheckBoxList unidad_id --><input id="tipos_tramitesunidad_id_{unidad_id:optionNumber}" type="checkbox" value="{Value}" name="{unidad_id_Name}" {Check}>{Description}<br>
+              <!-- END CheckBoxList unidad_id --></td> 
+          </tr>
+ 
+          <tr class="Bottom">
+            <td align="right" colspan="2">
+              <!-- BEGIN Button Button1 --><input class="Button" id="tipos_tramitesButton1" type="submit" value="Actualizar" name="{Button_Name}"><!-- END Button Button1 --></td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+</form>
+<!-- END Record tipos_tramites --></p>
+<p>{tdf_footer}</p>
+</body>
+</html>

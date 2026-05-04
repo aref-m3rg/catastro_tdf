@@ -1,0 +1,179 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Trámites</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-D25B528C
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<p>
+<!-- BEGIN Record tramitesSearch -->
+<form id="tramitesSearch" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td> 
+            <th>Buscador</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>Descripción</th>
+ 
+            <td><input id="tramitesSearchs_tramite_desc" name="{s_tramite_desc_Name}" maxlength="45" value="{s_tramite_desc}" size="45"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Estado</th>
+ 
+            <td>
+              <select id="tramitesSearchs_estado_id" name="{s_estado_id_Name}">
+                <option selected value="">Todos...</option>
+                {s_estado_id_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right">
+              <!-- BEGIN Button Button_DoSearch --><input id="tramitesSearchButton_DoSearch" class="Button" name="{Button_Name}" value="Buscar" type="submit"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record tramitesSearch --><br>
+<!-- BEGIN EditableGrid tramites -->
+<form id="tramites" method="post" name="{HTMLFormName}" action="{Action}">
+  <input name="FormState" value="{FormState}" type="hidden">{FormScript} 
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td> 
+            <th>Listado de trámites</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="5">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Caption">
+            <th>
+            <!-- BEGIN Sorter Sorter_tramite_id --><a href="{Sort_URL}" id="tramitesSorter_tramite_id">ID</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tramite_id --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_tramite_desc --><a href="{Sort_URL}" id="tramitesSorter_tramite_desc">Descripción</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tramite_desc --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_tramite_abrev --><a href="{Sort_URL}" id="tramitesSorter_tramite_abrev">Abreviatura</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tramite_abrev --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_estado_id --><a href="{Sort_URL}" id="tramitesSorter_estado_id">Estado</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_estado_id --></th>
+ 
+            <th>Borrar</th>
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <!-- BEGIN RowError -->
+          <tr class="Error">
+            <td colspan="5">{Error}</td>
+          </tr>
+          <!-- END RowError -->
+          <tr class="Row">
+            <td>{tramite_id}&nbsp;</td> 
+            <td><input id="tramitestramite_desc_{tramites:rowNumber}" name="{tramite_desc_Name}" maxlength="45" value="{tramite_desc}" size="45"></td> 
+            <td><input id="tramitestramite_abrev_{tramites:rowNumber}" name="{tramite_abrev_Name}" maxlength="15" value="{tramite_abrev}" size="15"></td> 
+            <td><select name="{estado_id_Name}" id="tramitesestado_id_{tramites:rowNumber}">
+  <option value="">Seleccionar...</option>
+  {estado_id_Options}
+</select>
+
+</td> 
+            <td>
+              <!-- BEGIN CheckBox CheckBox_Delete --><input id="tramitesCheckBox_Delete_{tramites:rowNumber}" name="{CheckBox_Delete_Name}" value="1" type="checkbox" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete -->&nbsp;</td>
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="5">No hay registros</td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="Footer">
+            <td style="TEXT-ALIGN: right" colspan="5">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+              <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                <option selected value="">-</option>
+ {PageSize_Options}
+              </select>
+ 
+              <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+              <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+              <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+              <!-- BEGIN Pages -->
+              <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+              <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+              <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+              <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator -->
+              <!-- BEGIN Button Button_Submit --><input id="tramitesButton_Submit" class="Button" name="{Button_Name}" value="Enviar" type="submit"><!-- END Button Button_Submit --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END EditableGrid tramites --><br>
+</p>
+<p>{tdf_footer}</p>
+</body>
+</html>

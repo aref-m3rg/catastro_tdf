@@ -1,0 +1,92 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Restricciones</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//restriccionesButton_Update_OnClick @9-550DDF98
+function restriccionesButton_Update_OnClick()
+{
+    disableValidation = true;
+}
+//End restriccionesButton_Update_OnClick
+
+//restriccionesButton1_OnClick @10-352B359D
+function restriccionesButton1_OnClick()
+{
+    disableValidation = true;
+}
+//End restriccionesButton1_OnClick
+
+//bind_events @1-3E9C45D2
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("footerParcela_bind_events")) footerParcela_bind_events();
+    addEventHandler("restriccionesButton_Update", "click", restriccionesButton_Update_OnClick);
+    addEventHandler("restriccionesButton1", "click", restriccionesButton1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+<div>
+  {tdf_header}{tdf_menu}{footerParcela} 
+</div>
+<div>
+  <!-- BEGIN Record restricciones -->
+  <form id="restricciones" name="{HTMLFormName}" action="{Action}" method="post">
+    <table cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <td valign="top">
+          <table class="Header" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+              <th>restricciones</th>
+ 
+              <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+            </tr>
+          </table>
+ 
+          <table class="Record" cellspacing="0" cellpadding="0">
+            <!-- BEGIN Error -->
+            <tr class="Error">
+              <td>{Error}</td>
+            </tr>
+            <!-- END Error -->
+            <tr class="Controls">
+              <th>
+              <!-- BEGIN CheckBoxList restriccion --><input id="restriccionesrestriccion_{restriccion:optionNumber}" type="checkbox" value="{Value}" name="{restriccion_Name}" {Check}>{Description}<br>
+              <!-- END CheckBoxList restriccion --></th>
+            </tr>
+ 
+            <tr class="Bottom">
+              <td align="right">
+                <!-- BEGIN Button Button_Update --><input class="Button" id="restriccionesButton_Update" type="submit" value="Actualizar" name="{Button_Name}"><!-- END Button Button_Update -->
+                <!-- BEGIN Button Button1 --><input class="Button" id="restriccionesButton1" type="submit" value="Volver" name="{Button_Name}"><!-- END Button Button1 --></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <!-- END Record restricciones -->
+</div>
+<div>
+  {tdf_footer} 
+</div>
+</body>
+</html>

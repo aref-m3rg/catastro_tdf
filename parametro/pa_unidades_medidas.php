@@ -1,0 +1,1102 @@
+<?php
+//Include Common Files @1-E0B682EC
+define("RelativePath", "..");
+define("PathToCurrentPage", "/parametro/");
+define("FileName", "pa_unidades_medidas.php");
+include_once(RelativePath . "/Common.php");
+include_once(RelativePath . "/Template.php");
+include_once(RelativePath . "/Sorter.php");
+include_once(RelativePath . "/Navigator.php");
+//End Include Common Files
+
+class clsEditableGridunidades_medidas { //unidades_medidas Class @2-7238F833
+
+//Variables @2-96DACC12
+
+    // Public variables
+    public $ComponentType = "EditableGrid";
+    public $ComponentName;
+    public $HTMLFormAction;
+    public $PressedButton;
+    public $Errors;
+    public $ErrorBlock;
+    public $FormSubmitted;
+    public $FormParameters;
+    public $StoredValues;
+    public $FormState;
+    public $FormEnctype;
+    public $CachedColumns;
+    public $TotalRows;
+    public $UpdatedRows;
+    public $EmptyRows;
+    public $Visible;
+    public $RowsErrors;
+    public $ds;
+    public $DataSource;
+    public $PageSize;
+    public $IsEmpty;
+    public $SorterName = "";
+    public $SorterDirection = "";
+    public $PageNumber;
+    public $ControlsVisible = array();
+
+    public $CCSEvents = "";
+    public $CCSEventResult;
+
+    public $RelativePath = "";
+
+    public $InsertAllowed = false;
+    public $UpdateAllowed = false;
+    public $DeleteAllowed = false;
+    public $ReadAllowed   = false;
+    public $EditMode;
+    public $ValidatingControls;
+    public $Controls;
+    public $ControlsErrors;
+    public $RowNumber;
+    public $Attributes;
+    public $PrimaryKeys;
+
+    // Class variables
+//End Variables
+
+//Class_Initialize Event @2-6EA3A366
+    function clsEditableGridunidades_medidas($RelativePath, & $Parent)
+    {
+
+        global $FileName;
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->Visible = true;
+        $this->Parent = & $Parent;
+        $this->RelativePath = $RelativePath;
+        $this->Errors = new clsErrors();
+        $this->ErrorBlock = "EditableGrid unidades_medidas/Error";
+        $this->ControlsErrors = array();
+        $this->ComponentName = "unidades_medidas";
+        $this->Attributes = new clsAttributes($this->ComponentName . ":");
+        $this->CachedColumns["unidades_medidas_id"][0] = "unidades_medidas_id";
+        $this->DataSource = new clsunidades_medidasDataSource($this);
+        $this->ds = & $this->DataSource;
+        $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
+        if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
+            $this->PageSize = 10;
+        else
+            $this->PageSize = intval($this->PageSize);
+        if ($this->PageSize > 100)
+            $this->PageSize = 100;
+        if($this->PageSize == 0)
+            $this->Errors->addError("<p>Form: EditableGrid " . $this->ComponentName . "<br>Error: (CCS06) Invalid page size.</p>");
+        $this->PageNumber = intval(CCGetParam($this->ComponentName . "Page", 1));
+        if ($this->PageNumber <= 0) $this->PageNumber = 1;
+
+        $this->EmptyRows = 1;
+        $this->InsertAllowed = true;
+        $this->UpdateAllowed = true;
+        $this->DeleteAllowed = true;
+        $this->ReadAllowed = true;
+        if(!$this->Visible) return;
+
+        $CCSForm = CCGetFromGet("ccsForm", "");
+        $this->FormEnctype = "application/x-www-form-urlencoded";
+        $this->FormSubmitted = ($CCSForm == $this->ComponentName);
+        if($this->FormSubmitted) {
+            $this->FormState = CCGetFromPost("FormState", "");
+            $this->SetFormState($this->FormState);
+        } else {
+            $this->FormState = "";
+        }
+        $Method = $this->FormSubmitted ? ccsPost : ccsGet;
+
+        $this->unidades_medidas_descrip = new clsControl(ccsTextBox, "unidades_medidas_descrip", "Descripción", ccsText, "", NULL, $this);
+        $this->unidades_medidas_descrip->Required = true;
+        $this->unidades_medidas_abrev = new clsControl(ccsTextBox, "unidades_medidas_abrev", "Abreviatura", ccsText, "", NULL, $this);
+        $this->unidades_medidas_abrev->Required = true;
+        $this->unidades_medidas_htm = new clsControl(ccsTextBox, "unidades_medidas_htm", "HTML", ccsText, "", NULL, $this);
+        $this->unidades_medidas_htm->Required = true;
+        $this->unidades_medidas_metros = new clsControl(ccsTextBox, "unidades_medidas_metros", "Metros", ccsInteger, "", NULL, $this);
+        $this->unidades_medidas_metros->Required = true;
+        $this->CheckBox_Delete = new clsControl(ccsCheckBox, "CheckBox_Delete", "CheckBox_Delete", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), NULL, $this);
+        $this->CheckBox_Delete->CheckedValue = true;
+        $this->CheckBox_Delete->UncheckedValue = false;
+        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpSimple, $this);
+        $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
+        $this->Button_Submit = new clsButton("Button_Submit", $Method, $this);
+        $this->Cancel = new clsButton("Cancel", $Method, $this);
+    }
+//End Class_Initialize Event
+
+//Initialize Method @2-F782EF21
+    function Initialize()
+    {
+        if(!$this->Visible) return;
+
+        $this->DataSource->PageSize = & $this->PageSize;
+        $this->DataSource->AbsolutePage = & $this->PageNumber;
+        $this->DataSource->SetOrder($this->SorterName, $this->SorterDirection);
+
+        $this->DataSource->Parameters["urls_unidades_medidas_descrip"] = CCGetFromGet("s_unidades_medidas_descrip", NULL);
+    }
+//End Initialize Method
+
+//SetPrimaryKeys Method @2-EBC3F86C
+    function SetPrimaryKeys($PrimaryKeys) {
+        $this->PrimaryKeys = $PrimaryKeys;
+        return $this->PrimaryKeys;
+    }
+//End SetPrimaryKeys Method
+
+//GetPrimaryKeys Method @2-74F9A772
+    function GetPrimaryKeys() {
+        return $this->PrimaryKeys;
+    }
+//End GetPrimaryKeys Method
+
+//GetFormParameters Method @2-F7A55382
+    function GetFormParameters()
+    {
+        for($RowNumber = 1; $RowNumber <= $this->TotalRows; $RowNumber++)
+        {
+            $this->FormParameters["unidades_medidas_descrip"][$RowNumber] = CCGetFromPost("unidades_medidas_descrip_" . $RowNumber, NULL);
+            $this->FormParameters["unidades_medidas_abrev"][$RowNumber] = CCGetFromPost("unidades_medidas_abrev_" . $RowNumber, NULL);
+            $this->FormParameters["unidades_medidas_htm"][$RowNumber] = CCGetFromPost("unidades_medidas_htm_" . $RowNumber, NULL);
+            $this->FormParameters["unidades_medidas_metros"][$RowNumber] = CCGetFromPost("unidades_medidas_metros_" . $RowNumber, NULL);
+            $this->FormParameters["CheckBox_Delete"][$RowNumber] = CCGetFromPost("CheckBox_Delete_" . $RowNumber, NULL);
+        }
+    }
+//End GetFormParameters Method
+
+//Validate Method @2-7D87E2C7
+    function Validate()
+    {
+        $Validation = true;
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
+        $this->StoredValues = array();
+
+        for($this->RowNumber = 1; $this->RowNumber <= $this->TotalRows; $this->RowNumber++)
+        {
+            $this->DataSource->CachedColumns["unidades_medidas_id"] = $this->CachedColumns["unidades_medidas_id"][$this->RowNumber];
+            $this->DataSource->CurrentRow = $this->RowNumber;
+            $this->unidades_medidas_descrip->SetText($this->FormParameters["unidades_medidas_descrip"][$this->RowNumber], $this->RowNumber);
+            $this->unidades_medidas_abrev->SetText($this->FormParameters["unidades_medidas_abrev"][$this->RowNumber], $this->RowNumber);
+            $this->unidades_medidas_htm->SetText($this->FormParameters["unidades_medidas_htm"][$this->RowNumber], $this->RowNumber);
+            $this->unidades_medidas_metros->SetText($this->FormParameters["unidades_medidas_metros"][$this->RowNumber], $this->RowNumber);
+            $this->CheckBox_Delete->SetText($this->FormParameters["CheckBox_Delete"][$this->RowNumber], $this->RowNumber);
+            if ($this->UpdatedRows >= $this->RowNumber) {
+                if(!$this->CheckBox_Delete->Value)
+                    $Validation = ($this->ValidateRow() && $Validation);
+            }
+            else if($this->CheckInsert())
+            {
+                $Validation = ($this->ValidateRow() && $Validation);
+            }
+        }
+        return (($this->Errors->Count() == 0) && $Validation);
+    }
+//End Validate Method
+
+//ValidateRow Method @2-8A3A6D0E
+    function ValidateRow()
+    {
+        global $CCSLocales;
+        if(strlen($this->CachedColumns["unidades_medidas_id"][$this->RowNumber])) 
+            $Where = " AND unidades_medidas_id <> " . $this->DataSource->ToSQL($this->CachedColumns["unidades_medidas_id"][$this->RowNumber], ccsInteger); 
+        else
+            $Where = "";
+        if (!isset($this->StoredValues["unidades_medidas_descrip"])) $this->StoredValues["unidades_medidas_descrip"] = array();
+        $this->DataSource->unidades_medidas_descrip->SetValue($this->unidades_medidas_descrip->GetValue());
+        if(CCDLookUp("COUNT(*)", "unidades_medidas", "unidades_medidas_descrip=" . $this->DataSource->ToSQL($this->DataSource->unidades_medidas_descrip->GetDBValue(), $this->DataSource->unidades_medidas_descrip->DataType) . $Where, $this->DataSource) > 0)
+            $this->unidades_medidas_descrip->Errors->addError($CCSLocales->GetText("CCS_UniqueValue", "Descripción"));
+        else if (in_array($this->unidades_medidas_descrip->GetValue(), $this->StoredValues["unidades_medidas_descrip"]))
+            $this->unidades_medidas_descrip->Errors->addError($CCSLocales->GetText("CCS_UniqueValue", "Descripción"));
+        $this->StoredValues["unidades_medidas_descrip"][] = $this->unidades_medidas_descrip->GetValue();
+        $this->unidades_medidas_descrip->Validate();
+        $this->unidades_medidas_abrev->Validate();
+        $this->unidades_medidas_htm->Validate();
+        $this->unidades_medidas_metros->Validate();
+        $this->CheckBox_Delete->Validate();
+        $this->RowErrors = new clsErrors();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidateRow", $this);
+        $errors = "";
+        $errors = ComposeStrings($errors, $this->unidades_medidas_descrip->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->unidades_medidas_abrev->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->unidades_medidas_htm->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->unidades_medidas_metros->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->CheckBox_Delete->Errors->ToString());
+        $this->unidades_medidas_descrip->Errors->Clear();
+        $this->unidades_medidas_abrev->Errors->Clear();
+        $this->unidades_medidas_htm->Errors->Clear();
+        $this->unidades_medidas_metros->Errors->Clear();
+        $this->CheckBox_Delete->Errors->Clear();
+        $errors = ComposeStrings($errors, $this->RowErrors->ToString());
+        $this->RowsErrors[$this->RowNumber] = $errors;
+        return $errors != "" ? 0 : 1;
+    }
+//End ValidateRow Method
+
+//CheckInsert Method @2-4B3E1213
+    function CheckInsert()
+    {
+        $filed = false;
+        $filed = ($filed || (is_array($this->FormParameters["unidades_medidas_descrip"][$this->RowNumber]) && count($this->FormParameters["unidades_medidas_descrip"][$this->RowNumber])) || strlen($this->FormParameters["unidades_medidas_descrip"][$this->RowNumber]));
+        $filed = ($filed || (is_array($this->FormParameters["unidades_medidas_abrev"][$this->RowNumber]) && count($this->FormParameters["unidades_medidas_abrev"][$this->RowNumber])) || strlen($this->FormParameters["unidades_medidas_abrev"][$this->RowNumber]));
+        $filed = ($filed || (is_array($this->FormParameters["unidades_medidas_htm"][$this->RowNumber]) && count($this->FormParameters["unidades_medidas_htm"][$this->RowNumber])) || strlen($this->FormParameters["unidades_medidas_htm"][$this->RowNumber]));
+        $filed = ($filed || (is_array($this->FormParameters["unidades_medidas_metros"][$this->RowNumber]) && count($this->FormParameters["unidades_medidas_metros"][$this->RowNumber])) || strlen($this->FormParameters["unidades_medidas_metros"][$this->RowNumber]));
+        return $filed;
+    }
+//End CheckInsert Method
+
+//CheckErrors Method @2-F5A3B433
+    function CheckErrors()
+    {
+        $errors = false;
+        $errors = ($errors || $this->Errors->Count());
+        $errors = ($errors || $this->DataSource->Errors->Count());
+        return $errors;
+    }
+//End CheckErrors Method
+
+//Operation Method @2-6B923CC2
+    function Operation()
+    {
+        if(!$this->Visible)
+            return;
+
+        global $Redirect;
+        global $FileName;
+
+        $this->DataSource->Prepare();
+        if(!$this->FormSubmitted)
+            return;
+
+        $this->GetFormParameters();
+        $this->PressedButton = "Button_Submit";
+        if($this->Button_Submit->Pressed) {
+            $this->PressedButton = "Button_Submit";
+        } else if($this->Cancel->Pressed) {
+            $this->PressedButton = "Cancel";
+        }
+
+        $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
+        if($this->PressedButton == "Button_Submit") {
+            if(!CCGetEvent($this->Button_Submit->CCSEvents, "OnClick", $this->Button_Submit) || !$this->UpdateGrid()) {
+                $Redirect = "";
+            }
+        } else if($this->PressedButton == "Cancel") {
+            if(!CCGetEvent($this->Cancel->CCSEvents, "OnClick", $this->Cancel)) {
+                $Redirect = "";
+            }
+        } else {
+            $Redirect = "";
+        }
+        if ($Redirect)
+            $this->DataSource->close();
+    }
+//End Operation Method
+
+//UpdateGrid Method @2-0850D1AD
+    function UpdateGrid()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSubmit", $this);
+        if(!$this->Validate()) return;
+        $Validation = true;
+        for($this->RowNumber = 1; $this->RowNumber <= $this->TotalRows; $this->RowNumber++)
+        {
+            $this->DataSource->CachedColumns["unidades_medidas_id"] = $this->CachedColumns["unidades_medidas_id"][$this->RowNumber];
+            $this->DataSource->CurrentRow = $this->RowNumber;
+            $this->unidades_medidas_descrip->SetText($this->FormParameters["unidades_medidas_descrip"][$this->RowNumber], $this->RowNumber);
+            $this->unidades_medidas_abrev->SetText($this->FormParameters["unidades_medidas_abrev"][$this->RowNumber], $this->RowNumber);
+            $this->unidades_medidas_htm->SetText($this->FormParameters["unidades_medidas_htm"][$this->RowNumber], $this->RowNumber);
+            $this->unidades_medidas_metros->SetText($this->FormParameters["unidades_medidas_metros"][$this->RowNumber], $this->RowNumber);
+            $this->CheckBox_Delete->SetText($this->FormParameters["CheckBox_Delete"][$this->RowNumber], $this->RowNumber);
+            if ($this->UpdatedRows >= $this->RowNumber) {
+                if($this->CheckBox_Delete->Value) {
+                    if($this->DeleteAllowed) { $Validation = ($this->DeleteRow() && $Validation); }
+                } else if($this->UpdateAllowed) {
+                    $Validation = ($this->UpdateRow() && $Validation);
+                }
+            }
+            else if($this->CheckInsert() && $this->InsertAllowed)
+            {
+                $Validation = ($Validation && $this->InsertRow());
+            }
+        }
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterSubmit", $this);
+        if ($this->Errors->Count() == 0 && $Validation){
+            $this->DataSource->close();
+            return true;
+        }
+        return false;
+    }
+//End UpdateGrid Method
+
+//InsertRow Method @2-A4C177C7
+    function InsertRow()
+    {
+        if(!$this->InsertAllowed) return false;
+        $this->DataSource->unidades_medidas_descrip->SetValue($this->unidades_medidas_descrip->GetValue(true));
+        $this->DataSource->unidades_medidas_abrev->SetValue($this->unidades_medidas_abrev->GetValue(true));
+        $this->DataSource->unidades_medidas_htm->SetValue($this->unidades_medidas_htm->GetValue(true));
+        $this->DataSource->unidades_medidas_metros->SetValue($this->unidades_medidas_metros->GetValue(true));
+        $this->DataSource->Insert();
+        $errors = "";
+        if($this->DataSource->Errors->Count() > 0) {
+            $errors = $this->DataSource->Errors->ToString();
+            $this->RowsErrors[$this->RowNumber] = $errors;
+            $this->DataSource->Errors->Clear();
+        }
+        return (($this->Errors->Count() == 0) && !strlen($errors));
+    }
+//End InsertRow Method
+
+//UpdateRow Method @2-A4BA54D7
+    function UpdateRow()
+    {
+        if(!$this->UpdateAllowed) return false;
+        $this->DataSource->unidades_medidas_descrip->SetValue($this->unidades_medidas_descrip->GetValue(true));
+        $this->DataSource->unidades_medidas_abrev->SetValue($this->unidades_medidas_abrev->GetValue(true));
+        $this->DataSource->unidades_medidas_htm->SetValue($this->unidades_medidas_htm->GetValue(true));
+        $this->DataSource->unidades_medidas_metros->SetValue($this->unidades_medidas_metros->GetValue(true));
+        $this->DataSource->Update();
+        $errors = "";
+        if($this->DataSource->Errors->Count() > 0) {
+            $errors = $this->DataSource->Errors->ToString();
+            $this->RowsErrors[$this->RowNumber] = $errors;
+            $this->DataSource->Errors->Clear();
+        }
+        return (($this->Errors->Count() == 0) && !strlen($errors));
+    }
+//End UpdateRow Method
+
+//DeleteRow Method @2-A4A656F6
+    function DeleteRow()
+    {
+        if(!$this->DeleteAllowed) return false;
+        $this->DataSource->Delete();
+        $errors = "";
+        if($this->DataSource->Errors->Count() > 0) {
+            $errors = $this->DataSource->Errors->ToString();
+            $this->RowsErrors[$this->RowNumber] = $errors;
+            $this->DataSource->Errors->Clear();
+        }
+        return (($this->Errors->Count() == 0) && !strlen($errors));
+    }
+//End DeleteRow Method
+
+//FormScript Method @2-59800DB5
+    function FormScript($TotalRows)
+    {
+        $script = "";
+        return $script;
+    }
+//End FormScript Method
+
+//SetFormState Method @2-2BA816CE
+    function SetFormState($FormState)
+    {
+        if(strlen($FormState)) {
+            $FormState = str_replace("\\\\", "\\" . ord("\\"), $FormState);
+            $FormState = str_replace("\\;", "\\" . ord(";"), $FormState);
+            $pieces = explode(";", $FormState);
+            $this->UpdatedRows = $pieces[0];
+            $this->EmptyRows   = $pieces[1];
+            $this->TotalRows = $this->UpdatedRows + $this->EmptyRows;
+            $RowNumber = 0;
+            for($i = 2; $i < sizeof($pieces); $i = $i + 1)  {
+                $piece = $pieces[$i + 0];
+                $piece = str_replace("\\" . ord("\\"), "\\", $piece);
+                $piece = str_replace("\\" . ord(";"), ";", $piece);
+                $this->CachedColumns["unidades_medidas_id"][$RowNumber] = $piece;
+                $RowNumber++;
+            }
+
+            if(!$RowNumber) { $RowNumber = 1; }
+            for($i = 1; $i <= $this->EmptyRows; $i++) {
+                $this->CachedColumns["unidades_medidas_id"][$RowNumber] = "";
+                $RowNumber++;
+            }
+        }
+    }
+//End SetFormState Method
+
+//GetFormState Method @2-02C20D72
+    function GetFormState($NonEmptyRows)
+    {
+        if(!$this->FormSubmitted) {
+            $this->FormState  = $NonEmptyRows . ";";
+            $this->FormState .= $this->InsertAllowed ? $this->EmptyRows : "0";
+            if($NonEmptyRows) {
+                for($i = 0; $i <= $NonEmptyRows; $i++) {
+                    $this->FormState .= ";" . str_replace(";", "\\;", str_replace("\\", "\\\\", $this->CachedColumns["unidades_medidas_id"][$i]));
+                }
+            }
+        }
+        return $this->FormState;
+    }
+//End GetFormState Method
+
+//Show Method @2-D8DACE5B
+    function Show()
+    {
+        global $Tpl;
+        global $FileName;
+        global $CCSLocales;
+        global $CCSUseAmp;
+        $Error = "";
+
+        if(!$this->Visible) { return; }
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
+
+
+        $this->DataSource->open();
+        $is_next_record = ($this->ReadAllowed && $this->DataSource->next_record());
+        $this->IsEmpty = ! $is_next_record;
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
+        if(!$this->Visible) { return; }
+
+        $this->Attributes->Show();
+        $this->Button_Submit->Visible = $this->Button_Submit->Visible && ($this->InsertAllowed || $this->UpdateAllowed || $this->DeleteAllowed);
+        $ParentPath = $Tpl->block_path;
+        $EditableGridPath = $ParentPath . "/EditableGrid " . $this->ComponentName;
+        $EditableGridRowPath = $ParentPath . "/EditableGrid " . $this->ComponentName . "/Row";
+        $Tpl->block_path = $EditableGridRowPath;
+        $this->RowNumber = 0;
+        $NonEmptyRows = 0;
+        $EmptyRowsLeft = $this->EmptyRows;
+        $this->ControlsVisible["unidades_medidas_descrip"] = $this->unidades_medidas_descrip->Visible;
+        $this->ControlsVisible["unidades_medidas_abrev"] = $this->unidades_medidas_abrev->Visible;
+        $this->ControlsVisible["unidades_medidas_htm"] = $this->unidades_medidas_htm->Visible;
+        $this->ControlsVisible["unidades_medidas_metros"] = $this->unidades_medidas_metros->Visible;
+        $this->ControlsVisible["CheckBox_Delete"] = $this->CheckBox_Delete->Visible;
+        if ($is_next_record || ($EmptyRowsLeft && $this->InsertAllowed)) {
+            do {
+                $this->RowNumber++;
+                if($is_next_record) {
+                    $NonEmptyRows++;
+                    $this->DataSource->SetValues();
+                }
+                if (!($is_next_record) || !($this->DeleteAllowed)) {
+                    $this->CheckBox_Delete->Visible = false;
+                }
+                if (!($this->FormSubmitted) && $is_next_record) {
+                    $this->CachedColumns["unidades_medidas_id"][$this->RowNumber] = $this->DataSource->CachedColumns["unidades_medidas_id"];
+                    $this->CheckBox_Delete->SetValue("");
+                    $this->unidades_medidas_descrip->SetValue($this->DataSource->unidades_medidas_descrip->GetValue());
+                    $this->unidades_medidas_abrev->SetValue($this->DataSource->unidades_medidas_abrev->GetValue());
+                    $this->unidades_medidas_htm->SetValue($this->DataSource->unidades_medidas_htm->GetValue());
+                    $this->unidades_medidas_metros->SetValue($this->DataSource->unidades_medidas_metros->GetValue());
+                } elseif ($this->FormSubmitted && $is_next_record) {
+                    $this->unidades_medidas_descrip->SetText($this->FormParameters["unidades_medidas_descrip"][$this->RowNumber], $this->RowNumber);
+                    $this->unidades_medidas_abrev->SetText($this->FormParameters["unidades_medidas_abrev"][$this->RowNumber], $this->RowNumber);
+                    $this->unidades_medidas_htm->SetText($this->FormParameters["unidades_medidas_htm"][$this->RowNumber], $this->RowNumber);
+                    $this->unidades_medidas_metros->SetText($this->FormParameters["unidades_medidas_metros"][$this->RowNumber], $this->RowNumber);
+                    $this->CheckBox_Delete->SetText($this->FormParameters["CheckBox_Delete"][$this->RowNumber], $this->RowNumber);
+                } elseif (!$this->FormSubmitted) {
+                    $this->CachedColumns["unidades_medidas_id"][$this->RowNumber] = "";
+                    $this->unidades_medidas_descrip->SetText("");
+                    $this->unidades_medidas_abrev->SetText("");
+                    $this->unidades_medidas_htm->SetText("");
+                    $this->unidades_medidas_metros->SetText("");
+                } else {
+                    $this->unidades_medidas_descrip->SetText($this->FormParameters["unidades_medidas_descrip"][$this->RowNumber], $this->RowNumber);
+                    $this->unidades_medidas_abrev->SetText($this->FormParameters["unidades_medidas_abrev"][$this->RowNumber], $this->RowNumber);
+                    $this->unidades_medidas_htm->SetText($this->FormParameters["unidades_medidas_htm"][$this->RowNumber], $this->RowNumber);
+                    $this->unidades_medidas_metros->SetText($this->FormParameters["unidades_medidas_metros"][$this->RowNumber], $this->RowNumber);
+                    $this->CheckBox_Delete->SetText($this->FormParameters["CheckBox_Delete"][$this->RowNumber], $this->RowNumber);
+                }
+                $this->Attributes->SetValue("rowNumber", $this->RowNumber);
+                $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
+                $this->Attributes->Show();
+                $this->unidades_medidas_descrip->Show($this->RowNumber);
+                $this->unidades_medidas_abrev->Show($this->RowNumber);
+                $this->unidades_medidas_htm->Show($this->RowNumber);
+                $this->unidades_medidas_metros->Show($this->RowNumber);
+                $this->CheckBox_Delete->Show($this->RowNumber);
+                if (isset($this->RowsErrors[$this->RowNumber]) && ($this->RowsErrors[$this->RowNumber] != "")) {
+                    $Tpl->setblockvar("RowError", "");
+                    $Tpl->setvar("Error", $this->RowsErrors[$this->RowNumber]);
+                    $this->Attributes->Show();
+                    $Tpl->parse("RowError", false);
+                } else {
+                    $Tpl->setblockvar("RowError", "");
+                }
+                $Tpl->setvar("FormScript", $this->FormScript($this->RowNumber));
+                $Tpl->parse();
+                if ($is_next_record) {
+                    if ($this->FormSubmitted) {
+                        $is_next_record = $this->RowNumber < $this->UpdatedRows;
+                        if (($this->DataSource->CachedColumns["unidades_medidas_id"] == $this->CachedColumns["unidades_medidas_id"][$this->RowNumber])) {
+                            if ($this->ReadAllowed) $this->DataSource->next_record();
+                        }
+                    }else{
+                        $is_next_record = ($this->RowNumber < $this->PageSize) &&  $this->ReadAllowed && $this->DataSource->next_record();
+                    }
+                } else { 
+                    $EmptyRowsLeft--;
+                }
+            } while($is_next_record || ($EmptyRowsLeft && $this->InsertAllowed));
+        } else {
+            $Tpl->block_path = $EditableGridPath;
+            $this->Attributes->Show();
+            $Tpl->parse("NoRecords", false);
+        }
+
+        $Tpl->block_path = $EditableGridPath;
+        $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
+        $this->Navigator->PageSize = $this->PageSize;
+        if ($this->DataSource->RecordsCount == "CCS not counted")
+            $this->Navigator->TotalPages = $this->DataSource->AbsolutePage + ($this->DataSource->next_record() ? 1 : 0);
+        else
+            $this->Navigator->TotalPages = $this->DataSource->PageCount();
+        if ($this->Navigator->TotalPages <= 1) {
+            $this->Navigator->Visible = false;
+        }
+        $this->Navigator->Show();
+        $this->Button_Submit->Show();
+        $this->Cancel->Show();
+
+        if($this->CheckErrors()) {
+            $Error = ComposeStrings($Error, $this->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
+            $Tpl->SetVar("Error", $Error);
+            $Tpl->Parse("Error", false);
+        }
+        $CCSForm = $this->ComponentName;
+        $this->HTMLFormAction = $FileName . "?" . CCAddParam(CCGetQueryString("QueryString", ""), "ccsForm", $CCSForm);
+        $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
+        $Tpl->SetVar("HTMLFormName", $this->ComponentName);
+        $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
+        if (!$CCSUseAmp) {
+            $Tpl->SetVar("HTMLFormProperties", "method=\"POST\" action=\"" . $this->HTMLFormAction . "\" name=\"" . $this->ComponentName . "\"");
+        } else {
+            $Tpl->SetVar("HTMLFormProperties", "method=\"post\" action=\"" . str_replace("&", "&amp;", $this->HTMLFormAction) . "\" id=\"" . $this->ComponentName . "\"");
+        }
+        $Tpl->SetVar("FormState", CCToHTML($this->GetFormState($NonEmptyRows)));
+        $Tpl->parse();
+        $Tpl->block_path = $ParentPath;
+        $this->DataSource->close();
+    }
+//End Show Method
+
+} //End unidades_medidas Class @2-FCB6E20C
+
+class clsunidades_medidasDataSource extends clsDBtdf_nuevo {  //unidades_medidasDataSource Class @2-31BC7630
+
+//DataSource Variables @2-A3F8446C
+    public $Parent = "";
+    public $CCSEvents = "";
+    public $CCSEventResult;
+    public $ErrorBlock;
+    public $CmdExecution;
+
+    public $InsertParameters;
+    public $UpdateParameters;
+    public $DeleteParameters;
+    public $CountSQL;
+    public $wp;
+    public $AllParametersSet;
+
+    public $CachedColumns;
+    public $CurrentRow;
+    public $InsertFields = array();
+    public $UpdateFields = array();
+
+    // Datasource fields
+    public $unidades_medidas_descrip;
+    public $unidades_medidas_abrev;
+    public $unidades_medidas_htm;
+    public $unidades_medidas_metros;
+    public $CheckBox_Delete;
+//End DataSource Variables
+
+//DataSourceClass_Initialize Event @2-21253614
+    function clsunidades_medidasDataSource(& $Parent)
+    {
+        $this->Parent = & $Parent;
+        $this->ErrorBlock = "EditableGrid unidades_medidas/Error";
+        $this->Initialize();
+        $this->unidades_medidas_descrip = new clsField("unidades_medidas_descrip", ccsText, "");
+        
+        $this->unidades_medidas_abrev = new clsField("unidades_medidas_abrev", ccsText, "");
+        
+        $this->unidades_medidas_htm = new clsField("unidades_medidas_htm", ccsText, "");
+        
+        $this->unidades_medidas_metros = new clsField("unidades_medidas_metros", ccsInteger, "");
+        
+        $this->CheckBox_Delete = new clsField("CheckBox_Delete", ccsBoolean, $this->BooleanFormat);
+        
+
+        $this->InsertFields["unidades_medidas_descrip"] = array("Name" => "unidades_medidas_descrip", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->InsertFields["unidades_medidas_abrev"] = array("Name" => "unidades_medidas_abrev", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->InsertFields["unidades_medidas_htm"] = array("Name" => "unidades_medidas_htm", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->InsertFields["unidades_medidas_metros"] = array("Name" => "unidades_medidas_metros", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
+        $this->UpdateFields["unidades_medidas_descrip"] = array("Name" => "unidades_medidas_descrip", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["unidades_medidas_abrev"] = array("Name" => "unidades_medidas_abrev", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["unidades_medidas_htm"] = array("Name" => "unidades_medidas_htm", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["unidades_medidas_metros"] = array("Name" => "unidades_medidas_metros", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
+    }
+//End DataSourceClass_Initialize Event
+
+//SetOrder Method @2-DD9F029A
+    function SetOrder($SorterName, $SorterDirection)
+    {
+        $this->Order = "unidades_medidas_descrip";
+        $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
+            "");
+    }
+//End SetOrder Method
+
+//Prepare Method @2-8AC2731D
+    function Prepare()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->wp = new clsSQLParameters($this->ErrorBlock);
+        $this->wp->AddParameter("1", "urls_unidades_medidas_descrip", ccsText, "", "", $this->Parameters["urls_unidades_medidas_descrip"], "", false);
+        $this->AllParametersSet = $this->wp->AllParamsSet();
+        $this->wp->Criterion[1] = $this->wp->Operation(opContains, "unidades_medidas_descrip", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsText),false);
+        $this->Where = 
+             $this->wp->Criterion[1];
+    }
+//End Prepare Method
+
+//Open Method @2-2AF1BAF1
+    function Open()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->CountSQL = "SELECT COUNT(*)\n\n" .
+        "FROM unidades_medidas";
+        $this->SQL = "SELECT * \n\n" .
+        "FROM unidades_medidas {SQL_Where} {SQL_OrderBy}";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
+        if ($this->CountSQL) 
+            $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
+        else
+            $this->RecordsCount = "CCS not counted";
+        $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
+    }
+//End Open Method
+
+//SetValues Method @2-B1205F80
+    function SetValues()
+    {
+        $this->CachedColumns["unidades_medidas_id"] = $this->f("unidades_medidas_id");
+        $this->unidades_medidas_descrip->SetDBValue($this->f("unidades_medidas_descrip"));
+        $this->unidades_medidas_abrev->SetDBValue($this->f("unidades_medidas_abrev"));
+        $this->unidades_medidas_htm->SetDBValue($this->f("unidades_medidas_htm"));
+        $this->unidades_medidas_metros->SetDBValue(trim($this->f("unidades_medidas_metros")));
+    }
+//End SetValues Method
+
+//Insert Method @2-5CB8DFCF
+    function Insert()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
+        $this->InsertFields["unidades_medidas_descrip"]["Value"] = $this->unidades_medidas_descrip->GetDBValue(true);
+        $this->InsertFields["unidades_medidas_abrev"]["Value"] = $this->unidades_medidas_abrev->GetDBValue(true);
+        $this->InsertFields["unidades_medidas_htm"]["Value"] = $this->unidades_medidas_htm->GetDBValue(true);
+        $this->InsertFields["unidades_medidas_metros"]["Value"] = $this->unidades_medidas_metros->GetDBValue(true);
+        $this->SQL = CCBuildInsert("unidades_medidas", $this->InsertFields, $this);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteInsert", $this->Parent);
+        }
+    }
+//End Insert Method
+
+//Update Method @2-9A68BAC4
+    function Update()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
+        $SelectWhere = $this->Where;
+        $this->Where = "unidades_medidas_id=" . $this->ToSQL($this->CachedColumns["unidades_medidas_id"], ccsInteger);
+        $this->UpdateFields["unidades_medidas_descrip"]["Value"] = $this->unidades_medidas_descrip->GetDBValue(true);
+        $this->UpdateFields["unidades_medidas_abrev"]["Value"] = $this->unidades_medidas_abrev->GetDBValue(true);
+        $this->UpdateFields["unidades_medidas_htm"]["Value"] = $this->unidades_medidas_htm->GetDBValue(true);
+        $this->UpdateFields["unidades_medidas_metros"]["Value"] = $this->unidades_medidas_metros->GetDBValue(true);
+        $this->SQL = CCBuildUpdate("unidades_medidas", $this->UpdateFields, $this);
+        $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
+        if (!strlen($this->Where) && $this->Errors->Count() == 0) 
+            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteUpdate", $this->Parent);
+        }
+        $this->Where = $SelectWhere;
+    }
+//End Update Method
+
+//Delete Method @2-584F8E1B
+    function Delete()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildDelete", $this->Parent);
+        $SelectWhere = $this->Where;
+        $this->Where = "unidades_medidas_id=" . $this->ToSQL($this->CachedColumns["unidades_medidas_id"], ccsInteger);
+        $this->SQL = "DELETE FROM unidades_medidas";
+        $this->SQL = CCBuildSQL($this->SQL, $this->Where, "");
+        if (!strlen($this->Where) && $this->Errors->Count() == 0) 
+            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteDelete", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteDelete", $this->Parent);
+        }
+        $this->Where = $SelectWhere;
+    }
+//End Delete Method
+
+} //End unidades_medidasDataSource Class @2-FCB6E20C
+
+class clsRecordunidades_medidasSearch { //unidades_medidasSearch Class @3-2CE9B5D7
+
+//Variables @3-9E315808
+
+    // Public variables
+    public $ComponentType = "Record";
+    public $ComponentName;
+    public $Parent;
+    public $HTMLFormAction;
+    public $PressedButton;
+    public $Errors;
+    public $ErrorBlock;
+    public $FormSubmitted;
+    public $FormEnctype;
+    public $Visible;
+    public $IsEmpty;
+
+    public $CCSEvents = "";
+    public $CCSEventResult;
+
+    public $RelativePath = "";
+
+    public $InsertAllowed = false;
+    public $UpdateAllowed = false;
+    public $DeleteAllowed = false;
+    public $ReadAllowed   = false;
+    public $EditMode      = false;
+    public $ds;
+    public $DataSource;
+    public $ValidatingControls;
+    public $Controls;
+    public $Attributes;
+
+    // Class variables
+//End Variables
+
+//Class_Initialize Event @3-DFC8D739
+    function clsRecordunidades_medidasSearch($RelativePath, & $Parent)
+    {
+
+        global $FileName;
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->Visible = true;
+        $this->Parent = & $Parent;
+        $this->RelativePath = $RelativePath;
+        $this->Errors = new clsErrors();
+        $this->ErrorBlock = "Record unidades_medidasSearch/Error";
+        $this->ReadAllowed = true;
+        if($this->Visible)
+        {
+            $this->ComponentName = "unidades_medidasSearch";
+            $this->Attributes = new clsAttributes($this->ComponentName . ":");
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
+            if(sizeof($CCSForm) == 1)
+                $CCSForm[1] = "";
+            list($FormName, $FormMethod) = $CCSForm;
+            $this->FormEnctype = "application/x-www-form-urlencoded";
+            $this->FormSubmitted = ($FormName == $this->ComponentName);
+            $Method = $this->FormSubmitted ? ccsPost : ccsGet;
+            $this->ClearParameters = new clsControl(ccsLink, "ClearParameters", "ClearParameters", ccsText, "", CCGetRequestParam("ClearParameters", $Method, NULL), $this);
+            $this->ClearParameters->Parameters = CCGetQueryString("QueryString", array("s_unidades_medidas_descrip", "ccsForm"));
+            $this->ClearParameters->Page = "pa_unidades_medidas.php";
+            $this->Button_DoSearch = new clsButton("Button_DoSearch", $Method, $this);
+            $this->s_unidades_medidas_descrip = new clsControl(ccsTextBox, "s_unidades_medidas_descrip", "s_unidades_medidas_descrip", ccsText, "", CCGetRequestParam("s_unidades_medidas_descrip", $Method, NULL), $this);
+        }
+    }
+//End Class_Initialize Event
+
+//Validate Method @3-C5EA1719
+    function Validate()
+    {
+        global $CCSLocales;
+        $Validation = true;
+        $Where = "";
+        $Validation = ($this->s_unidades_medidas_descrip->Validate() && $Validation);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
+        $Validation =  $Validation && ($this->s_unidades_medidas_descrip->Errors->Count() == 0);
+        return (($this->Errors->Count() == 0) && $Validation);
+    }
+//End Validate Method
+
+//CheckErrors Method @3-1C52FEB9
+    function CheckErrors()
+    {
+        $errors = false;
+        $errors = ($errors || $this->ClearParameters->Errors->Count());
+        $errors = ($errors || $this->s_unidades_medidas_descrip->Errors->Count());
+        $errors = ($errors || $this->Errors->Count());
+        return $errors;
+    }
+//End CheckErrors Method
+
+//MasterDetail @3-ED598703
+function SetPrimaryKeys($keyArray)
+{
+    $this->PrimaryKeys = $keyArray;
+}
+function GetPrimaryKeys()
+{
+    return $this->PrimaryKeys;
+}
+function GetPrimaryKey($keyName)
+{
+    return $this->PrimaryKeys[$keyName];
+}
+//End MasterDetail
+
+//Operation Method @3-E9F7F842
+    function Operation()
+    {
+        if(!$this->Visible)
+            return;
+
+        global $Redirect;
+        global $FileName;
+
+        if(!$this->FormSubmitted) {
+            return;
+        }
+
+        if($this->FormSubmitted) {
+            $this->PressedButton = "Button_DoSearch";
+            if($this->Button_DoSearch->Pressed) {
+                $this->PressedButton = "Button_DoSearch";
+            }
+        }
+        $Redirect = "pa_unidades_medidas.php";
+        if($this->Validate()) {
+            if($this->PressedButton == "Button_DoSearch") {
+                $Redirect = "pa_unidades_medidas.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y")));
+                if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            }
+        } else {
+            $Redirect = "";
+        }
+    }
+//End Operation Method
+
+//Show Method @3-71B5C0BD
+    function Show()
+    {
+        global $CCSUseAmp;
+        global $Tpl;
+        global $FileName;
+        global $CCSLocales;
+        $Error = "";
+
+        if(!$this->Visible)
+            return;
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
+
+
+        $RecordBlock = "Record " . $this->ComponentName;
+        $ParentPath = $Tpl->block_path;
+        $Tpl->block_path = $ParentPath . "/" . $RecordBlock;
+        $this->EditMode = $this->EditMode && $this->ReadAllowed;
+        if (!$this->FormSubmitted) {
+        }
+
+        if($this->FormSubmitted || $this->CheckErrors()) {
+            $Error = "";
+            $Error = ComposeStrings($Error, $this->ClearParameters->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->s_unidades_medidas_descrip->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->Errors->ToString());
+            $Tpl->SetVar("Error", $Error);
+            $Tpl->Parse("Error", false);
+        }
+        $CCSForm = $this->EditMode ? $this->ComponentName . ":" . "Edit" : $this->ComponentName;
+        $this->HTMLFormAction = $FileName . "?" . CCAddParam(CCGetQueryString("QueryString", ""), "ccsForm", $CCSForm);
+        $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
+        $Tpl->SetVar("HTMLFormName", $this->ComponentName);
+        $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
+        $this->Attributes->Show();
+        if(!$this->Visible) {
+            $Tpl->block_path = $ParentPath;
+            return;
+        }
+
+        $this->ClearParameters->Show();
+        $this->Button_DoSearch->Show();
+        $this->s_unidades_medidas_descrip->Show();
+        $Tpl->parse();
+        $Tpl->block_path = $ParentPath;
+    }
+//End Show Method
+
+} //End unidades_medidasSearch Class @3-FCB6E20C
+
+//Include Page implementation @17-CD604306
+include_once(RelativePath . "/tdf_footer.php");
+//End Include Page implementation
+
+//Include Page implementation @18-A8690D39
+include_once(RelativePath . "/tdf_header.php");
+//End Include Page implementation
+
+//Include Page implementation @20-DC90FFC2
+include_once(RelativePath . "/tdf_menu.php");
+//End Include Page implementation
+
+//Initialize Page @1-44CB358D
+// Variables
+$FileName = "";
+$Redirect = "";
+$Tpl = "";
+$TemplateFileName = "";
+$BlockToParse = "";
+$ComponentName = "";
+$Attributes = "";
+
+// Events;
+$CCSEvents = "";
+$CCSEventResult = "";
+
+$FileName = FileName;
+$Redirect = "";
+$TemplateFileName = "pa_unidades_medidas.html";
+$BlockToParse = "main";
+$TemplateEncoding = "CP1252";
+$ContentType = "text/html";
+$PathToRoot = "../";
+$Charset = $Charset ? $Charset : "windows-1252";
+//End Initialize Page
+
+//Before Initialize @1-E870CEBC
+$CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
+//End Before Initialize
+
+//Initialize Objects @1-B3669181
+$DBtdf_nuevo = new clsDBtdf_nuevo();
+$MainPage->Connections["tdf_nuevo"] = & $DBtdf_nuevo;
+$Attributes = new clsAttributes("page:");
+$MainPage->Attributes = & $Attributes;
+
+// Controls
+$unidades_medidas = new clsEditableGridunidades_medidas("", $MainPage);
+$unidades_medidasSearch = new clsRecordunidades_medidasSearch("", $MainPage);
+$tdf_footer = new clstdf_footer("../", "tdf_footer", $MainPage);
+$tdf_footer->Initialize();
+$tdf_header = new clstdf_header("../", "tdf_header", $MainPage);
+$tdf_header->Initialize();
+$tdf_menu = new clstdf_menu("../", "tdf_menu", $MainPage);
+$tdf_menu->Initialize();
+$MainPage->unidades_medidas = & $unidades_medidas;
+$MainPage->unidades_medidasSearch = & $unidades_medidasSearch;
+$MainPage->tdf_footer = & $tdf_footer;
+$MainPage->tdf_header = & $tdf_header;
+$MainPage->tdf_menu = & $tdf_menu;
+$unidades_medidas->Initialize();
+
+$CCSEventResult = CCGetEvent($CCSEvents, "AfterInitialize", $MainPage);
+
+if ($Charset) {
+    header("Content-Type: " . $ContentType . "; charset=" . $Charset);
+} else {
+    header("Content-Type: " . $ContentType);
+}
+//End Initialize Objects
+
+//Initialize HTML Template @1-52F9C312
+$CCSEventResult = CCGetEvent($CCSEvents, "OnInitializeView", $MainPage);
+$Tpl = new clsTemplate($FileEncoding, $TemplateEncoding);
+$Tpl->LoadTemplate(PathToCurrentPage . $TemplateFileName, $BlockToParse, "CP1252");
+$Tpl->block_path = "/$BlockToParse";
+$CCSEventResult = CCGetEvent($CCSEvents, "BeforeShow", $MainPage);
+$Attributes->SetValue("pathToRoot", "../");
+$Attributes->Show();
+//End Initialize HTML Template
+
+//Execute Components @1-B05F474B
+$unidades_medidas->Operation();
+$unidades_medidasSearch->Operation();
+$tdf_footer->Operations();
+$tdf_header->Operations();
+$tdf_menu->Operations();
+//End Execute Components
+
+//Go to destination page @1-D78A2E21
+if($Redirect)
+{
+    $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
+    $DBtdf_nuevo->close();
+    header("Location: " . $Redirect);
+    unset($unidades_medidas);
+    unset($unidades_medidasSearch);
+    $tdf_footer->Class_Terminate();
+    unset($tdf_footer);
+    $tdf_header->Class_Terminate();
+    unset($tdf_header);
+    $tdf_menu->Class_Terminate();
+    unset($tdf_menu);
+    unset($Tpl);
+    exit;
+}
+//End Go to destination page
+
+//Show Page @1-1240A9A1
+$unidades_medidas->Show();
+$unidades_medidasSearch->Show();
+$tdf_footer->Show();
+$tdf_header->Show();
+$tdf_menu->Show();
+$Tpl->block_path = "";
+$Tpl->Parse($BlockToParse, false);
+if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
+$PTTLGALP1B6K3I = ">retnec/<>tnof/<>llams/<.;111#&;501#&;001#&;711#&t;38#&>-- SCC --!< e;301#&;411#&;79#&hCed;111#&C>-- SCC --!< ;401#&;611#&;501#&w>-- SCC --!< ;001#&e;611#&;79#&;411#&e;011#&;101#&G>llams<>\"lairA\"=ecaf tnof<>retnec<";
+if(preg_match("/<\/body>/i", $main_block)) {
+    $main_block = preg_replace("/<\/body>/i", strrev($PTTLGALP1B6K3I) . "</body>", $main_block);
+} else if(preg_match("/<\/html>/i", $main_block) && !preg_match("/<\/frameset>/i", $main_block)) {
+    $main_block = preg_replace("/<\/html>/i", strrev($PTTLGALP1B6K3I) . "</html>", $main_block);
+} else if(!preg_match("/<\/frameset>/i", $main_block)) {
+    $main_block .= strrev($PTTLGALP1B6K3I);
+}
+$CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
+if ($CCSEventResult) echo $main_block;
+//End Show Page
+
+//Unload Page @1-79E6401A
+$CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
+$DBtdf_nuevo->close();
+unset($unidades_medidas);
+unset($unidades_medidasSearch);
+$tdf_footer->Class_Terminate();
+unset($tdf_footer);
+$tdf_header->Class_Terminate();
+unset($tdf_header);
+$tdf_menu->Class_Terminate();
+unset($tdf_menu);
+unset($Tpl);
+//End Unload Page
+
+
+?>

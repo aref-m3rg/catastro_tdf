@@ -1,0 +1,159 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>pa_tipos_padrones_parcelas</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css" />
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//tipos_padrones_parcelaCancel_OnClick @14-A05E41D1
+function tipos_padrones_parcelaCancel_OnClick()
+{
+    disableValidation = true;
+}
+//End tipos_padrones_parcelaCancel_OnClick
+
+//bind_events @1-0846D845
+function bind_events() {
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("tipos_padrones_parcelaCancel", "click", tipos_padrones_parcelaCancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<p>&nbsp;</p>
+<!-- BEGIN Record tipos_padrones_parcelaSearch -->
+<form id="tipos_padrones_parcelaSearch" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+            <th>Buscar</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td> 
+          </tr>
+ <!-- END Error -->
+          <tr class="Controls">
+            <th>Descripción</th>
+ 
+            <td><input id="tipos_padrones_parcelaSearchs_tipo_padron_parc_desc" name="{s_tipo_padron_parc_desc_Name}" maxlength="25" value="{s_tipo_padron_parc_desc}" size="25"></td> 
+          </tr>
+ 
+          <tr class="Bottom">
+            <td><a href="{ClearParameters_Src}" id="tipos_padrones_parcelaSearchClearParameters">Limpiar</a></td> 
+            <td align="right">
+              <!-- BEGIN Button Button_DoSearch --><input id="tipos_padrones_parcelaSearchButton_DoSearch" class="Button" name="{Button_Name}" value="Buscar" type="submit"><!-- END Button Button_DoSearch --></td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+</form>
+<!-- END Record tipos_padrones_parcelaSearch --><br>
+<!-- BEGIN EditableGrid tipos_padrones_parcela -->
+<form id="tipos_padrones_parcela" method="post" name="{HTMLFormName}" action="{Action}">
+  <input name="FormState" value="{FormState}" type="hidden">{FormScript} 
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+            <th>Listado de tipos de padrones / parcelas</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="3">{Error}</td> 
+          </tr>
+ <!-- END Error -->
+          <tr class="Caption">
+            <th>Descripción</th>
+ 
+            <th>Abreviatura</th>
+ 
+            <th>Borrar</th>
+ 
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <!-- BEGIN RowError -->
+          <tr class="Error">
+            <td colspan="3">{Error}</td> 
+          </tr>
+ <!-- END RowError -->
+          <tr class="Row">
+            <td><input id="tipos_padrones_parcelatipo_padron_parc_desc_{tipos_padrones_parcela:rowNumber}" name="{tipo_padron_parc_desc_Name}" maxlength="25" value="{tipo_padron_parc_desc}" size="25"></td> 
+            <td><input id="tipos_padrones_parcelatipo_padron_parc_abrev_{tipos_padrones_parcela:rowNumber}" name="{tipo_padron_parc_abrev_Name}" maxlength="10" value="{tipo_padron_parc_abrev}" size="10"></td> 
+            <td>
+              <!-- BEGIN CheckBox CheckBox_Delete --><input id="tipos_padrones_parcelaCheckBox_Delete_{tipos_padrones_parcela:rowNumber}" name="{CheckBox_Delete_Name}" value="1" type="checkbox" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete -->&nbsp;</td> 
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="3">No hay registros</td> 
+          </tr>
+ <!-- END NoRecords -->
+          <tr class="Footer">
+            <td style="TEXT-ALIGN: right" colspan="3">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+              <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                <option selected value="">-</option>
+ {PageSize_Options} 
+              </select>
+ 
+              <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+              <!-- BEGIN First_Off --><img border="0" src="../Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+              <!-- BEGIN Prev_Off --><img border="0" src="../Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+              <!-- BEGIN Next_Off --><img border="0" src="../Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+              <!-- BEGIN Last_Off --><img border="0" src="../Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->
+              <!-- BEGIN Button Button_Submit --><input id="tipos_padrones_parcelaButton_Submit" class="Button" name="{Button_Name}" value="Enviar" type="submit"><!-- END Button Button_Submit -->
+              <!-- BEGIN Button Cancel --><input id="tipos_padrones_parcelaCancel" class="Button" name="{Button_Name}" value="Cancelar" type="submit"><!-- END Button Cancel --></td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+</form>
+<!-- END EditableGrid tipos_padrones_parcela --><br>
+<p>&nbsp;</p>
+<p>{tdf_footer}</p>
+</body>
+</html>

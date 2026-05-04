@@ -1,0 +1,182 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>pa_tipos_mejoras_categorias</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//tipos_mejoras_categoriasCancel_OnClick @20-390554B1
+function tipos_mejoras_categoriasCancel_OnClick()
+{
+    disableValidation = true;
+}
+//End tipos_mejoras_categoriasCancel_OnClick
+
+//bind_events @1-9F8BEF59
+function bind_events() {
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("tipos_mejoras_categoriasCancel", "click", tipos_mejoras_categoriasCancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<p>&nbsp;</p>
+<!-- BEGIN Record tipos_mejoras_categoriasSearch -->
+<form id="tipos_mejoras_categoriasSearch" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+            <th>Buscar</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>Código</th>
+ 
+            <td><input id="tipos_mejoras_categoriasSearchs_tipo_mejora_categoria_codigo" name="{s_tipo_mejora_categoria_codigo_Name}" maxlength="10" value="{s_tipo_mejora_categoria_codigo}" size="10"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Descripción</th>
+ 
+            <td><input id="tipos_mejoras_categoriasSearchs_tipo_mejora_categoria_descrip" name="{s_tipo_mejora_categoria_descrip_Name}" maxlength="30" value="{s_tipo_mejora_categoria_descrip}" size="30"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Estado</th>
+ 
+            <td>
+              <select id="tipos_mejoras_categoriasSearchs_tipo_estado_id" name="{s_tipo_estado_id_Name}">
+                <option selected value="">(Todos)</option>
+                {s_tipo_estado_id_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right">
+              <!-- BEGIN Button Button_DoSearch --><input id="tipos_mejoras_categoriasSearchButton_DoSearch" class="Button" name="{Button_Name}" value="Buscar" type="submit"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record tipos_mejoras_categoriasSearch --><br>
+<!-- BEGIN EditableGrid tipos_mejoras_categorias -->
+<form id="tipos_mejoras_categorias" method="post" name="{HTMLFormName}" action="{Action}">
+  <input name="FormState" value="{FormState}" type="hidden">{FormScript} 
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+            <th>Listado de categorías de tipos de mejoras</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="6">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Caption">
+            <th>Código</th>
+ 
+            <th>Descripción</th>
+ 
+            <th>Abreviatura</th>
+ 
+            <th>Coeficiente</th>
+ 
+            <th>Estado</th>
+ 
+            <th>Borrar</th>
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <!-- BEGIN RowError -->
+          <tr class="Error">
+            <td colspan="6">{Error}</td>
+          </tr>
+          <!-- END RowError -->
+          <tr class="Row">
+            <td><input id="tipos_mejoras_categoriastipo_mejora_categoria_codigo_{tipos_mejoras_categorias:rowNumber}" name="{tipo_mejora_categoria_codigo_Name}" maxlength="10" value="{tipo_mejora_categoria_codigo}" size="10"></td> 
+            <td><input id="tipos_mejoras_categoriastipo_mejora_categoria_descrip_{tipos_mejoras_categorias:rowNumber}" name="{tipo_mejora_categoria_descrip_Name}" maxlength="30" value="{tipo_mejora_categoria_descrip}" size="30"></td> 
+            <td><input id="tipos_mejoras_categoriastipo_mejora_categoria_abrev_{tipos_mejoras_categorias:rowNumber}" name="{tipo_mejora_categoria_abrev_Name}" maxlength="8" value="{tipo_mejora_categoria_abrev}" size="8"></td> 
+            <td><input id="tipos_mejoras_categoriastipo_mejora_categoria_coeficiente_{tipos_mejoras_categorias:rowNumber}" name="{tipo_mejora_categoria_coeficiente_Name}" maxlength="12" value="{tipo_mejora_categoria_coeficiente}" size="12"></td> 
+            <td>
+              <select id="tipos_mejoras_categoriastipo_estado_id_{tipos_mejoras_categorias:rowNumber}" name="{tipo_estado_id_Name}">
+                <option selected value="">Seleccionar...</option>
+                {tipo_estado_id_Options}
+              </select>
+ </td> 
+            <td>
+              <!-- BEGIN CheckBox CheckBox_Delete --><input id="tipos_mejoras_categoriasCheckBox_Delete_{tipos_mejoras_categorias:rowNumber}" name="{CheckBox_Delete_Name}" value="1" type="checkbox" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete -->&nbsp;</td>
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="6">No hay registros</td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="Footer">
+            <td style="TEXT-ALIGN: right" colspan="6">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+              <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                <option selected value="">-</option>
+ {PageSize_Options}
+              </select>
+ 
+              <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+              <!-- BEGIN First_Off --><img border="0" src="../Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+              <!-- BEGIN Prev_Off --><img border="0" src="../Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+              <!-- BEGIN Next_Off --><img border="0" src="../Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+              <!-- BEGIN Last_Off --><img border="0" src="../Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->
+              <!-- BEGIN Button Button_Submit --><input id="tipos_mejoras_categoriasButton_Submit" class="Button" name="{Button_Name}" value="Enviar" type="submit"><!-- END Button Button_Submit -->
+              <!-- BEGIN Button Cancel --><input id="tipos_mejoras_categoriasCancel" class="Button" name="{Button_Name}" value="Cancelar" type="submit"><!-- END Button Cancel --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END EditableGrid tipos_mejoras_categorias --><br>
+<p>&nbsp;</p>
+<p>{tdf_footer}</p>
+</body>
+</html>

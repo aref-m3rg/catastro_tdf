@@ -1,0 +1,161 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Observaciones de Certificado</title>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//observaciones_certificadoButton_Submit_OnClick @13-57529A86
+function observaciones_certificadoButton_Submit_OnClick()
+{
+    var result = true;
+//End observaciones_certificadoButton_Submit_OnClick
+
+//Confirmation Message @14-96FAE8C2
+    return confirm('Enviar registro?');
+//End Confirmation Message
+
+//Close observaciones_certificadoButton_Submit_OnClick @13-BC33A33A
+    return result;
+}
+//End Close observaciones_certificadoButton_Submit_OnClick
+
+//observaciones_certificadoSearchButton1_OnClick @15-0D095720
+function observaciones_certificadoSearchButton1_OnClick()
+{
+    disableValidation = true;
+}
+//End observaciones_certificadoSearchButton1_OnClick
+
+//bind_events @1-CE83CC98
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("observaciones_certificadoButton_Submit", "click", observaciones_certificadoButton_Submit_OnClick);
+    addEventHandler("observaciones_certificadoSearchButton1", "click", observaciones_certificadoSearchButton1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<p>
+<!-- BEGIN Record observaciones_certificadoSearch -->
+<form id="observaciones_certificadoSearch" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+            <th>Buscar Observaciones de Certificado </th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th width="130">Observaciones</th>
+ 
+            <td><input style="WIDTH: 100%" id="observaciones_certificadoSearchs_obs_cert_desc" value="{s_obs_cert_desc}" size="50" name="{s_obs_cert_desc_Name}"></td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right">
+              <!-- BEGIN Button Button1 --><input id="observaciones_certificadoSearchButton1" class="Button" value="Limpiar" type="submit" name="{Button_Name}"><!-- END Button Button1 -->&nbsp; 
+              <!-- BEGIN Button Button_DoSearch --><input id="observaciones_certificadoSearchButton_DoSearch" class="Button" value="Buscar" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record observaciones_certificadoSearch --><br>
+<!-- BEGIN EditableGrid observaciones_certificado -->
+<form id="observaciones_certificado" method="post" name="{HTMLFormName}" action="{Action}">
+  <input value="{FormState}" type="hidden" name="FormState">{FormScript} 
+  <table border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td valign="top" width="100%">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+            <th>&nbsp;Lista de Observaciones de Certificado</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td>{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Caption">
+            <th>Observaciones</th>
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <!-- BEGIN RowError -->
+          <tr class="Error">
+            <td>{Error}</td>
+          </tr>
+          <!-- END RowError -->
+          <tr class="Row">
+            <td><textarea style="WIDTH: 100%" id="observaciones_certificadoobs_cert_desc_{observaciones_certificado:rowNumber}" rows="3" cols="50" name="{obs_cert_desc_Name}">{obs_cert_desc}</textarea></td>
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td>No hay registros</td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="Footer">
+            <td style="TEXT-ALIGN: right">
+              <!-- BEGIN Navigator Navigator -->
+              <p align="center">
+              <!-- BEGIN Page_Parameter --><input value="{Value}" type="hidden" name="{Name}"><!-- END Page_Parameter -->Per page: 
+              <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                <option selected value="">-</option>
+ {PageSize_Options}
+              </select>
+ 
+              <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+              <!-- BEGIN First_Off --><img border="0" src="../Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+              <!-- BEGIN Prev_Off --><img border="0" src="../Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+              <!-- BEGIN Next_Off --><img border="0" src="../Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+              <!-- BEGIN Last_Off --><img border="0" src="../Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->
+              <!-- BEGIN Button Button_Submit --><input id="observaciones_certificadoButton_Submit" class="Button" value="actualizar/agregar" type="submit" name="{Button_Name}"><!-- END Button Button_Submit --></p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END EditableGrid observaciones_certificado --><br>
+</p>
+<p>{tdf_footer}</p>
+</body>
+</html>

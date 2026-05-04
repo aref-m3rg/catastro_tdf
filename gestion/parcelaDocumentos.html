@@ -1,0 +1,212 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Documentos de la Parcela</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//parcelas_documentosButton_Delete_OnClick @38-9B252827
+function parcelas_documentosButton_Delete_OnClick()
+{
+    var result = true;
+//End parcelas_documentosButton_Delete_OnClick
+
+//Confirmation Message @39-D64DA03C
+    return confirm('Desea borrar esta entrada?');
+//End Confirmation Message
+
+//Close parcelas_documentosButton_Delete_OnClick @38-BC33A33A
+    return result;
+}
+//End Close parcelas_documentosButton_Delete_OnClick
+
+//parcelas_documentosButtonLimpia_OnClick @34-0561CE37
+function parcelas_documentosButtonLimpia_OnClick()
+{
+    disableValidation = true;
+}
+//End parcelas_documentosButtonLimpia_OnClick
+
+//parcelas_documentosButton_Search_OnClick @12-CBF2EBF7
+function parcelas_documentosButton_Search_OnClick()
+{
+    disableValidation = true;
+}
+//End parcelas_documentosButton_Search_OnClick
+
+//bind_events @1-C7139DF7
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("parcelas_documentosButton_Delete", "click", parcelas_documentosButton_Delete_OnClick);
+    addEventHandler("parcelas_documentosButtonLimpia", "click", parcelas_documentosButtonLimpia_OnClick);
+    addEventHandler("parcelas_documentosButton_Search", "click", parcelas_documentosButton_Search_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css" />
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<p>
+<!-- BEGIN Record parcelas_documentos -->
+<form id="parcelas_documentos" name="{HTMLFormName}" action="{Action}" method="post" enctype="{HTMLFormEnctype}">
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+            <th>Agregar/Editar Documentos </th>
+ 
+            <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="4"><strong>{Error}</strong></td> 
+          </tr>
+ <!-- END Error -->
+          <tr class="Controls">
+            <th>Descripcion</th>
+ 
+            <td><input id="parcelas_documentosparcela_document_descrip" maxlength="64" size="50" value="{parcela_document_descrip}" name="{parcela_document_descrip_Name}"></td> 
+            <td>Tipo Documento&nbsp;</td> 
+            <td>
+              <select id="parcelas_documentostipo_doc_id" name="{tipo_doc_id_Name}">
+                <option value="" selected>...</option>
+ {tipo_doc_id_Options} 
+              </select>
+ &nbsp;</td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <th>
+            <p>Archivo</p>
+ 
+            <p><font size="1">(maximo 3MB)</font></p>
+ </th>
+ 
+            <td colspan="3">
+              <!-- BEGIN FileUpload FileUpload1 --><input id="parcelas_documentosFileUpload1ControlName" type="hidden" value="{State}" name="{ControlName}">
+              <!-- BEGIN Info -->&nbsp;{FileName}&nbsp;{FileSize}&nbsp;bytes.<!-- END Info -->
+              <!-- BEGIN Upload --><input id="parcelas_documentosFileUpload1FileControl" type="file" name="{FileControl}"><!-- END Upload -->
+              <!-- BEGIN DeleteControl -->Borrar<input id="parcelas_documentosFileUpload1DeleteControl" type="checkbox" name="{DeleteControl}" {DeleteChecked}><!-- END DeleteControl --><!-- END FileUpload FileUpload1 -->&nbsp;</td> 
+          </tr>
+ 
+          <tr class="Bottom">
+            <td align="right" colspan="4"><input id="parcelas_documentosparcela_document_f_proc" type="hidden" value="{parcela_document_f_proc}" name="{parcela_document_f_proc_Name}"><input id="parcelas_documentosparcela_id" type="hidden" value="{parcela_id}" name="{parcela_id_Name}">&nbsp;&nbsp; 
+              <!-- BEGIN Button ButtonLimpia --><input class="Button" id="parcelas_documentosButtonLimpia" type="submit" value="Limpiar" name="{Button_Name}"><!-- END Button ButtonLimpia -->&nbsp; 
+              <!-- BEGIN Button Button_Delete --><input class="Button" id="parcelas_documentosButton_Delete" type="submit" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete -->
+              <!-- BEGIN Button Button_Insert --><input class="Button" id="parcelas_documentosButton_Insert" type="submit" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input class="Button" id="parcelas_documentosButton_Update" type="submit" value="Actualizar" name="{Button_Name}"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button_Search --><input class="Button" id="parcelas_documentosButton_Search" type="submit" value="Salir" name="{Button_Name}"><!-- END Button Button_Search --></td> 
+          </tr>
+ 
+        </table>
+ </td> 
+    </tr>
+ 
+  </table>
+</form>
+<!-- END Record parcelas_documentos -->
+<!-- BEGIN Grid parcelas_documentos1 -->
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+          <th>Lista de Documentos</th>
+ 
+          <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+        </tr>
+ 
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th>
+          <!-- BEGIN Sorter Sorter_parcela_document_f_proc --><a href="{Sort_URL}" id="parcelas_documentos1Sorter_parcela_document_f_proc">Fecha Carga</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_document_f_proc --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_parcela_document_descrip --><a href="{Sort_URL}" id="parcelas_documentos1Sorter_parcela_document_descrip">Descripcion</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_document_descrip --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_tipo_doc_id --><a href="{Sort_URL}" id="parcelas_documentos1Sorter_tipo_doc_id">Tipo Documento</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_doc_id --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_parcela_document_archivo --><a href="{Sort_URL}" id="parcelas_documentos1Sorter_parcela_document_archivo">Archivo</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple_tdf/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple_tdf/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_document_archivo --></th>
+ 
+          <th>Tamaño&nbsp;</th>
+ 
+          <th>&nbsp;</th>
+ 
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td><a href="{parcela_document_f_proc_Src}" id="parcelas_documentos1parcela_document_f_proc_{parcelas_documentos1:rowNumber}">{parcela_document_f_proc}</a>&nbsp;</td> 
+          <td>{parcela_document_descrip}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{tipo_doc_descrip}&nbsp;</td> 
+          <td>{parcela_document_archivo}&nbsp;</td> 
+          <td>{tamano}&nbsp;</td> 
+          <td>&nbsp;</td> 
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="6">No hay Archivos</td> 
+        </tr>
+ <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="6">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option value="" selected>-</option>
+ {PageSize_Options} 
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img src="../Styles/Simple_tdf/Images/First.gif" border="0"></a> <!-- END First_On -->
+            <!-- BEGIN First_Off --><img src="../Styles/Simple_tdf/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="../Styles/Simple_tdf/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off --><img src="../Styles/Simple_tdf/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="../Styles/Simple_tdf/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off --><img src="../Styles/Simple_tdf/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="../Styles/Simple_tdf/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off --><img src="../Styles/Simple_tdf/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td> 
+        </tr>
+ 
+      </table>
+ </td> 
+  </tr>
+</table>
+<!-- END Grid parcelas_documentos1 --><br>
+<br>
+</p>
+<p>{tdf_footer}</p>
+</body>
+</html>

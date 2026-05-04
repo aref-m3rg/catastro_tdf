@@ -1,0 +1,156 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Afectacions de la parcela</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+<link rel="stylesheet" type="text/css" href="{css}">
+<link rel="stylesheet" type="text/css" href="{image}">
+<script type="text/javascript">
+eval("dojoConfig = { parseOnLoad:true }");
+</script>
+<script src="{jsapi}" type="text/javascript"></script>
+<script type="text/javascript">
+    dojo.require("dijit.layout.BorderContainer");
+    dojo.require("dijit.layout.ContentPane");
+    dojo.require("dijit.layout.TabContainer");
+    dojo.require("dijit.form.Button");
+    dojo.require("dijit.Dialog");
+    dojo.require("dojox.image.SlideShow");
+    dojo.require("dojo.data.ItemFileReadStore");
+
+    var request = { query: {}, count: 20 };
+    var itemNameMap = { imageThumbAttr: "thumb", imageLargeAttr: "large" };
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-39F85FAA
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("footerParcela_bind_events")) footerParcela_bind_events();
+    if (functionExists("headerParcela_bind_events")) headerParcela_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body class="soria">
+{tdf_header}{tdf_menu}<input id="css" type="hidden" value="{css}" name="{css_Name}"><input id="jsapi" type="hidden" value="{jsapi}" name="{jsapi_Name}"><input id="image" type="hidden" value="{image}" name="{image_Name}"><br>
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tr>
+    <td>{footerParcela}{headerParcela}</td>
+  </tr>
+</table>
+<!-- BEGIN Grid afectaciones -->
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img src="../Styles/Simple/Images/Spacer.gif" border="0"></td> 
+          <th style="TEXT-ALIGN: center" align="middle">Afectaciones de la parcela</th>
+ 
+          <td class="HeaderRight"><img src="../Styles/Simple/Images/Spacer.gif" border="0"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Row">
+          <td colspan="6">Total de Registros:&nbsp;{afectaciones_TotalRecords}</td> 
+          <td>&nbsp;<a href="{ImageLink2}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; VERTICAL-ALIGN: middle; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" src="../iconos/16x16/document-new.gif">Nueva</a></td>
+        </tr>
+ 
+        <tr class="Caption">
+          <th>
+          <!-- BEGIN Sorter Sorter_afectacion_id --><a href="{Sort_URL}" id="afectacionesSorter_afectacion_id">ID</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_afectacion_id --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_plano_id --><a href="{Sort_URL}" id="afectacionesSorter_plano_id">Plano</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_plano_id --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_tipo_afectacion_id --><a href="{Sort_URL}" id="afectacionesSorter_tipo_afectacion_id">Tipo</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_afectacion_id --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_afectacion_superficie --><a href="{Sort_URL}" id="afectacionesSorter_afectacion_superficie">Superficie</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_afectacion_superficie --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_afectacion_descripcion --><a href="{Sort_URL}" id="afectacionesSorter_afectacion_descripcion">Descripción</a> 
+          <!-- BEGIN Asc_On --><img src="../Styles/Simple/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="../Styles/Simple/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_afectacion_descripcion --></th>
+ 
+          <th>Observaciones</th>
+ 
+          <th>&nbsp;</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td style="TEXT-ALIGN: center">{afectacion_id}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{plano_nro}&nbsp;</td> 
+          <td>{tipo_afectacion_id}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{afectacion_superficie}&nbsp;m2</td> 
+          <td>{afectacion_descripcion}&nbsp;</td> 
+          <td>{afectacion_observaciones}&nbsp;</td> 
+          <td style="TEXT-ALIGN: center"><a href="{ImageLink1}" title="Editar afectación"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" src="../iconos/16x16/accessories-text-editor.gif"></a></td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN Separator -->
+        <tr class="Separator">
+          <td colspan="7"><img src="../Styles/Simple/Images/Spacer.gif" border="0"></td>
+        </tr>
+        <!-- END Separator -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="7">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="7">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option value="" selected>-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img src="../Styles/Simple/Images/First.gif" border="0"></a> <!-- END First_On -->
+            <!-- BEGIN First_Off --><img src="../Styles/Simple/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="../Styles/Simple/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off --><img src="../Styles/Simple/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="../Styles/Simple/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off --><img src="../Styles/Simple/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="../Styles/Simple/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off --><img src="../Styles/Simple/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid afectaciones --><br>
+<br>
+{tdf_footer} 
+</body>
+</html>

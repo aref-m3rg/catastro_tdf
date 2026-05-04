@@ -1,0 +1,121 @@
+
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><title>NewPage1</title>
+
+
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676"><script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-E634CA02
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple1/Style.css"></head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<p><!-- BEGIN Panel Panel1 -->
+<p><!-- BEGIN Panel Buscar -->
+<!-- BEGIN Record parcelasSearch -->
+<form id="Panel1BuscarparcelasSearch" method="post" name="{HTMLFormName}" action="{Action}">
+<table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple1/Images/Spacer.gif"></td>
+          <th>Parcelas Buscar </th>
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple1/Images/Spacer.gif"></td></tr></table>
+      <table class="Record" cellspacing="0" cellpadding="0"><!-- BEGIN Error -->
+                <tr class="Error">
+          <td colspan="2">{Error}</td></tr><!-- END Error -->
+        <tr class="Controls">
+          <th>Partida</th>
+          <td><input id="Panel1BuscarparcelasSearchs_parcela_partida" value="{s_parcela_partida}" maxlength="20" name="{s_parcela_partida_Name}" size="20"></td></tr>
+        <tr class="Bottom">
+          <td colspan="2" align="right"><!-- BEGIN Button Button_DoSearch --><input id="Panel1BuscarparcelasSearchButton_DoSearch" class="Button" value="Buscar" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td></tr></table></td></tr></table></form><!-- END Record parcelasSearch --><br><!-- BEGIN Grid parcelas -->
+<table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple1/Images/Spacer.gif"></td>
+          <th>Parcelas Lista de </th>
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple1/Images/Spacer.gif"></td></tr></table>
+      <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+          <th><!-- BEGIN Sorter Sorter_parcela_partida --><a href="{Sort_URL}" id="Panel1BuscarparcelasSorter_parcela_partida">Partida</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple1/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple1/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_partida --></th>
+          <th><!-- BEGIN Sorter Sorter_parcela_nomenclatura --><a href="{Sort_URL}" id="Panel1BuscarparcelasSorter_parcela_nomenclatura">Nomenclatura</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple1/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple1/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_parcela_nomenclatura --></th>
+          <th>&nbsp;Agregar</th></tr>
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td style="TEXT-ALIGN: right">{parcela_partida}&nbsp;</td>
+          <td>{parcela_nomenclatura}&nbsp;</td>
+          <td>&nbsp;<a href="{Link1_Src}" id="Panel1BuscarparcelasLink1_{parcelas:rowNumber}">Agregar</a></td></tr>
+        <!-- END Row --><!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="3">No hay registros</td></tr><!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="3"><!-- BEGIN Navigator Navigator -->
+<!-- BEGIN Page_Parameter --><input value="{Value}" type="hidden" name="{Name}"><!-- END Page_Parameter -->Per page: <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize"> <option selected value="">-</option>{PageSize_Options}</select> <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+<!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+<!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+<!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp;<!-- BEGIN Pages --> 
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On --> <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --> <!-- END Pages -->de 
+            &nbsp;{Total_Pages}&nbsp; <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+<!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+<!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+<!-- BEGIN Last_Off -->Final 
+        <!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td></tr></table></td></tr></table><!-- END Grid parcelas --><br><!-- END Panel Buscar --></p>
+<p>
+<p><!-- BEGIN Panel ver -->&nbsp;<!-- BEGIN Grid parcelas_tmp --> 
+<table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple1/Images/Spacer.gif"></td>
+          <th>Parcelas a UNIR&nbsp;</th>
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple1/Images/Spacer.gif"></td></tr></table>
+      <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+          <th><!-- BEGIN Sorter Sorter_parcela_partida --><a href="{Sort_URL}" id="Panel1verparcelas_tmpSorter_parcela_partida">Partida</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple1/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple1/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_parcela_partida --></th>
+          <th><!-- BEGIN Sorter Sorter_parcela_nomenclatura --><a href="{Sort_URL}" id="Panel1verparcelas_tmpSorter_parcela_nomenclatura">Nomenclatura</a><!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple1/Images/Asc.gif"><!-- END Asc_On --> <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple1/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_parcela_nomenclatura --></th></tr>
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td style="TEXT-ALIGN: right">{parcela_partida}&nbsp;</td>
+          <td>{parcela_nomenclatura}&nbsp;</td></tr>
+        <!-- END Row --><!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="2">No hay registros</td></tr><!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="2">&nbsp;<!-- BEGIN Navigator Navigator --> <!-- BEGIN Page_Parameter --><input value="{Value}" type="hidden" name="{Name}"><!-- END Page_Parameter --> 
+            Per page: <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize"> <option selected value="">-</option>{PageSize_Options}</select> 
+            <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+<!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+<!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+<!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp;<!-- BEGIN Pages --> 
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a><!-- END Page_On --> <!-- BEGIN Page_Off -->{Page_Number}<!-- END Page_Off --> 
+            <!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+<!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+<!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+<!-- BEGIN Last_Off -->Final 
+        <!-- END Last_Off -->&nbsp;<!-- END Navigator Navigator -->&nbsp;</td></tr></table></td></tr></table>&nbsp;<!-- END Grid parcelas_tmp --> 
+<!-- END Panel ver --></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p><!-- END Panel Panel1 --> 
+<p></p>
+<p>{tdf_footer}</p></body></html>

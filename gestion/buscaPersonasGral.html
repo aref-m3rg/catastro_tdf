@@ -1,0 +1,232 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>buscaPersonas</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="{page:pathToRoot}Styles/Simple_tdf/Style_doctype.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-829954E7
+</script>
+<script language="JavaScript" src="../js/pt/prototype.js" type="text/javascript"></script>
+<script language="JavaScript" src="../js/pt/scriptaculous.js" type="text/javascript"></script>
+<script language="JavaScript" src="../js/pt/controls.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="buscaPersonaspersonasSearchs_persona_denominacion_style.css">
+<link rel="stylesheet" type="text/css" href="buscaPersonaspersonasSearchs_persona_nro_doc_style.css">
+<script language="JavaScript" type="text/javascript">
+//End Include User Scripts
+
+//personasSearchButtonCancel_OnClick @53-5D979711
+function personasSearchButtonCancel_OnClick()
+{
+    disableValidation = true;
+}
+//End personasSearchButtonCancel_OnClick
+
+//Initialize personasSearchs_persona_denominacionPTAutocomplete1 @77-FEC20177
+function personasSearchs_persona_denominacionPTAutocomplete1_start() {
+    if ($("personasSearchs_persona_denominacion"))
+        new Ajax.Autocompleter("personasSearchs_persona_denominacion", "personasSearchs_persona_denominacion_choices", "../services/gestion_buscaPersonas_personasSearch_s_persona_denominacion_PTAutocomplete1.php", {});
+}
+//End Initialize personasSearchs_persona_denominacionPTAutocomplete1
+
+//Initialize personasSearchs_persona_nro_docPTAutocomplete2 @79-6585C24D
+function personasSearchs_persona_nro_docPTAutocomplete2_start() {
+    if ($("personasSearchs_persona_nro_doc"))
+        new Ajax.Autocompleter("personasSearchs_persona_nro_doc", "personasSearchs_persona_nro_doc_choices", "../services/gestion_buscaPersonas_personasSearch_s_persona_nro_doc_PTAutocomplete1.php", {});
+}
+//End Initialize personasSearchs_persona_nro_docPTAutocomplete2
+
+//bind_events @1-3ADACDD2
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    personasSearchs_persona_denominacionPTAutocomplete1_start();
+    personasSearchs_persona_nro_docPTAutocomplete2_start();
+    addEventHandler("personasSearchButtonCancel", "click", personasSearchButtonCancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<p>
+<!-- BEGIN Record personasSearch -->
+<form id="personasSearch" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <td class="th"><strong>Buscar persona</strong></td> 
+            <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="4">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td><label for="personasSearchs_tipo_documento_id"><strong>Tipo de documento</strong> </label></td> 
+            <td>
+              <select id="personasSearchs_tipo_documento_id" name="{s_tipo_documento_id_Name}">
+                <option selected value="">...</option>
+                {s_tipo_documento_id_Options}
+              </select>
+ </td> 
+            <td><label for="personasSearchs_persona_nro_doc"><strong>Nro. Documento</strong></label>&nbsp;</td> 
+            <td>
+              <!-- BEGIN TextBox s_persona_nro_doc --><input id="personasSearchs_persona_nro_doc" name="{s_persona_nro_doc_Name}" maxlength="20" value="{s_persona_nro_doc}" autocomplete="off" size="20">
+              <!-- BEGINF PTAutocomplete PTAutocomplete2 -->
+              <div id="personasSearchs_persona_nro_doc_choices">
+              </div>
+              <!-- ENDF PTAutocomplete PTAutocomplete2 --><!-- END TextBox s_persona_nro_doc -->&nbsp;</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td><label for="personasSearchs_persona_denominacion"><strong>Nombre y Apellido</strong></label></td> 
+            <td>
+              <!-- BEGIN TextBox s_persona_denominacion --><input id="personasSearchs_persona_denominacion" name="{s_persona_denominacion_Name}" maxlength="250" value="{s_persona_denominacion}" size="40" autocomplete="off">
+              <!-- BEGINF PTAutocomplete PTAutocomplete1 -->
+              <div id="personasSearchs_persona_denominacion_choices">
+              </div>
+              <!-- ENDF PTAutocomplete PTAutocomplete1 --><!-- END TextBox s_persona_denominacion --></td> 
+            <td><strong><label for="personasSearchs_persona_cuit">CUIT</label>&nbsp;</strong></td> 
+            <td><input id="personasSearchs_persona_cuit" name="{s_persona_cuit_Name}" maxlength="15" value="{s_persona_cuit}" size="15">&nbsp;<input style="WIDTH: 44px; HEIGHT: 22px" id="personasSearchadd" name="{add_Name}" value="{add}" size="6" type="hidden"><input style="WIDTH: 76px; HEIGHT: 22px" id="personasSearchpersonas" name="{personas_Name}" value="{personas}" size="10" type="hidden"><input style="WIDTH: 54px; HEIGHT: 22px" id="personasSearchfolder" name="{folder_Name}" value="{folder}" size="7" type="hidden"><input style="WIDTH: 84px; HEIGHT: 22px" id="personasSearchparcela_id" name="{parcela_id_Name}" value="{parcela_id}" size="11" type="hidden"></td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="4" align="right">
+              <div align="center">
+                <!-- BEGIN Button Button_DoSearch --><input id="personasSearchButton_DoSearch" class="Button" name="{Button_Name}" alt="Buscar" value="Buscar" type="submit"><!-- END Button Button_DoSearch -->
+                <!-- BEGIN Button ButtonCancel --><input id="personasSearchButtonCancel" class="Button" name="{Button_Name}" alt="Button1" value="Cancelar" type="submit"><!-- END Button ButtonCancel -->
+              </div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record personasSearch --><br>
+<!-- BEGIN Grid personas -->
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+  <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          <td class="th"><strong>Listado de resultados</strong></td> 
+          <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th scope="col">&nbsp;</th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_tipo_documento_id --><a href="{Sort_URL}" id="personasSorter_tipo_documento_id">Tipo doc.</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_documento_id --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_persona_nro_doc --><a href="{Sort_URL}" id="personasSorter_persona_nro_doc">Nro. Doc.</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_persona_nro_doc --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_persona_cuit --><a href="{Sort_URL}" id="personasSorter_persona_cuit">CUIT</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_persona_cuit --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_persona_denominacion --><a href="{Sort_URL}" id="personasSorter_persona_denominacion">Denominación</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_persona_denominacion --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_persona_fecha_nac --><a href="{Sort_URL}" id="personasSorter_persona_fecha_nac">Fecha nac.</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_persona_fecha_nac --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_pais_id --><a href="{Sort_URL}" id="personasSorter_pais_id">País</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_pais_id --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_persona_tel_movil --><a href="{Sort_URL}" id="personasSorter_persona_tel_movil">Tel. Móvil</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_persona_tel_movil --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_persona_email --><a href="{Sort_URL}" id="personasSorter_persona_email">Email</a> 
+          <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_persona_email --></th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td style="TEXT-ALIGN: right"><a href="{ImageLink1}" id="personasImageLink1_{personas:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" title="Volver cargando esta persona" alt="{ImageLink1}" src="../iconos/16x16/format-indent-less.gif"></a>&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{tipo_documento_abrev}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{persona_nro_doc}&nbsp;</td> 
+          <td>{persona_cuit}&nbsp;</td> 
+          <td>{persona_denominacion}&nbsp;</td> 
+          <td>{persona_fecha_nac}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{pais_nombre}&nbsp;</td> 
+          <td>{persona_tel_movil}&nbsp;</td> 
+          <td>{persona_email}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="9">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="9">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+            <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid personas --><br>
+</p>
+<p>{tdf_footer}</p>
+</body>
+</html>

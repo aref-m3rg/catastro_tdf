@@ -1,0 +1,202 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Unidades - Listado</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-D25B528C
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+<div>
+  {tdf_header}{tdf_menu} 
+</div>
+<p>
+<!-- BEGIN Record unidadesSearch -->
+<form id="unidadesSearch" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td> 
+            <th>Buscador</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>Nombre</th>
+ 
+            <td><input id="unidadesSearchs_unidad_nombre" name="{s_unidad_nombre_Name}" maxlength="50" value="{s_unidad_nombre}" size="50"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Jerarquía</th>
+ 
+            <td>
+              <select id="unidadesSearchs_jerarquia_id" name="{s_jerarquia_id_Name}">
+                <option selected value="">Todos</option>
+                {s_jerarquia_id_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Estado</th>
+ 
+            <td>
+              <select id="unidadesSearchs_estado_id" name="{s_estado_id_Name}">
+                <option selected value="">Todos</option>
+                {s_estado_id_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Entorno</th>
+ 
+            <td>
+              <select id="unidadesSearchs_entorno_id" name="{s_entorno_id_Name}">
+                <option selected value="">Todos</option>
+                {s_entorno_id_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right">
+              <!-- BEGIN Button Button1 --><input id="unidadesSearchButton1" class="Button" name="{Button_Name}" value="Limpiar" type="submit"><!-- END Button Button1 -->
+              <!-- BEGIN Button Button_DoSearch --><input id="unidadesSearchButton_DoSearch" class="Button" name="{Button_Name}" value="Buscar" type="submit"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record unidadesSearch --><br>
+<!-- BEGIN Grid unidades -->
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td> 
+          <th>Listado de unidades</th>
+ 
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Row">
+          <td colspan="6">Total de Registros:&nbsp;{unidades_TotalRecords}&nbsp; &nbsp; &nbsp;&nbsp;</td> 
+          <td>&nbsp; &nbsp;<a href="{ImageLink1}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; VERTICAL-ALIGN: middle; BORDER-TOP: 0px; BORDER-RIGHT: 0px" title="Nueva unidad" src="../iconos/16x16/document-new.gif"></a>&nbsp;<a href="{Link3_Src}" id="unidadesLink3_{unidades:rowNumber}">Nueva</a>&nbsp;</td>
+        </tr>
+ 
+        <tr class="Caption">
+          <th>
+          <!-- BEGIN Sorter Sorter_unidad_nombre --><a href="{Sort_URL}" id="unidadesSorter_unidad_nombre">Nombre</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_unidad_nombre --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_entorno_id --><a href="{Sort_URL}" id="unidadesSorter_entorno_id">Entorno</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_entorno_id --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_jerarquia_id --><a href="{Sort_URL}" id="unidadesSorter_jerarquia_id">Jerarquía</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_jerarquia_id --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_estado_id --><a href="{Sort_URL}" id="unidadesSorter_estado_id">Estado</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_estado_id --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_unidad_pase_externo --><a href="{Sort_URL}" id="unidadesSorter_unidad_pase_externo">Pase externo</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_unidad_pase_externo --></th>
+ 
+          <th>Referente</th>
+ 
+          <th>&nbsp;</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td>{unidad_nombre}&nbsp;</td> 
+          <td>{entorno_desc}&nbsp;</td> 
+          <td>{jerarquia_desc}&nbsp;</td> 
+          <td>{estado_desc}&nbsp;</td> 
+          <td>{unidad_pase_externo}&nbsp;</td> 
+          <td>{unidad_p_responsable}&nbsp;</td> 
+          <td style="TEXT-ALIGN: center"><a href="{link_edit}" title="Editar unidad"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; VERTICAL-ALIGN: middle; BORDER-TOP: 0px; BORDER-RIGHT: 0px" src="../iconos/16x16/accessories-text-editor.gif"></a>&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="7">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="7">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" src="../Styles/Simple/Images/First.gif"></a> <!-- END First_On -->
+            <!-- BEGIN First_Off --><img border="0" src="../Styles/Simple/Images/FirstOff.gif"><!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" src="../Styles/Simple/Images/Prev.gif"></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off --><img border="0" src="../Styles/Simple/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" src="../Styles/Simple/Images/Next.gif"></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off --><img border="0" src="../Styles/Simple/Images/NextOff.gif"><!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" src="../Styles/Simple/Images/Last.gif"></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off --><img border="0" src="../Styles/Simple/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid unidades --><br>
+</p>
+<p>&nbsp;</p>
+<br>
+<div>
+  {tdf_footer} 
+</div>
+</body>
+</html>

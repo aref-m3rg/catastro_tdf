@@ -1,0 +1,252 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Unidades - Edición</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-D471168E
+
+var unidades_parametros_DatePicker_unidad_p_f_vig = new Object(); 
+unidades_parametros_DatePicker_unidad_p_f_vig.format           = "ShortDate";
+unidades_parametros_DatePicker_unidad_p_f_vig.style            = "Styles/Simple/Style.css";
+unidades_parametros_DatePicker_unidad_p_f_vig.relativePathPart = "../";
+unidades_parametros_DatePicker_unidad_p_f_vig.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//unidadesButton_Delete_OnClick @9-F15B180F
+function unidadesButton_Delete_OnClick()
+{
+    var result = true;
+//End unidadesButton_Delete_OnClick
+
+//Confirmation Message @10-43159D1D
+    return confirm('¿Borrar registro?');
+//End Confirmation Message
+
+//Close unidadesButton_Delete_OnClick @9-BC33A33A
+    return result;
+}
+//End Close unidadesButton_Delete_OnClick
+
+//unidadesButton_Cancel_OnClick @11-77E32FF1
+function unidadesButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End unidadesButton_Cancel_OnClick
+
+//bind_events @1-468B8C7D
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("unidadesButton_Delete", "click", unidadesButton_Delete_OnClick);
+    addEventHandler("unidadesButton_Cancel", "click", unidadesButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+<div>
+  {tdf_header}{tdf_menu} 
+</div>
+<br>
+<!-- BEGIN Record unidades -->
+<form id="unidades" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td> 
+            <th>Editar unidad</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>Nombre</th>
+ 
+            <td><input id="unidadesunidad_nombre" name="{unidad_nombre_Name}" maxlength="50" value="{unidad_nombre}" size="50"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Entorno</th>
+ 
+            <td>
+              <select id="unidadesentorno_id" name="{entorno_id_Name}">
+                <option selected value="">Seleccionar...</option>
+                {entorno_id_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Jerarquía</th>
+ 
+            <td>
+              <select id="unidadesjerarquia_id" name="{jerarquia_id_Name}">
+                <option selected value="">Seleccionar...</option>
+                {jerarquia_id_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Estado</th>
+ 
+            <td>
+              <select id="unidadesestado_id" name="{estado_id_Name}">
+                <option selected value="">Seleccionar...</option>
+                {estado_id_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Pase externo</th>
+ 
+            <td>
+              <select id="unidadesunidad_pase_externo" name="{unidad_pase_externo_Name}">
+                <option selected value="">Seleccionar...</option>
+                {unidad_pase_externo_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right">
+              <!-- BEGIN Button Button_Insert --><input id="unidadesButton_Insert" class="Button" name="{Button_Name}" value="Agregar" type="submit"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input id="unidadesButton_Update" class="Button" name="{Button_Name}" value="Enviar" type="submit"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button_Delete --><input id="unidadesButton_Delete" class="Button" name="{Button_Name}" value="Borrar" type="submit"><!-- END Button Button_Delete -->
+              <!-- BEGIN Button Button_Cancel --><input id="unidadesButton_Cancel" class="Button" name="{Button_Name}" value="Volver" type="submit"><!-- END Button Button_Cancel --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record unidades --><br>
+<!-- BEGIN EditableGrid unidades_parametros -->
+<form id="unidades_parametros" method="post" name="{HTMLFormName}" action="{Action}">
+  <input name="FormState" value="{FormState}" type="hidden">{FormScript} 
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td> 
+            <th>Parametrizaciones</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="6">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Caption">
+            <th>
+            <!-- BEGIN Sorter Sorter_unidad_p_f_vig --><a href="{Sort_URL}" id="unidades_parametrosSorter_unidad_p_f_vig">Fecha vigencia</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_unidad_p_f_vig --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_unidad_p_responsable --><a href="{Sort_URL}" id="unidades_parametrosSorter_unidad_p_responsable">Responsable</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_unidad_p_responsable --></th>
+ 
+            <th>Depende de&nbsp;</th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_unidad_p_activo --><a href="{Sort_URL}" id="unidades_parametrosSorter_unidad_p_activo">Estado</a> 
+            <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_unidad_p_activo --></th>
+ 
+            <th colspan="2">Borrar</th>
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <!-- BEGIN RowError -->
+          <tr class="Error">
+            <td colspan="6">{Error}</td>
+          </tr>
+          <!-- END RowError -->
+          <tr class="Row">
+            <td><input id="unidades_parametrosunidad_p_f_vig_{unidades_parametros:rowNumber}" name="{unidad_p_f_vig_Name}" maxlength="100" value="{unidad_p_f_vig}" size="8">
+              <!-- BEGIN DatePicker DatePicker_unidad_p_f_vig --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="unidades_parametrosDatePicker_unidad_p_f_vig_{unidades_parametros:rowNumber}"><img id="unidades_parametrosDatePicker_unidad_p_f_vig_Image_{unidades_parametros:rowNumber}" border="0" alt="Show Date Picker" src="../Styles/Simple/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_unidad_p_f_vig --></td> 
+            <td><input id="unidades_parametrosunidad_p_responsable_{unidades_parametros:rowNumber}" name="{unidad_p_responsable_Name}" maxlength="65" value="{unidad_p_responsable}" size="50">&nbsp;<input id="unidades_parametrosunidad_id" name="{unidad_id_Name}" value="{unidad_id}" type="hidden"><input id="unidades_parametrosunidad_p_id" name="{unidad_p_id_Name}" value="{unidad_p_id}" type="hidden"></td> 
+            <td>
+              <select id="unidades_parametrosdep_unidad_id" name="{dep_unidad_id_Name}">
+                <option selected value="">Seleccionar ...</option>
+                {dep_unidad_id_Options}
+              </select>
+ &nbsp;</td> 
+            <td>{unidad_p_activo}&nbsp; </td> 
+            <td colspan="2">
+              <!-- BEGIN CheckBox CheckBox_Delete --><input id="unidades_parametrosCheckBox_Delete_{unidades_parametros:rowNumber}" name="{CheckBox_Delete_Name}" value="1" type="checkbox" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete -->&nbsp;</td>
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="6">No hay registros</td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="Footer">
+            <td style="TEXT-ALIGN: right" colspan="6">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+              <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                <option selected value="">-</option>
+ {PageSize_Options}
+              </select>
+ 
+              <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+              <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+              <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+              <!-- BEGIN Pages -->
+              <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+              <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+              <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+              <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator -->
+              <!-- BEGIN Button Button_Submit --><input id="unidades_parametrosButton_Submit" class="Button" name="{Button_Name}" value="Enviar" type="submit"><!-- END Button Button_Submit --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END EditableGrid unidades_parametros --><br>
+<br>
+<div>
+  {tdf_footer} 
+</div>
+</body>
+</html>

@@ -1,0 +1,837 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Editar Datos de la Parcela</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//parcelaInsert_Button_OnClick @78-78D86D1F
+function parcelaInsert_Button_OnClick()
+{
+    var result = true;
+//End parcelaInsert_Button_OnClick
+
+//Confirmation Message @270-29307808
+    confirm('Desea agregar nueva Parcela?');
+    return result;
+//End Confirmation Message
+
+//Close parcelaInsert_Button_OnClick @78-BC33A33A
+    return result;
+}
+//End Close parcelaInsert_Button_OnClick
+
+//parcelaButton_Update_OnClick @6-DB0B9DB2
+function parcelaButton_Update_OnClick()
+{
+    var result = true;
+//End parcelaButton_Update_OnClick
+
+//Confirmation Message @271-8AD33B74
+    confirm('Desea modificar los datos de esta parcela?');
+    return result;
+//End Confirmation Message
+
+//Close parcelaButton_Update_OnClick @6-BC33A33A
+    return result;
+}
+//End Close parcelaButton_Update_OnClick
+
+//parcelatipo_ubica_parcela_nw_id_OnChange @285-40284971
+function parcelatipo_ubica_parcela_nw_id_OnChange()
+{
+    var result = true;
+//End parcelatipo_ubica_parcela_nw_id_OnChange
+
+//Custom Code @312-2A29BDB7
+    // -------------------------
+        tipo_ubicacion();
+    // -------------------------
+//End Custom Code
+
+//Close parcelatipo_ubica_parcela_nw_id_OnChange @285-BC33A33A
+    return result;
+}
+//End Close parcelatipo_ubica_parcela_nw_id_OnChange
+
+//parcelaunidades_medidas_id_OnChange @215-698C7EED
+function parcelaunidades_medidas_id_OnChange()
+{
+    var result = true;
+//End parcelaunidades_medidas_id_OnChange
+
+//Custom Code @306-2A29BDB7
+    // -------------------------
+    tipo_medida();
+    // -------------------------
+//End Custom Code
+
+//Close parcelaunidades_medidas_id_OnChange @215-BC33A33A
+    return result;
+}
+//End Close parcelaunidades_medidas_id_OnChange
+
+//parcelaButton_baja_OnClick @331-D07CCE0E
+function parcelaButton_baja_OnClick()
+{
+    var result = true;
+//End parcelaButton_baja_OnClick
+
+//Confirmation Message @332-FC699F13
+    return confirm('Va a realizar una eliminacion de parcela, junto con sus datos de relaciones, esta seguro en continuar?');
+//End Confirmation Message
+
+//Close parcelaButton_baja_OnClick @331-BC33A33A
+    return result;
+}
+//End Close parcelaButton_baja_OnClick
+
+//_OnLoad @1-9C4F01C0
+function _OnLoad()
+{
+    var result = true;
+//End _OnLoad
+
+//Custom Code @298-2A29BDB7
+    // -------------------------
+        tipo_medida();
+        //tipo_ubicacion();
+    // -------------------------
+//End Custom Code
+
+//Close _OnLoad @1-BC33A33A
+    return result;
+}
+//End Close _OnLoad
+
+//parcelaButton1_OnClick @72-2B1668A2
+function parcelaButton1_OnClick()
+{
+    disableValidation = true;
+}
+//End parcelaButton1_OnClick
+
+//bind_events @1-C0710EFF
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("footerParcela_bind_events")) footerParcela_bind_events();
+    addEventHandler("parcelaInsert_Button", "click", parcelaInsert_Button_OnClick);
+    addEventHandler("parcelaButton_Update", "click", parcelaButton_Update_OnClick);
+    addEventHandler("parcelatipo_ubica_parcela_nw_id", "change", parcelatipo_ubica_parcela_nw_id_OnChange);
+    addEventHandler("parcelaunidades_medidas_id", "change", parcelaunidades_medidas_id_OnChange);
+    addEventHandler("parcelaButton_baja", "click", parcelaButton_baja_OnClick);
+    addEventHandler("", "load", _OnLoad);
+    addEventHandler("parcelaButton1", "click", parcelaButton1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body class="soria">
+{tdf_header}{tdf_menu}{footerParcela}{cartel} 
+<!-- Scripts -->
+<script language="JavaScript" type="text/javascript">
+
+  function calc_val_total() {
+    var tierra = (document.getElementById('parcelaparcela_val_tierra').value * 1);
+    var mejora = (document.getElementById('parcelaparcela_val_mejora').value * 1);
+    var porc_uf = (document.getElementById('parcelaparcela_porc_uf').value * 1);
+    var amplia = (document.getElementById('parcelaparcela_val_ampliac').value * 1);
+    if(porc_uf != ''){
+      total = (( tierra + mejora ) * ( porc_uf / 100)) + amplia;
+    } else {
+      total  = tierra + mejora + amplia;
+    }
+    document.getElementById('parcelaparcela_val_total').value = Math.round( (total * 100) ) / 100;
+    return true;
+  }
+
+
+
+  function str_pad (input, pad_length, pad_string, pad_type) {
+    var half = '',
+    pad_to_go;
+
+    var str_pad_repeater = function (s, len) {
+    var collect = '',
+    i;
+
+    while (collect.length < len) {
+      collect += s;
+    }
+    collect = collect.substr(0, len);
+
+    return collect;
+    };
+
+    input += '';
+    pad_string = pad_string !== undefined ? pad_string : ' ';
+
+    if (pad_type != 'STR_PAD_LEFT' && pad_type != 'STR_PAD_RIGHT' && pad_type != 'STR_PAD_BOTH') {
+      pad_type = 'STR_PAD_RIGHT';
+    }
+    if ((pad_to_go = pad_length - input.length) > 0) {
+      if (pad_type == 'STR_PAD_LEFT') {
+        input = str_pad_repeater(pad_string, pad_to_go) + input;
+      } else if (pad_type == 'STR_PAD_RIGHT') {
+        input = input + str_pad_repeater(pad_string, pad_to_go);
+      } else if (pad_type == 'STR_PAD_BOTH') {
+        half = str_pad_repeater(pad_string, Math.ceil(pad_to_go / 2));
+        input = half + input + half;
+        input = input.substr(0, pad_length);
+      }
+    }
+
+    return input;
+  }
+
+
+
+  function tipo_medida(){
+
+    var tipo = document.getElementById('parcelaunidades_medidas_id').value;
+
+    if (tipo == 1 || tipo == 0 || tipo == '') {
+
+      document.getElementById('parcelageneral').value=document.getElementById('parcelaparcela_super_mensura').value;
+      document.getElementById('parcelaha').value = '';
+      document.getElementById('parcelahades').value = '';
+      document.getElementById('parcelaa').value = '';
+      document.getElementById('parcelaades').value = '';
+
+    } else if (tipo == 2) {
+      var ha = Math.floor(document.getElementById('parcelaparcela_super_mensura').value);
+      var aa = Math.floor((document.getElementById('parcelaparcela_super_mensura').value - ha)*100);
+      var ca = Math.round((document.getElementById('parcelaparcela_super_mensura').value - (ha + (aa/100)))*1000000000000)/100000000;
+
+      if (ha > 0){
+        document.getElementById('parcelageneral').value = ha;
+      } else if ((aa > 0 || ca > 0) && (ha == 0 || ha == '')){
+        document.getElementById('parcelageneral').value = 0;
+      } else if ((ha == 0 || ha == '') && (aa == 0 || aa == '') && (ca == 0 || ca == '')){
+        document.getElementById('parcelaha').value = 0;
+      }
+
+      if (aa > 0) {
+        document.getElementById('parcelaha').value = aa;
+        document.getElementById('parcelahades').value = 'As';
+      } else if (ca > 0 && (aa == 0 || aa == '')) {
+        document.getElementById('parcelaha').value = 0;
+        document.getElementById('parcelahades').value = 'As';
+      } else if (ca == 0 && (aa == 0 || aa == '')) {
+        document.getElementById('parcelaha').value = '';
+        document.getElementById('parcelahades').value = '';
+      }
+
+      if (ca > 0) {
+        document.getElementById('parcelaa').value = ca;
+        document.getElementById('parcelaades').value = 'Cs';
+      } else {
+        document.getElementById('parcelaa').value = '';
+        document.getElementById('parcelaades').value = '';
+      }
+
+    } else if (tipo == 3){
+      var aa = Math.floor(document.getElementById('parcelaparcela_super_mensura').value);
+      var ca = (Math.round((document.getElementById('parcelaparcela_super_mensura').value - aa)*1000000000000))/100000000;
+
+      if (aa > 0) {
+        document.getElementById('parcelageneral').value = aa;
+      } else if (ca > 0 && (aa == 0 || aa == '')){
+        document.getElementById('parcelageneral').value = 0;
+      }
+
+      if (ca > 0) {
+        document.getElementById('parcelaha').value = ca;
+        document.getElementById('parcelahades').value = 'Cs';
+      } else {
+        document.getElementById('parcelaha').value = '';
+        document.getElementById('parcelahades').value = '';
+      }
+
+      document.getElementById('parcelaa').value = '';
+      document.getElementById('parcelaades').value = '';
+
+    } else if (tipo == 4) {
+
+      if (document.getElementById('parcelaparcela_super_mensura').value > 0){
+        document.getElementById('parcelageneral').value = document.getElementById('parcelaparcela_super_mensura').value;
+      }
+
+      document.getElementById('parcelaha').value = ''
+      document.getElementById('parcelahades').value = '';
+      document.getElementById('parcelaa').value = '';
+      document.getElementById('parcelaades').value = '';
+    }
+
+  }
+
+
+/*
+  function tipo_ubicacion() {
+
+    var valor = document.getElementById('parcelatipo_ubica_parcela_nw_id').value;
+
+    if (valor >= 0 && valor <= 50) {
+      document.getElementById('parcelatipo_secc_parcela_id').disabled = false;
+      document.getElementById('parcelaparcela_manzana').disabled = false;
+      document.getElementById('parcelaparcela_parcela_nw').disabled = false;
+      document.getElementById('parcelaparcela_subparcela').disabled = false;
+      document.getElementById('parcelaparcela_coord_x').disabled = true;
+      document.getElementById('parcelaparcela_coord_y').disabled = true;
+    } else {
+      document.getElementById('parcelatipo_secc_parcela_id').disabled = true;
+      document.getElementById('parcelaparcela_manzana').disabled = true;
+      document.getElementById('parcelaparcela_parcela_nw').disabled = true;
+      document.getElementById('parcelaparcela_subparcela').disabled = true;
+      document.getElementById('parcelaparcela_coord_x').disabled = false;
+      document.getElementById('parcelaparcela_coord_y').disabled = false;
+    }
+
+  }
+
+*/
+
+  /* jQuery code */
+
+  jQuery(function() {
+
+    /* Eventos
+    ---------------------------------------------------------- */
+
+    /* Click en el botón de Ver plancheta */
+    jQuery('#btn-ver-plancheta').click( function() {
+
+      // si no existe crea el dialogo
+      if( jQuery('#dialog-modal').length == 0 ) {
+
+        // agrego el elemento al DOM
+        jQuery('#btn-ver-plancheta').after( planchetaHtml );
+
+        // crea el slideshow
+        jQuery("#slides").slides();
+
+        // creo el dialogo
+        jQuery( "#dialog-modal" ).dialog({
+          minWidth: 704,
+          minHeight: 480,
+          modal: true,
+          autoOpen: false
+        });
+      }
+
+      // abre el popup
+      jQuery('#dialog-modal').dialog('open');
+        // transforma los botones
+        jQuery('#slides .pagination a').button();
+        return false;
+      });
+
+
+
+      /* General
+      ---------------------------------------------------------- */
+
+      // Aplica jQuery al botón de planchetas
+      jQuery('#btn-ver-plancheta').button({
+        icons: {
+          secondary: "ui-icon-triangle-1-s"
+        }
+      });
+
+  });
+
+</script>
+<!-- end: Scripts -->
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tr>
+    <td>
+      <!-- BEGIN Record parcela -->
+      <form id="parcela" method="post" name="{HTMLFormName}" action="{Action}">
+        <table cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Editar Parcela</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="15"><font size="2"><strong>{Error}</strong></font></td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th" colspan="15">{nueva}<input id="parcelaparcela_id" type="hidden" value="{parcela_id}" name="{parcela_id_Name}"><input id="parcelatipo_parcela_alta_id" type="hidden" value="{tipo_parcela_alta_id}" name="{tipo_parcela_alta_id_Name}"><input id="parcelaparcela_nomenclatura" type="hidden" value="{parcela_nomenclatura}" name="{parcela_nomenclatura_Name}"><input id="parcelaaudit_string" type="hidden" value="{audit_string}" name="{audit_string_Name}"><input id="parcelaparcela_f_proceso" type="hidden" value="{parcela_f_proceso}" name="{parcela_f_proceso_Name}"><input id="parcelausuario_id" type="hidden" value="{usuario_id}" name="{usuario_id_Name}"></td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th">
+                    <div align="left">
+                      Partida Nº: 
+                    </div>
+                  </td> 
+                  <td><input id="parcelaparcela_partida" style="FONT-WEIGHT: bolder; size: 2" maxlength="10" size="10" value="{parcela_partida}" name="{parcela_partida_Name}"></td> 
+                  <td class="th">
+                    <div align="left">
+                      Departamento: 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="left">
+                      <select id="parcelatipo_depto_parc_id" name="{tipo_depto_parc_id_Name}">
+                        <option selected value=""></option>
+                        {tipo_depto_parc_id_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td colspan="3">
+                    <div align="left">
+                      <strong>Padron:</strong> 
+                    </div>
+                  </td> 
+                  <td>
+                    <select id="parcelatipo_padron_parc_id" name="{tipo_padron_parc_id_Name}">
+                      <option selected value=""></option>
+                      {tipo_padron_parc_id_Options}
+                    </select>
+ </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      Nomenclatura: 
+                    </div>
+                  </td> 
+                  <td colspan="5">
+                    <div align="center">
+                      <font size="3"><b>{nomenclatura}</b></font> 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th">
+                    <div align="center">
+                      SECCION 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      &nbsp;CHACRA 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      QUINTA 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      MACIZO 
+                    </div>
+                  </td> 
+                  <td class="th" colspan="3">
+                    <div align="center">
+                      FRACCION 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      PARCELA 
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      UF/UC 
+                    </div>
+                  </td> 
+                  <td class="th" colspan="3">
+                    <div align="center">
+                      PREDIO 
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      REMANENTE 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">
+                    <div align="center">
+                      <input id="parcelaparcela_seccion" style="FONT-WEIGHT: bolder; SIZE: 3" maxlength="2" size="8" value="{parcela_seccion}" name="{parcela_seccion_Name}"><input id="parceladepto" type="hidden" value="{depto}" name="{depto_Name}">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input id="parcelaparcela_chacra" style="FONT-WEIGHT: bolder; SIZE: 3" maxlength="2" size="8" value="{parcela_chacra}" name="{parcela_chacra_Name}">&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input id="parcelaparcela_quinta" style="FONT-WEIGHT: bolder; SIZE: 3" maxlength="4" size="8" value="{parcela_quinta}" name="{parcela_quinta_Name}">
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <input id="parcelaparcela_macizo" style="FONT-WEIGHT: bolder; SIZE: 3" maxlength="6" size="8" value="{parcela_macizo}" name="{parcela_macizo_Name}">&nbsp; 
+                    </div>
+                  </td> 
+                  <td colspan="3">
+                    <div align="center">
+                      <input id="parcelaparcela_fraccion" style="FONT-WEIGHT: bolder; SIZE: 3" maxlength="4" size="8" value="{parcela_fraccion}" name="{parcela_fraccion_Name}">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input id="parcelaparcela_parcela" style="FONT-WEIGHT: bolder; SIZE: 3" maxlength="10" size="10" value="{parcela_parcela}" name="{parcela_parcela_Name}">
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      <input id="parcelaparcela_uf" style="FONT-WEIGHT: bolder; SIZE: 3" maxlength="10" size="8" value="{parcela_uf}" name="{parcela_uf_Name}">
+                    </div>
+                  </td> 
+                  <td colspan="3">
+                    <div align="center">
+                      <input id="parcelaparcela_predio" style="FONT-WEIGHT: bolder; SIZE: 3" maxlength="10" size="8" value="{parcela_predio}" name="{parcela_predio_Name}">
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      <input id="parcelaparcela_rte" style="FONT-WEIGHT: bolder; SIZE: 3" maxlength="6" size="8" value="{parcela_rte}" name="{parcela_rte_Name}">
+                    </div>
+                  </td>
+                </tr>
+                <!--
+                <tr class="Caption">
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      &nbsp;DEPARTAMENTO 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      UBICACION&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      SECCION&nbsp; 
+                    </div>
+                  </td> 
+                  <td class="th" colspan="3">
+                    <div align="center">
+                      MANZANA 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      PARCELA 
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      SUBPARCELA 
+                    </div>
+                  </td> 
+                  <td class="th" colspan="3">
+                    <div align="center">
+                      COORD. X 
+                    </div>
+                  </td> 
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      COORD. Y 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="2">
+                    <div align="center">
+                      &nbsp; 
+                      <select id="parcelatipo_depto_parcela_nw_id" name="{tipo_depto_parcela_nw_id_Name}">
+                        <option value="" selected></option>
+                        {tipo_depto_parcela_nw_id_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      &nbsp; 
+                      <select id="parcelatipo_ubica_parcela_nw_id" name="{tipo_ubica_parcela_nw_id_Name}">
+                        <option value="" selected></option>
+                        {tipo_ubica_parcela_nw_id_Options}
+                      </select>
+ 
+                    </div>
+                  </td> 
+                  <td class="th">
+                    <div align="center">
+                      <select id="parcelatipo_secc_parcela_id" name="{tipo_secc_parcela_id_Name}">
+                        <option value="" selected></option>
+                        {tipo_secc_parcela_id_Options}
+                      </select>
+  
+                    </div>
+                  </td> 
+                  <td colspan="3">
+                    <div align="center">
+                      &nbsp;<input id="parcelaparcela_manzana" onblur="if(this.value!=''){this.value=str_pad(this.value, 3,'0','STR_PAD_LEFT');}" style="FONT-WEIGHT: bolder; SIZE: 3" maxlength="3" size="8" value="{parcela_manzana}" name="{parcela_manzana_Name}">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="center">
+                      <input id="parcelaparcela_parcela_nw" onblur="if(this.value!=''){this.value=str_pad(this.value, 3,'0','STR_PAD_LEFT');}" style="FONT-WEIGHT: bolder; SIZE: 3" maxlength="3" size="8" value="{parcela_parcela_nw}" name="{parcela_parcela_nw_Name}">
+                    </div>
+                  </td> 
+                  <td colspan="2">
+                    <div align="center">
+                      <input id="parcelaparcela_subparcela" onblur="if(this.value!=''){this.value=str_pad(this.value, 6,'0','STR_PAD_LEFT');}" style="FONT-WEIGHT: bolder; SIZE: 3" maxlength="6" size="8" value="{parcela_subparcela}" name="{parcela_subparcela_Name}">
+                    </div>
+                  </td> 
+                  <td colspan="3">
+                    <div align="center">
+                      <input id="parcelaparcela_coord_x" onblur="if(this.value!=''){this.value=str_pad(this.value, 7,'0','STR_PAD_LEFT');}" style="FONT-WEIGHT: bolder; SIZE: 3" maxlength="7" size="8" value="{parcela_coord_x}" name="{parcela_coord_x_Name}">
+                    </div>
+                  </td> 
+                  <td colspan="2">
+                    <div align="center">
+                      <input id="parcelaparcela_coord_y" onblur="if(this.value!=''){this.value=str_pad(this.value, 7,'0','STR_PAD_LEFT');}" style="FONT-WEIGHT: bolder; SIZE: 3" maxlength="7" size="8" value="{parcela_coord_y}" name="{parcela_coord_y_Name}">
+                    </div>
+                  </td>
+                </tr>
+ -->
+                <tr class="Caption">
+                  <td class="th" colspan="15">
+                    <div align="center">
+                      Datos Generales 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><span style="WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; COLOR: rgb(0,0,0); FONT: bold 10px Verdana; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(239,239,239); TEXT-INDENT: 0px; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px">Estado&nbsp;</span></td> 
+                  <td class="th">
+                    <select id="parcelatipo_est_parc_id" name="{tipo_est_parc_id_Name}">
+                      <option selected value="">...</option>
+                      {tipo_est_parc_id_Options}
+                    </select>
+ </td> 
+                  <td><span style="WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; COLOR: rgb(0,0,0); FONT: bold 10px Verdana; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(239,239,239); TEXT-INDENT: 0px; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px">Tipo Inmueble&nbsp;</span></td> 
+                  <td>
+                    <select id="parcelatipo_parcela_id" name="{tipo_parcela_id_Name}">
+                      <option selected value="">...</option>
+                      {tipo_parcela_id_Options}
+                    </select>
+ </td> 
+                  <td colspan="3"><span style="WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; COLOR: rgb(0,0,0); FONT: bold 10px Verdana; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(239,239,239); TEXT-INDENT: 0px; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px">Uso</span></td> 
+                  <td>
+                    <select id="parcelatipo_parcela_uso_id" name="{tipo_parcela_uso_id_Name}">
+                      <option selected value="">...</option>
+                      {tipo_parcela_uso_id_Options}
+                    </select>
+ </td> 
+                  <td colspan="7"><button id="btn-ver-plancheta">Ver plancheta</button> 
+                    <script>
+                                                /* Guardo el HTML en una variable para no crear el elemento en el DOM y evitar que las imágenes
+                                                se carguen si no se ha presionado el botón */
+                                                var planchetaHtml = {plancheta};
+                                        </script>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><span style="WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; COLOR: rgb(0,0,0); FONT: bold 10px Verdana; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(239,239,239); TEXT-INDENT: 0px; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px">Superficie&nbsp;Parcela<input id="parcelaparcela_super_mensura" type="hidden" value="{parcela_super_mensura}" name="{parcela_super_mensura_Name}"></span></td> 
+                  <td class="th" colspan="6"><input onblur="document.getElementById('parcelaparcela_super_mensura').value=this.value;tipo_medida();" id="parcelageneral" maxlength="15" size="15" value="{general}" name="{general_Name}">
+                    <select id="parcelaunidades_medidas_id" name="{unidades_medidas_id_Name}">
+                      <option selected value="">...</option>
+                      {unidades_medidas_id_Options}
+                    </select>
+ <input disabled id="parcelaha" style="FONT-WEIGHT: bolder" readonly size="15" value="{ha}" name="{ha_Name}"><input disabled id="parcelahades" style="FONT-WEIGHT: bolder" readonly maxlength="2" size="1" value="{hades}" name="{hades_Name}"><input disabled id="parcelaa" style="FONT-WEIGHT: bolder" readonly size="15" value="{a}" name="{a_Name}"><input disabled id="parcelaades" style="FONT-WEIGHT: bolder" readonly maxlength="2" size="1" value="{ades}" name="{ades_Name}"></td> 
+                  <td><font size="1"><strong>Distancia al puerto</strong></font>&nbsp;</td> 
+                  <td colspan="2"><input onkeypress="calc_val_total()" onblur="calc_val_total()" id="parcelaparcela_dist_pto" size="6" value="{parcela_dist_pto}" name="{parcela_dist_pto_Name}"></td> 
+                  <td colspan="5">
+                    <!-- BEGIN ImageLink ImageLink1 --><a href="{ImageLink1}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/16x16/piezas.gif"><strong>Documentos</strong></a><!-- END ImageLink ImageLink1 -->{cantDoc}</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><span style="WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; COLOR: rgb(0,0,0); FONT: bold 10px Verdana; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(239,239,239); TEXT-INDENT: 0px; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px">Receptividad&nbsp;</span></td> 
+                  <td class="th">
+                    <div>
+                      <input onkeypress="calc_val_total();" onblur="calc_val_total();" id="parcelaparcela_receptividad" maxlength="12" size="10" value="{parcela_receptividad}" name="{parcela_receptividad_Name}">
+                    </div>
+                  </td> 
+                  <td class="th"><span style="WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; COLOR: rgb(0,0,0); FONT: bold 10px Verdana; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(239,239,239); TEXT-INDENT: 0px; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px">Sup. UF/UC&nbsp;</span></td> 
+                  <td class="th"><input onkeypress="calc_val_total();" onblur="calc_val_total();" id="parcelaparcela_sup_uf" maxlength="20" size="10" value="{parcela_sup_uf}" name="{parcela_sup_uf_Name}"></td> 
+                  <td colspan="3"><span style="WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; COLOR: rgb(0,0,0); FONT: bold 10px Verdana; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(239,239,239); TEXT-INDENT: 0px; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px">%UF/UC&nbsp;</span></td> 
+                  <td><input onkeypress="calc_val_total();" onblur="calc_val_total();" id="parcelaparcela_porc_uf" maxlength="6" size="6" value="{parcela_porc_uf}" name="{parcela_porc_uf_Name}"><strong>%</strong><b>&nbsp;</b></td> 
+                  <td colspan="2"><span style="WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; COLOR: rgb(0,0,0); FONT: bold 10px Verdana; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(239,239,239); TEXT-INDENT: 0px; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px">Plano</span>&nbsp;</td> 
+                  <td colspan="5">{plano}&nbsp;&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><span><strong>Uso Suelo</strong></span>&nbsp;</td> 
+                  <td class="th" colspan="14"><b>
+                    <!-- BEGIN CheckBoxList usos_suelo --><input id="parcelausos_suelo_{usos_suelo:optionNumber}" type="checkbox" value="{Value}" name="{usos_suelo_Name}" {Check}>{Description} <!-- END CheckBoxList usos_suelo --></b></td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="15">
+                    <div align="center">
+                      NOMENCLATURA CATASTRAL DE LA INSCRIPCION DE DOMINIO 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" colspan="3"><input id="parcelatipo_instrumento_id" type="hidden" value="{tipo_instrumento_id}" name="{tipo_instrumento_id_Name}"><input id="parcelaparcela_instrumento" type="hidden" value="{parcela_instrumento}" name="{parcela_instrumento_Name}">
+                    <!-- BEGIN ImageLink ImageLink2 --><a href="{ImageLink2}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/16x16/edit-copy.gif"><strong><font size="1">Inscripcion de Dominio (Unificacion)</font></strong></a><!-- END ImageLink ImageLink2 -->&nbsp;</td> 
+                  <td colspan="12">
+                    <!-- BEGIN ImageLink ImageLink3 --><a href="{ImageLink3}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/16x16/edit-copy.gif"><strong><font size="1">Inscripcion de Dominio (Registro)</font></strong></a><!-- END ImageLink ImageLink3 --><b>{cantReg}&nbsp;&nbsp;{inscripcionDominial}</b></td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="15">
+                    <div align="center">
+                      Valuaciones 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th">
+                    <div align="center">
+                      <strong>Tierra</strong> 
+                    </div>
+                  </td> 
+                  <td colspan="2">
+                    <div align="center">
+                      <strong>Mejora</strong> 
+                    </div>
+                  </td> 
+                  <td colspan="6">
+                    <div align="center">
+                      <strong>Ampliacion UF/UC</strong> 
+                    </div>
+                  </td> 
+                  <td colspan="6">
+                    <div align="center">
+                      <strong>Total</strong> 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>
+                    <div align="center">
+                      <b>${parcela_val_tierra_l} <input id="parcelaparcela_val_tierra" type="hidden" value="{parcela_val_tierra}" name="{parcela_val_tierra_Name}">
+                    </div>
+                    </b></td> 
+                  <td colspan="2"><b>
+                    <div align="center">
+                      ${parcela_val_mejora_l} <input id="parcelaparcela_val_mejora" type="hidden" value="{parcela_val_mejora}" name="{parcela_val_mejora_Name}">
+                    </div>
+                    </b></td> 
+                  <td colspan="6"><b>
+                    <div align="center">
+                      ${parcela_val_ampliac_l} <input id="parcelaparcela_val_ampliac" type="hidden" value="{parcela_val_ampliac}" name="{parcela_val_ampliac_Name}">
+                    </div>
+                    </b></td> 
+                  <td colspan="6"><b>
+                    <div align="center">
+                      $ <input id="parcelaparcela_val_total" style="FONT-WEIGHT: bolder; BACKGROUND-COLOR: #d6d6d6; size: 2" readonly size="12" value="{parcela_val_total}" name="{parcela_val_total_Name}">
+                    </div>
+                    </b></td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th" colspan="15">
+                    <div align="center">
+                      Notas y Observaciones 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">
+                    <!-- BEGIN ImageLink ImageLink4 --><a href="{ImageLink4}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" src="../iconos/22x22/grass_close_mapset.gif">Restricciones:</a><!-- END ImageLink ImageLink4 --></td> 
+                  <td colspan="2">{restricciones}&nbsp;</td> 
+                  <td><strong><font size="1">Nota de Restriccion</font></strong>&nbsp;&nbsp;</td> 
+                  <td colspan="11"><textarea id="parcelaparcela_restr" style="WIDTH: 100%" rows="3" name="{parcela_restr_Name}">{parcela_restr}</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><strong>Nota de Solicitud</strong>&nbsp;</td> 
+                  <td colspan="14"><textarea id="parcelaparcela_notas_nom" style="WIDTH: 100%" rows="1" cols="100" name="{parcela_notas_nom_Name}">{parcela_notas_nom}</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><strong>Observaciones&nbsp;</strong></td> 
+                  <td colspan="14"><textarea id="parcelaparcela_observa" style="WIDTH: 100%" rows="1" cols="35" name="{parcela_observa_Name}">{parcela_observa}</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><strong>Descripcion de la parcela</strong>&nbsp;</td> 
+                  <td colspan="14"><textarea id="parcelaparcela_descrip" style="WIDTH: 100%" rows="1" cols="10" name="{parcela_descrip_Name}">{parcela_descrip}</textarea></td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <td class="th">
+                    <div align="left">
+                      Ultima&nbsp;Modificacion 
+                    </div>
+                  </td> 
+                  <td colspan="4">{fecha_ultima_modificacion}&nbsp;{usuario}</td> 
+                  <td>&nbsp; 
+                    <!-- BEGIN Button Button_baja --><input id="parcelaButton_baja" class="Button" type="submit" value="Baja Pura" name="{Button_Name}"><!-- END Button Button_baja --></td> 
+                  <td colspan="9">
+                    <div align="right">
+                      &nbsp;&nbsp;&nbsp;&nbsp; 
+                      <!-- BEGIN Button Insert_Button --><input id="parcelaInsert_Button" class="Button" alt="Button2" type="submit" value="Agregar Parcela" name="{Button_Name}"><!-- END Button Insert_Button -->
+                      <!-- BEGIN Button Button_Update --><input id="parcelaButton_Update" class="Button" alt="Enviar" type="submit" value="Actualizar Datos de la Parcela" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button1 --><input id="parcelaButton1" class="Button" alt="Button1" type="submit" value="Cancelar" name="{Button_Name}"><!-- END Button Button1 -->
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td colspan="15">{origen}</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td colspan="15">{destino}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record parcela --></td>
+  </tr>
+</table>
+{tdf_footer} 
+</body>
+</html>

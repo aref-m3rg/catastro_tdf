@@ -1,0 +1,148 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>documentacion_tasas_retributivas</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-D25B528C
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}</p>
+<!-- BEGIN Record tipos_documentacion_tasas -->
+<form id="tipos_documentacion_tasas" method="post" name="{HTMLFormName}" action="{Action}">
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <th>Buscar</th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>Descripción</th>
+ 
+            <td><input id="tipos_documentacion_tasass_tipo_doc_t_r_descrip" maxlength="128" size="50" value="{s_tipo_doc_t_r_descrip}" name="{s_tipo_doc_t_r_descrip_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th></th>
+ 
+            <td></td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right">
+              <!-- BEGIN Button Button_DoSearch --><input id="tipos_documentacion_tasasButton_DoSearch" class="Button" type="submit" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record tipos_documentacion_tasas --><br>
+<!-- BEGIN Grid tipos_documentacion_tasas1 -->
+<table cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          <th>Tipos Documentacion Tasas Retributivas</th>
+ 
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th>&nbsp;</th>
+ 
+          <th>&nbsp;</th>
+ 
+          <th>&nbsp;<a href="{Link2_Src}" id="tipos_documentacion_tasas1Link2_{tipos_documentacion_tasas1:rowNumber}">+Agregar</a></th>
+        </tr>
+ 
+        <tr class="Caption">
+          <th>
+          <!-- BEGIN Sorter Sorter_tipo_doc_t_r_descrip --><a href="{Sort_URL}" id="tipos_documentacion_tasas1Sorter_tipo_doc_t_r_descrip">Descrip</a>ción 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_doc_t_r_descrip --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_tipo_estado_descrip --><a href="{Sort_URL}" id="tipos_documentacion_tasas1Sorter_tipo_estado_descrip">Estado</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_tipo_estado_descrip --></th>
+ 
+          <th>&nbsp;</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td>{tipo_doc_t_r_descrip}&nbsp;</td> 
+          <td>{tipo_estado_descrip}&nbsp;</td> 
+          <td>&nbsp;<a href="{Link1_Src}" id="tipos_documentacion_tasas1Link1_{tipos_documentacion_tasas1:rowNumber}">Editar</a></td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="3">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="3">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+            <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid tipos_documentacion_tasas1 --><br>
+{tdf_footer} 
+</body>
+</html>
