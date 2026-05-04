@@ -1,0 +1,274 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Auditoria</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.2.00.040">
+<script type="text/javascript">
+function reFresh(){
+        location.reload(true)
+}
+window.setInterval("reFresh()",600000);
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-F1349B03
+
+var auditorias_auditorias_tip_DatePicker_f_desde1 = new Object(); 
+auditorias_auditorias_tip_DatePicker_f_desde1.format           = "ShortDate";
+auditorias_auditorias_tip_DatePicker_f_desde1.style            = "Styles/Simple_tdf/Style.css";
+auditorias_auditorias_tip_DatePicker_f_desde1.relativePathPart = "../";
+
+var auditorias_auditorias_tip_DatePicker_f_hasta1 = new Object(); 
+auditorias_auditorias_tip_DatePicker_f_hasta1.format           = "ShortDate";
+auditorias_auditorias_tip_DatePicker_f_hasta1.style            = "Styles/Simple_tdf/Style.css";
+auditorias_auditorias_tip_DatePicker_f_hasta1.relativePathPart = "../";
+
+//End Date Picker Object Definitions
+
+//auditorias_auditorias_tipButton1_OnClick @66-E49997DF
+function auditorias_auditorias_tipButton1_OnClick()
+{
+    disableValidation = true;
+}
+//End auditorias_auditorias_tipButton1_OnClick
+
+//bind_events @1-3356910D
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("auditorias_auditorias_tipButton1", "click", auditorias_auditorias_tipButton1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style_doctype.css" />
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css" />
+</head>
+<body>
+&nbsp;{tdf_header}{tdf_menu}
+<table style="WIDTH: 100%" border="0" cellspacing="1" cellpadding="1">
+  <tr>
+    <td>
+      <!-- BEGIN Record auditorias_auditorias_tip -->
+      <form id="auditorias_auditorias_tip" method="post" name="{HTMLFormName}" action="{Action}">
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Buscar</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                </tr>
+ 
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="5">{Error}</td> 
+                </tr>
+ <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th">Tabla</td> 
+                  <td colspan="2">
+                    <select id="auditorias_auditorias_tips_auditoria_tabla" name="{s_auditoria_tabla_Name}">
+                      <option selected value="">...</option>
+ {s_auditoria_tabla_Options} 
+                    </select>
+ </td> 
+                  <td class="th">Host&nbsp;</td> 
+                  <td>
+                    <select id="auditorias_auditorias_tipope_ip" name="{ope_ip_Name}">
+                      {ope_ip_Options} 
+                    </select>
+ 
+                    <select id="auditorias_auditorias_tiphost" name="{host_Name}">
+                      <option selected value="">...</option>
+ {host_Options} 
+                    </select>
+ &nbsp;&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">ID</td> 
+                  <td colspan="2"><input id="auditorias_auditorias_tips_auditoria_registro_id" value="{s_auditoria_registro_id}" maxlength="10" name="{s_auditoria_registro_id_Name}" size="20"></td> 
+                  <td class="th">Script</td> 
+                  <td>
+                    <select id="auditorias_auditorias_tipscript" name="{script_Name}">
+                      <option selected value="">...</option>
+ {script_Options} 
+                    </select>
+ &nbsp;&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Tipo</td> 
+                  <td colspan="2">
+                    <select id="auditorias_auditorias_tipaud_tip_id" name="{aud_tip_id_Name}">
+                      <option selected value="">...</option>
+ {aud_tip_id_Options} 
+                    </select>
+ </td> 
+                  <td class="th">Usuario</td> 
+                  <td class="th">
+                    <select id="auditorias_auditorias_tipope_usr" name="{ope_usr_Name}">
+                      {ope_usr_Options} 
+                    </select>
+ 
+                    <select id="auditorias_auditorias_tipusuario_id" name="{usuario_id_Name}">
+                      <option selected value="">...</option>
+ {usuario_id_Options} 
+                    </select>
+ &nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Entre</td> 
+                  <td><input id="auditorias_auditorias_tipf_desde" value="{f_desde}" maxlength="10" size="10" name="{f_desde_Name}">
+                    <!-- BEGIN DatePicker DatePicker_f_desde1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="auditorias_auditorias_tipDatePicker_f_desde1"><img id="auditorias_auditorias_tipDatePicker_f_desde1_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_f_desde1 --></td> 
+                  <td><input id="auditorias_auditorias_tipf_hasta" value="{f_hasta}" maxlength="10" size="10" name="{f_hasta_Name}">&nbsp; 
+                    <!-- BEGIN DatePicker DatePicker_f_hasta1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="auditorias_auditorias_tipDatePicker_f_hasta1"><img id="auditorias_auditorias_tipDatePicker_f_hasta1_Image" border="0" alt="Show Date Picker" src="../Styles/Simple_tdf/Images/DatePicker.gif"></a>&nbsp;<!-- END DatePicker DatePicker_f_hasta1 --></td> 
+                  <td class="th"></td> 
+                  <td>&nbsp;&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td colspan="5" align="right">
+                    <!-- BEGIN Button Button_DoSearch --><input id="auditorias_auditorias_tipButton_DoSearch" class="Button" value="Buscar" alt="Buscar" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch -->
+                    <!-- BEGIN Button Button1 --><input id="auditorias_auditorias_tipButton1" class="Button" value="Limpiar" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button1 --></td> 
+                </tr>
+ 
+              </table>
+ </td> 
+          </tr>
+ 
+        </table>
+ 
+      </form>
+ &nbsp;<!-- END Record auditorias_auditorias_tip -->
+      <!-- BEGIN Grid auditorias_auditorias_tip1 -->
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                <td class="th"><strong>Auditorias </strong></td> 
+                <td class="HeaderRight"><img border="0" alt="" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+              </tr>
+ 
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Row">
+                <td colspan="9">Total de Registros:&nbsp;{auditorias_auditorias_tip1_TotalRecords}</td> 
+              </tr>
+ 
+              <tr class="Caption">
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_auditoria_fecha --><a href="{Sort_URL}" id="auditorias_auditorias_tip1Sorter_auditoria_fecha">Fecha</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_auditoria_fecha --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_user_nombre --><a href="{Sort_URL}" id="auditorias_auditorias_tip1Sorter_user_nombre">Usuario</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_user_nombre --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_auditoria_host --><a href="{Sort_URL}" id="auditorias_auditorias_tip1Sorter_auditoria_host">Host</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_auditoria_host --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_aud_tip_abrev --><a href="{Sort_URL}" id="auditorias_auditorias_tip1Sorter_aud_tip_abrev">Tipo</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_aud_tip_abrev --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_auditoria_tabla --><a href="{Sort_URL}" id="auditorias_auditorias_tip1Sorter_auditoria_tabla">Tabla</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_auditoria_tabla --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_auditoria_registro_id --><a href="{Sort_URL}" id="auditorias_auditorias_tip1Sorter_auditoria_registro_id">Registro Id</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_auditoria_registro_id --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_auditoria_descripcion --><a href="{Sort_URL}" id="auditorias_auditorias_tip1Sorter_auditoria_descripcion">Descripcion</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_auditoria_descripcion --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_auditoria_script --><a href="{Sort_URL}" id="auditorias_auditorias_tip1Sorter_auditoria_script">Script</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_auditoria_script --></th>
+ 
+                <th scope="col">Detalle&nbsp;</th>
+ 
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr {auditorias_auditorias_tip1:rowStyle}>
+                <td>{auditoria_fecha}&nbsp;</td> 
+                <td>{usuario_nombre}&nbsp;</td> 
+                <td>{auditoria_host}&nbsp;</td> 
+                <td>{aud_tip_abrev}&nbsp;</td> 
+                <td>{auditoria_tabla}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">{auditoria_registro_id}&nbsp;</td> 
+                <td>{auditoria_descripcion}&nbsp;</td> 
+                <td>{auditoria_script}&nbsp;</td> 
+                <td>
+                  <!-- BEGIN Panel detalle --><a href="{det}" id="auditorias_auditorias_tip1detalledet_{auditorias_auditorias_tip1:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{det}" src="../iconos/16x16/edit-find.gif"></a>&nbsp;{modif}<!-- END Panel detalle --></td> 
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="9">No hay auditorias</td> 
+              </tr>
+ <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="9">
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN Page_Parameter --><input value="{Value}" type="hidden" name="{Name}"><!-- END Page_Parameter -->Per page: 
+                  <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                    <option selected value="">-</option>
+ {PageSize_Options} 
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/Simple_tdf/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/Simple_tdf/Images/Prev.gif"></a> <!-- END Prev_On -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/Simple_tdf/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/Simple_tdf/Images/Last.gif"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td> 
+              </tr>
+ 
+            </table>
+ </td> 
+        </tr>
+ 
+      </table>
+ &nbsp;<!-- END Grid auditorias_auditorias_tip1 -->&nbsp;&nbsp;&nbsp;</td> 
+  </tr>
+</table>
+<div>
+  <br>
+  {tdf_footer}
+</div>
+</body>
+</html>

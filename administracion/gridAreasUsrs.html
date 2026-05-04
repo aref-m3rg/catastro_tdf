@@ -1,0 +1,119 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Usuarios en el Area</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//bind_events @1-D25B528C
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+{tdf_header}{tdf_menu} 
+<table cellspacing="2" cellpadding="2" width="100%" border="0">
+  <tr>
+    <td>
+      <!-- BEGIN EditableGrid usuarios_unidades_unidade -->
+      <form id="usuarios_unidades_unidade" name="{HTMLFormName}" action="{Action}" method="post">
+        <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td> 
+                  <th>Usuarios en el Area</th>
+ 
+                  <td class="HeaderRight"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="2"><strong>{Error}</strong></td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Row">
+                  <td colspan="2">Total:&nbsp;{usuarios_unidades_unidade_TotalRecords}</td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <th>Usuario</th>
+ 
+                  <th>Estado</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <!-- BEGIN RowError -->
+                <tr class="Error">
+                  <td colspan="2"><strong>{Error}</strong></td>
+                </tr>
+                <!-- END RowError -->
+                <tr class="Row">
+                  <td>
+                    <select id="usuarios_unidades_unidadeusuario_id_{usuarios_unidades_unidade:rowNumber}" name="{usuario_id_Name}">
+                      <option value="" selected>...</option>
+                      {usuario_id_Options}
+                    </select>
+ </td> 
+                  <td>
+                    <!-- BEGIN RadioButton usuarios_unidades_estado_id --><input id="usuarios_unidades_unidadeusuarios_unidades_estado_id_{usuarios_unidades_unidade:rowNumber}_{usuarios_unidades_estado_id:optionNumber}" type="radio" value="{Value}" name="{usuarios_unidades_estado_id_Name}" {Check}>{Description}<!-- END RadioButton usuarios_unidades_estado_id --></td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN Separator -->
+                <tr class="Separator">
+                  <td colspan="2"><img src="../Styles/Simple_tdf/Images/Spacer.gif" border="0"></td>
+                </tr>
+                <!-- END Separator -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="2">No hay usuarios en esta Area</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td style="TEXT-ALIGN: right" colspan="2">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+                    <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                      <option value="" selected>-</option>
+ {PageSize_Options}
+                    </select>
+ 
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img src="../Styles/Simple_tdf/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="../Styles/Simple_tdf/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="../Styles/Simple_tdf/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="../Styles/Simple_tdf/Images/Last.gif" border="0"></a> <!-- END Last_On --><!-- END Navigator Navigator -->
+                    <!-- BEGIN Button Button_Submit --><input class="Button" id="usuarios_unidades_unidadeButton_Submit" type="submit" value="Actualizar" name="{Button_Name}"><!-- END Button Button_Submit -->
+                    <!-- BEGIN Button Button1 --><input class="Button" id="usuarios_unidades_unidadeButton1" type="submit" value="Volver" name="{Button_Name}"><!-- END Button Button1 --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END EditableGrid usuarios_unidades_unidade --></td>
+  </tr>
+</table>
+{tdf_footer} 
+</body>
+</html>

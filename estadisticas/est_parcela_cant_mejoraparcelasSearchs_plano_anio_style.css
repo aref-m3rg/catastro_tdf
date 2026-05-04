@@ -1,0 +1,21 @@
+/*Page Style @1-F97E4E6B*/
+#parcelasSearchs_plano_anio_choices {
+    position: absolute;
+}
+#parcelasSearchs_plano_anio_choices ul {
+    background-color: white;
+    border: 1px solid black;
+    border-top: none;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 0px;
+}
+#parcelasSearchs_plano_anio_choices ul li.selected { background-color: #aaa;}
+#parcelasSearchs_plano_anio_choices li {
+    list-style-type: none;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin: 0;
+}
+/*End Page Style*/
+

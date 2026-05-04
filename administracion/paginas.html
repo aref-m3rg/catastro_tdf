@@ -1,0 +1,376 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Administración de Paginas</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//menu2Button_Delete_OnClick @38-BE2777D6
+function menu2Button_Delete_OnClick()
+{
+    var result = true;
+//End menu2Button_Delete_OnClick
+
+//Confirmation Message @39-BED55CD3
+    return confirm('Borrar registro?');
+//End Confirmation Message
+
+//Close menu2Button_Delete_OnClick @38-BC33A33A
+    return result;
+}
+//End Close menu2Button_Delete_OnClick
+
+//menu3Button_Delete_OnClick @54-1163E591
+function menu3Button_Delete_OnClick()
+{
+    var result = true;
+//End menu3Button_Delete_OnClick
+
+//Confirmation Message @55-BED55CD3
+    return confirm('Borrar registro?');
+//End Confirmation Message
+
+//Close menu3Button_Delete_OnClick @54-BC33A33A
+    return result;
+}
+//End Close menu3Button_Delete_OnClick
+
+//menu2Button_Cancel_OnClick @40-134A6862
+function menu2Button_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End menu2Button_Cancel_OnClick
+
+//menu3Button_Cancel_OnClick @56-9C124771
+function menu3Button_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End menu3Button_Cancel_OnClick
+
+//bind_events @1-490C1020
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    addEventHandler("menu2Button_Delete", "click", menu2Button_Delete_OnClick);
+    addEventHandler("menu3Button_Delete", "click", menu3Button_Delete_OnClick);
+    addEventHandler("menu2Button_Cancel", "click", menu2Button_Cancel_OnClick);
+    addEventHandler("menu3Button_Cancel", "click", menu3Button_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+</head>
+<body>
+<p>{tdf_header}{tdf_menu}&nbsp; 
+<table style="WIDTH: 100%" border="0">
+  <tr>
+    <td>&nbsp; 
+      <p>
+      <!-- BEGIN Grid menu -->
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                <th>Lista de Menu</th>
+ 
+                <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th>&nbsp;</th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_menu_descripcion --><a href="{Sort_URL}" id="menuSorter_menu_descripcion">Descripcion</a> 
+                <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_menu_descripcion --></th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_menu_title --><a href="{Sort_URL}" id="menuSorter_menu_title">Titulo</a> 
+                <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_menu_title --></th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_menu_link --><a href="{Sort_URL}" id="menuSorter_menu_link">Link</a> 
+                <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_menu_link --></th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_menu_orden --><a href="{Sort_URL}" id="menuSorter_menu_orden">Orden</a> 
+                <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On -->&nbsp;<!-- END Sorter Sorter_menu_orden --></th>
+ 
+                <th>&nbsp;</th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td><a href="{Link1_Src}" id="menuLink1_{menu:rowNumber}">Items</a>&nbsp;</td> 
+                <td>{menu_descripcion}&nbsp;</td> 
+                <td>{menu_title}&nbsp;</td> 
+                <td>{menu_link}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">{menu_orden}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right"><a href="{Link2_Src}" id="menuLink2_{menu:rowNumber}">Editar</a>&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="6">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="6">
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+                  <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+                  <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a><!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off -->Final <!-- END Last_Off -->&nbsp;<!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid menu --></p>
+    </td> 
+    <td align="left">
+      <!-- BEGIN Record menu3 -->
+      <form id="menu3" method="post" name="{HTMLFormName}" action="{Action}">
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+                  <th>Agregar/Editar Menu </th>
+ 
+                  <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <th>Descripcion</th>
+ 
+                  <td><input id="menu3menu_descripcion" name="{menu_descripcion_Name}" maxlength="50" value="{menu_descripcion}" size="50"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th>Title</th>
+ 
+                  <td><input id="menu3menu_title" name="{menu_title_Name}" maxlength="50" value="{menu_title}" size="50"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th>Link</th>
+ 
+                  <td><input id="menu3menu_link" name="{menu_link_Name}" maxlength="100" value="{menu_link}" size="50"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th>Orden</th>
+ 
+                  <td><input id="menu3menu_orden" name="{menu_orden_Name}" maxlength="10" value="{menu_orden}" size="10"></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td colspan="2" align="right">
+                    <!-- BEGIN Button Button_Insert --><input id="menu3Button_Insert" class="Button" name="{Button_Name}" value="Agregar" type="submit"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input id="menu3Button_Update" class="Button" name="{Button_Name}" value="Enviar" type="submit"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input id="menu3Button_Delete" class="Button" name="{Button_Name}" value="Borrar" type="submit"><!-- END Button Button_Delete -->
+                    <!-- BEGIN Button Button_Cancel --><input id="menu3Button_Cancel" class="Button" name="{Button_Name}" value="Cancelar" type="submit"><!-- END Button Button_Cancel --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record menu3 --><br>
+    </td>
+  </tr>
+</table>
+</p>
+<p>
+<!-- BEGIN Grid menu1 -->
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+          <th>Lista de Items&nbsp;del menu</th>
+ 
+          <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th>&nbsp;</th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_menu_descripcion --><a href="{Sort_URL}" id="menu1Sorter_menu_descripcion">Descripcion</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_menu_descripcion --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_menu_title --><a href="{Sort_URL}" id="menu1Sorter_menu_title">Titulo</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_menu_title --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_menu_link --><a href="{Sort_URL}" id="menu1Sorter_menu_link">Link</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_menu_link --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter1 --><a href="{Sort_URL}" id="menu1Sorter1">Visible en el menu</a> 
+          <!-- BEGIN Asc_On --><img border="0" src="../Styles/Simple_tdf/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img border="0" src="../Styles/Simple_tdf/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter1 --></th>
+ 
+          <th>&nbsp;</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td><a href="{Detail_Src}" id="menu1Detail_{menu1:rowNumber}">Detalles</a>&nbsp;</td> 
+          <td>{menu_descripcion}&nbsp;</td> 
+          <td>{menu_title}&nbsp;</td> 
+          <td>{menu_link}&nbsp;</td> 
+          <td>{visible}</td> 
+          <td><a href="{Link1_Src}" id="menu1Link1_{menu1:rowNumber}" target="_parent">SubItems</a></td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="6">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="6"><a href="{menu1_Insert_Src}" id="menu1menu1_Insert">Agregar Nuevo</a>&nbsp; 
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN Page_Parameter --><input name="{Name}" value="{Value}" type="hidden"><!-- END Page_Parameter -->Per page: 
+            <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+            <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid menu1 --></p>
+<p>
+<!-- BEGIN Record menu2 -->
+<form id="menu2" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td> 
+            <th>Agregar/Editar Menu </th>
+ 
+            <td class="HeaderRight"><img border="0" src="../Styles/Simple_tdf/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <th>Descripcion</th>
+ 
+            <td><input id="menu2menu_descripcion" name="{menu_descripcion_Name}" maxlength="50" value="{menu_descripcion}" size="50"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Titulo</th>
+ 
+            <td><input id="menu2menu_title" name="{menu_title_Name}" maxlength="50" value="{menu_title}" size="50"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>Link</th>
+ 
+            <td><input id="menu2link" name="{link_Name}" maxlength="100" value="{link}" size="50"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <th>&nbsp;Visible</th>
+ 
+            <td>
+              <select id="menu2LBVisible" name="{LBVisible_Name}">
+                <option selected value="">Seleccionar Valor</option>
+                {LBVisible_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td colspan="2" align="right">
+              <!-- BEGIN Button Button_Insert --><input id="menu2Button_Insert" class="Button" name="{Button_Name}" value="Agregar" type="submit"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input id="menu2Button_Update" class="Button" name="{Button_Name}" value="Enviar" type="submit"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button_Delete --><input id="menu2Button_Delete" class="Button" name="{Button_Name}" value="Borrar" type="submit"><!-- END Button Button_Delete -->
+              <!-- BEGIN Button Button_Cancel --><input id="menu2Button_Cancel" class="Button" name="{Button_Name}" value="Cancelar" type="submit"><!-- END Button Button_Cancel --><input id="menu2menu_parent_id" name="{menu_parent_id_Name}" value="{menu_parent_id}" type="hidden"><input id="menu2menu_orden" name="{menu_orden_Name}" value="{menu_orden}" type="hidden"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record menu2 --></p>
+<p><br>
+<br>
+</p>
+<p>{tdf_footer}</p>
+</body>
+</html>

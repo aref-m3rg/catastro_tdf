@@ -1,0 +1,1007 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Cartografía</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="{css}">
+<style type="text/css" rel="stylesheet">
+    .zoominIcon { background-image:url(../iconos/16x16/nav_zoomin.png); width:16px; height:16px; }
+    .zoomoutIcon { background-image:url(../iconos/16x16/nav_zoomout.png); width:16px; height:16px; }
+    .zoomfullextIcon { background-image:url(../iconos/16x16/nav_fullextent.png); width:16px; height:16px; }
+    .zoomprevIcon { background-image:url(../iconos/16x16/nav_previous.png); width:16px; height:16px; }
+    .zoomnextIcon { background-image:url(../iconos/16x16/nav_next.png); width:16px; height:16px; }
+    .panIcon { background-image:url(../iconos/16x16/nav_pan.png); width:16px; height:16px; }
+    .clear { background-image:url(../iconos/16x16/edit-clear.gif); width:16px; height:16px; }
+    .deactivateIcon { background-image:url(../iconos/16x16/nav_decline.png); width:16px; height:16px; }
+    .extend { background-image:url(../iconos/16x16/mActionSelect.gif); width:16px; height:16px; }
+    .findIcon { background-image:url(../iconos/22x22/system-search.gif); width:16px; height:16px; }
+    .reloadIcon { background-image:url(../iconos/16x16/view-refresh.gif); width:16px; height:16px; }
+    .distancia { background-image: url(../iconos/16x16/mActionMeasure.gif); width: 16px; height: 16px; }
+    .superficie { background-image: url(../iconos/16x16/mActionMeasureArea.gif); width: 16px; height: 16px; }
+    .distancia2 { background-image: url(../iconos/16x16/mActionToggleEditing.gif); width: 16px; height: 16px; }
+    .superficie2 { background-image: url(../iconos/16x16/mActionMeasureArea2.gif); width: 16px; height: 16px; }
+</style>
+<script type="application/x-javascript">
+    var djConfig = {
+      parseOnLoad: true
+    };
+</script>
+<script type="application/x-javascript" src="{jsapi}"></script>
+<script type="application/x-javascript" src="../scripts/myFunctions.js"></script>
+<script type="application/x-javascript" src="../scripts/trim.js"></script>
+
+<script type="text/javascript">
+  /**
+   * Script que maneja los elementos de la cartografía dinámica
+   */
+
+  // Requerimiento de librerías
+  dojo.require("esri.map");
+  dojo.require("esri.tasks.identify");
+  dojo.require("esri.tasks.find");
+  dojo.require("esri.tasks.query");
+  dojo.require("esri.tasks.geometry");
+  dojo.require("esri.toolbars.draw");
+  dojo.require("esri.toolbars.navigation");
+  dojo.require("dijit.layout.BorderContainer");
+  dojo.require("dijit.layout.ContentPane");
+  dojo.require("dijit.layout.TabContainer");
+  dojo.require("dijit.form.Button");
+  dojo.require("dijit.Menu");
+  dojo.require("dijit.Toolbar");
+  dojo.require("dijit.Dialog");
+  dojo.require("dijit.layout.AccordionContainer");;
+
+  // Inicializaciones
+  var xming,
+      yming,
+      xmaxg,
+      ymaxg,
+      contador_m,
+      visible=[],
+      infolayer=[],
+
+      map,
+      identifyTask,
+      identifyParams,
+      symbol,
+      navToolbar,
+      tb,
+      parcelario,
+
+      layer0results,
+      layer1results,
+      layer2results,
+
+      findTask,
+      findParams,
+
+      query,
+      queryTask,
+      query1,
+      queryTask1,
+      query2,
+      queryTask2,
+      geometryService,
+
+      cont=0,
+      punto_x=0,
+      punto_y=0,
+      valor;
+
+
+
+  function init(){
+
+    // Toma valores
+    dojo.byId("nro_partida").value = gup("parcela_partida");
+    dojo.byId("servidor").value = dojo.byId("nro_partida").value;
+
+
+    // Setea configuraciones
+    esriConfig.defaults.io.proxyUrl = "http://192.168.1.2/arcgis_js_api/proxy/proxy.php";
+    esriConfig.defaults.io.alwaysUseProxy = false;
+
+
+    // trae el la nomenc. si viene en parámetro y lo guarda en sus campos
+    parDto = gup("departamento");
+    parPad = gup("padron");
+    parSec = gup("seccion");
+    parMac = gup("macizo");
+    parPar = gup("parcela");
+
+    dojo.byId("sec").value = parSec;
+    dojo.byId("mzo").value = parMac;
+    dojo.byId("par").value = parPar;
+    dojo.byId("tipo_padron_parc_id").value = parPad;
+
+
+    // Setea configuraciones
+    esriConfig.defaults.io.proxyUrl = "{proxy}";
+    esriConfig.defaults.io.alwaysUseProxy = false;
+
+
+    // Crea el mapa
+    map = new esri.Map( "map", { "logo": false } );
+
+    // Crea capas
+    var imageParameters = new esri.layers.ImageParameters();
+    imageParameters.format = "jpeg";
+
+    parcelario = new esri.layers.ArcGISDynamicMapServiceLayer(
+      "{server}/{servicio}/MapServer",
+      {
+        "opacity":0.8,
+        "imageParameters":imageParameters
+      }
+    );
+    map.addLayer( parcelario );
+    map.spatialReference = new esri.SpatialReference({ "wkid": 22182 });
+
+
+    // Define el estilo para pintar los elementos seleccionados
+    symbol = new esri.symbol.SimpleFillSymbol( esri.symbol.SimpleFillSymbol.STYLE_SOLID, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255,0,0]), 2), new dojo.Color([255,255,0,0.5]) );
+
+
+    // Crea la tarea de identificación
+    identifyTask = new esri.tasks.IdentifyTask("{server}/{servicio}/MapServer");
+
+    // Asigna los parámetros por defecto para la identificación
+    identifyParams = new esri.tasks.IdentifyParameters();
+    identifyParams.tolerance = 2;
+    identifyParams.returnGeometry = true;
+    identifyParams.layerIds = {query_layer};
+    identifyParams.layerOption = esri.tasks.IdentifyParameters.LAYER_OPTION_ALL;
+
+
+    dojo.connect(map.infoWindow, "onShow", function(){dijit.byId("tabs").resize();});
+    map.infoWindow.resize(400, 220);
+    map.infoWindow.setContent(dijit.byId("tabs").domNode);
+    map.infoWindow.setTitle("Resultados");
+
+    findTask = new esri.tasks.FindTask("{server}/{servicio}/MapServer");
+    findParams = new esri.tasks.FindParameters();
+    findParams.returnGeometry = true;
+    findParams.layerIds = {query_layer};
+    findParams.searchFields = ["PARTIDA"];
+
+
+    /*
+     * Si tiene suficientes parámetros para buscar hace un query al layer
+     */
+    if ( parDto != '' && parPad != '' && parSec != '' && parMac != '' && parPar != '' ) {
+      var params = { dto: parDto, padron: parPad, sec: parSec, mac: parMac, par: parPar };
+      doQuery(params);
+    }
+
+
+    // Eventos del mapa al cargar
+    dojo.connect(map, "onLoad", function(){
+
+      // actualiza coordenadas al mover el mouse sobre el mapa
+      dojo.connect( map, "onMouseMove", function(evt){
+        showCoordinates(evt);
+      });
+
+      // actualiza coordenadas al hacer drag en el mapa
+      dojo.connect( map, "onMouseDrag", function(evt) {
+        showCoordinates(evt);
+        map.reposition();
+      });
+
+      // enlaza el evento para redibujar el mapa
+      dojo.connect( dijit.byId('map'), 'resize', map, map.resize);
+
+      // debug (descomentar para usar)
+      //dojo.connect( map, "onClick", function(evt) { debugMap(); } );
+
+    });
+
+    // Evento del mapa de la herramienta identificar
+    dojo.connect(map, "onClick", doIdentify);
+
+
+    if ( parcelario.loaded ) {
+      buildLayerList( parcelario );
+    } else {
+      dojo.connect( parcelario, "onLoad", buildLayerList );
+    }
+
+
+    // Crea la toolbar
+    navToolbar = new esri.toolbars.Navigation(map);
+
+    // eventos de la toolbar
+    dojo.connect(navToolbar, "onExtentHistoryChange", extentHistoryChangeHandler);
+
+    tb = new esri.toolbars.Draw(map);
+
+
+    geometryService = new esri.tasks.GeometryService("{geometry}");
+    dojo.connect(geometryService, "onLengthsComplete", outputDistance);
+    dojo.connect(geometryService, "onAreasAndLengthsComplete", outputAreaAndLength);
+    dojo.connect(geometryService, "onProjectComplete", function(graphics){ geometryService.lengths(graphics);} );
+
+
+    if ( dojo.byId("servidor").value != "" ) {
+      //dojo.connect(map, "onUpdateEnd", doFindPartida2);
+    }
+
+    return true;
+
+  }
+
+
+
+  function debugMap() {
+    console.log( 'w:' + map.width + ',h:' + map.height );
+    console.log( 'extent:' ); console.log( map.extent );
+    console.log( 'identify params:' ); console.log( identifyParams );
+  }
+
+
+
+  function extentHistoryChangeHandler() {
+    dijit.byId("zoomprev").disabled = navToolbar.isFirstExtent();
+    dijit.byId("zoomnext").disabled = navToolbar.isLastExtent();
+  }
+
+
+
+  function doIdentify(evt) {
+
+    if( dijit.byId("info").checked ){
+
+      // borra los elementos gráficos
+      map.graphics.clear();
+
+      // referencia el punto en una variable
+      var mp = evt.mapPoint;
+      punto_x = mp.y;
+      punto_y = mp.x;
+      identifyParams.geometry = mp;
+      identifyParams.mapExtent = map.extent; // debugMap();
+
+      // agrega un punto al lugar donde se hace el click
+      marker = new esri.symbol.SimpleMarkerSymbol(
+        esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE,
+        10,
+        false,
+        new dojo.Color([0,0,0,0.25])
+      );
+      map.graphics.add( new esri.Graphic(mp, marker) );
+
+      identifyTask.execute( identifyParams, function( idResults ) {
+        addToMap( idResults, evt );
+      });
+    }
+  }
+
+
+
+  function addToMap(idResults, evt) {
+    layer1results = {displayFieldName:null,features:[]};
+    layer2results = {displayFieldName:null,features:[]};
+    for (var i=0, il=idResults.length; i<il; i++) {
+       var idResult = idResults[i];
+        if (!layer1results.displayFieldName) {layer1results.displayFieldName = idResult.displayFieldName};
+        layer1results.features.push(idResult.feature);
+        if (!layer2results.displayFieldName) {layer2results.displayFieldName = idResult.displayFieldName};
+        layer2results.features.push(idResult.feature);
+    }
+    dijit.byId("layer1Tab").setContent(layerTabContent(layer1results,"layer1results"));
+    dijit.byId("layer2Tab").setContent(layerTabContent(layer2results,"layer2results"));
+    map.infoWindow.show(evt.screenPoint, map.getInfoWindowAnchor(evt.screenPoint));
+  }
+
+
+
+  function layerTabContent(layerResults, layerName) {
+    var content = "";
+    var url = "";
+        var scc,mzo,par;
+    var str = String.fromCharCode(34);
+    switch (layerName) {
+      case "layer1results":
+        content="<i><b>Total de registros localizados: " + layerResults.features.length + "</b></i>";
+        content+="<table bgcolor='#bbd1ff' border='1' BORDERCOLOR='#808080' ><tr><th><font size='1'>Ver</font></th><th><font size='1'>Datos</font></th><th>Partida</th><th>Plano</th><th>Sec</th><th>Mzo</th><th>Par</th><th>Cha</th><th>Qta</th><th>Fra</th>";
+        for (var i=0, il=layerResults.features.length; i<il; i++) {
+                         if(layerResults.features[i].attributes['SEC'] == 'NaN'){
+                                      scc = '';
+                         }else{
+                                      scc = layerResults.features[i].attributes['SEC'];
+                         }
+                         if(layerResults.features[i].attributes['MZO'] == 'NaN'){
+                                      mzo = '';
+                         }else{
+                                      mzo = layerResults.features[i].attributes['MZO'];
+                         }
+                         if(layerResults.features[i].attributes['PAR'] == 'NaN'){
+                                      par = '';
+                         }else{
+                                      par = layerResults.features[i].attributes['PAR'];
+                         }
+             url = "gis_info.php?dpto_id=" + layerResults.features[i].attributes['DTO'] + "&scc=" + scc + "&mzo=" + mzo + "&par=" + par + "&plano=" + layerResults.features[i].attributes['PLANO']+ "&partida=" + layerResults.features[i].attributes['PARTIDA'];
+             content+="<tr><td align='center'><a href='#' onclick='showFeature(" + layerName + ".features[" + i + "]); return false;'><img id='Image1' name='Image1' src='../iconos/16x16/mActionShowAllLayers.gif' border='0' title='Resaltar Parcela'></a></td>"
+             content+="<td align='center'><a href='#' onclick='abre_popup(" + str + url + str + ",670,250)'><img id='Image1' name='Image1' src='../iconos/16x16/mActionUnselectAttributes.gif' border='0' title='Mas datos'></a></td>";
+             content+="<td>"+layerResults.features[i].attributes['PARTIDA']+"&nbsp;</td>";
+  	   content+="<td>"+layerResults.features[i].attributes['PLANO']+"&nbsp;</td>";
+             content+="<td>"+scc+"&nbsp;</td>";
+             content+="<td>"+mzo+"&nbsp;</td>";
+             content+="<td>"+par+"&nbsp;</td>";
+             content+="<td>"+layerResults.features[i].attributes['CHA']+"&nbsp;</td>";
+             content+="<td>"+layerResults.features[i].attributes['QTA']+"&nbsp;</td>";
+             content+="<td>"+layerResults.features[i].attributes['FRACC']+"&nbsp;</td>";
+        }
+        content+="</tr></table>";
+        break;
+      case "layer2results":
+        content = "<i><b>Donde se marco con el puntero</b></i>";
+        content += "<table bgcolor='#bbd1ff' border='1' height='50' width='100%' BORDERCOLOR='#808080'><tr><td valign='top'><b>GK X: </b>" + Math.round((punto_x*10))/10 + "<br><b>GK Y: </b>" + Math.round((punto_y*10))/10 + "</td></tr></tr></table>";
+        break;
+    }
+    return content;
+  }
+
+
+
+  function showFeature(feature) {
+    map.graphics.clear();
+    feature.setSymbol(symbol);
+    map.graphics.add(feature);
+  }
+
+
+
+  function showCoordinates(evt) {
+    var mp = evt.mapPoint;
+    dojo.byId("infomouse").innerHTML = "GK X: " + Math.round((mp.y*10))/10 + "<br>GK Y: " + Math.round((mp.x*10))/10;
+  }
+
+
+
+  function buildLayerList(parcelario) {
+    var chequeador
+    var infos = parcelario.layerInfos, info, nombre;
+    var items = [];
+    var il=infos.length;
+    for(var i=0 ; i<il ; i++){
+        info = infos[i];
+        if(info.defaultVisibility){
+                visible.push(info.id);
+                chequeador="checked";
+        }else{
+            chequeador="";
+        }
+            items[i] = "<input type='checkbox' class='list_item' id='" + info.id + "' onclick='updateLayerVisibility();' " + chequeador + "/>&nbsp;<label for='" + info.id + "'><font size='1'>" + info.name + "</font></label><br>";
+    }
+    document.getElementById("servicio_list").innerHTML = items.join("<br>");
+    parcelario.setVisibleLayers(visible);
+    map.addLayer(parcelario);
+  }
+
+
+
+  function updateLayerVisibility() {
+    var inputs = dojo.query(".list_item"), input;
+    visible = [];
+    for (var i=0, il=inputs.length; i<il; i++) {
+      if(inputs[i].checked){visible.push(inputs[i].id);}
+    }
+    parcelario.setVisibleLayers(visible);
+  }
+
+
+
+  function infobutton(){
+     if(dijit.byId("info").checked){navToolbar.deactivate();}
+  }
+
+
+
+  function limpiar() {
+    map.graphics.clear();
+    map.infoWindow.hide();
+    document.getElementById("longitud").innerHTML = "";
+  }
+
+
+
+  function initLinea(map){
+      var lengthParams = new esri.tasks.LengthsParameters();
+      navToolbar.deactivate();
+      document.getElementById("longitud").innerHTML = "";
+      map.hideZoomSlider();
+      dojo.connect(tb, "onDrawEnd", function(geometry) {
+      map.graphics.clear();
+      lengthParams.polylines = [geometry];
+      lengthParams.lengthUnit = esri.tasks.GeometryService.UNIT_METER;
+      lengthParams.geodesic = true;
+      geometryService.lengths(lengthParams);
+      var graphic = map.graphics.add(new esri.Graphic(geometry, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0,0,255]), 3)));
+      geometryService.project([graphic],new esri.SpatialReference({ "wkid":22182 }));
+     });
+    tb.activate(esri.toolbars.Draw.POLYLINE);
+  }
+
+
+
+  function initLinea2(map){
+      var lengthParams = new esri.tasks.LengthsParameters();
+      navToolbar.deactivate();
+      document.getElementById("longitud").innerHTML = "";
+      map.hideZoomSlider();
+      dojo.connect(tb, "onDrawEnd", function(geometry) {
+      map.graphics.clear();
+      lengthParams.polylines = [geometry];
+      lengthParams.lengthUnit = esri.tasks.GeometryService.UNIT_METER;
+      lengthParams.geodesic = true;
+      geometryService.lengths(lengthParams);
+      var graphic = map.graphics.add(new esri.Graphic(geometry, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0,0,255]), 3)));
+      geometryService.project([graphic],new esri.SpatialReference({ "wkid":22182 }));
+     });
+    tb.activate(esri.toolbars.Draw.FREEHAND_POLYLINE);
+  }
+
+
+
+  function outputDistance(result) {
+    if((result.lengths[0] / 1000) > 1){ dojo.byId("longitud").innerHTML = "&nbsp;Distancia: " + Math.round((result.lengths[0] / 1000)*100)/100 + " Kilómetros&nbsp;"; }
+    else{dojo.byId("longitud").innerHTML = "&nbsp;Distancia: " + Math.round((result.lengths[0])*100)/100 + " Metros&nbsp;";}
+    map.graphics.remove(map);
+  }
+
+
+
+  function iniPoligono(map) {
+      document.getElementById("longitud").innerHTML = "";
+      dojo.connect(tb, "onDrawEnd", getAreaAndLength);
+      tb.activate(esri.toolbars.Draw.POLYGON);
+  }
+
+
+
+  function iniPoligono2(map) {
+      document.getElementById("longitud").innerHTML = "";
+      dojo.connect(tb, "onDrawEnd", getAreaAndLength);
+      tb.activate(esri.toolbars.Draw.FREEHAND_POLYGON);
+  }
+
+
+
+  function getAreaAndLength(geometry) {
+    map.graphics.clear();
+    var graphic = map.graphics.add(new esri.Graphic(geometry, new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0,0,255]), 2), new dojo.Color([0,0,255,0.45]))));
+    var areasAndLengthParams = new esri.tasks.AreasAndLengthsParameters();
+    areasAndLengthParams.lengthUnit = esri.tasks.GeometryService.UNIT_METER;
+    areasAndLengthParams.areaUnit = esri.tasks.GeometryService.UNIT_METER;
+    geometryService.simplify([geometry], function(simplifiedGeometries) {
+      areasAndLengthParams.polygons = simplifiedGeometries;
+      geometryService.areasAndLengths(areasAndLengthParams);
+     });
+    geometryService.simplify([graphic], function(graphics){geometryService.areasAndLengths(graphics);});
+  }
+
+
+
+  function outputAreaAndLength(result) {
+    //console.log(dojo.toJson(result));
+    document.getElementById("longitud").innerHTML = "&nbsp;Superficie: " + Math.round(result.areas[0]*100)/100 + " m²&nbsp;<br>&nbsp;Perímetro: " + Math.round(result.lengths[0]*100)/100 + " m&nbsp;";
+    map.graphics.remove(map);
+  }
+
+
+
+  function djAlerta(titulo,msg) {
+    diag = new dijit.Dialog;
+    diag.titleNode.innerHTML = titulo;
+    diag.setContent(msg+"<br/><br/><div  align='center'><button dojoType='dijit.form.Button' type='button' onClick='diag.hide();'>Cerrar</button></div>");
+    diag.show();
+  }
+
+
+
+  function doFindNome() {
+    sec = trim(dojo.byId("sec").value);
+    mzo = trim(dojo.byId("mzo").value);
+    par = trim(dojo.byId("par").value);
+	depto = '';
+	if(document.getElementById('selectservicio').value == 'TDF_catastro_ush'){
+		depto = "USHUAIA";
+	}else if(document.getElementById('selectservicio').value == 'TDF_catastro_rgr'){
+		depto = "RIO GRANDE";
+	}	
+	
+    var qs;
+    var myString = "{query_layer_2}";
+    var mySplit = myString.split(",");
+
+    queryTask = new esri.tasks.QueryTask("{server}/{servicio}/MapServer" + "/" + mySplit[0]);
+    queryTask1 = new esri.tasks.QueryTask("{server}/{servicio}/MapServer" + "/" + mySplit[1]);
+
+    query = new esri.tasks.Query();
+    query.returnGeometry = true;
+
+    qs = " 1=1 ";
+    if(sec != "" || mzo != "" || par != ""){
+      if(depto != ""){
+        qs = qs + " AND DEPARTAMENTO = '" + depto + "'";
+      }	
+      if(sec != ""){
+        qs = qs + " AND SEC = '" + dojo.byId("sec").value + "'";
+      }
+      if(mzo != ""){
+        qs = qs + " AND MZO = '" + dojo.byId("mzo").value + "'";
+      }
+      if(par != ""){
+        qs = qs + " AND PAR = '" + dojo.byId("par").value + "'";
+      }
+      query.where = qs ;
+      if(document.getElementById('tipo_padron_parc_id').value == '1' ){
+        queryTask.execute(query,showResults2);
+      }else if(document.getElementById('tipo_padron_parc_id').value == '2' ){
+        queryTask1.execute(query,showResults2);
+      }else{
+        djAlerta('Alerta','Debe seleccionar un Padron');
+      }
+    }else{
+      djAlerta('Alerta','Ingrese parametros para la búsqueda por Nomenclatura');
+    }
+  }
+
+
+
+  function showResults2(results) {
+    var graphic;
+    var taxLotExtent;
+    map.graphics.clear();
+    if (results.features.length > 0) {
+      for (var i=0, il=results.features.length; i<il; i++) {
+        graphic = results.features[i];
+        graphic.setSymbol(symbol);
+        map.graphics.add(graphic);
+        taxLotExtent = graphic.geometry.getExtent();
+        if ( i === 0 ) {
+          xmin = taxLotExtent.xmin;
+          ymin = taxLotExtent.ymin;
+          xmax = taxLotExtent.xmax;
+          ymax = taxLotExtent.ymax;
+        }
+        if(taxLotExtent.xmin < xmin){
+          xmin = taxLotExtent.xmin;
+        }
+        if(taxLotExtent.ymin < ymin){
+          ymin = taxLotExtent.ymin;
+        }
+        if(taxLotExtent.xmax > xmax){
+          xmax = taxLotExtent.xmax;
+        }
+        if(taxLotExtent.ymax > ymax){
+          ymax = taxLotExtent.ymax;
+        }
+      }
+      var zoom = 100;
+      var newExt = new esri.geometry.Extent((xmin - zoom), (ymin - zoom), (xmax + zoom), (ymax + zoom), taxLotExtent.spatialReference);
+      map.setExtent(newExt);
+    } else {
+      djAlerta('Aviso','No se encuentra la Nomenclatura como poligono en esta cartografía');
+    }
+  }
+
+
+
+  function doFindPartida() {
+    // cacheo el valor en una variable para no consultar el DOM cada vez
+    var partida = dojo.byId("nro_partida").value;
+    if ( partida != "" ) {
+      findParams.searchText = dojo.byId("nro_partida").value;
+      findTask.execute(findParams,showResults);
+    } else {
+      djAlerta('Alerta','Debe ingresar un valor de Partida para la busqueda');
+    }
+  }
+
+
+
+  function doFindPartida2() {
+    console.log('ejecutando findTask, doFindPartida2');
+    findParams.searchText = dojo.byId("servidor").value;
+    findTask.execute(findParams,showResults);
+    dojo.byId("servidor").value = "";
+  }
+
+  /**
+   * Realiza la búsqueda de features con los parámetros de la nomenclatura
+   * @param  {object} params parámetros de la parcela (padron, depto, macizo, etc)
+   * @return {void}
+   */
+  function doQuery(params) {
+    var queryTask = new esri.tasks.QueryTask("{server}/{servicio}/MapServer/8");
+    var query = new esri.tasks.Query();
+    query.returnGeometry = true;
+    query.outFields = ["*"];
+    query.where = "DTO = " + params.dto + " AND SEC = '" + params.sec + "' AND MZO = '" + params.mac + "' AND PAR = '" + params.par + "'";
+    //console.log(query, {query_layer} );
+    queryTask.execute(query, showResults);
+  }
+
+
+  function showResults(results) {
+    /* Determina si los resultados vienen de una findTask o de un Query
+       debido a que la estructura de datos devuelta es diferente */
+
+    if ( typeof results === 'object' ) {
+      if ( results.hasOwnProperty('features') ) {
+        // viene el resultado de un Query
+        //console.log('from Query', typeof results.features[0]);
+        feature = results.features[0];
+      } else if ( typeof results[0]['feature'] === 'object' ) {
+        // viene el resultado de un findTask
+        //console.log('from findTask', typeof results[0]['feature'] );
+        feature = results[0]['feature'];
+      }
+    }
+
+    if ( map.graphics !== null && map.graphics !== undefined ) {
+      map.graphics.clear();
+    }
+
+    if ( feature ) {
+      var graphic = feature;
+      graphic.setSymbol(symbol);
+      map.graphics.add(graphic);
+      var taxLotExtent = graphic.geometry.getExtent();
+      var zoom = 40;
+      var newExt = new esri.geometry.Extent((taxLotExtent.xmin - zoom), (taxLotExtent.ymin - zoom), (taxLotExtent.xmax + zoom), (taxLotExtent.ymax + zoom), taxLotExtent.spatialReference);
+      map.setExtent(newExt);
+    } else {
+      djAlerta( 'Aviso','La parcela indicada NO se ha encontrado como Polígono en esta cartografía.');
+    }
+  }
+
+
+
+  function buscarGK(){
+    var zoom = 50
+    var xmin = parseInt(dojo.byId("gk_x").value) - zoom;
+    var ymin = parseInt(dojo.byId("gk_y").value) - zoom;
+    var xmax = parseInt(dojo.byId("gk_x").value) + zoom;
+    var ymax = parseInt(dojo.byId("gk_y").value) + zoom;
+
+    map.graphics.clear();
+    var newExt = new esri.geometry.Extent(xmin,ymin,xmax,ymax, new esri.SpatialReference({wkid:22182}));
+    map.setExtent(newExt);
+    var point = new esri.geometry.Point(parseInt(dojo.byId("gk_x").value), parseInt(dojo.byId("gk_y").value), new esri.SpatialReference({wkid:22182}));
+    var symbolGK = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 12, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255,0,0]), 2), new dojo.Color([255,255,255,0.9]));
+    var graphic = new esri.Graphic(point, symbolGK);
+    map.graphics.add(graphic);
+  }
+
+  dojo.addOnLoad(init);
+
+</script>
+
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//selectservicio_OnChange @11-1F0CB9ED
+function selectservicio_OnChange()
+{
+    var result = true;
+//End selectservicio_OnChange
+
+//Submit Form @26-068E79A0
+    document.forms["select"].submit();
+//End Submit Form
+
+//Close selectservicio_OnChange @11-BC33A33A
+    return result;
+}
+//End Close selectservicio_OnChange
+
+//Button1_OnClick @17-AB04A789
+function Button1_OnClick()
+{
+    var result = true;
+//End Button1_OnClick
+
+//Custom Code @18-2A29BDB7
+    // -------------------------
+    busquedap();
+    // -------------------------
+//End Custom Code
+
+//Close Button1_OnClick @17-BC33A33A
+    return result;
+}
+//End Close Button1_OnClick
+
+//selectButton1_OnClick @31-F2D8FD22
+function selectButton1_OnClick()
+{
+    disableValidation = true;
+}
+//End selectButton1_OnClick
+
+//bind_events @1-9B33FAF8
+function bind_events() {
+    if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+    if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+    if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+    addEventHandler("selectservicio", "change", selectservicio_OnChange);
+    addEventHandler("Button1", "click", Button1_OnClick);
+    addEventHandler("selectButton1", "click", selectButton1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/Simple_tdf/Style.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//selectservicio_OnChange @11-1F0CB9ED
+function selectservicio_OnChange()
+{
+  var result = true;
+//End selectservicio_OnChange
+
+//Submit Form @26-068E79A0
+  document.forms["select"].submit();
+//End Submit Form
+
+//Close selectservicio_OnChange @11-BC33A33A
+  return result;
+}
+//End Close selectservicio_OnChange
+
+//Button1_OnClick @17-AB04A789
+function Button1_OnClick()
+{
+  var result = true;
+//End Button1_OnClick
+
+//Custom Code @18-2A29BDB7
+  // -------------------------
+  // Write your own code here.
+  // -------------------------
+//End Custom Code
+
+//Close Button1_OnClick @17-BC33A33A
+  return result;
+}
+//End Close Button1_OnClick
+
+//selectButton1_OnClick @31-F2D8FD22
+function selectButton1_OnClick()
+{
+  disableValidation = true;
+}
+//End selectButton1_OnClick
+
+//Button2_OnClick @56-55B8D8F0
+function Button2_OnClick()
+{
+  disableValidation = true;
+}
+//End Button2_OnClick
+
+//bind_events @1-4F79C8CB
+function bind_events() {
+  if (functionExists("tdf_header_bind_events")) tdf_header_bind_events();
+  if (functionExists("tdf_footer_bind_events")) tdf_footer_bind_events();
+  if (functionExists("footerParcela_bind_events")) footerParcela_bind_events();
+  if (functionExists("tdf_menu_bind_events")) tdf_menu_bind_events();
+  addEventHandler("selectservicio", "change", selectservicio_OnChange);
+  addEventHandler("Button1", "click", Button1_OnClick);
+  addEventHandler("selectButton1", "click", selectButton1_OnClick);
+  addEventHandler("Button2", "click", Button2_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body class="soria">
+{tdf_header}{tdf_menu}{footerParcela}<input id="jsapi" type="hidden" value="{jsapi}" name="{jsapi_Name}"><input id="server" type="hidden" value="{server}" name="{server_Name}"><input id="servicio" type="hidden" value="{servicio}" name="{servicio_Name}"><input id="capa_parcelario" type="hidden" value="{capa_parcelario}" name="{capa_parcelario_Name}"><input id="servidor" type="hidden" value="{servidor}" name="{servidor_Name}"><input id="css" type="hidden" value="{css}" name="{css_Name}"><input id="dojo" type="hidden" value="{dojo}" name="{dojo_Name}"><input id="query_layer" type="hidden" value="{query_layer}" name="{query_layer_Name}"><input id="query_layer_2" type="hidden" value="{query_layer_2}" name="{query_layer_2_Name}"><input id="proxy" type="hidden" value="{proxy}" name="{proxy_Name}"><input id="geometry" type="hidden" value="{geometry}" name="{geometry_Name}">
+<table cellspacing="0" cellpadding="0" width="100%" bgcolor="#ffffff" border="0">
+  <tr height="24">
+    <td style="BACKGROUND-COLOR: #b3cbff" width="170">
+      <div id="infomouse" style="FONT-SIZE: 8px; FONT-FAMILY: Verdana; COLOR: #224568; MARGIN-LEFT: 2px; FILTER: alpha(opacity=85); BACKGROUND-COLOR: #b3cbff">
+      </div>
+    </td> 
+    <td style="BACKGROUND-COLOR: #b3cbff">
+
+      <div id="navToolbar" data-dojo-type="dijit.Toolbar">
+        <div id="zoomin" data-dojo-type="dijit.form.Button" data-dojo-props="iconClass:'zoominIcon', onClick:function(){navToolbar.activate(esri.toolbars.Navigation.ZOOM_IN);}">
+          Acercar 
+        </div>
+ 
+        <div id="zoomout" data-dojo-type="dijit.form.Button" data-dojo-props="iconClass:'zoomoutIcon', onClick:function(){navToolbar.activate(esri.toolbars.Navigation.ZOOM_OUT);}">
+          Alejar 
+        </div>
+ 
+        <div id="zoomfullext" data-dojo-type="dijit.form.Button" data-dojo-props="iconClass:'zoomfullextIcon', onClick:function(){navToolbar.zoomToFullExtent();}">
+          Full 
+        </div>
+ 
+        <div id="zoomprev" data-dojo-type="dijit.form.Button" data-dojo-props="iconClass:'zoomprevIcon', onClick:function(){navToolbar.zoomToPrevExtent();}">
+          Previo 
+        </div>
+ 
+        <div id="zoomnext" data-dojo-type="dijit.form.Button" data-dojo-props="iconClass:'zoomnextIcon', onClick:function(){navToolbar.zoomToNextExtent();}">
+          Siguiente 
+        </div>
+ 
+        <div id="pan" data-dojo-type="dijit.form.Button" data-dojo-props="iconClass:'panIcon', onClick:function(){navToolbar.activate(esri.toolbars.Navigation.PAN);}">
+          Pan 
+        </div>
+
+        <div id="info" data-dojo-type="dijit.form.ToggleButton" title="Activa o desactiva la informacion de la ubicacion de la parcela" data-dojo-props="iconClass:'dijitCheckBoxIcon', onClick:function(){infobutton();}">
+          InfoClick 
+        </div> 
+
+        <div id="deactivate" data-dojo-type="dijit.form.Button" data-dojo-props="iconClass:'deactivateIcon' ,onClick:function(){navToolbar.deactivate();djAlerta('Aviso','Funcionalidades del mapa desactivadas')}">
+          Desactivar 
+        </div>
+      </div>
+ 
+      <div id="longitud" style="FONT-SIZE: 14px; FONT-FAMILY: Verdana; POSITION: absolute; FONT-WEIGHT: bolder; COLOR: #224568; MARGIN-LEFT: 40px; FILTER: alpha(opacity=85); Z-INDEX: 2; MARGIN-TOP: 3px; BACKGROUND-COLOR: #b3cbff; moz-border-radius: 5px 5px; text-shadow: #555 2px 2px 5px">
+      </div>
+    </td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" width="170" align="left">
+      <div style="width:170px; height:450px;" dojotype="dijit.layout.AccordionContainer" duration="190">
+        <div title="Servicios" dojotype="dijit.layout.AccordionPane" selected="true">
+          <!-- BEGIN Record select -->
+          <form id="select" method="post" name="{HTMLFormName}" action="{Action}">
+            <!-- BEGIN Error --><!-- END Error -->
+            <select onchange="selectservicio_OnChange();" id="selectservicio" name="{servicio_Name}">
+              <option selected value="1"></option>
+              {servicio_Options}
+            </select>
+ 
+            <!-- BEGIN Button Button1 --><input id="selectButton1" class="Button" alt="Button1" type="submit" value="Button1" name="{Button_Name}"><!-- END Button Button1 -->
+          </form>
+          <!-- END Record select -->
+        </div>
+ 
+        <div title="Capas del Servicio" dojotype="dijit.layout.AccordionPane">
+          <span id="servicio_list">&nbsp;</span> 
+        </div>
+ 
+        <div title="Consulta" dojotype="dijit.layout.AccordionPane">
+          <div id="boton1" dojotype="dijit.form.DropDownButton">
+            <span>Parcela</span> 
+            <div id="dialog1" dojotype="dijit.TooltipDialog">
+              <table bgcolor="#bbd1ff" border="0">
+                <tr>
+                  <td colspan="5"></td>
+                </tr>
+ 
+                <tr>
+                  <td colspan="5">
+                    <hr></td>
+                </tr>
+ 
+                <tr>
+                  <td><label>N°&nbsp;Partida:</label></td> 
+                  <td colspan="3"><input id="nro_partida" maxlength="10" size="10" autocomplete="off"></td> 
+                  <td>
+                    <!-- BEGIN Button Button2 --><input onclick="doFindPartida();" id="Button2" class="Button" type="button" value="Buscar" name="{Button_Name}"><!-- END Button Button2 -->&nbsp;</td>
+                </tr>
+ 
+                <tr>
+                  <td colspan="5">
+                    <hr></td>
+                </tr>
+ 
+                <tr>
+                  <td colspan="5"><label><b>Nomenclatura:</b></label></td>
+                </tr>
+ 
+                <tr>
+                  <td><label>Padrón:</label></td> 
+                  <td colspan="4">
+                    <select id="tipo_padron_parc_id" name="{tipo_padron_parc_id_Name}">
+                      <option selected value="">...</option>
+                      {tipo_padron_parc_id_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr>
+                  <td><label>Sección:</label></td> 
+                  <td colspan="4"><input id="sec" maxlength="10" size="10" autocomplete="off"></td>
+                </tr>
+ 
+                <tr>
+                  <td><label>Macizo:</label></td> 
+                  <td colspan="4"><input id="mzo" maxlength="10" size="10" autocomplete="off"></td>
+                </tr>
+ 
+                <tr>
+                  <td><label>Parcela:</label></td> 
+                  <td colspan="4"><input id="par" maxlength="10" size="10" autocomplete="off"></td>
+                </tr>
+ 
+                <tr>
+                  <td colspan="5" align="right">
+                    <!-- BEGIN Button Button1 --><input onclick="doFindNome();" id="Buttonbuscarconsultaparcela" class="Button" alt="Button1" type="button" value="Buscar" name="{Button_Name}"><!-- END Button Button1 --></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+ 
+        <div title="Búsq. por coordenadas" dojotype="dijit.layout.AccordionPane">
+          <div id="boton2" dojotype="dijit.form.DropDownButton">
+            <span>Gauss Kruger</span> 
+            <div id="dialog2" dojotype="dijit.TooltipDialog">
+              <table bgcolor="#bbd1ff" border="0">
+                <tr>
+                  <td>GK X:</td> 
+                  <td><input id="gk_y" maxlength="7" size="7" autocomplete="off"></td>
+                </tr>
+ 
+                <tr>
+                  <td>GK Y:</td> 
+                  <td><input id="gk_x" maxlength="7" size="7" autocomplete="off"></td>
+                </tr>
+ 
+                <tr>
+                  <td colspan="2" align="right">
+                    <hr><input onclick="buscarGK();" id="buscarGK" class="Button" type="button" value="Buscar" name="Buscar"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!--     
+        <div title="Herramientas" dojotype="dijit.layout.AccordionPane">
+          <div id="distancia2" title="Calcula distancia libre con movimiento del puntero" onclick="navToolbar.deactivate();tb.deactivate();initLinea2(map);map.hideZoomSlider();" dojotype="dijit.form.Button" iconclass="distancia2" label="Distancia Libre">
+            </div>
+            <br> 
+          <div id="distancia" title="Calcula distancia por doble click del puntero" onclick="navToolbar.deactivate();tb.deactivate();initLinea(map);map.hideZoomSlider();" dojotype="dijit.form.Button" iconclass="distancia" label="Distancia">
+          </div>
+          <br>
+          <div id="superficie2" title="Calcula Area y Perimetro libre con movimiento del puntero" onclick="navToolbar.deactivate();tb.deactivate();iniPoligono2(map);map.hideZoomSlider();" dojotype="dijit.form.Button" iconclass="superficie2" label="Superficie Libre">
+            </div>
+            <br>
+          <div id="superficie" title="Calcula Area y Perimetro por doble click del puntero" onclick="navToolbar.deactivate();tb.deactivate();iniPoligono(map);map.hideZoomSlider();" dojotype="dijit.form.Button" iconclass="superficie" label="Superficie">
+          </div>
+        </div>
+        
+         {plano} -->
+      </div>
+    </td> 
+    <td>
+      <div id="map" style="OVERFLOW: hidden; HEIGHT: 450px; WIDTH: 100%" dojotype="dijit.layout.ContentPane" region="center">
+      </div>
+    </td>
+  </tr>
+</table>
+{tdf_footer} 
+<div id="tabs" style="HEIGHT: 180px; WIDTH: 380px" dojotype="dijit.layout.TabContainer">
+  <div id="layer1Tab" title="Parcela" dojotype="dijit.layout.ContentPane">
+  </div>
+  <div id="layer2Tab" title="Coordenadas" dojotype="dijit.layout.ContentPane">
+  </div>
+</div>
+</body>
+</html>
