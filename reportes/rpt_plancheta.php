@@ -3,6 +3,28 @@ define("RelativePath", "..");
 include(RelativePath . "/Common.php");
 define('FPDF_FONTPATH',RelativePath . '/fpdf/font/');
 include(RelativePath . "/fpdf/fpdf.php");
+
+function rptPlanchetaImageFit($pdf, $imagen, $margin = 5)
+{
+	$pageW = $pdf->w - 2 * $margin;
+	$pageH = $pdf->h - 2 * $margin;
+	$size = @getimagesize($imagen);
+	if ($size) {
+		list($imgW, $imgH) = $size;
+		$w = $pageW;
+		$h = $w * $imgH / $imgW;
+		if ($h > $pageH) {
+			$h = $pageH;
+			$w = $h * $imgW / $imgH;
+		}
+		$x = ($pdf->w - $w) / 2;
+		$y = ($pdf->h - $h) / 2;
+		$pdf->Image($imagen, $x, $y, $w, $h);
+	} else {
+		$pdf->Image($imagen, $margin, $margin, $pageW);
+	}
+}
+
 /*
 $db = new clsDBtdf_nuevo();
 
@@ -45,7 +67,7 @@ $db->query($SQL);
 while($db->next_record()){
 	$pdf->AddPage();
 	$imagen = RelativePath . "/planchetas/archivos/" . $db->f("plancheta_file");
-	$pdf->Image($imagen,5,5,300);
+	rptPlanchetaImageFit($pdf, $imagen);
 }
 if($dpto_id != ''){
 	$pdf->Output();
