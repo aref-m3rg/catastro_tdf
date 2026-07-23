@@ -35,7 +35,7 @@ function parcelas_unidades_medida1_ds_AfterExecuteDelete(& $sender)
 
 		$db = new clsDBtdf_nuevo();
 
-		// chequear que la parcela ya no esté relacionada
+		// chequear que la parcela ya no estÃ© relacionada
 		$existe = CCDLookUp( 'planos_prov_id', 'planos_parc_prov', 'plano_id = ' . mysql_real_escape_string( $plano_id ) . ' AND parcela_id = ' . mysql_real_escape_string( $parcela_id ), $db );
 
 		if ( empty( $existe ) ) {
@@ -80,7 +80,7 @@ function parcelas_unidades_medida1_BeforeShowRow(& $sender)
 	/* Obtiene la plancheta
 	-------------------------------------------------------------- */
 	if ( !empty( $parcela_id ) ) {
-		$plancheta = obtenerPlancheta( $parcela_id, $db, '/planchetas/archivos/', 35 );
+		$plancheta = obtenerPlancheta( $parcela_id, $db, PLANCHETAS_PATH, 35 );
 		$Component->htm->SetValue( $plancheta );
 	}
 	
@@ -136,11 +136,11 @@ function parcelas_unidades_medida_BeforeShow(& $sender)
 // -------------------------
 
 
-    // Write your own code here. (esto demuestra lo útil que es no comentar las cosas)
+    // Write your own code here. (esto demuestra lo Ãºtil que es no comentar las cosas)
 	$Component->Button_DoSearch->Visible = false;
 
 
-	/* Guarda en la Sesión el ID del departamento para las consultas AJAX
+	/* Guarda en la SesiÃ³n el ID del departamento para las consultas AJAX
 	   de los listbox dependientes */
 	$deptoId = CCGetParam('dpto_id');
 	CCSetSession( 'addOrigen_dpto_id', $deptoId );
@@ -170,7 +170,7 @@ function Page_BeforeInitialize(& $sender)
 	include_once(RelativePath . "/scripts/myFunctions.php");
 
 
-	// Incluye la gestión de permisos
+	// Incluye la gestiÃ³n de permisos
 	include_once(RelativePath . "/scripts/permisos1.php");
 
 

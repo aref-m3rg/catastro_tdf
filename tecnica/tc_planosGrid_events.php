@@ -56,7 +56,7 @@ function BindEvents()
 //DEL  		$img = CCDLookUp('plancheta_file','planchetas',$wh . ' LIMIT 1',$db);
 //DEL  		$plancheta_id = CCDLookUp('plancheta_id','planchetas',$wh . ' LIMIT 1',$db);
 //DEL  		if($img){
-//DEL  			$htm = '<a class="" target="plancheta" href="' . RelativePath . '/reportes/rpt_plancheta.php?plancheta_id=' . $plancheta_id . '"><img border="0" class=""  src="' . RelativePath . '/phpThumb/phpThumb.php?src=/planchetas/archivos/' . $img . '&h=40"></a>';
+//DEL  			$htm = '<a class="" target="plancheta" href="' . RelativePath . '/reportes/rpt_plancheta.php?plancheta_id=' . $plancheta_id . '"><img border="0" class=""  src="' . RelativePath . '/phpThumb/phpThumb.php?src=' . PLANCHETAS_PATH . '/' . $img . '&h=40"></a>';
 //DEL  		
 //DEL  		} else {
 //DEL  			$htm = '-';
@@ -71,7 +71,7 @@ function BindEvents()
 
 //DEL  // -------------------------
 //DEL  
-//DEL      // Después de ejecutar la búsqueda actualiza la cantidad de registros
+//DEL      // DespuÃ©s de ejecutar la bÃºsqueda actualiza la cantidad de registros
 //DEL  //	$db = new clsDBtdf_nuevo();
 //DEL  //	$SQL = str_replace('{SQL_OrderBy}','', str_replace('{SQL_Where}', " WHERE " . $Component->ds->Where, $Component->ds->SQL));
 //DEL  	// print_r( $SQL );
@@ -127,7 +127,7 @@ function planos_listado_ds_AfterExecuteSelect(& $sender)
 // -------------------------
 
 
-    /* Realiza de nuevo el query sin el límite por página para poder
+    /* Realiza de nuevo el query sin el lÃ­mite por pÃ¡gina para poder
 	 * contar los registros totales (una cagada pero no hay otra
 	 * forma en CCS! ) 
 	------------------------------------------------------------------ */
@@ -160,10 +160,10 @@ function planos_listado_ds_BeforeExecuteSelect(& $sender)
 // -------------------------
 
 
-    /* Modifica el query de acuerdo a los parametros de búsqueda 
+    /* Modifica el query de acuerdo a los parametros de bÃºsqueda 
 	------------------------------------------------------------------ */
 
-	// toma los parámetros que puedan llegar por GET o POST
+	// toma los parÃ¡metros que puedan llegar por GET o POST
 	$s_dpto_id = CCGetParam('s_dpto_id', false);
 	$s_plano_nro = CCGetParam('s_plano_nro', false);
 	$s_plano_anio = CCGetParam('s_plano_anio', false);
@@ -185,7 +185,7 @@ function planos_listado_ds_BeforeExecuteSelect(& $sender)
 
 	$where = '( 1 = 1 ) ';
 
-	// si los parametros tienen contenido agrega la condición al query
+	// si los parametros tienen contenido agrega la condiciÃ³n al query
 	if ( !empty( $s_dpto_id ) ) : $where .= ' AND planos.tipo_depto_parc_id = ' . $s_dpto_id; endif;
 	
 	if ( !empty( $s_plano_nro ) ) : $where .= ' AND planos.plano_nro = ' . $s_plano_nro; endif;
@@ -233,7 +233,7 @@ function planos_listado_ds_BeforeExecuteSelect(& $sender)
 	endif;
 
 
-    // Reemplaza el Datasource para hacer la búsqueda
+    // Reemplaza el Datasource para hacer la bÃºsqueda
 	// IMPORTANTE: el 'count' debe reemplazarse manualmente en el evento AfterExecuteSelect
 	// ya que al agrupar CCS no saca bien las cuentas
 	if(trim($where) == "( 1 = 1 )"){
@@ -275,7 +275,7 @@ function planos_listado_BeforeShowRow(& $sender)
 	-------------------------------------------------------------- */
 	if ( !empty( $parcela_id ) ) {
 		$plancheta = '';
-		$plancheta = obtenerPlancheta( $parcela_id, $db, '/planchetas/archivos/', 35 );
+		$plancheta = obtenerPlancheta( $parcela_id, $db, PLANCHETAS_PATH, 35 );
 		$Component->html_plancheta->SetValue( $plancheta );
 	}
 
@@ -353,7 +353,7 @@ function Page_BeforeInitialize(& $sender)
 	// Incluye el archivo de funciones generales
 	include_once(RelativePath . "/scripts/myFunctions.php");
 
-    // Incluye la gestión de permisos
+    // Incluye la gestiÃ³n de permisos
 	include_once(RelativePath . "/scripts/permisos1.php");
 
 

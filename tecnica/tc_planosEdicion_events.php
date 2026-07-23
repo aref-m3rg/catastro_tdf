@@ -806,7 +806,7 @@ function planos_OnValidate(& $sender)
 //DEL  	/* Obtiene la plancheta
 //DEL  	-------------------------------------------------------------- */
 //DEL  	if ( !empty( $parcela_id ) ) {
-//DEL  		$plancheta = obtenerPlancheta( $parcela_id, $db, '/planchetas/archivos/', 35 );
+//DEL  		$plancheta = obtenerPlancheta( $parcela_id, $db, PLANCHETAS_PATH, 35 );
 //DEL  		$Component->htm->SetValue( $plancheta );
 //DEL  	}
 //DEL  	
@@ -920,7 +920,7 @@ function parcelas_destino_prov_BeforeShowRow(& $sender)
 
 		/* Obtiene la plancheta
 		-------------------------------------------------------------- */
-		$plancheta = obtenerPlancheta( $parcela_id, $db, '/planchetas/archivos/', 35 );
+		$plancheta = obtenerPlancheta( $parcela_id, $db, PLANCHETAS_PATH, 35 );
 		$Component->htm->SetValue( $plancheta );
 
 
@@ -1063,7 +1063,7 @@ function parcelas_destino_prov_BeforeShow(& $sender)
 //DEL  
 //DEL  		/* Obtiene la plancheta
 //DEL  		-------------------------------------------------------------- */
-//DEL  		$plancheta = obtenerPlancheta( $parcela_id, $db, '/planchetas/archivos/', 35 );
+//DEL  		$plancheta = obtenerPlancheta( $parcela_id, $db, PLANCHETAS_PATH, 35 );
 //DEL  		$Component->htm->SetValue( $plancheta );
 //DEL  
 //DEL  
@@ -1314,7 +1314,7 @@ function parcelas_origen_prov_BeforeShowRow(& $sender)
 	/* Obtiene la plancheta
 	-------------------------------------------------------------- */
 	if ( !empty( $parcela_id ) ) {
-		$plancheta = obtenerPlancheta( $parcela_id, $db, '/planchetas/archivos/', 35 );
+		$plancheta = obtenerPlancheta( $parcela_id, $db, PLANCHETAS_PATH, 35 );
 		$Component->htm->SetValue( $plancheta );
 	}
 	
