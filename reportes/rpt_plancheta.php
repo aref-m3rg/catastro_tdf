@@ -4,6 +4,11 @@ include(RelativePath . "/Common.php");
 define('FPDF_FONTPATH',RelativePath . '/fpdf/font/');
 include(RelativePath . "/fpdf/fpdf.php");
 
+// -------------------------
+  /* Incluye el archivo de configuraciones generales
+  ---------------------------------------------------------- */
+include( RelativePath . '/configuracion_general.php');
+
 function rptPlanchetaImageFit($pdf, $imagen, $margin = 5)
 {
 	$pageW = $pdf->w - 2 * $margin;
@@ -66,7 +71,7 @@ $SQL="SELECT * FROM planchetas WHERE tipo_depto_parc_id = '".$dpto_id."' AND tip
 $db->query($SQL);
 while($db->next_record()){
 	$pdf->AddPage();
-	$imagen = RelativePath . "/planchetas/archivos/" . $db->f("plancheta_file");
+	$imagen = PLANCHETAS_PATH . "/" . $db->f("plancheta_file");
 	rptPlanchetaImageFit($pdf, $imagen);
 }
 if($dpto_id != ''){
