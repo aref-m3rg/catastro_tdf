@@ -21,8 +21,8 @@ define( 'NOTIFICATIONS_TDF_SMTP_PASSWORD', 'Tdf36002');
 /* Filesystem
 ----------------------------------------------------------------------------- */
 // Carpeta root del proyecto
-define( 'WWW_ROOT', 'C:\inetpub\wwwroot\catastro_tdf' );
-define( 'BASE_URL', 'http://192.168.5.6/catastro_tdf' );
+define( 'WWW_ROOT', 'C:\inetpub\wwwtest\catastro_tdf' );
+//define( 'BASE_URL', 'http://192.168.5.6/catastro_tdf' );
 // Alias para el separador de directorios del sistemas
 define( 'DS', DIRECTORY_SEPARATOR );
 
@@ -31,7 +31,7 @@ define( 'DS', DIRECTORY_SEPARATOR );
 ----------------------------------------------------------------------------- */
 // Guarda el host donde se almacenan las planchetas
 define( 'PLANCHETAS_PATH', 'C:/Users/Administrador/Pictures/catastro_tdf/planchetas' );
-define( 'PLANCHETAS_PATH_URL', 'http://192.168.5.6/catastro_tdf/planchetas/archivos' );
+//define( 'PLANCHETAS_PATH_URL', 'http://192.168.5.6/catastro_tdf/planchetas/archivos' );
 
 
 /* Planos
