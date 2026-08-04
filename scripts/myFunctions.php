@@ -993,7 +993,8 @@ function generarPlanoSlides( $plano_id, $options, $db ) {
         if ( !empty( $fileExt ) && in_array( $fileExt, array('pdf') ) ) {
           $fileString = '      <a target="_blank" href="' . RelativePath . $attachedImage . '"><img border="0" src="' . RelativePath . '/iconos/icon_pdf_22x22.png" title="Documento adjunto" style="vertical-align:middle;" /> ' . $fileName . '.' . $fileExt . '</a>';
         } else if ( !empty( $fileExt ) && in_array( $fileExt, array('png', 'jpg', 'bmp') ) ) {
-          $fileString = '      <a target="_blank" href="' . RelativePath . $attachedImage . '"><img border="0" src="' . RelativePath . '/phpThumb/phpThumb.php?src=' . RelativePath . $attachedImage  . '&w=' . $options['width'] .'&h=' . $options['height'] . '" title="Imagen adjunta" /></a>';
+          //$fileString = '      <a target="_blank" href="' . RelativePath . $attachedImage . '"><img border="0" src="' . RelativePath . '/phpThumb/phpThumb.php?src=' . RelativePath . $attachedImage  . '&w=' . $options['width'] .'&h=' . $options['height'] . '" title="Imagen adjunta" /></a>';
+			$fileString = '      <a target="_blank" href="' . $fileUrl . '"><img border="0" src="' . RelativePath . '/phpThumb/phpThumb.php?src=' . $filePath  . '&w=' . $options['width'] .'&h=' . $options['height'] . '" title="Imagen adjunta" /></a>';
         } else {
           $fileString = '      <a target="_blank" href="' . RelativePath . $attachedImage . '"><img border="0" src="' . RelativePath . '/iconos/icon_document_22x22.png" title="Documento adjunto" style="vertical-align:middle;" /> ' . $fileName . '.' . $fileExt . '</a>';
         }
@@ -1012,7 +1013,8 @@ function generarPlanoSlides( $plano_id, $options, $db ) {
           if ( !empty( $fileExt ) && in_array( $fileExt, array('pdf') ) ) {
             $fileString = '      <a target="_blank" href="' . RelativePath . $img . '"><img border="0" src="' . RelativePath . '/iconos/icon_pdf_22x22.png" title="Documento #' . $counter . '" style="vertical-align:middle;" /> ' . $fileName . '.' . $fileExt . '</a>';
           } else if ( !empty( $fileExt ) && in_array( $fileExt, array('png', 'jpg', 'bmp') ) ) {
-            $fileString = '      <a target="_blank" href="' . RelativePath . $img . '"><img border="0" src="' . RelativePath . '/phpThumb/phpThumb.php?src=' . RelativePath . $img  . '&w=' . $options['width'] .'&h=' . $options['height'] . '" title="Documento #' . $counter . '" /></a>';
+            //$fileString = '      <a target="_blank" href="' . RelativePath . $img . '"><img border="0" src="' . RelativePath . '/phpThumb/phpThumb.php?src=' . RelativePath . $img  . '&w=' . $options['width'] .'&h=' . $options['height'] . '" title="Documento #' . $counter . '" /></a>';
+			$fileString = '      <a target="_blank" href="' . $fileUrl . '"><img border="0" src="' . RelativePath . '/phpThumb/phpThumb.php?src=' . $filePath  . '&w=' . $options['width'] .'&h=' . $options['height'] . '" title="Imagen adjunta" /></a>';
           } else {
             $fileString = '      <a target="_blank" href="' . RelativePath . $img . '"><img border="0" src="' . RelativePath . '/iconos/icon_document_22x22.png" title="Documento #' . $counter . '" style="vertical-align:middle;" /> ' . $fileName . '.' . $fileExt . '</a>';
           }
