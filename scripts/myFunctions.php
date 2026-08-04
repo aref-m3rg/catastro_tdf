@@ -844,7 +844,7 @@ function generarPlanchetasSlides( $parcela_id, $options, $db ) {
 		'encode' => true,                                                               // Codifica como json para facilitar insersión con Javascript
 		'multiple' => false,                                                        // Si es verdadero agrega el Nro. a cada DOM Id
 		'additional_classes' => '',                                         // Clases adicionales para el contenedor
-		'path' => '/planchetas/archivos/'                                   // Path al directorio de planchetas para phpThumb
+		'path' => PLANCHETAS_PATH                                   // Path al directorio de planchetas para phpThumb
 	);
 	if ( is_array( $options ) ) {
 		$options = array_merge( $defOptions, $options );
