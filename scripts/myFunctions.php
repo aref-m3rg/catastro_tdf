@@ -620,7 +620,7 @@ function obtenerPlancheta( $id = false, $connection = false, $path = PLANCHETAS_
 		if ( !empty( $planchetaImg ) ) {
 			$title = ( !empty($planchetaOldFile) ) ? 'Archivo original: ' . $planchetaOldFile : '';
 			$output  = '<a target="plancheta" href="' . RelativePath . '/reportes/rpt_plancheta.php?plancheta_id=' . $planchetaId . '" title="' . $title . '">';
-			$output .= '<img border="0" src="' . RelativePath . '/phpThumb/phpThumb.php?src=' . PLANCHETAS_PATH_URL . '/' . $planchetaImg . '&h=' . $height . '">';
+			$output .= '<img border="0" src="' . RelativePath . '/phpThumb/phpThumb.php?src=' . rtrim($path, '/') . '/' . $planchetaImg . '&h=' . $height . '">';
 			$output .= '</a>';
 		} else {
 			$output = '(no disponible)';
@@ -843,7 +843,8 @@ function generarPlanchetasSlides( $parcela_id, $options, $db ) {
 		'wrapper_title' => false,                                               // Título del wrapper (util para jquery ui)
 		'encode' => true,                                                               // Codifica como json para facilitar insersión con Javascript
 		'multiple' => false,                                                        // Si es verdadero agrega el Nro. a cada DOM Id
-		'additional_classes' => ''                                          // Clases adicionales para el contenedor
+		'additional_classes' => '',                                         // Clases adicionales para el contenedor
+		'path' => '/planchetas/archivos/'                                   // Path al directorio de planchetas para phpThumb
 	);
 	if ( is_array( $options ) ) {
 		$options = array_merge( $defOptions, $options );
@@ -906,9 +907,10 @@ function generarPlanchetasSlides( $parcela_id, $options, $db ) {
 
 					foreach( $planchetas as $plancheta ) {
 						$counter++;
-						$fileName = PLANCHETAS_PATH_URL . '/' . $plancheta['plancheta_file'];
+						//$fileUrl = PLANCHETAS_PATH_URL . '/' . $plancheta['plancheta_file'];
+						$filePath = rtrim($options['path'], '/') . '/' . $plancheta['plancheta_file'];
 						$htm .= '    <div>';
-						$htm .= '      <a target="_blank" href="' . $fileName . '"><img border="0" src="' . RelativePath . '/phpThumb/phpThumb.php?src=' . $fileName  . '&w=' . $options['width'] .'&h=' . $options['height'] . '" title="Plancheta #' . $counter . '" /></a>';
+						$htm .= '      <a target="_blank" href="' . $fileUrl . '"><img border="0" src="' . RelativePath . '/phpThumb/phpThumb.php?src=' . $filePath  . '&w=' . $options['width'] .'&h=' . $options['height'] . '" title="Plancheta #' . $counter . '" /></a>';
 						$htm .= '    </div>';
 					}
 					$htm .= '  </div>';

@@ -31,7 +31,7 @@ define( 'DS', DIRECTORY_SEPARATOR );
 ----------------------------------------------------------------------------- */
 // Guarda el host donde se almacenan las planchetas
 define( 'PLANCHETAS_PATH', 'C:/Users/Administrador/Pictures/catastro_tdf/planchetas' );
-define( 'PLANCHETAS_PATH_URL', 'http://192.168.5.6:81/catastro_tdf/planchetas/archivos' );
+//define( 'PLANCHETAS_PATH_URL', 'http://192.168.5.6:81/catastro_tdf/planchetas/archivos' );
 
 
 /* Planos
