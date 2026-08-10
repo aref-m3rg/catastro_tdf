@@ -54,8 +54,8 @@ function planchetas_BeforeShow(& $sender)
 
 	if($Component->ds->f('plancheta_file')){
 		$archivo = $Component->ds->f('plancheta_file');
-		$htm = '<a class="" target="foto" href="archivos/' . $archivo . '"><img border="0" class=""  src="' . RelativePath . '/phpThumb/phpThumb.php?src=/planchetas/archivos/' . $archivo . '&w=400"></a>';
-		
+        $htm = '<a class="" target="foto" href="' . RelativePath . '/reportes/rpt_plancheta.php?plancheta_id=' . $plancheta_id . '"><img border="0" class="" src="' . RelativePath . '/phpThumb/phpThumb.php?src=' . rtrim(PLANCHETAS_PATH, '/') . '/' . $archivo . '&w=400"></a>';
+
 	} else {
 		$htm = "";
 	}
@@ -136,5 +136,14 @@ function planchetas_BeforeDelete(& $sender)
 }
 //End Close planchetas_BeforeDelete
 
+function Page_BeforeInitialize(& $sender)
+{
+    $Page_BeforeInitialize = true;
+
+    include_once(RelativePath . "/configuracion_general.php");
+    include_once(RelativePath . "/scripts/myFunctions.php");
+
+    return $Page_BeforeInitialize;
+}
 
 ?>

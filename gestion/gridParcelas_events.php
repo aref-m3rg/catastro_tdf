@@ -330,7 +330,8 @@ function Page_BeforeInitialize(& $sender)
 
 //Custom Code @409-2A29BDB7
 // -------------------------
-	include_once(RelativePath . "/scripts/myFunctions.php");
+  include_once(RelativePath . "/configuracion_general.php");
+  include_once(RelativePath . "/scripts/myFunctions.php");
   include_once(RelativePath . "/scripts/permisos1.php");
 // -------------------------
 //End Custom Code

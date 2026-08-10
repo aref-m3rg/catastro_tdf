@@ -40,8 +40,8 @@ function departamentos_planchetas1_BeforeShowRow(& $sender)
     // Write your own code here.
 	if($Component->ds->f('plancheta_file')){
 		$archivo = $Component->ds->f('plancheta_file');
-		$htm = '<a class="" target="plancheta" href="archivos/' . $archivo . '"><img border="0" class=""  src="' . RelativePath . '/phpThumb/phpThumb.php?src=/planchetas/archivos/' . $archivo . '&h=40"></a>';
-		
+        $htm = '<a class="" target="plancheta" href="' . RelativePath . '/reportes/rpt_plancheta.php?plancheta_id=' . $plancheta_id . '"><img border="0" class="" src="' . RelativePath . '/phpThumb/phpThumb.php?src=' . rtrim(PLANCHETAS_PATH, '/') . '/' . $archivo . '&h=40"></a>';
+
 	} else {
 		$htm = "";
 	}
@@ -61,5 +61,13 @@ function departamentos_planchetas1_BeforeShowRow(& $sender)
 }
 //End Close departamentos_planchetas1_BeforeShowRow
 
+function Page_BeforeInitialize(& $sender)
+{
+    $Page_BeforeInitialize = true;
+    // Incluye las configuraciones generales para tener disponible PLANCHETAS_PATH
+    include_once(RelativePath . "/configuracion_general.php");
+    include_once(RelativePath . "/scripts/myFunctions.php");
+    return $Page_BeforeInitialize;
+}
 
 ?>
