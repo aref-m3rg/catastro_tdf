@@ -30,17 +30,17 @@ define( 'DS', DIRECTORY_SEPARATOR );
 /* Planchetas
 ----------------------------------------------------------------------------- */
 // Guarda el host donde se almacenan las planchetas
-define( 'PLANCHETAS_PATH', 'C:/Users/Administrador/Pictures/catastro_tdf/planchetas' );
+define( 'PLANCHETAS_PATH', 'C:/inetpub/wwwroot/catastro_tdf/planchetas/archivos' );
 //define( 'PLANCHETAS_PATH_URL', 'http://192.168.5.6:81/catastro_tdf/planchetas/archivos' );
 
 
 /* Planos
 ----------------------------------------------------------------------------- */
 // Path a la carpeta de archivos de planos escaneados (con respecto a WWW_ROOT)
-define('PLANOS_PATH', 'C:/Users/Administrador/Pictures/catastro_tdf/planos_nuevos');
-define('PLANOS_ATTACHED_PATH', 'C:/Users/Administrador/Pictures/catastro_tdf/planos');
+define('PLANOS_PATH', '/tecnica/planos_nuevos');
+define('PLANOS_ATTACHED_PATH', 'planos');
 // Path a la carpeta de snapshots de planos
-define('PLANOS_SNAPSHOTS_PATH', 'C:/Users/Administrador/Pictures/catastro_tdf/planos_snapshots');
+define('PLANOS_SNAPSHOTS_PATH', '/tecnica/planos_snapshots');
 
 // Nombres de las carpetas que contienen los planos por departamento
 $GLOBALS['planosFolders'] = array( 1 => 'ushuaia', 2 => 'rio_grande', 3 => 'tolhuin' );
