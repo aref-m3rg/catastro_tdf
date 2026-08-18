@@ -44,12 +44,13 @@ function planos_plano_archivo_AfterProcessFile(& $sender)
 
 	/* Renombra el archivo subido y actualiza el nombre en la tabla
 	--------------------------------------------------------------- */
+	include_once( RelativePath . '/configuracion_general.php' );
 
 	$old = $Component->GetValue();
 	$oldInfo = pathinfo( $old ); // print_r( $oldInfo );
 
 	$new = date('Ymd_') . uniqid() . '.' . $oldInfo['extension'];
-	rename( RelativePath . "/tecnica/planos/".$old, RelativePath . "/tecnica/planos/".$new);
+	rename( PLANOS_PATH . "/" . $old, PLANOS_PATH . "/" . $new);
 	$db = new clsDBtdf_nuevo();
 	$db->query("UPDATE planos SET plano_archivo = '" . $new . "' WHERE plano_archivo = '" . $old . "'");
 	$db->close();
@@ -76,11 +77,11 @@ function planos_CustomError_BeforeShow(& $sender)
 //Custom Code @523-2A29BDB7
 // -------------------------
 
-  /* Verifica en la sesión si hay algún mensaje para mostrar */
+  /* Verifica en la sesiï¿½n si hay algï¿½n mensaje para mostrar */
   $msg = CCGetSession( 'CustomErrorMsg', false );
 
   if ( !empty( $msg ) ) {
-    // si hay mensaje lo muestra en el label y luego borra el mensaje de la sesión
+    // si hay mensaje lo muestra en el label y luego borra el mensaje de la sesiï¿½n
     $Component->SetValue( $msg );
     unset( $_SESSION['CustomErrorMsg'] );
   }
@@ -112,7 +113,7 @@ function planos_Button_Editar_OnClick(& $sender)
 	$planoData = CCQueryToArray( 'SELECT * FROM planos WHERE plano_id = ' . mysql_real_escape_string( $planoId ) . ';', $db );
 	$userId = CCGetSession('UID');
 
-	// muestra en la pantalla salidas para depuración
+	// muestra en la pantalla salidas para depuraciï¿½n
   	$debugMode = false;
 
 	if ($debugMode) debug($planoData, false, false, 'Datos del plano');
@@ -122,10 +123,10 @@ function planos_Button_Editar_OnClick(& $sender)
 	$isServidumbre = ( $planoData[0]['tipo_plano_id'] == 1 ) ? true : false;
 	$notRegistered = ( $planoData[0]['tipo_estado_plano_id'] != 4 ) ? true : false;
 	$isTramiteMig = ( $planoData[0]['plano_tramite_mig'] == 1 ) ? true : false;
-	if ($debugMode) debug($isTramiteMig, false, false, 'Es plano en trámite migrado con parcelas en trámite?');
+	if ($debugMode) debug($isTramiteMig, false, false, 'Es plano en trï¿½mite migrado con parcelas en trï¿½mite?');
 
 	//var_dump($isSinOrig);exit;
-	/* Proceso de guardar Edición del Plano
+	/* Proceso de guardar Ediciï¿½n del Plano
 	---------------------------------------------------------------
 	1. Hace el volcado en PDF y lo guarda
 	2. Procesa los cambios en las parcelas
@@ -133,7 +134,7 @@ function planos_Button_Editar_OnClick(& $sender)
 		2.2. Crear las que no existen y asignar los titulares
 		2.3. Vincular y desvincular con el plano en uniones y desgloses
 	3. Borra los datos en las parcelas provisorias
-	4. Saca el plano de edición 
+	4. Saca el plano de ediciï¿½n 
 	5. Redirecciona a planosRecord.php
 	*/
 
@@ -141,7 +142,7 @@ function planos_Button_Editar_OnClick(& $sender)
 	// si no hay ID de plano no se hace nada
 	if ( !empty( $planoId ) && !empty( $planoData ) ) {
 
-		/* 1. Volcado y generación de snapshot en PDF
+		/* 1. Volcado y generaciï¿½n de snapshot en PDF
 		--------------------------------------------------------------- */
 		/* -- Inserta el snapshot */
 		$snapSQL = 'INSERT INTO planos_snapshots SET plano_id = ' . mysql_real_escape_string($planoId) . ', creado = NOW(), usuario_id = ' . $userId . ", plano_data = '" . mysql_real_escape_string( json_encode($planoData) ) . "';";
@@ -173,7 +174,7 @@ function planos_Button_Editar_OnClick(& $sender)
 			$pdf = new TCPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, false, 'ISO-8859-1', false);
 
 			$pdf->SetCreator(PDF_CREATOR);
-			$pdf->SetAuthor('Subsecretaría de Catastro Provincial - Dirección General de Catastro e Información Territorial');
+			$pdf->SetAuthor('Subsecretarï¿½a de Catastro Provincial - Direcciï¿½n General de Catastro e Informaciï¿½n Territorial');
 			$pdfTitle = 'Resumen de estado del plano ID: ' . $planoId;
 			$pdf->SetTitle($pdfTitle);
 			$pdfSubject = 'Generado el ' . date('d/m/Y \a \l\a\s H:i:s') . ' por el usuario ID: ' . $userId;
@@ -207,7 +208,7 @@ function planos_Button_Editar_OnClick(& $sender)
 			// guarda el plano en el disco
 			$pdf->Output( WWW_ROOT . PLANOS_SNAPSHOTS_PATH . DS . $fileName, 'F');
 
-			/* -- Actualiza la información del snapshot con el nombre del archivo y las parcelas de origen y destino */
+			/* -- Actualiza la informaciï¿½n del snapshot con el nombre del archivo y las parcelas de origen y destino */
 			if ( !empty($snapshotId) ) {
 				$poActuales = getParcOrigen($planoId, $db);
 				if ($debugMode) debug( $poActuales, false, false, 'PO Actuales del plano:' );
@@ -260,7 +261,7 @@ function planos_Button_Editar_OnClick(& $sender)
 		if ( !$isServidumbre && ( empty($countParcSel['cant']) && empty($countParcCreadas['cant']) ) ) {
 			$errors[] = 'El plano NO es del tipo -Servidumbre- y NO tiene Parcelas de Destino asignadas. De no ser un plano de Servidumbre debe asignar Parcelas de Destino al plano.';
 		} else if ( $isServidumbre && ( $countParcSel['cant'] > 0 || $countParcCreadas['cant'] > 0 ) ) {
-			$errors[] = 'El plano ES del tipo -Servidumbre- y tiene Parcelas de Destino asignadas. Por favor desvincúlelas y proceda nuevamente a guardar los cambios.';
+			$errors[] = 'El plano ES del tipo -Servidumbre- y tiene Parcelas de Destino asignadas. Por favor desvincï¿½lelas y proceda nuevamente a guardar los cambios.';
 		}
 
 		
@@ -328,21 +329,21 @@ function planos_Button_Editar_OnClick(& $sender)
 
 			/* -- Comienza proceso UNION/DESGLOSE sobre las parcelas -- */
 
-	        // determina si es unión o división
+	        // determina si es uniï¿½n o divisiï¿½n
 	        if ( $po['total'] > $pd['total'] ) {
 	          $tipoOperacion = 1; # union
 	        } else if( $po['total'] < $pd['total'] )  {
-	          $tipoOperacion = 2; # división
+	          $tipoOperacion = 2; # divisiï¿½n
 	        } else {
-	          $tipoOperacion = 1; # mismo número de destino y origen
+	          $tipoOperacion = 1; # mismo nï¿½mero de destino y origen
 	        }
-			if ($debugMode) debug( $tipoOperacion, false, false, 'Tipo operación:' );
+			if ($debugMode) debug( $tipoOperacion, false, false, 'Tipo operaciï¿½n:' );
 
 			// remueve PO
 			if ( !empty( $po['remove'] ) ) {
 				foreach( $po['remove'] as $poItem ) {
 					$delPO = 'DELETE FROM uniones_desgloses WHERE parcela_id = ' . mysql_real_escape_string( $poItem ) . ' AND plano_id = ' . mysql_real_escape_string($planoId);
-					if ($debugMode) debug( $delPO, false, false, 'Query remoción PO:' );
+					if ($debugMode) debug( $delPO, false, false, 'Query remociï¿½n PO:' );
 
 					if (!$debugMode) $db->query($delPO);
 				}
@@ -352,7 +353,7 @@ function planos_Button_Editar_OnClick(& $sender)
 			if ( !empty($pd['remove']) ) {
 				foreach( $pd['remove'] as $pdItem ) {
 					$delPD = 'DELETE FROM uniones_desgloses WHERE parcela_destino_id = ' . mysql_real_escape_string( $pdItem ) . ' AND plano_id = ' . mysql_real_escape_string($planoId);
-					if ($debugMode) debug( $delPD, false, false, 'Query remoción PD:' );
+					if ($debugMode) debug( $delPD, false, false, 'Query remociï¿½n PD:' );
 
 					if (!$debugMode) $db->query($delPD);
 				}
@@ -368,9 +369,9 @@ function planos_Button_Editar_OnClick(& $sender)
 					foreach( $po['keep'] as $poItem ) {
 					  if ( !empty($pd['add']) ) {
 						  foreach( $pd['add'] as $pdItem ) {
-							  // inserta la relación
-							  $poKeepAddSQL = 'INSERT INTO uniones_desgloses SET parcela_id  = ' . $poItem . ', parcela_destino_id = ' . $pdItem . ', tipo_union_desglose_id = ' . $tipoOperacion . ', plano_id = ' . $planoId . ', usuario_id = ' . CCGetSession('UID') . ', union_desglose_fecha = NOW(), uniones_desgloses_observacion = "Insertando relación PO:keep -> PD:add";';							  
-							  if ($debugMode) debug($poKeepAddSQL, false, false, 'Insertando relación PO:keep -> PD:add');
+							  // inserta la relaciï¿½n
+							  $poKeepAddSQL = 'INSERT INTO uniones_desgloses SET parcela_id  = ' . $poItem . ', parcela_destino_id = ' . $pdItem . ', tipo_union_desglose_id = ' . $tipoOperacion . ', plano_id = ' . $planoId . ', usuario_id = ' . CCGetSession('UID') . ', union_desglose_fecha = NOW(), uniones_desgloses_observacion = "Insertando relaciï¿½n PO:keep -> PD:add";';							  
+							  if ($debugMode) debug($poKeepAddSQL, false, false, 'Insertando relaciï¿½n PO:keep -> PD:add');
 							  if (!$debugMode) $db->query( $poKeepAddSQL );
 						  }
 					  }
@@ -380,10 +381,10 @@ function planos_Button_Editar_OnClick(& $sender)
 						  //echo 6;
 						  foreach( $pd['keep'] as $pdItem ) {
 							//echo 7;
-							  // inserta la relación
-							  $poKeepKeepSQL = 'INSERT INTO uniones_desgloses SET parcela_id  = ' . $poItem . ', parcela_destino_id = ' . $pdItem . ', tipo_union_desglose_id = ' . $tipoOperacion . ', plano_id = ' . $planoId . ', usuario_id = ' . CCGetSession('UID') . ', union_desglose_fecha = NOW(), uniones_desgloses_observacion = "Insertando relación PO:keep -> PD:add";';
+							  // inserta la relaciï¿½n
+							  $poKeepKeepSQL = 'INSERT INTO uniones_desgloses SET parcela_id  = ' . $poItem . ', parcela_destino_id = ' . $pdItem . ', tipo_union_desglose_id = ' . $tipoOperacion . ', plano_id = ' . $planoId . ', usuario_id = ' . CCGetSession('UID') . ', union_desglose_fecha = NOW(), uniones_desgloses_observacion = "Insertando relaciï¿½n PO:keep -> PD:add";';
 							  //echo $poKeepKeepSQL; echo "</br>";
-							  if ($debugMode) debug($poKeepKeepSQL, false, false, 'Insertando relación PO:keep -> PD:keep');
+							  if ($debugMode) debug($poKeepKeepSQL, false, false, 'Insertando relaciï¿½n PO:keep -> PD:keep');
 							  if (!$debugMode) $db->query( $poKeepKeepSQL );
 							  //echo $poKeepKeepSQL; exit;
 						  }
@@ -397,17 +398,17 @@ function planos_Button_Editar_OnClick(& $sender)
 					foreach( $po['add'] as $poItem ) {
 					  if ( !empty($pd['add']) ) {
 						  foreach( $pd['add'] as $pdItem ) {
-							  // inserta la relación
-							  $poAddAddSQL = 'INSERT INTO uniones_desgloses SET parcela_id  = ' . $poItem . ', parcela_destino_id = ' . $pdItem . ', tipo_union_desglose_id = ' . $tipoOperacion . ', plano_id = ' . $planoId . ', usuario_id = ' . CCGetSession('UID') . ', union_desglose_fecha = NOW(), uniones_desgloses_observacion = "Insertando relación PO:add -> PD:add";';
-							  if ($debugMode) debug($poAddAddSQL, false, false, 'Insertando relación PO:add -> PD:add');
+							  // inserta la relaciï¿½n
+							  $poAddAddSQL = 'INSERT INTO uniones_desgloses SET parcela_id  = ' . $poItem . ', parcela_destino_id = ' . $pdItem . ', tipo_union_desglose_id = ' . $tipoOperacion . ', plano_id = ' . $planoId . ', usuario_id = ' . CCGetSession('UID') . ', union_desglose_fecha = NOW(), uniones_desgloses_observacion = "Insertando relaciï¿½n PO:add -> PD:add";';
+							  if ($debugMode) debug($poAddAddSQL, false, false, 'Insertando relaciï¿½n PO:add -> PD:add');
 							  if (!$debugMode) $db->query( $poAddAddSQL );
 						  }
 					  }
 					  if ( !empty($pd['keep']) ) {
 						  foreach( $pd['keep'] as $pdItem ) {
-							  // inserta la relación
-							  $poAddKeep = 'INSERT INTO uniones_desgloses SET parcela_id  = ' . $poItem . ', parcela_destino_id = ' . $pdItem . ', tipo_union_desglose_id = ' . $tipoOperacion . ', plano_id = ' . $planoId . ', usuario_id = ' . CCGetSession('UID') . ', union_desglose_fecha = NOW(), uniones_desgloses_observacion = "Insertando relación PO:add -> PD:keep";';
-							  if ($debugMode) debug($poAddKeep, false, false, 'Insertando relación PO:add -> PD:keep:');
+							  // inserta la relaciï¿½n
+							  $poAddKeep = 'INSERT INTO uniones_desgloses SET parcela_id  = ' . $poItem . ', parcela_destino_id = ' . $pdItem . ', tipo_union_desglose_id = ' . $tipoOperacion . ', plano_id = ' . $planoId . ', usuario_id = ' . CCGetSession('UID') . ', union_desglose_fecha = NOW(), uniones_desgloses_observacion = "Insertando relaciï¿½n PO:add -> PD:keep";';
+							  if ($debugMode) debug($poAddKeep, false, false, 'Insertando relaciï¿½n PO:add -> PD:keep:');
 							  if (!$debugMode) $db->query( $poAddKeep );
 						  }
 					  }
@@ -418,9 +419,9 @@ function planos_Button_Editar_OnClick(& $sender)
 				// vincular PD nuevas
 				if ( !empty($pd['add']) ) {
 				    foreach( $pd['add'] as $pdItem ) {
-					    // inserta la relación
-					    $pdAddSQL = 'INSERT INTO uniones_desgloses SET parcela_destino_id = ' . $pdItem . ', tipo_union_desglose_id = ' . $tipoOperacion . ', plano_id = ' . $planoId . ', usuario_id = ' . CCGetSession('UID') . ', union_desglose_fecha = NOW(), uniones_desgloses_observacion = "Insertando relación PD:add en un Sin Orig. Catastral";';
-					    if ($debugMode) debug($pdAddSQL, false, false, 'Insertando relación PD:add en un Sin Orig. Catastral:');
+					    // inserta la relaciï¿½n
+					    $pdAddSQL = 'INSERT INTO uniones_desgloses SET parcela_destino_id = ' . $pdItem . ', tipo_union_desglose_id = ' . $tipoOperacion . ', plano_id = ' . $planoId . ', usuario_id = ' . CCGetSession('UID') . ', union_desglose_fecha = NOW(), uniones_desgloses_observacion = "Insertando relaciï¿½n PD:add en un Sin Orig. Catastral";';
+					    if ($debugMode) debug($pdAddSQL, false, false, 'Insertando relaciï¿½n PD:add en un Sin Orig. Catastral:');
 					    if (!$debugMode) $db->query( $pdAddSQL );
 				    }
 				}
@@ -441,10 +442,10 @@ function planos_Button_Editar_OnClick(& $sender)
 				}
 			}
 
-			/* 4. Saca el plano de edición
+			/* 4. Saca el plano de ediciï¿½n
 			--------------------------------------------------------------- */
 			$updQuery = 'UPDATE planos SET plano_en_edicion = 0 WHERE plano_id = ' . mysql_real_escape_string($planoId);
-			if ($debugMode) debug($updQuery, false, false, 'Query de actualización estado edición plano:');
+			if ($debugMode) debug($updQuery, false, false, 'Query de actualizaciï¿½n estado ediciï¿½n plano:');
 			if (!$debugMode) $db->query( $updQuery );
 
 
@@ -479,7 +480,7 @@ function planos_ListBox1_BeforeShow(& $sender)
 
 //Custom Code @623-2A29BDB7
 // -------------------------
-	// G. Quiroga edición estado planos
+	// G. Quiroga ediciï¿½n estado planos
 	// Si es administrador le permito editar el estado del plano
 	$usuario_id = CCGetSession('UID');
 	$db = new clsDBtdf_nuevo();
@@ -509,14 +510,14 @@ function planos_AfterInsert(& $sender)
 //Custom Code @47-2A29BDB7
 // -------------------------
 
-	/* Despues de insertar redirige a la edición del mismo plano
+	/* Despues de insertar redirige a la ediciï¿½n del mismo plano
 	--------------------------------------------------------------- */
 
 	// toma el ID del plano insertado
 	$id = mysql_insert_id();
 
     // trae la ruta del redirect para luego modificarla para que se vuelva a la misma
-	// página luego de guardar
+	// pï¿½gina luego de guardar
 	global $Redirect;
 	$Redirect = "tc_planosRecord.php?plano_id=" . $id;
 
@@ -593,12 +594,12 @@ function planos_BeforeShow(& $sender)
 	if($countOrigen > 1 && $countDestino > 1 ){
 		//echo $countOrigen."</br>";
 		//echo $countDestino."</br>";
-		$planos->Label1->SetValue('</br>Este plano posee más de un origen y más de un destino simultáneamente</br> por lo que en caso de querer editar las parcelas vinculadas se recomienda </br>darlas de baja en primer instancia y luego crear nuevamente las relaciones.');
+		$planos->Label1->SetValue('</br>Este plano posee mï¿½s de un origen y mï¿½s de un destino simultï¿½neamente</br> por lo que en caso de querer editar las parcelas vinculadas se recomienda </br>darlas de baja en primer instancia y luego crear nuevamente las relaciones.');
 	}
 	////////////////////////
 
 
-	/* Decide qué paneles y controles mostrar dentro del record.
+	/* Decide quï¿½ paneles y controles mostrar dentro del record.
 	   Los botones y grids se manejan en el BeforeShow de la pag.
 	-------------------------------------------------------------- */
 
@@ -660,7 +661,7 @@ function planos_OnValidate(& $sender)
 	$db = new clsDBtdf_nuevo();
 
 
-	/* Validar que la numeración del plano sea única
+	/* Validar que la numeraciï¿½n del plano sea ï¿½nica
 	--------------------------------------------------------- */
 
 	// si se han indicado los datos necesarios
@@ -678,7 +679,7 @@ function planos_OnValidate(& $sender)
 
 		if( $plano_id ) {
 
-			// si existe el ID del plano cuenta cuántos planos hay con los parámetros especificados
+			// si existe el ID del plano cuenta cuï¿½ntos planos hay con los parï¿½metros especificados
 			// que no sea el plano actual (al actualizar el registro)
 			$chk = CCDLookUp(
 				'COUNT(*)',
@@ -689,7 +690,7 @@ function planos_OnValidate(& $sender)
 
 		} else {
 
-			// cuenta cuántos planos hay con los parámetros indicados (al insertar el registro)
+			// cuenta cuï¿½ntos planos hay con los parï¿½metros indicados (al insertar el registro)
 			$chk = CCDLookUp(
 				'COUNT(*)',
 				'planos',
@@ -723,10 +724,10 @@ function planos_OnValidate(& $sender)
 //DEL  	$planoId = CCGetParam('plano_id');
 //DEL  
 //DEL  
-//DEL  	/* Guarda un histórico y genera un snapshot del plano
+//DEL  	/* Guarda un histï¿½rico y genera un snapshot del plano
 //DEL  	--------------------------------------------------------- */
 //DEL  
-//DEL  	/* Guarda el registro en la tabla de históricos */
+//DEL  	/* Guarda el registro en la tabla de histï¿½ricos */
 //DEL  	$SQL = 'INSERT INTO planos_ediciones SELECT NULL AS id, planos.*, ' . $userId . ' AS edicion_usuario_id, NOW() AS edicion_fecha, "" AS edicion_snapshot, "parcial" as edicion_tipo FROM planos WHERE planos.plano_id = ' . mysql_real_escape_string($planoId);
 //DEL  	$db->query($SQL);
 //DEL  
@@ -745,7 +746,7 @@ function planos_OnValidate(& $sender)
 //DEL  // -------------------------
 //DEL  
 //DEL      /* Borra las parcela de origen seleccionadas.
-//DEL  	   Este evento se ejecuta después del custom delete (que no hace nada)
+//DEL  	   Este evento se ejecuta despuï¿½s del custom delete (que no hace nada)
 //DEL      ------------------------------------------------------------------------- */
 //DEL  
 //DEL  	$planoId = CCGetParam('plano_id');
@@ -767,7 +768,7 @@ function planos_OnValidate(& $sender)
 //DEL  // -------------------------
 //DEL  
 //DEL  
-//DEL  	/* Asigna el link con sus parámetros y el popup al enlace de
+//DEL  	/* Asigna el link con sus parï¿½metros y el popup al enlace de
 //DEL  	   seleccionar nuevas parcelas (Origen prov.)
 //DEL  	-------------------------------------------------------------- */
 //DEL  
@@ -906,7 +907,7 @@ function parcelas_destino_prov_BeforeShowRow(& $sender)
 	$planoEstado = $planos->ds->f('tipo_estado_plano_id'); //debug( $planoEstado );
 
 
-	// obtenemos el ID de la parcela dependiendo de si se seleccionó o creó
+	// obtenemos el ID de la parcela dependiendo de si se seleccionï¿½ o creï¿½
 	$parcela_id = $Component->ds->f('parcela_id');
 
 
@@ -934,7 +935,7 @@ function parcelas_destino_prov_BeforeShowRow(& $sender)
 			$Component->plano->SetValue( $nro_plano );
 		}
 
-		/* Oculta  el botón de editar creadas, muestra el de quitar y editar seleccionadas
+		/* Oculta  el botï¿½n de editar creadas, muestra el de quitar y editar seleccionadas
 		------------------------------------------------------------------------------------ */
 		$Component->ImageLink2->Visible = false;
 		$Component->link_edit_exist->Visible = true;
@@ -964,7 +965,7 @@ function parcelas_destino_prov_BeforeShowRow(& $sender)
 		$Component->htm->SetValue('');
 
 
-		/* -- Oculta  el botón de quitar, muestra el de editar */
+		/* -- Oculta  el botï¿½n de quitar, muestra el de editar */
 		$Component->ImageLink2->Visible = true;
 		$Component->link_edit_exist->Visible = false;
 		$Component->LinkRemove->Visible = true;
@@ -1005,7 +1006,7 @@ function parcelas_destino_prov_BeforeShow(& $sender)
 	$isPlanoSVC = ( !empty($planoSVC) ) ? true : false;
 
 
-	/* Asigna el link con sus parámetros y el popup al enlace de
+	/* Asigna el link con sus parï¿½metros y el popup al enlace de
 	   seleccionar nuevas parcelas (Destino prov.)
 	-------------------------------------------------------------- */
 
@@ -1027,8 +1028,8 @@ function parcelas_destino_prov_BeforeShow(& $sender)
 
 	}
 
-	// si es plano SVC NO muestra nunca la opción de seleccionar parcelas, sòlo permite crear
-	// Nota: NO QUEDA CLARO SI ESTA VERIFICACIÒN HAY QUE HACERLA PARA EL CASO DE LA EDICIÒN, se deshabilita por el momento
+	// si es plano SVC NO muestra nunca la opciï¿½n de seleccionar parcelas, sï¿½lo permite crear
+	// Nota: NO QUEDA CLARO SI ESTA VERIFICACIï¿½N HAY QUE HACERLA PARA EL CASO DE LA EDICIï¿½N, se deshabilita por el momento
 	/*if ( $isPlanoSVC ) {
 		$Component->SeleccionarParcela->Visible = false;
 	}*/
@@ -1053,7 +1054,7 @@ function parcelas_destino_prov_BeforeShow(& $sender)
 //DEL  	$planoId = CCGetParam('plano_id');
 //DEL  
 //DEL  
-//DEL  	// obtenemos el ID de la parcela dependiendo de si se seleccionó o creó
+//DEL  	// obtenemos el ID de la parcela dependiendo de si se seleccionï¿½ o creï¿½
 //DEL  	$parcela_id = $Component->ds->f('parcela_id');
 //DEL  
 //DEL  
@@ -1082,7 +1083,7 @@ function parcelas_destino_prov_BeforeShow(& $sender)
 //DEL  			}
 //DEL  		}
 //DEL  
-//DEL  		/* Oculta  el botón de editar, muestra el de quitar
+//DEL  		/* Oculta  el botï¿½n de editar, muestra el de quitar
 //DEL  		-------------------------------------------------------------- */
 //DEL  		// dependiendo del estado determina si se aplican las reglas de mostrar acciones
 //DEL  		if ( in_array( $planoEstado, array( 5 ) ) ) {
@@ -1117,7 +1118,7 @@ function parcelas_destino_prov_BeforeShow(& $sender)
 //DEL  		$Component->htm->SetValue('');
 //DEL  
 //DEL  
-//DEL  		/* -- Oculta  el botón de quitar, muestra el de editar */
+//DEL  		/* -- Oculta  el botï¿½n de quitar, muestra el de editar */
 //DEL  		// dependiendo del estado determina si se aplican las reglas de mostrar acciones
 //DEL  		if ( in_array( $planoEstado, array( 5 ) ) ) {
 //DEL  			$Component->ImageLink2->Visible = true;
@@ -1224,7 +1225,7 @@ function parcelas_origen_prov_ds_AfterExecuteDelete(& $sender)
 // -------------------------
 
     /* Borra las parcela de origen seleccionadas.
-	   Este evento se ejecuta después del custom delete (que no hace nada)
+	   Este evento se ejecuta despuï¿½s del custom delete (que no hace nada)
     ------------------------------------------------------------------------- */
 
 	$planoId = CCGetParam(plano_id);
@@ -1261,7 +1262,7 @@ function parcelas_origen_prov_BeforeShow(& $sender)
 //Custom Code @390-2A29BDB7
 // -------------------------
 
-	/* Asigna el link con sus parámetros y el popup al enlace de
+	/* Asigna el link con sus parï¿½metros y el popup al enlace de
 	   seleccionar nuevas parcelas (Origen prov.)
 	-------------------------------------------------------------- */
 
@@ -1359,7 +1360,7 @@ function Page_BeforeShow(& $sender)
 
 	$db = new clsDBtdf_nuevo();
 
-	/* Determina visibilidad de componentes al cargar la página
+	/* Determina visibilidad de componentes al cargar la pï¿½gina
 	-------------------------------------------------------------- */
 	$paramPlanoId = CCGetParam('plano_id', false);	
 	$planoEdicion = CCDLookUp('plano_en_edicion', 'planos', 'plano_id = ' . $paramPlanoId, $db);
@@ -1367,7 +1368,7 @@ function Page_BeforeShow(& $sender)
 
 
 
-	// si no existe el ID  o el plano NO está en edición redirecciona
+	// si no existe el ID  o el plano NO estï¿½ en ediciï¿½n redirecciona
 	if( empty( $paramPlanoId ) || empty( $isPlanoEdicion ) ) {
 
 		// redireccionar al edit de plano
@@ -1406,7 +1407,7 @@ function Page_BeforeInitialize(& $sender)
 	// Incluye el archivo de funciones generales
 	include_once(RelativePath . "/scripts/myFunctions.php");
 
-    // Incluye la gestión de permisos
+    // Incluye la gestiï¿½n de permisos
 	include_once(RelativePath . "/scripts/permisos1.php");
 
 // -------------------------

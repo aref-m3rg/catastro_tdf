@@ -55,12 +55,13 @@ function planos_plano_archivo_AfterProcessFile(& $sender)
 
 	/* Renombra el archivo subido y actualiza el nombre en la tabla
 	--------------------------------------------------------------- */
+	include_once( RelativePath . '/configuracion_general.php' );
 
 	$old = $Component->GetValue();
 	$oldInfo = pathinfo( $old ); // print_r( $oldInfo );
 
 	$new = date('Ymd_') . uniqid() . '.' . $oldInfo['extension'];
-	rename( RelativePath . "/tecnica/planos/".$old, RelativePath . "/tecnica/planos/".$new);
+	rename( PLANOS_PATH . "/" . $old, PLANOS_PATH . "/" . $new);
 	$db = new clsDBtdf_nuevo();
 	$db->query("UPDATE planos SET plano_archivo = '" . $new . "' WHERE plano_archivo = '" . $old . "'");
 	$db->close();
