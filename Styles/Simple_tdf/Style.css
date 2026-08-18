@@ -3,8 +3,7 @@
 
 /* Colors */
 .PageBgColor {
-	background-color: #f86161;
-	/* Color original: #b5c1cd */
+	background-color: #b5c1cd;
 }
 
 .FormTitleBgColor {
@@ -66,8 +65,7 @@
 /* BEGIN Common */
 body {
 	color: #000000;
-	background-color: #f86161;
-	/* Color original: #b5c1cd */
+	background-color: #b5c1cd;
 	font-family: Verdana;
 	font-size: 70%;
 	font-weight: bold;
