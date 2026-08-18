@@ -7,6 +7,8 @@ include_once(RelativePath . "/Common.php");
 include_once(RelativePath . "/Template.php");
 include_once(RelativePath . "/Sorter.php");
 include_once(RelativePath . "/Navigator.php");
+include_once( RelativePath . '/configuracion_general.php' );
+
 //End Include Common Files
 
 //Include Page implementation @2-A8690D39

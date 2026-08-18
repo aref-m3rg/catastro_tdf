@@ -7,6 +7,8 @@ include_once(RelativePath . "/Common.php");
 include_once(RelativePath . "/Template.php");
 include_once(RelativePath . "/Sorter.php");
 include_once(RelativePath . "/Navigator.php");
+include_once( RelativePath . '/configuracion_general.php' );
+
 //End Include Common Files
 
 class clsRecordplanchetas { //planchetas Class @2-FE14F440
@@ -86,7 +88,7 @@ class clsRecordplanchetas { //planchetas Class @2-FE14F440
             $this->plancheta_hoja = & new clsControl(ccsTextBox, "plancheta_hoja", "Hoja", ccsInteger, "", CCGetRequestParam("plancheta_hoja", $Method, NULL), $this);
             $this->plancheta_obs = & new clsControl(ccsTextBox, "plancheta_obs", "Obs", ccsText, "", CCGetRequestParam("plancheta_obs", $Method, NULL), $this);
             $this->plancheta_f_act = & new clsControl(ccsHidden, "plancheta_f_act", "F Act", ccsText, "", CCGetRequestParam("plancheta_f_act", $Method, NULL), $this);
-            $this->FileUpload1 = & new clsFileUpload("FileUpload1", "Archivo", "../tmp/", "./archivos/", "*.jpg;*.gif", "", 3000000, $this);
+            $this->FileUpload1 = & new clsFileUpload("FileUpload1", "Archivo", "../tmp/", PLANCHETAS_PATH . "/", "*.jpg;*.gif", "", 3000000, $this);
             $this->dpto_id = & new clsControl(ccsListBox, "dpto_id", "Departamento", ccsInteger, "", CCGetRequestParam("dpto_id", $Method, NULL), $this);
             $this->dpto_id->DSType = dsTable;
             $this->dpto_id->DataSource = new clsDBcatastro();

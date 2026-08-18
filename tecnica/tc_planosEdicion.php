@@ -8,6 +8,8 @@ include_once(RelativePath . "/Template.php");
 include_once(RelativePath . "/Sorter.php");
 include_once(RelativePath . "/Navigator.php");
 include_once(RelativePath . "/Services.php");
+include_once( RelativePath . '/configuracion_general.php' );
+
 //End Include Common Files
 
 //Include Page implementation @2-A8690D39
@@ -101,7 +103,7 @@ class clsRecordplanos { //planos Class @5-5A51DB4D
             $this->plano_e_nro = new clsControl(ccsTextBox, "plano_e_nro", "E Nro", ccsInteger, "", CCGetRequestParam("plano_e_nro", $Method, NULL), $this);
             $this->plano_f_entrada = new clsControl(ccsTextBox, "plano_f_entrada", "F Entrada", ccsDate, $DefaultDateFormat, CCGetRequestParam("plano_f_entrada", $Method, NULL), $this);
             $this->DatePicker_plano_f_visado = new clsDatePicker("DatePicker_plano_f_visado", "planos", "plano_f_entrada", $this);
-            $this->plano_archivo = new clsFileUpload("plano_archivo", "plano_archivo", "../tmp/", "planos/", "*.jpg;*.gif", "", 5000000, $this);
+            $this->plano_archivo = new clsFileUpload("plano_archivo", "plano_archivo", "../tmp/", PLANOS_ATTACHED_PATH . "/", "*.jpg;*.gif", "", 5000000, $this);
             $this->plano_e_letra = new clsControl(ccsTextBox, "plano_e_letra", "E Letra", ccsText, "", CCGetRequestParam("plano_e_letra", $Method, NULL), $this);
             $this->plano_e_anio = new clsControl(ccsTextBox, "plano_e_anio", "E Anio", ccsInteger, "", CCGetRequestParam("plano_e_anio", $Method, NULL), $this);
             $this->plano_observa = new clsControl(ccsTextArea, "plano_observa", "plano_observa", ccsText, "", CCGetRequestParam("plano_observa", $Method, NULL), $this);
@@ -148,11 +150,11 @@ class clsRecordplanos { //planos Class @5-5A51DB4D
             $this->tipo_estado_plano_id = new clsControl(ccsHidden, "tipo_estado_plano_id", "tipo_estado_plano_id", ccsText, "", CCGetRequestParam("tipo_estado_plano_id", $Method, NULL), $this);
             $this->chk = new clsControl(ccsListBox, "chk", "Plano de Tierras Fiscales sin Mensurar", ccsInteger, "", CCGetRequestParam("chk", $Method, NULL), $this);
             $this->chk->DSType = dsListOfValues;
-            $this->chk->Values = array(array("1", "Sí"), array("2", "No"));
+            $this->chk->Values = array(array("1", "Sï¿½"), array("2", "No"));
             $this->chk->Required = true;
             $this->plano_svc = new clsControl(ccsListBox, "plano_svc", "Sin Vigencia Catastral", ccsInteger, "", CCGetRequestParam("plano_svc", $Method, NULL), $this);
             $this->plano_svc->DSType = dsListOfValues;
-            $this->plano_svc->Values = array(array("1", "Sí"), array("0", "No"));
+            $this->plano_svc->Values = array(array("1", "Sï¿½"), array("0", "No"));
             $this->plano_svc->Required = true;
             $this->plano_disposicion = new clsControl(ccsTextArea, "plano_disposicion", "plano_disposicion", ccsText, "", CCGetRequestParam("plano_disposicion", $Method, NULL), $this);
             $this->CustomError = new clsControl(ccsLabel, "CustomError", "CustomError", ccsText, "", CCGetRequestParam("CustomError", $Method, NULL), $this);
