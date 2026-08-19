@@ -27,8 +27,8 @@ function planchetas_FileUpload1_AfterProcessFile(& $sender)
 	$fileInfo = pathinfo($old);
 	$oldName = $fileInfo['basename'];
 	$new = date('Ymd_') . (double)microtime() * 1000000 . '.' . $fileInfo['extension'];
-	//rename(  RelativePath . "/planchetas/archivos/" . $oldName, RelativePath . "/planchetas/archivos/" . $new);
-    rename(  RelativePath . PLANCHETAS_PATH . $oldName, RelativePath . PLANCHETAS_PATH . $new);
+	$pathArchivos = rtrim(PLANCHETAS_PATH, '/') . '/';
+	rename($pathArchivos . $oldName, $pathArchivos . $new);
 	$db = new clsDBtdf_nuevo();
 	$db->query("UPDATE planchetas SET plancheta_file = '" . mysql_real_escape_string($new) . "', plancheta_old_file = '" . mysql_real_escape_string($oldName) . "' where plancheta_file = '" . mysql_real_escape_string($oldName) . "'");
 	$db->close();
