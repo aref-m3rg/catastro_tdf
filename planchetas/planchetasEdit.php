@@ -101,7 +101,7 @@ class clsRecordplanchetas { //planchetas Class @6-FE14F440
 "FROM tipos_deptos_parcela {SQL_Where} {SQL_OrderBy}";
             list($this->tipo_depto_parc_id->BoundColumn, $this->tipo_depto_parc_id->TextColumn, $this->tipo_depto_parc_id->DBFormat) = array("tipo_depto_parc_id", "tipo_depto_parc_desc", "");
             $this->tipo_depto_parc_id->Required = true;
-            $this->tipo_padron_parc_id = new clsControl(ccsListBox, "tipo_padron_parc_id", "Padr�n", ccsInteger, "", CCGetRequestParam("tipo_padron_parc_id", $Method, NULL), $this);
+            $this->tipo_padron_parc_id = new clsControl(ccsListBox, "tipo_padron_parc_id", "Padrón", ccsInteger, "", CCGetRequestParam("tipo_padron_parc_id", $Method, NULL), $this);
             $this->tipo_padron_parc_id->DSType = dsTable;
             $this->tipo_padron_parc_id->DataSource = new clsDBtdf_nuevo();
             $this->tipo_padron_parc_id->ds = & $this->tipo_padron_parc_id->DataSource;
@@ -109,7 +109,7 @@ class clsRecordplanchetas { //planchetas Class @6-FE14F440
 "FROM tipos_padrones_parcela {SQL_Where} {SQL_OrderBy}";
             list($this->tipo_padron_parc_id->BoundColumn, $this->tipo_padron_parc_id->TextColumn, $this->tipo_padron_parc_id->DBFormat) = array("tipo_padron_parc_id", "tipo_padron_parc_desc", "");
             $this->tipo_padron_parc_id->Required = true;
-            $this->plancheta_scc = new clsControl(ccsTextBox, "plancheta_scc", "Secci�n", ccsText, "", CCGetRequestParam("plancheta_scc", $Method, NULL), $this);
+            $this->plancheta_scc = new clsControl(ccsTextBox, "plancheta_scc", "Sección", ccsText, "", CCGetRequestParam("plancheta_scc", $Method, NULL), $this);
             $this->plancheta_scc->Required = true;
             $this->plancheta_qta = new clsControl(ccsTextBox, "plancheta_qta", "Qta", ccsText, "", CCGetRequestParam("plancheta_qta", $Method, NULL), $this);
             $this->plancheta_cha = new clsControl(ccsTextBox, "plancheta_cha", "Cha", ccsText, "", CCGetRequestParam("plancheta_cha", $Method, NULL), $this);

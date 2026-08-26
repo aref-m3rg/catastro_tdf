@@ -53,7 +53,7 @@ function planchetas_BeforeShow(& $sender)
 //Custom Code @27-2A29BDB7
 // -------------------------
 
-	// Guarda la fecha de actualizaci�n
+	// Guarda la fecha de actualización
 	$Component->plancheta_f_act->SetValue(date('Y-m-d H:i:s'));
 
 
@@ -99,7 +99,7 @@ function Page_BeforeInitialize(& $sender)
 	include_once(RelativePath . "/scripts/myFunctions.php");
 
 
-	// Incluye la gesti�n de permisos
+	// Incluye la gestión de permisos
 	include_once(RelativePath . "/scripts/permisos1.php");
 
 // -------------------------

@@ -150,11 +150,11 @@ class clsRecordplanos { //planos Class @5-5A51DB4D
             $this->tipo_estado_plano_id = new clsControl(ccsHidden, "tipo_estado_plano_id", "tipo_estado_plano_id", ccsText, "", CCGetRequestParam("tipo_estado_plano_id", $Method, NULL), $this);
             $this->chk = new clsControl(ccsListBox, "chk", "Plano de Tierras Fiscales sin Mensurar", ccsInteger, "", CCGetRequestParam("chk", $Method, NULL), $this);
             $this->chk->DSType = dsListOfValues;
-            $this->chk->Values = array(array("1", "S�"), array("2", "No"));
+            $this->chk->Values = array(array("1", "Sí"), array("2", "No"));
             $this->chk->Required = true;
             $this->plano_svc = new clsControl(ccsListBox, "plano_svc", "Sin Vigencia Catastral", ccsInteger, "", CCGetRequestParam("plano_svc", $Method, NULL), $this);
             $this->plano_svc->DSType = dsListOfValues;
-            $this->plano_svc->Values = array(array("1", "S�"), array("0", "No"));
+            $this->plano_svc->Values = array(array("1", "Sí"), array("0", "No"));
             $this->plano_svc->Required = true;
             $this->plano_disposicion = new clsControl(ccsTextArea, "plano_disposicion", "plano_disposicion", ccsText, "", CCGetRequestParam("plano_disposicion", $Method, NULL), $this);
             $this->CustomError = new clsControl(ccsLabel, "CustomError", "CustomError", ccsText, "", CCGetRequestParam("CustomError", $Method, NULL), $this);

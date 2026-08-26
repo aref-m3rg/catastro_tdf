@@ -62,7 +62,7 @@ function Page_BeforeInitialize(& $sender)
 	include_once(RelativePath . "/scripts/myFunctions.php");
 
 
-	// Incluye la gesti�n de permisos
+	// Incluye la gestión de permisos
 	include_once(RelativePath . "/scripts/permisos1.php");
 
 // -------------------------
