@@ -30,7 +30,7 @@ define( 'DS', DIRECTORY_SEPARATOR );
 /* Planchetas
 ----------------------------------------------------------------------------- */
 // Guarda el host donde se almacenan las planchetas
-define( 'PLANCHETAS_PATH', 'C:/inetpub/wwwroot/catastro_tdf/planchetas/archivos' );
+define( 'PLANCHETAS_PATH', WWW_ROOT . '\planchetas\archivos' );
 //define( 'PLANCHETAS_PATH_URL', 'http://192.168.5.6:81/catastro_tdf/planchetas/archivos' );
 
 
