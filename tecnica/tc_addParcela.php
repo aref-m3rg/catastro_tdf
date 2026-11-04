@@ -374,10 +374,10 @@ class clsRecordparcelas { //parcelas Class @2-F41C09A9
             $this->parcela_uf = new clsControl(ccsTextBox, "parcela_uf", "Uf", ccsText, "", CCGetRequestParam("parcela_uf", $Method, NULL), $this);
             $this->parcela_predio = new clsControl(ccsTextBox, "parcela_predio", "Predio", ccsText, "", CCGetRequestParam("parcela_predio", $Method, NULL), $this);
             $this->parcela_rte = new clsControl(ccsTextBox, "parcela_rte", "Rte", ccsText, "", CCGetRequestParam("parcela_rte", $Method, NULL), $this);
-            $this->parcela_superficie = new clsControl(ccsTextBox, "parcela_superficie", "Superficie", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_superficie", $Method, NULL), $this);
+            $this->parcela_superficie = new clsControl(ccsTextBox, "parcela_superficie", "Superficie", ccsFloat, array(False, 6, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_superficie", $Method, NULL), $this);
             $this->parcela_superficie->Required = true;
             $this->parcela_porc_uf = new clsControl(ccsTextBox, "parcela_porc_uf", "Porc Uf", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_porc_uf", $Method, NULL), $this);
-            $this->parcela_sup_uf = new clsControl(ccsTextBox, "parcela_sup_uf", "Sup Uf", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_sup_uf", $Method, NULL), $this);
+            $this->parcela_sup_uf = new clsControl(ccsTextBox, "parcela_sup_uf", "Sup Uf", ccsFloat, array(False, 6, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_sup_uf", $Method, NULL), $this);
             $this->uni_med_id = new clsControl(ccsListBox, "uni_med_id", "uni_med_id", ccsInteger, "", CCGetRequestParam("uni_med_id", $Method, NULL), $this);
             $this->uni_med_id->DSType = dsTable;
             $this->uni_med_id->DataSource = new clsDBtdf_nuevo();

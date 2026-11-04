@@ -370,10 +370,10 @@ class clsRecordparcelas { //parcelas Class @2-F41C09A9
             $this->parcela_uf = new clsControl(ccsLabel, "parcela_uf", "Uf", ccsText, "", CCGetRequestParam("parcela_uf", $Method, NULL), $this);
             $this->parcela_predio = new clsControl(ccsLabel, "parcela_predio", "Predio", ccsText, "", CCGetRequestParam("parcela_predio", $Method, NULL), $this);
             $this->parcela_rte = new clsControl(ccsLabel, "parcela_rte", "Rte", ccsText, "", CCGetRequestParam("parcela_rte", $Method, NULL), $this);
-            $this->parcela_superficie = new clsControl(ccsTextBox, "parcela_superficie", "Superficie de la Parcela", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_superficie", $Method, NULL), $this);
+            $this->parcela_superficie = new clsControl(ccsTextBox, "parcela_superficie", "Superficie de la Parcela", ccsFloat, array(False, 6, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_superficie", $Method, NULL), $this);
             $this->parcela_superficie->Required = true;
             $this->parcela_porc_uf = new clsControl(ccsTextBox, "parcela_porc_uf", "Porcentaje UF", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_porc_uf", $Method, NULL), $this);
-            $this->parcela_sup_uf = new clsControl(ccsTextBox, "parcela_sup_uf", "Superficie propia de la UF", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_sup_uf", $Method, NULL), $this);
+            $this->parcela_sup_uf = new clsControl(ccsTextBox, "parcela_sup_uf", "Superficie propia de la UF", ccsFloat, array(False, 6, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_sup_uf", $Method, NULL), $this);
             $this->uni_med_id = new clsControl(ccsListBox, "uni_med_id", "Unidades de medidas", ccsInteger, "", CCGetRequestParam("uni_med_id", $Method, NULL), $this);
             $this->uni_med_id->DSType = dsTable;
             $this->uni_med_id->DataSource = new clsDBtdf_nuevo();
@@ -772,9 +772,9 @@ class clsparcelasDataSource extends clsDBtdf_nuevo {  //parcelasDataSource Class
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["parcela_superficie"] = new clsSQLParameter("ctrlparcela_superficie", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), "", $this->parcela_superficie->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["parcela_superficie"] = new clsSQLParameter("ctrlparcela_superficie", ccsFloat, array(False, 6, Null, "", False, "", "", 1, True, ""), "", $this->parcela_superficie->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["parcela_porc_uf"] = new clsSQLParameter("ctrlparcela_porc_uf", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), "", $this->parcela_porc_uf->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["parcela_sup_uf"] = new clsSQLParameter("ctrlparcela_sup_uf", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), "", $this->parcela_sup_uf->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["parcela_sup_uf"] = new clsSQLParameter("ctrlparcela_sup_uf", ccsFloat, array(False, 6, Null, "", False, "", "", 1, True, ""), "", $this->parcela_sup_uf->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["uni_med_id"] = new clsSQLParameter("ctrluni_med_id", ccsInteger, "", "", $this->uni_med_id->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["planos_parc_prov_tipo"] = new clsSQLParameter("ctrlplanos_parc_prov_tipo", ccsText, "", "", $this->planos_parc_prov_tipo->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["planos_prov_id"] = new clsSQLParameter("urlplanos_prov_id", ccsInteger, "", "", CCGetFromGet("planos_prov_id", NULL), 0, false, $this->ErrorBlock);

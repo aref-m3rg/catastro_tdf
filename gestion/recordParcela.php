@@ -92,7 +92,7 @@ class clsRecordparcela { //parcela Class @2-C90D0079
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->parcela_sup_uf = new clsControl(ccsTextBox, "parcela_sup_uf", "parcela_sup_uf", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_sup_uf", $Method, NULL), $this);
+            $this->parcela_sup_uf = new clsControl(ccsTextBox, "parcela_sup_uf", "parcela_sup_uf", ccsFloat, array(False, 6, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_sup_uf", $Method, NULL), $this);
             $this->parcela_porc_uf = new clsControl(ccsTextBox, "parcela_porc_uf", "parcela_porc_uf", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_porc_uf", $Method, NULL), $this);
             $this->destino = new clsControl(ccsLabel, "destino", "destino", ccsText, "", CCGetRequestParam("destino", $Method, NULL), $this);
             $this->destino->HTML = true;

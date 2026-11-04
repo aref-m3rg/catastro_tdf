@@ -22,59 +22,115 @@ class PDF extends FPDF{
 		parent::Header();
 	}
 	function Footer(){
-		//Posición: a 1,5 cm del final
+		//Posiciï¿½n: a 1,5 cm del final
 		$this->SetY(-15);
 		//Arial italic 8
 		$this->SetFont('Arial','I',8);
-		//Número de página
-		$this->Cell(0,4,"“Las Islas Malvinas, Georgias y Sándwich del Sur y los espacios marítimos e insulares correspondientes son argentinos”",0,1,'C');
+		//Nï¿½mero de pï¿½gina
+		$this->Cell(0,4,"ï¿½Las Islas Malvinas, Georgias y Sï¿½ndwich del Sur y los espacios marï¿½timos e insulares correspondientes son argentinosï¿½",0,1,'C');
 		//$this->SetFont('Arial','I',6);
 		//$this->Cell(0,4,'Pagina '.$this->PageNo().' de {nb}',0,1,'C');
 	}
 	
 }
 
+	function formatear_decimal_fijo($numero, $decimales = 6, $sep_decimal = ','){
+		$str = trim((string)$numero);
+		if($str === '' || !is_numeric(str_replace(',', '.', $str))){
+			return '0' . $sep_decimal . str_repeat('0', $decimales);
+		}
+		$str = str_replace(',', '.', $str);
+		$negativo = false;
+		if(substr($str, 0, 1) === '-'){
+			$negativo = true;
+			$str = substr($str, 1);
+		}elseif(substr($str, 0, 1) === '+'){
+			$str = substr($str, 1);
+		}
+		if(stripos($str, 'e') !== false){
+			$str = number_format((float)$str, $decimales, '.', '');
+		}
+		$partes = explode('.', $str, 2);
+		$entero = ltrim($partes[0], '0');
+		if($entero === ''){
+			$entero = '0';
+		}
+		$fraccion = isset($partes[1]) ? $partes[1] : '';
+		$fraccion = str_pad($fraccion, $decimales, '0', STR_PAD_RIGHT);
+		return ($negativo ? '-' : '') . $entero . $sep_decimal . $fraccion;
+	}
+
 	function tipo_medida($mesura,$tipo){
 		//separa las Ha total con decimeles en A y Ca
+		$retorno = '';
+		$str = str_replace(',', '.', trim((string)$mesura));
 		if($tipo == 'm2' || $tipo == ''){
-			$retorno=$mesura.' m2';
+			$retorno = formatear_decimal_fijo($mesura, 6, ',') . ' m2';
 		}elseif($tipo == 'Ha'){
-				$ha = truncateFloat($mesura,0);
-				$aa = truncateFloat(($mesura - $ha)*100,0);
-				$tam = strlen($aa);
-				$ca = truncateFloat(($mesura - ($ha + ($aa/100)))*10000,$tam);
+				if($str === '' || !is_numeric($str)){
+					$str = '0';
+				}
+				if(stripos($str, 'e') !== false){
+					$str = number_format((float)$str, 6, '.', '');
+				}
+				$partes = explode('.', ltrim($str, '+-'), 2);
+				$ha_str = ltrim($partes[0], '0');
+				$ha = ($ha_str === '') ? 0 : (int)$ha_str;
+				$frac = isset($partes[1]) ? str_pad($partes[1], 6, '0', STR_PAD_RIGHT) : '000000';
+				$aa = (int)substr($frac, 0, 2);
+				$ca_ent = (int)substr($frac, 2, 2);
+				$ca_dec = substr($frac, 4);
+				if($ca_dec === '' || strlen($ca_dec) < 2){
+					$ca_dec = str_pad($ca_dec, 2, '0', STR_PAD_RIGHT);
+				}
+				$ca_num = (float)($ca_ent . '.' . $ca_dec);
+				$ca = $ca_ent . ',' . $ca_dec;
 				if($ha > 0){
 						$retorno = $ha.' '.$tipo;
-				}elseif(($aa > 0 || $ca > 0) && ($ha == 0 || $ha == '')){
+				}elseif(($aa > 0 || $ca_num > 0) && ($ha == 0 || $ha == '')){
 						$retorno = '0 '.$tipo;
-				}elseif(($ha == 0 || $ha == '') && ($aa == 0 || $aa == '') && ($ca == 0 || $ca == '')){
+				}elseif(($ha == 0 || $ha == '') && ($aa == 0 || $aa == '') && ($ca_num == 0)){
 						$retorno = '';
 				}
 				if($aa > 0){
 						$retorno = $retorno.' '.$aa.' As';
-				}elseif($ca > 0 && ($aa == 0 || $aa == '')){
+				}elseif($ca_num > 0 && ($aa == 0 || $aa == '')){
 						$retorno = $retorno.' 0 As';
 				}
-				if($ca > 0){
+				if($ca_num > 0){
 						$retorno = $retorno.' '.$ca.' Cs';
 				}
 		}elseif($tipo == 'As'){ 
-			$aa = truncateFloat($mesura,0);
-			$tam = strlen($aa);
-			$ca = truncateFloat((($mesura - $aa)*100.00), $tam);
+			if($str === '' || !is_numeric($str)){
+				$str = '0';
+			}
+			if(stripos($str, 'e') !== false){
+				$str = number_format((float)$str, 6, '.', '');
+			}
+			$partes = explode('.', ltrim($str, '+-'), 2);
+			$aa_str = ltrim($partes[0], '0');
+			$aa = ($aa_str === '') ? 0 : (int)$aa_str;
+			$frac = isset($partes[1]) ? str_pad($partes[1], 4, '0', STR_PAD_RIGHT) : '0000';
+			$ca_ent = (int)substr($frac, 0, 2);
+			$ca_dec = substr($frac, 2);
+			if($ca_dec === '' || strlen($ca_dec) < 2){
+				$ca_dec = str_pad($ca_dec, 2, '0', STR_PAD_RIGHT);
+			}
+			$ca_num = (float)($ca_ent . '.' . $ca_dec);
+			$ca = $ca_ent . ',' . $ca_dec;
 			if($aa > 0){
 				$retorno = $aa.' '.$tipo;
-			}elseif($ca > 0 && ($aa == 0 || $aa == '')){
+			}elseif($ca_num > 0 && ($aa == 0 || $aa == '')){
 				$retorno = '0 '.$tipo;
 			}else{
 				$retorno = '';
 			}
-			if($ca > 0){
+			if($ca_num > 0){
 				$retorno = $retorno.' '.$ca.' Cs';					
 			}
 		}elseif($tipo == 'Cs'){
-		   if($mesura > 0){
-			$retorno=$mesura.' '.$tipo;
+		   if((float)$str > 0){
+			$retorno = formatear_decimal_fijo($mesura, 6, ',').' '.$tipo;
 		   }else{
 			$retorno='';
 		   }
@@ -168,27 +224,27 @@ if($db->next_record()){
 			}
 			break;
 		case 2://rural
-			$superficie = number_format($db->f('parcela_super_mensura'),4,',','') .' '. $db->f('unidades_medidas_abrev');
+			$superficie = formatear_decimal_fijo($db->f('parcela_super_mensura'), 6, ',') .' '. $db->f('unidades_medidas_abrev');
 			break;
 	}
 
 	if($superficie == ''){
-		$superficie = number_format($db->f('parcela_super_mensura'),4,',','') .' '. $db->f('unidades_medidas_abrev');
+		$superficie = formatear_decimal_fijo($db->f('parcela_super_mensura'), 6, ',') .' '. $db->f('unidades_medidas_abrev');
 	}
 
 	$pdf->SetFont('Arial','B',10);
 	$pdf->SetY(33);
 	$pdf->MultiCell(200,6,"CERTIFICADO CATASTRAL VALIDO POR 12 MESES\n ",1,'C');
-	$pdf->MultiCell(200,5,"DESIGNACIÓN SEGÚN CATASTRO",1,'C');
+	$pdf->MultiCell(200,5,"DESIGNACIï¿½N SEGï¿½N CATASTRO",1,'C');
 
 	if(strlen($db->f(parcela_uf)) > 0){//es una unidad funcional
 		$pdf->SetFont('Arial','B',9);
 		$pdf->Cell(28,5,'DEPARTAMENTO',1,0,'C');
-		$pdf->Cell(19,5,'SECCIÓN',1,0,'C');
+		$pdf->Cell(19,5,'SECCIï¿½N',1,0,'C');
 		$pdf->Cell(19,5,'CHACRA',1,0,'C');
 		$pdf->Cell(19,5,'QUINTA',1,0,'C');
 		$pdf->Cell(17,5,'MACIZO',1,0,'C');
-		$pdf->Cell(19,5,'FRACCIÓN',1,0,'C');
+		$pdf->Cell(19,5,'FRACCIï¿½N',1,0,'C');
 		$pdf->Cell(19,5,'PARCELA',1,0,'C');
 		$pdf->Cell(17,5,'U.F./U.C.',1,0,'C');
 		$pdf->Cell(19,5,'%FISCAL',1,0,'C');
@@ -209,9 +265,9 @@ if($db->next_record()){
 		$pdf->SetFont('Arial','B',10);
 		$pdf->MultiCell(200,15,"",1,'C');
 		$pdf->SetXY(5,60);
-		$pdf->MultiCell(200,15,"INFORME DEL PADRÓN INMOBILIARIO",0,'C');
+		$pdf->MultiCell(200,15,"INFORME DEL PADRï¿½N INMOBILIARIO",0,'C');
 		$pdf->SetFont('Arial','B',9);
-		$pdf->Cell(86,5,'PADRÓN',1,0,'C');
+		$pdf->Cell(86,5,'PADRï¿½N',1,0,'C');
 		$pdf->Cell(114,5,'VALUACION FISCAL',1,1,'C');
 		
 		$pdf->SetFont('Arial','B',8);
@@ -219,45 +275,49 @@ if($db->next_record()){
 		$pdf->MultiCell(20,8,"PARTIDA",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
 		$pdf->SetX($pdf->GetX() + 20);
-		$pdf->MultiCell(33,8,"CARACTERÍSTICA",1,'C');
+		$pdf->MultiCell(33,8,"CARACTERï¿½STICA",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
 		$pdf->SetX($pdf->GetX() + 53);
 		$pdf->MultiCell(33,4,"SUPERFICIE\nPROPIA DE LA U.F.",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
 		$pdf->SetX($pdf->GetX() + 86);
-		$pdf->MultiCell(35,4,"VALUACIÓN TIERRA\nDE LA PARCELA",1,'C');
+		$pdf->MultiCell(35,4,"VALUACIï¿½N TIERRA\nDE LA PARCELA",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
 		$pdf->SetX($pdf->GetX() + 121);
-		$pdf->MultiCell(35,4,"VALUACIÓN MEJORA\nDE LA PARCELA",1,'C');
+		$pdf->MultiCell(35,4,"VALUACIï¿½N MEJORA\nDE LA PARCELA",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
 		$pdf->SetX($pdf->GetX() + 156);
-		$pdf->MultiCell(44,4,"VALUACIÓN TOTAL DE LA\n UNIDAD FUNCIONAL (*)",1,'C');
+		$pdf->MultiCell(44,4,"VALUACIï¿½N TOTAL DE LA\n UNIDAD FUNCIONAL (*)",1,'C');
 		
 		//datos
 		$pdf->SetFont('Arial','',9);
 
 		$pdf->Cell(20,5,$db->f(parcela_partida),1,0,'C');
 		$pdf->Cell(33,5,$db->f(tipo_parcela_uso_descrip),1,0,'C');
+		if($pdf->GetStringWidth($superficie) > 31){
+			$pdf->SetFont('Arial','',8);
+		}
 		$pdf->Cell(33,5,$superficie,1,0,'C');
+		$pdf->SetFont('Arial','',9);
 		$pdf->Cell(35,5,'$' . number_format($db->f(parcela_val_tierra),2,',',''),1,0,'C');
 		$pdf->Cell(35,5,'$' . number_format($db->f(parcela_val_mejora),2,',',''),1,0,'C');
 		$pdf->Cell(44,5,'$' . number_format($db->f(parcela_val_total),2,',',''),1,1,'C');
 		
 		$pdf->SetFont('Arial','',7);
 		if($db->f(parcela_val_ampliac) > 0){
-			$pdf->MultiCell(200,4,"(*) Importe que surge de aplicar el correspondiente porcentaje fiscal sobre la Valuación total de la tierra y las mejoras emplazadas en la parcela de referencia mas las ampliaciones efectuadas por el propietario",1,'L');
+			$pdf->MultiCell(200,4,"(*) Importe que surge de aplicar el correspondiente porcentaje fiscal sobre la Valuaciï¿½n total de la tierra y las mejoras emplazadas en la parcela de referencia mas las ampliaciones efectuadas por el propietario",1,'L');
 		} else {
-			$pdf->MultiCell(200,4,"(*) Importe que surge de aplicar el correspondiente porcentaje fiscal sobre la Valuación total de la tierra y las mejoras emplazadas en la parcela de referencia",1,'L');
+			$pdf->MultiCell(200,4,"(*) Importe que surge de aplicar el correspondiente porcentaje fiscal sobre la Valuaciï¿½n total de la tierra y las mejoras emplazadas en la parcela de referencia",1,'L');
 		}
 		
 	} else { //es una parcela comun
 		$pdf->SetFont('Arial','B',9);
 		$pdf->Cell(28,5,'DEPARTAMENTO',1,0,'C');
-		$pdf->Cell(22,5,'SECCIÓN',1,0,'C');
+		$pdf->Cell(22,5,'SECCIï¿½N',1,0,'C');
 		$pdf->Cell(22,5,'CHACRA',1,0,'C');
 		$pdf->Cell(19,5,'QUINTA',1,0,'C');
 		$pdf->Cell(20,5,'MACIZO',1,0,'C');
-		$pdf->Cell(22,5,'FRACCIÓN',1,0,'C');
+		$pdf->Cell(22,5,'FRACCIï¿½N',1,0,'C');
 		$pdf->Cell(22,5,'PARCELA',1,0,'C');
 		$pdf->Cell(22,5,'PREDIO',1,0,'C');
 		$pdf->Cell(23,5,'PLANO',1,1,'C');
@@ -277,12 +337,12 @@ if($db->next_record()){
 		$pdf->SetFont('Arial','B',10);
 		$pdf->MultiCell(200,15,"",1,'C');
 		$pdf->SetXY(5,60);
-		$pdf->MultiCell(200,15,"INFORME DEL PADRÓN INMOBILIARIO",0,'C');
+		$pdf->MultiCell(200,15,"INFORME DEL PADRï¿½N INMOBILIARIO",0,'C');
 		$pdf->SetFont('Arial','B',9);
-		$pdf->Cell(101,5,'PADRÓN',1,0,'C');
-		$pdf->Cell(99,5,'VALUACIÓN FISCAL',1,1,'C');
+		$pdf->Cell(101,5,'PADRï¿½N',1,0,'C');
+		$pdf->Cell(99,5,'VALUACIï¿½N FISCAL',1,1,'C');
 		$pdf->Cell(20,5,'PARTIDA',1,0,'C');
-		$pdf->Cell(30,5,'CARACTERÍSTICA',1,0,'C');
+		$pdf->Cell(30,5,'CARACTERï¿½STICA',1,0,'C');
 		$pdf->Cell(51,5,'SUPERFICIE DE LA PARCELA',1,0,'C');
 		$pdf->Cell(33,5,'VAL. TIERRA',1,0,'C');
 		$pdf->Cell(33,5,'VAL. MEJORA',1,0,'C');

@@ -669,7 +669,7 @@ class clsRecordparcelas { //parcelas Class @2-F41C09A9
             $this->parcela_chacra = new clsControl(ccsTextBox, "parcela_chacra", "Chacra", ccsText, "", CCGetRequestParam("parcela_chacra", $Method, NULL), $this);
             $this->parcela_quinta = new clsControl(ccsTextBox, "parcela_quinta", "Quinta", ccsText, "", CCGetRequestParam("parcela_quinta", $Method, NULL), $this);
             $this->parcela_fraccion = new clsControl(ccsTextBox, "parcela_fraccion", "Fraccion", ccsText, "", CCGetRequestParam("parcela_fraccion", $Method, NULL), $this);
-            $this->parcela_superficie = new clsControl(ccsTextBox, "parcela_superficie", "Superficie", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_superficie", $Method, NULL), $this);
+            $this->parcela_superficie = new clsControl(ccsTextBox, "parcela_superficie", "Superficie", ccsFloat, array(False, 6, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("parcela_superficie", $Method, NULL), $this);
             $this->uni_med_id = new clsControl(ccsListBox, "uni_med_id", "uni_med_id", ccsInteger, "", CCGetRequestParam("uni_med_id", $Method, NULL), $this);
             $this->uni_med_id->DSType = dsTable;
             $this->uni_med_id->DataSource = new clsDBtdf_nuevo();

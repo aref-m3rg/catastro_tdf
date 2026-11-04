@@ -56,48 +56,104 @@ function debug($var = false, $showHtml = false, $showFrom = true, $description =
 	echo $var . "\n</pre>\n";
 }
 
+function formatear_decimal_fijo($numero, $decimales = 6, $sep_decimal = ','){
+	$str = trim((string)$numero);
+	if($str === '' || !is_numeric(str_replace(',', '.', $str))){
+		return '0' . $sep_decimal . str_repeat('0', $decimales);
+	}
+	$str = str_replace(',', '.', $str);
+	$negativo = false;
+	if(substr($str, 0, 1) === '-'){
+		$negativo = true;
+		$str = substr($str, 1);
+	}elseif(substr($str, 0, 1) === '+'){
+		$str = substr($str, 1);
+	}
+	if(stripos($str, 'e') !== false){
+		$str = number_format((float)$str, $decimales, '.', '');
+	}
+	$partes = explode('.', $str, 2);
+	$entero = ltrim($partes[0], '0');
+	if($entero === ''){
+		$entero = '0';
+	}
+	$fraccion = isset($partes[1]) ? $partes[1] : '';
+	$fraccion = str_pad($fraccion, $decimales, '0', STR_PAD_RIGHT);
+	return ($negativo ? '-' : '') . $entero . $sep_decimal . $fraccion;
+}
+
 function tipo_medida($mesura,$tipo){
 	//separa las Ha total con decimeles en A y Ca
+	$retorno = '';
+	$str = str_replace(',', '.', trim((string)$mesura));
 	if($tipo == "m2" || $tipo == ""){
-		$retorno=$mesura.' m2';
+		$retorno = formatear_decimal_fijo($mesura, 6, ',') . ' m2';
 	}elseif($tipo == "Ha"){
-			$ha = truncateFloat($mesura,0);
-			$aa = truncateFloat(($mesura - $ha)*100,0);
-			$tam = strlen($aa);
-			$ca = truncateFloat(($mesura - ($ha + ($aa/100)))*10000,$tam);
+			if($str === '' || !is_numeric($str)){
+				$str = '0';
+			}
+			if(stripos($str, 'e') !== false){
+				$str = number_format((float)$str, 6, '.', '');
+			}
+			$partes = explode('.', ltrim($str, '+-'), 2);
+			$ha_str = ltrim($partes[0], '0');
+			$ha = ($ha_str === '') ? 0 : (int)$ha_str;
+			$frac = isset($partes[1]) ? str_pad($partes[1], 6, '0', STR_PAD_RIGHT) : '000000';
+			$aa = (int)substr($frac, 0, 2);
+			$ca_ent = (int)substr($frac, 2, 2);
+			$ca_dec = substr($frac, 4);
+			if($ca_dec === '' || strlen($ca_dec) < 2){
+				$ca_dec = str_pad($ca_dec, 2, '0', STR_PAD_RIGHT);
+			}
+			$ca_num = (float)($ca_ent . '.' . $ca_dec);
+			$ca = $ca_ent . ',' . $ca_dec;
 			if($ha > 0){
 					$retorno = $ha.' '.$tipo;
-			}elseif(($aa > 0 || $ca > 0) && ($ha == 0 || $ha == '')){
+			}elseif(($aa > 0 || $ca_num > 0) && ($ha == 0 || $ha == '')){
 					$retorno = '0 '.$tipo;
-			}elseif(($ha == 0 || $ha == '') && ($aa == 0 || $aa == '') && ($ca == 0 || $ca == '')){
+			}elseif(($ha == 0 || $ha == '') && ($aa == 0 || $aa == '') && ($ca_num == 0)){
 					$retorno = '';
 			}
 			if($aa > 0){
 					$retorno = $retorno.' '.$aa.' As';
-			}elseif($ca > 0 && ($aa == 0 || $aa == '')){
+			}elseif($ca_num > 0 && ($aa == 0 || $aa == '')){
 					$retorno = $retorno.' 0 As';
 			}
-			if($ca > 0){
+			if($ca_num > 0){
 					$retorno = $retorno.' '.$ca.' Cs';
 			}
 			//echo $retorno;exit;
 	}elseif($tipo == "As"){
-		$aa = truncateFloat($mesura,0);
-		$tam = strlen($aa);
-		$ca = truncateFloat((($mesura - $aa)*100.00), $tam);
+		if($str === '' || !is_numeric($str)){
+			$str = '0';
+		}
+		if(stripos($str, 'e') !== false){
+			$str = number_format((float)$str, 6, '.', '');
+		}
+		$partes = explode('.', ltrim($str, '+-'), 2);
+		$aa_str = ltrim($partes[0], '0');
+		$aa = ($aa_str === '') ? 0 : (int)$aa_str;
+		$frac = isset($partes[1]) ? str_pad($partes[1], 4, '0', STR_PAD_RIGHT) : '0000';
+		$ca_ent = (int)substr($frac, 0, 2);
+		$ca_dec = substr($frac, 2);
+		if($ca_dec === '' || strlen($ca_dec) < 2){
+			$ca_dec = str_pad($ca_dec, 2, '0', STR_PAD_RIGHT);
+		}
+		$ca_num = (float)($ca_ent . '.' . $ca_dec);
+		$ca = $ca_ent . ',' . $ca_dec;
 		if($aa > 0){
 			$retorno = $aa.' '.$tipo;
-		}elseif($ca > 0 && ($aa == 0 || $aa == '')){
+		}elseif($ca_num > 0 && ($aa == 0 || $aa == '')){
 			$retorno = '0 '.$tipo;
 		}else{
 			$retorno = '';
 		}
-		if($ca > 0){
+		if($ca_num > 0){
 			$retorno = $retorno.' '.$ca.' Cs';
 		}
 	}elseif($tipo == "Cs"){
-	   if($mesura > 0){
-		$retorno=$mesura.' '.$tipo;
+	   if((float)$str > 0){
+		$retorno = formatear_decimal_fijo($mesura, 6, ',').' '.$tipo;
 	   }else{
 		$retorno='';
 	   }
