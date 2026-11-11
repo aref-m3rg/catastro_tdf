@@ -166,7 +166,7 @@ $SQL = "SELECT UPPER(tipo_depto_parc_desc) AS dpto_desc, tipo_parcela_descrip, t
 		WHERE parcelas.parcela_id = " . CCGetParam(parcela_id);
 */
 $SQL = "SELECT UPPER(tipo_depto_parc_desc) AS dpto_desc, tipo_parcela_descrip, tipo_parcela_uso_descrip, tipo_parcela_uso_abrev, tipo_padron_parc_id, 
-		IFNULL(parcela_partida,'-') parcela_partida, IF(parcela_macizo,parcela_macizo,'-') AS parcela_macizo,
+		IFNULL(parcela_partida,'-') parcela_partida, IF(LENGTH(TRIM(parcela_macizo)) > 0 AND TRIM(parcela_macizo) <> '0',parcela_macizo,'-') AS parcela_macizo,
 		IF(parcela_parcela,parcela_parcela,'-') AS parcela_parcela, IF(parcela_chacra,parcela_chacra,'-') AS parcela_chacra, 
 		IF(parcela_quinta,parcela_quinta,'-') parcela_quinta, IF(parcela_fraccion,parcela_fraccion,'-') AS parcela_fraccion, IF(parcela_seccion='R','RURAL',parcela_seccion) AS parcela_seccion,
 		IF(LENGTH(parcela_uf) > 0,parcela_uf,'-') AS parcela_uf_view,parcela_uf, IF(parcela_predio,parcela_predio,'-') AS parcela_predio, 
