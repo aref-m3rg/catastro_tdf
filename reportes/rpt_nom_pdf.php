@@ -22,12 +22,12 @@ class PDF extends FPDF{
 		parent::Header();
 	}
 	function Footer(){
-		//Posiciï¿½n: a 1,5 cm del final
+		//Posición: a 1,5 cm del final
 		$this->SetY(-15);
 		//Arial italic 8
 		$this->SetFont('Arial','I',8);
-		//Nï¿½mero de pï¿½gina
-		$this->Cell(0,4,"ï¿½Las Islas Malvinas, Georgias y Sï¿½ndwich del Sur y los espacios marï¿½timos e insulares correspondientes son argentinosï¿½",0,1,'C');
+		//Número de página
+		$this->Cell(0,4,"“Las Islas Malvinas, Georgias y Sándwich del Sur y los espacios marítimos e insulares correspondientes son argentinos”",0,1,'C');
 		//$this->SetFont('Arial','I',6);
 		//$this->Cell(0,4,'Pagina '.$this->PageNo().' de {nb}',0,1,'C');
 	}
@@ -235,16 +235,16 @@ if($db->next_record()){
 	$pdf->SetFont('Arial','B',10);
 	$pdf->SetY(33);
 	$pdf->MultiCell(200,6,"CERTIFICADO CATASTRAL VALIDO POR 12 MESES\n ",1,'C');
-	$pdf->MultiCell(200,5,"DESIGNACIï¿½N SEGï¿½N CATASTRO",1,'C');
+	$pdf->MultiCell(200,5,"DESIGNACIÓN SEGÚN CATASTRO",1,'C');
 
 	if(strlen($db->f(parcela_uf)) > 0){//es una unidad funcional
 		$pdf->SetFont('Arial','B',9);
 		$pdf->Cell(28,5,'DEPARTAMENTO',1,0,'C');
-		$pdf->Cell(19,5,'SECCIï¿½N',1,0,'C');
+		$pdf->Cell(19,5,'SECCIÓN',1,0,'C');
 		$pdf->Cell(19,5,'CHACRA',1,0,'C');
 		$pdf->Cell(19,5,'QUINTA',1,0,'C');
 		$pdf->Cell(17,5,'MACIZO',1,0,'C');
-		$pdf->Cell(19,5,'FRACCIï¿½N',1,0,'C');
+		$pdf->Cell(19,5,'FRACCIÓN',1,0,'C');
 		$pdf->Cell(19,5,'PARCELA',1,0,'C');
 		$pdf->Cell(17,5,'U.F./U.C.',1,0,'C');
 		$pdf->Cell(19,5,'%FISCAL',1,0,'C');
@@ -265,9 +265,9 @@ if($db->next_record()){
 		$pdf->SetFont('Arial','B',10);
 		$pdf->MultiCell(200,15,"",1,'C');
 		$pdf->SetXY(5,60);
-		$pdf->MultiCell(200,15,"INFORME DEL PADRï¿½N INMOBILIARIO",0,'C');
+		$pdf->MultiCell(200,15,"INFORME DEL PADRÓN INMOBILIARIO",0,'C');
 		$pdf->SetFont('Arial','B',9);
-		$pdf->Cell(86,5,'PADRï¿½N',1,0,'C');
+		$pdf->Cell(86,5,'PADRÓN',1,0,'C');
 		$pdf->Cell(114,5,'VALUACION FISCAL',1,1,'C');
 		
 		$pdf->SetFont('Arial','B',8);
@@ -275,19 +275,19 @@ if($db->next_record()){
 		$pdf->MultiCell(20,8,"PARTIDA",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
 		$pdf->SetX($pdf->GetX() + 20);
-		$pdf->MultiCell(33,8,"CARACTERï¿½STICA",1,'C');
+		$pdf->MultiCell(33,8,"CARACTERÍSTICA",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
 		$pdf->SetX($pdf->GetX() + 53);
 		$pdf->MultiCell(33,4,"SUPERFICIE\nPROPIA DE LA U.F.",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
 		$pdf->SetX($pdf->GetX() + 86);
-		$pdf->MultiCell(35,4,"VALUACIï¿½N TIERRA\nDE LA PARCELA",1,'C');
+		$pdf->MultiCell(35,4,"VALUACIÓN TIERRA\nDE LA PARCELA",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
 		$pdf->SetX($pdf->GetX() + 121);
-		$pdf->MultiCell(35,4,"VALUACIï¿½N MEJORA\nDE LA PARCELA",1,'C');
+		$pdf->MultiCell(35,4,"VALUACIÓN MEJORA\nDE LA PARCELA",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
 		$pdf->SetX($pdf->GetX() + 156);
-		$pdf->MultiCell(44,4,"VALUACIï¿½N TOTAL DE LA\n UNIDAD FUNCIONAL (*)",1,'C');
+		$pdf->MultiCell(44,4,"VALUACIÓN TOTAL DE LA\n UNIDAD FUNCIONAL (*)",1,'C');
 		
 		//datos
 		$pdf->SetFont('Arial','',9);
@@ -305,19 +305,19 @@ if($db->next_record()){
 		
 		$pdf->SetFont('Arial','',7);
 		if($db->f(parcela_val_ampliac) > 0){
-			$pdf->MultiCell(200,4,"(*) Importe que surge de aplicar el correspondiente porcentaje fiscal sobre la Valuaciï¿½n total de la tierra y las mejoras emplazadas en la parcela de referencia mas las ampliaciones efectuadas por el propietario",1,'L');
+			$pdf->MultiCell(200,4,"(*) Importe que surge de aplicar el correspondiente porcentaje fiscal sobre la Valuación total de la tierra y las mejoras emplazadas en la parcela de referencia mas las ampliaciones efectuadas por el propietario",1,'L');
 		} else {
-			$pdf->MultiCell(200,4,"(*) Importe que surge de aplicar el correspondiente porcentaje fiscal sobre la Valuaciï¿½n total de la tierra y las mejoras emplazadas en la parcela de referencia",1,'L');
+			$pdf->MultiCell(200,4,"(*) Importe que surge de aplicar el correspondiente porcentaje fiscal sobre la Valuación total de la tierra y las mejoras emplazadas en la parcela de referencia",1,'L');
 		}
 		
 	} else { //es una parcela comun
 		$pdf->SetFont('Arial','B',9);
 		$pdf->Cell(28,5,'DEPARTAMENTO',1,0,'C');
-		$pdf->Cell(22,5,'SECCIï¿½N',1,0,'C');
+		$pdf->Cell(22,5,'SECCIÓN',1,0,'C');
 		$pdf->Cell(22,5,'CHACRA',1,0,'C');
 		$pdf->Cell(19,5,'QUINTA',1,0,'C');
 		$pdf->Cell(20,5,'MACIZO',1,0,'C');
-		$pdf->Cell(22,5,'FRACCIï¿½N',1,0,'C');
+		$pdf->Cell(22,5,'FRACCIÓN',1,0,'C');
 		$pdf->Cell(22,5,'PARCELA',1,0,'C');
 		$pdf->Cell(22,5,'PREDIO',1,0,'C');
 		$pdf->Cell(23,5,'PLANO',1,1,'C');
@@ -337,12 +337,12 @@ if($db->next_record()){
 		$pdf->SetFont('Arial','B',10);
 		$pdf->MultiCell(200,15,"",1,'C');
 		$pdf->SetXY(5,60);
-		$pdf->MultiCell(200,15,"INFORME DEL PADRï¿½N INMOBILIARIO",0,'C');
+		$pdf->MultiCell(200,15,"INFORME DEL PADRÓN INMOBILIARIO",0,'C');
 		$pdf->SetFont('Arial','B',9);
-		$pdf->Cell(101,5,'PADRï¿½N',1,0,'C');
-		$pdf->Cell(99,5,'VALUACIï¿½N FISCAL',1,1,'C');
+		$pdf->Cell(101,5,'PADRÓN',1,0,'C');
+		$pdf->Cell(99,5,'VALUACIÓN FISCAL',1,1,'C');
 		$pdf->Cell(20,5,'PARTIDA',1,0,'C');
-		$pdf->Cell(30,5,'CARACTERï¿½STICA',1,0,'C');
+		$pdf->Cell(30,5,'CARACTERÍSTICA',1,0,'C');
 		$pdf->Cell(51,5,'SUPERFICIE DE LA PARCELA',1,0,'C');
 		$pdf->Cell(33,5,'VAL. TIERRA',1,0,'C');
 		$pdf->Cell(33,5,'VAL. MEJORA',1,0,'C');
