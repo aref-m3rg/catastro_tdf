@@ -78,7 +78,7 @@ function formatear_decimal_fijo($numero, $decimales = 6, $sep_decimal = ','){
 		$entero = '0';
 	}
 	$fraccion = isset($partes[1]) ? $partes[1] : '';
-	$fraccion = str_pad($fraccion, $decimales, '0', STR_PAD_RIGHT);
+	$fraccion = substr(str_pad($fraccion, $decimales, '0', STR_PAD_RIGHT), 0, $decimales);
 	return ($negativo ? '-' : '') . $entero . $sep_decimal . $fraccion;
 }
 

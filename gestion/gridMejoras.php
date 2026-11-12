@@ -2139,13 +2139,13 @@ class clsparcelasDataSource extends clsDBtdf_nuevo {  //parcelasDataSource Class
         $this->Parent = & $Parent;
         $this->ErrorBlock = "Record parcelas/Error";
         $this->Initialize();
-        $this->parcela_val_tierra = new clsField("parcela_val_tierra", ccsFloat, "");
+        $this->parcela_val_tierra = new clsField("parcela_val_tierra", ccsFloat, array(False, 2, ".", "", False, "", "", 1, True, ""));
         
-        $this->parcela_val_mejora = new clsField("parcela_val_mejora", ccsFloat, "");
+        $this->parcela_val_mejora = new clsField("parcela_val_mejora", ccsFloat, array(False, 2, ".", "", False, "", "", 1, True, ""));
         
-        $this->parcela_val_ampliac = new clsField("parcela_val_ampliac", ccsFloat, "");
+        $this->parcela_val_ampliac = new clsField("parcela_val_ampliac", ccsFloat, array(False, 2, ".", "", False, "", "", 1, True, ""));
         
-        $this->parcela_val_total = new clsField("parcela_val_total", ccsFloat, "");
+        $this->parcela_val_total = new clsField("parcela_val_total", ccsFloat, array(False, 2, ".", "", False, "", "", 1, True, ""));
         
         $this->parcela_porc_uf = new clsField("parcela_porc_uf", ccsFloat, "");
         

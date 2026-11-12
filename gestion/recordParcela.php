@@ -1173,11 +1173,11 @@ class clsparcelaDataSource extends clsDBtdf_nuevo {  //parcelaDataSource Class @
         
         $this->hades = new clsField("hades", ccsText, "");
         
-        $this->parcela_val_tierra_l = new clsField("parcela_val_tierra_l", ccsFloat, "");
+        $this->parcela_val_tierra_l = new clsField("parcela_val_tierra_l", ccsFloat, array(False, 2, ".", "", False, "", "", 1, True, ""));
         
-        $this->parcela_val_mejora_l = new clsField("parcela_val_mejora_l", ccsFloat, "");
+        $this->parcela_val_mejora_l = new clsField("parcela_val_mejora_l", ccsFloat, array(False, 2, ".", "", False, "", "", 1, True, ""));
         
-        $this->parcela_val_ampliac_l = new clsField("parcela_val_ampliac_l", ccsFloat, "");
+        $this->parcela_val_ampliac_l = new clsField("parcela_val_ampliac_l", ccsFloat, array(False, 2, ".", "", False, "", "", 1, True, ""));
         
         $this->ImageLink2 = new clsField("ImageLink2", ccsText, "");
         
@@ -1209,13 +1209,13 @@ class clsparcelaDataSource extends clsDBtdf_nuevo {  //parcelaDataSource Class @
         
         $this->parcela_receptividad = new clsField("parcela_receptividad", ccsFloat, "");
         
-        $this->parcela_val_tierra = new clsField("parcela_val_tierra", ccsFloat, "");
+        $this->parcela_val_tierra = new clsField("parcela_val_tierra", ccsFloat, array(False, 2, ".", "", False, "", "", 1, True, ""));
         
-        $this->parcela_val_mejora = new clsField("parcela_val_mejora", ccsFloat, "");
+        $this->parcela_val_mejora = new clsField("parcela_val_mejora", ccsFloat, array(False, 2, ".", "", False, "", "", 1, True, ""));
         
-        $this->parcela_val_ampliac = new clsField("parcela_val_ampliac", ccsFloat, "");
+        $this->parcela_val_ampliac = new clsField("parcela_val_ampliac", ccsFloat, array(False, 2, ".", "", False, "", "", 1, True, ""));
         
-        $this->parcela_val_total = new clsField("parcela_val_total", ccsFloat, "");
+        $this->parcela_val_total = new clsField("parcela_val_total", ccsFloat, array(False, 2, ".", "", False, "", "", 1, True, ""));
         
 
         $this->InsertFields["parcela_sup_uf"] = array("Name" => "parcela_sup_uf", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);

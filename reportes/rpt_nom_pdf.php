@@ -56,8 +56,19 @@ class PDF extends FPDF{
 			$entero = '0';
 		}
 		$fraccion = isset($partes[1]) ? $partes[1] : '';
-		$fraccion = str_pad($fraccion, $decimales, '0', STR_PAD_RIGHT);
+		$fraccion = substr(str_pad($fraccion, $decimales, '0', STR_PAD_RIGHT), 0, $decimales);
 		return ($negativo ? '-' : '') . $entero . $sep_decimal . $fraccion;
+	}
+
+	function imprimir_celda_ajustada($pdf, $ancho, $alto, $texto, $borde = 1, $ln = 0, $align = 'C', $fuente_base = 9, $estilo = ''){
+		$tam = $fuente_base;
+		$pdf->SetFont('Arial', $estilo, $tam);
+		while($tam > 6 && $pdf->GetStringWidth($texto) > ($ancho - 2)){
+			$tam -= 0.5;
+			$pdf->SetFont('Arial', $estilo, $tam);
+		}
+		$pdf->Cell($ancho, $alto, $texto, $borde, $ln, $align);
+		$pdf->SetFont('Arial', $estilo, $fuente_base);
 	}
 
 	function tipo_medida($mesura,$tipo){
@@ -267,41 +278,41 @@ if($db->next_record()){
 		$pdf->SetXY(5,60);
 		$pdf->MultiCell(200,15,"INFORME DEL PADRÓN INMOBILIARIO",0,'C');
 		$pdf->SetFont('Arial','B',9);
-		$pdf->Cell(86,5,'PADRÓN',1,0,'C');
-		$pdf->Cell(114,5,'VALUACION FISCAL',1,1,'C');
+		$pdf->Cell(83,5,'PADRÓN',1,0,'C');
+		$pdf->Cell(117,5,'VALUACION FISCAL',1,1,'C');
 		
 		$pdf->SetFont('Arial','B',8);
 		
-		$pdf->MultiCell(20,8,"PARTIDA",1,'C');
+		$pdf->MultiCell(18,8,"PARTIDA",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
-		$pdf->SetX($pdf->GetX() + 20);
-		$pdf->MultiCell(33,8,"CARACTERÍSTICA",1,'C');
+		$pdf->SetX($pdf->GetX() + 18);
+		$pdf->MultiCell(30,8,"CARACTERÍSTICA",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
-		$pdf->SetX($pdf->GetX() + 53);
-		$pdf->MultiCell(33,4,"SUPERFICIE\nPROPIA DE LA U.F.",1,'C');
+		$pdf->SetX($pdf->GetX() + 48);
+		$pdf->MultiCell(35,4,"SUPERFICIE\nPROPIA DE LA U.F.",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
-		$pdf->SetX($pdf->GetX() + 86);
-		$pdf->MultiCell(35,4,"VALUACIÓN TIERRA\nDE LA PARCELA",1,'C');
+		$pdf->SetX($pdf->GetX() + 83);
+		$pdf->MultiCell(38,4,"VALUACIÓN TIERRA\nDE LA PARCELA",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
 		$pdf->SetX($pdf->GetX() + 121);
-		$pdf->MultiCell(35,4,"VALUACIÓN MEJORA\nDE LA PARCELA",1,'C');
+		$pdf->MultiCell(38,4,"VALUACIÓN MEJORA\nDE LA PARCELA",1,'C');
 		$pdf->SetY($pdf->GetY() - 8);
-		$pdf->SetX($pdf->GetX() + 156);
-		$pdf->MultiCell(44,4,"VALUACIÓN TOTAL DE LA\n UNIDAD FUNCIONAL (*)",1,'C');
+		$pdf->SetX($pdf->GetX() + 159);
+		$pdf->MultiCell(41,4,"VALUACIÓN TOTAL DE LA\n UNIDAD FUNCIONAL (*)",1,'C');
 		
 		//datos
 		$pdf->SetFont('Arial','',9);
 
-		$pdf->Cell(20,5,$db->f(parcela_partida),1,0,'C');
-		$pdf->Cell(33,5,$db->f(tipo_parcela_uso_descrip),1,0,'C');
-		if($pdf->GetStringWidth($superficie) > 31){
-			$pdf->SetFont('Arial','',8);
-		}
-		$pdf->Cell(33,5,$superficie,1,0,'C');
-		$pdf->SetFont('Arial','',9);
-		$pdf->Cell(35,5,'$' . number_format($db->f(parcela_val_tierra),2,',',''),1,0,'C');
-		$pdf->Cell(35,5,'$' . number_format($db->f(parcela_val_mejora),2,',',''),1,0,'C');
-		$pdf->Cell(44,5,'$' . number_format($db->f(parcela_val_total),2,',',''),1,1,'C');
+		$val_tierra = '$' . formatear_decimal_fijo($db->f(parcela_val_tierra), 2, ',');
+		$val_mejora = '$' . formatear_decimal_fijo($db->f(parcela_val_mejora), 2, ',');
+		$val_total  = '$' . formatear_decimal_fijo($db->f(parcela_val_total), 2, ',');
+
+		imprimir_celda_ajustada($pdf, 18, 5, $db->f(parcela_partida), 1, 0, 'C');
+		imprimir_celda_ajustada($pdf, 30, 5, $db->f(tipo_parcela_uso_descrip), 1, 0, 'C');
+		imprimir_celda_ajustada($pdf, 35, 5, $superficie, 1, 0, 'C');
+		imprimir_celda_ajustada($pdf, 38, 5, $val_tierra, 1, 0, 'C');
+		imprimir_celda_ajustada($pdf, 38, 5, $val_mejora, 1, 0, 'C');
+		imprimir_celda_ajustada($pdf, 41, 5, $val_total, 1, 1, 'C');
 		
 		$pdf->SetFont('Arial','',7);
 		if($db->f(parcela_val_ampliac) > 0){
@@ -339,23 +350,27 @@ if($db->next_record()){
 		$pdf->SetXY(5,60);
 		$pdf->MultiCell(200,15,"INFORME DEL PADRÓN INMOBILIARIO",0,'C');
 		$pdf->SetFont('Arial','B',9);
-		$pdf->Cell(101,5,'PADRÓN',1,0,'C');
-		$pdf->Cell(99,5,'VALUACIÓN FISCAL',1,1,'C');
-		$pdf->Cell(20,5,'PARTIDA',1,0,'C');
-		$pdf->Cell(30,5,'CARACTERÍSTICA',1,0,'C');
-		$pdf->Cell(51,5,'SUPERFICIE DE LA PARCELA',1,0,'C');
-		$pdf->Cell(33,5,'VAL. TIERRA',1,0,'C');
-		$pdf->Cell(33,5,'VAL. MEJORA',1,0,'C');
-		$pdf->Cell(33,5,'VAL. TOTAL',1,1,'C');
+		$pdf->Cell(86,5,'PADRÓN',1,0,'C');
+		$pdf->Cell(114,5,'VALUACIÓN FISCAL',1,1,'C');
+		imprimir_celda_ajustada($pdf, 18, 5, 'PARTIDA', 1, 0, 'C', 8, 'B');
+		imprimir_celda_ajustada($pdf, 25, 5, 'CARACTERÍSTICA', 1, 0, 'C', 8, 'B');
+		imprimir_celda_ajustada($pdf, 43, 5, 'SUPERFICIE DE LA PARCELA', 1, 0, 'C', 8, 'B');
+		imprimir_celda_ajustada($pdf, 38, 5, 'VAL. TIERRA', 1, 0, 'C', 8, 'B');
+		imprimir_celda_ajustada($pdf, 38, 5, 'VAL. MEJORA', 1, 0, 'C', 8, 'B');
+		imprimir_celda_ajustada($pdf, 38, 5, 'VAL. TOTAL', 1, 1, 'C', 8, 'B');
 		//datos
 		$pdf->SetFont('Arial','',9);
 
-		$pdf->Cell(20,5,$db->f(parcela_partida),1,0,'C');
-		$pdf->Cell(30,5,$db->f(tipo_parcela_uso_descrip),1,0,'C');
-		$pdf->Cell(51,5,$superficie,1,0,'C');
-		$pdf->Cell(33,5,'$' . number_format($db->f(parcela_val_tierra),2,',',''),1,0,'C');
-		$pdf->Cell(33,5,'$' . number_format($db->f(parcela_val_mejora),2,',',''),1,0,'C');
-		$pdf->Cell(33,5,'$' . number_format($db->f(parcela_val_total),2,',',''),1,1,'C');
+		$val_tierra = '$' . formatear_decimal_fijo($db->f(parcela_val_tierra), 2, ',');
+		$val_mejora = '$' . formatear_decimal_fijo($db->f(parcela_val_mejora), 2, ',');
+		$val_total  = '$' . formatear_decimal_fijo($db->f(parcela_val_total), 2, ',');
+
+		imprimir_celda_ajustada($pdf, 18, 5, $db->f(parcela_partida), 1, 0, 'C');
+		imprimir_celda_ajustada($pdf, 25, 5, $db->f(tipo_parcela_uso_descrip), 1, 0, 'C');
+		imprimir_celda_ajustada($pdf, 43, 5, $superficie, 1, 0, 'C');
+		imprimir_celda_ajustada($pdf, 38, 5, $val_tierra, 1, 0, 'C');
+		imprimir_celda_ajustada($pdf, 38, 5, $val_mejora, 1, 0, 'C');
+		imprimir_celda_ajustada($pdf, 38, 5, $val_total, 1, 1, 'C');
 	}
 
 	//corte 2
